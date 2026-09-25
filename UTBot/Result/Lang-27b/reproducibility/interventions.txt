@@ -1,0 +1,57 @@
+UTBot / Defects4J Manual and AI-assisted Interventions
+
+1. UTBot CLI working-directory issue
+Problem:
+UTBot CLI attempted to resolve the target class using a resource inside the fat JAR, causing InvalidPathException/FileSystemNotFoundException.
+
+Fix:
+Modified GenerateTestsAbstractCommand.getWorkingDirectory() to locate the target .class directly from the supplied classpath.
+
+2. Classloader conflict
+Problem:
+UTBot's fat JAR contains its own version of Apache Commons Lang NumberUtils.
+The default parent-first classloader loaded this version instead of the Defects4J Lang-27b NumberUtils class.
+
+Symptom:
+Soot failed while resolving methods with:
+"Class contains not only one method with the required signature."
+
+Fix:
+Implemented selective child-first class loading for project classes while keeping Java, Kotlin, JDK, and org.utbot classes parent-first.
+
+3. Defects4J Windows compatibility
+Problem:
+Defects4J external-suite extraction used Unix shell commands with Windows paths.
+
+Fix:
+Modified Utils::extract_test_suite() to create/remove directories using Perl File::Path and normalized paths for tar extraction.
+
+4. Source encoding
+Problem:
+UTBot-generated Java source contained Unicode characters, while javac used x-windows-874.
+
+Symptom:
+"unmappable character ... for encoding x-windows-874"
+
+Fix:
+Set:
+JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
+
+5. Generated test class-name conflict
+Problem:
+UTBot generated NumberUtilsTest, which conflicts with the existing Defects4J NumberUtilsTest.
+
+Fix:
+For integration only, copied the generated test to NumberUtilsUTBotTest.java and changed the class declaration to NumberUtilsUTBotTest.
+The original generated NumberUtilsTest.java was preserved unchanged.
+
+6. Bug-detection validation
+The same generated UTBot suite was executed against Lang-27b and Lang-27f.
+112 UTBot tests failed on each version, with no failure unique to Lang-27b.
+Therefore, no UTBot-generated test was confirmed to reveal Lang-27.
+
+7. Performance measurement
+A separate generation run was timed using PowerShell Stopwatch.
+Elapsed wall-clock time: 181.3901473 seconds.
+The timing run generated 467 tests and exited with code 0.
+The original 415-test suite remains the basis for coverage and bug-detection results.

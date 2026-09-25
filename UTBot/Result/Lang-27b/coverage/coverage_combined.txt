@@ -1,0 +1,11 @@
+Running ant (compile.tests)................................................ OK
+Running ant (coverage.instrument).......................................... OK
+Running ant (run.dev.tests)................................................ OK
+Running ant (coverage.report).............................................. OK
+WARNING: Some tests failed (see D:\d4j_work\lang_27_buggy/failing_tests)!
+       Lines total: 374
+     Lines covered: 370
+  Conditions total: 352
+Conditions covered: 316
+     Line coverage: 98.9%
+Condition coverage: 89.8%

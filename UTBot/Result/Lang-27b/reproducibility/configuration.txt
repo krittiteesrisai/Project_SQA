@@ -1,0 +1,45 @@
+Tool: UTBot Java CLI
+Target Project: Defects4J Lang
+Bug ID: 27b
+Target Class: org.apache.commons.lang3.math.NumberUtils
+Test Framework: JUnit 4
+Generation Timeout: 120000 ms
+
+Generation command:
+run-utbot.bat generate org.apache.commons.lang3.math.NumberUtils \
+  --classpath D:\d4j_work\lang_27_buggy\target\classes \
+  --source D:\d4j_work\lang_27_buggy\src\main\java\org\apache\commons\lang3\math\NumberUtils.java \
+  --test-framework junit4 \
+  --generation-timeout 120000 \
+  --output ..\Result_Round2\Lang-27b\NumberUtilsTest.java
+
+Environment:
+OS: Windows 11
+Defects4J Java: Java 11
+UTBot CLI Java: Java 17
+Encoding for Defects4J coverage: UTF-8
+JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
+
+Results:
+Original generated tests: 415
+UTBot-only line coverage: 80.2% (300/374)
+UTBot-only condition coverage: 63.6% (224/352)
+Developer-only line coverage: 97.9% (366/374)
+Developer-only condition coverage: 87.8% (309/352)
+Combined line coverage: 98.9% (370/374)
+Combined condition coverage: 89.8% (316/352)
+
+Bug detection:
+UTBot failing tests on Lang-27b: 112
+UTBot failing tests on Lang-27f: 112
+Unique UTBot failures on Lang-27b: 0
+Confirmed Lang-27 bug-revealing UTBot tests: 0
+
+Performance timing rerun:
+Elapsed time: 181.3901473 seconds
+Generated tests: 467
+Exit code: 0
+
+Note:
+The performance timing run was a separate generation run.
+Coverage and bug-detection results use the original 415-test suite.

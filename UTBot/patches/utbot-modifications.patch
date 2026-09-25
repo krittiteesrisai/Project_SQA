@@ -1,0 +1,309 @@
+diff --git a/settings.gradle.kts b/settings.gradle.kts
+index dda07b9ca..074471e3f 100644
+--- a/settings.gradle.kts
++++ b/settings.gradle.kts
+@@ -1,19 +1,110 @@
+-val projectType: String by settings
+-val communityEdition: String by settings
+-val ultimateEdition: String by settings
+-
+-val ideType: String by settings
+-val buildType: String by settings
+-val pycharmIdeType: String by settings
+-
+-val javaIde: String by settings
+-val pythonIde: String by settings
+-val jsIde: String by settings
+-val jsBuild: String by settings
+-val includeRiderInBuild: String by settings
+-val goIde: String by settings
++// val projectType: String by settings
++// val communityEdition: String by settings
++// val ultimateEdition: String by settings
++
++// val ideType: String by settings
++// val buildType: String by settings
++// val pycharmIdeType: String by settings
++
++// val javaIde: String by settings
++// val pythonIde: String by settings
++// val jsIde: String by settings
++// val jsBuild: String by settings
++// val includeRiderInBuild: String by settings
++// val goIde: String by settings
++
++// pluginManagement {
++//     resolutionStrategy {
++//         eachPlugin {
++//             if (requested.id.name == "rdgen") {
++//                 useModule("com.jetbrains.rd:rd-gen:${requested.version}")
++//             }
++//         }
++//     }
++// }
++
++// rootProject.name = "utbot"
++
++// include("utbot-core")
++// include("utbot-framework")
++// include("utbot-framework-api")
++// include("utbot-modificators-analyzer")
++// // include("utbot-sample")
++// include("utbot-java-fuzzing")
++// include("utbot-fuzzing")
++// // include("utbot-junit-contest")
++// // include("utbot-analytics")
++// // include("utbot-analytics-torch")
++
++// // include("utbot-usvm")
++
++// include("utbot-cli")
++
++// include("utbot-api")
++// include("utbot-instrumentation")
++// // include("utbot-instrumentation-tests")
++
++// include("utbot-summary")
++// // include("utbot-gradle")
++// // include("utbot-maven")
++// // include("utbot-summary-tests")
++// // include("utbot-framework-test")
++// // include("utbot-testing")
++// include("utbot-rd")
++// // include("utbot-android-studio")
++
++// if (includeRiderInBuild.toBoolean()) {
++//     include("utbot-rider")
++// }
++
++// // include("utbot-ui-commons")
++
++// // include("utbot-spring-framework")
++// include("utbot-spring-commons-api")
++// include("utbot-spring-commons")
++// // include("utbot-spring-analyzer")
++// // include("utbot-spring-sample")
++// // include("utbot-spring-test")
++
++// if (pycharmIdeType.split(",").contains(ideType)) {
++//     include("utbot-python-pycharm")
++// } else {
++//     include("utbot-intellij-main")
++// }
++
++// if (javaIde.split(",").contains(ideType)) {
++//     include("utbot-intellij")
++// }
++
++// if (pythonIde.split(",").contains(ideType)) {
++//     include("utbot-python")
++//     include("utbot-cli-python")
++//     include("utbot-intellij-python")
++//     include("utbot-python-parser")
++//     include("utbot-python-executor")
++// }
++
++// if (projectType == ultimateEdition) {
++//     if (jsBuild == buildType || jsIde.split(",").contains(ideType)) {
++//         include("utbot-js")
++//         include("utbot-cli-js")
++//         include("utbot-intellij-js")
++//     }
++
++//     if (goIde.split(",").contains(ideType)) {
++//         include("utbot-go")
++//         include("utbot-cli-go")
++//         include("utbot-intellij-go")
++//     }
++// }
++
++// // include("utbot-light")
+ 
+ pluginManagement {
++    repositories {
++        gradlePluginPortal()
++        mavenCentral()
++    }
+     resolutionStrategy {
+         eachPlugin {
+             if (requested.id.name == "rdgen") {
+@@ -29,73 +120,13 @@ include("utbot-core")
+ include("utbot-framework")
+ include("utbot-framework-api")
+ include("utbot-modificators-analyzer")
+-include("utbot-sample")
+ include("utbot-java-fuzzing")
+ include("utbot-fuzzing")
+-include("utbot-junit-contest")
+-include("utbot-analytics")
+-include("utbot-analytics-torch")
+-
+-include("utbot-usvm")
+-
+ include("utbot-cli")
+-
+ include("utbot-api")
+ include("utbot-instrumentation")
+-include("utbot-instrumentation-tests")
+-
+ include("utbot-summary")
+-include("utbot-gradle")
+-include("utbot-maven")
+-include("utbot-summary-tests")
+-include("utbot-framework-test")
+-include("utbot-testing")
+ include("utbot-rd")
+-include("utbot-android-studio")
+-
+-if (includeRiderInBuild.toBoolean()) {
+-    include("utbot-rider")
+-}
+-
+-include("utbot-ui-commons")
+-
+-include("utbot-spring-framework")
+ include("utbot-spring-commons-api")
+ include("utbot-spring-commons")
+-include("utbot-spring-analyzer")
+-include("utbot-spring-sample")
+-include("utbot-spring-test")
+-
+-if (pycharmIdeType.split(",").contains(ideType)) {
+-    include("utbot-python-pycharm")
+-} else {
+-    include("utbot-intellij-main")
+-}
+-
+-if (javaIde.split(",").contains(ideType)) {
+-    include("utbot-intellij")
+-}
+-
+-if (pythonIde.split(",").contains(ideType)) {
+-    include("utbot-python")
+-    include("utbot-cli-python")
+-    include("utbot-intellij-python")
+-    include("utbot-python-parser")
+-    include("utbot-python-executor")
+-}
+-
+-if (projectType == ultimateEdition) {
+-    if (jsBuild == buildType || jsIde.split(",").contains(ideType)) {
+-        include("utbot-js")
+-        include("utbot-cli-js")
+-        include("utbot-intellij-js")
+-    }
+-
+-    if (goIde.split(",").contains(ideType)) {
+-        include("utbot-go")
+-        include("utbot-cli-go")
+-        include("utbot-intellij-go")
+-    }
+-}
+-
+-include("utbot-light")
++include("utbot-spring-analyzer")
+\ No newline at end of file
+diff --git a/utbot-cli/src/main/kotlin/org/utbot/cli/GenerateTestsAbstractCommand.kt b/utbot-cli/src/main/kotlin/org/utbot/cli/GenerateTestsAbstractCommand.kt
+index 4d39fd2c1..31709bba3 100644
+--- a/utbot-cli/src/main/kotlin/org/utbot/cli/GenerateTestsAbstractCommand.kt
++++ b/utbot-cli/src/main/kotlin/org/utbot/cli/GenerateTestsAbstractCommand.kt
+@@ -138,17 +138,50 @@ abstract class GenerateTestsAbstractCommand(name: String, help: String) :
+                 uri.toPath().toURL()
+             }
+             .toTypedArray()
+-        URLClassLoader(urls)
++
++        object : URLClassLoader(urls, javaClass.classLoader) {
++            override fun loadClass(name: String, resolve: Boolean): Class<*> {
++                synchronized(getClassLoadingLock(name)) {
++
++                    findLoadedClass(name)?.let {
++                        if (resolve) resolveClass(it)
++                        return it
++                    }
++
++                    // Keep platform and UTBot's own classes parent-first
++                    if (
++                        name.startsWith("java.") ||
++                        name.startsWith("javax.") ||
++                        name.startsWith("jdk.") ||
++                        name.startsWith("sun.") ||
++                        name.startsWith("kotlin.") ||
++                        name.startsWith("org.utbot.")
++                    ) {
++                        return super.loadClass(name, resolve)
++                    }
++
++                    // Project classes: try the supplied classpath first
++                    try {
++                        val clazz = findClass(name)
++                        if (resolve) resolveClass(clazz)
++                        return clazz
++                    } catch (_: ClassNotFoundException) {
++                        return super.loadClass(name, resolve)
++                    }
++                }
++            }
++        }
+     }
+ 
+     abstract override fun run()
+ 
+     protected fun getWorkingDirectory(classFqn: String): Path? {
+         val classRelativePath = classFqnToPath(classFqn) + ".class"
+-        val classAbsoluteURL = classLoader.getResource(classRelativePath) ?: return null
+-        val classAbsolutePath = replaceSeparator(classAbsoluteURL.toPath().toString())
+-            .removeSuffix(classRelativePath)
+-        return Paths.get(classAbsolutePath)
++
++        return classPath!!
++            .split(File.pathSeparator)
++            .map { Paths.get(it) }
++            .firstOrNull { Files.exists(it.resolve(classRelativePath)) }
+     }
+ 
+     protected fun generateTestSets(
+@@ -236,4 +269,4 @@ abstract class GenerateTestsAbstractCommand(name: String, help: String) :
+     protected fun now(): LocalDateTime = LocalDateTime.now()
+ 
+     protected fun newline(): String = System.lineSeparator()
+-}
+\ No newline at end of file
++}
+diff --git a/utbot-framework/src/main/kotlin/org/utbot/framework/util/SootUtils.kt b/utbot-framework/src/main/kotlin/org/utbot/framework/util/SootUtils.kt
+index dcb18951e..769578374 100644
+--- a/utbot-framework/src/main/kotlin/org/utbot/framework/util/SootUtils.kt
++++ b/utbot-framework/src/main/kotlin/org/utbot/framework/util/SootUtils.kt
+@@ -137,7 +137,21 @@ val ExecutableId.sootMethod: SootMethod
+ val ExecutableId.sootMethodOrNull: SootMethod?
+     get() {
+         val clazz = Scene.v().getSootClass(classId.name)
+-        return clazz.methods.singleOrNull { it.pureJavaSignature == signature }
++        val matches = clazz.methods.filter { it.pureJavaSignature == signature }
++
++        if (matches.size != 1) {
++            println("=== UTBOT SOOT DEBUG ===")
++            println("Class: ${classId.name}")
++            println("Looking for: $signature")
++            println("Match count: ${matches.size}")
++            println("Soot methods:")
++            clazz.methods.forEach {
++                println("  ${it.pureJavaSignature}")
++            }
++            println("========================")
++        }
++
++        return matches.singleOrNull()
+     }
+ 
+ 
+diff --git a/utbot-intellij-main/src/main/resources/settings.properties b/utbot-intellij-main/src/main/resources/settings.properties
+index 84bc852a2..ddfbd3020 100644
+--- a/utbot-intellij-main/src/main/resources/settings.properties
++++ b/utbot-intellij-main/src/main/resources/settings.properties
+@@ -1,4 +1,4 @@
+-# Copyright (c) 2024 utbot.org
++# Copyright (c) 2026 utbot.org
+ # 
+ # Licensed under the Apache License, Version 2.0 (the "License");
+ # you may not use this file except in compliance with the License.

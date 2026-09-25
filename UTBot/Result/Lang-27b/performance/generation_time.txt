@@ -1,0 +1,7 @@
+﻿UTBot Generation Performance
+Target: Lang-27b
+Class: org.apache.commons.lang3.math.NumberUtils
+Generation timeout: 120000 ms
+Elapsed seconds: 181.3901473
+Elapsed milliseconds: 181390.1473
+Exit code: 0
