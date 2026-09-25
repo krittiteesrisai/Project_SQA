@@ -36,24 +36,24 @@ UTBot/
 └── Result/
          └── Lang-27b/
              ├── README.md
-             ├── bug\_detection/
-             │   ├── failing\_tests\_buggy.txt
-             │   ├── failing\_tests\_fixed.txt
-             │   ├── utbot\_fail\_buggy.txt
-             │   └── utbot\_fail\_fixed.txt
+             ├── bug_detection/
+             │   ├── failing_tests_buggy.txt
+             │   ├── failing_tests_fixed.txt
+             │   ├── utbot_fail_buggy.txt
+             │   └── utbot_fail_fixed.txt
              │
              ├── coverage/
-             │   ├── coverage\_combined.txt
-             │   ├── coverage\_developer\_only.txt
-             │   └── coverage\_utbot\_only.txt
+             │   ├── coverage_combined.txt
+             │   ├── coverage_developer_only.txt
+             │   └── coverage_utbot_only.txt
              │
-             ├── generated\_tests/
+             ├── generated_tests/
              │   ├── NumberUtilsTest.java
-             │   └── NumberUtilsTest\_timing.java
+             │   └── NumberUtilsTest_timing.java
              │
              ├── performance/
-             │   ├── generation\_time.txt
-             │   └── utbot\_timing\_run.log
+             │   ├── generation_time.txt
+             │   └── utbot_timing_run.log
              │
              └── reproducibility/
                  ├── configuration.txt
