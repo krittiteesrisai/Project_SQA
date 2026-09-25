@@ -23,80 +23,41 @@ org.apache.commons.lang3.math.NumberUtils
 ```text
 
 UTBot/
-
-│
-
 ├── Code/
-
 │   └── run-utbot.bat
-
 │
-
 ├── logs/
-
 │   └── utbot-after-classloader-fix.log
-
 │
-
 ├── patches/
-
 │   ├── utbot-modifications.patch
-
 │   └── utbot-version.txt
-
 │
-
 └── Result/
-
-&#x20;   └── Lang-27b/
-
-&#x20;       ├── README.md
-
-&#x20;       │
-
-&#x20;       ├── bug\_detection/
-
-&#x20;       │   ├── failing\_tests\_buggy.txt
-
-&#x20;       │   ├── failing\_tests\_fixed.txt
-
-&#x20;       │   ├── utbot\_fail\_buggy.txt
-
-&#x20;       │   └── utbot\_fail\_fixed.txt
-
-&#x20;       │
-
-&#x20;       ├── coverage/
-
-&#x20;       │   ├── coverage\_combined.txt
-
-&#x20;       │   ├── coverage\_developer\_only.txt
-
-&#x20;       │   └── coverage\_utbot\_only.txt
-
-&#x20;       │
-
-&#x20;       ├── generated\_tests/
-
-&#x20;       │   ├── NumberUtilsTest.java
-
-&#x20;       │   └── NumberUtilsTest\_timing.java
-
-&#x20;       │
-
-&#x20;       ├── performance/
-
-&#x20;       │   ├── generation\_time.txt
-
-&#x20;       │   └── utbot\_timing\_run.log
-
-&#x20;       │
-
-&#x20;       └── reproducibility/
-
-&#x20;           ├── configuration.txt
-
-&#x20;           └── interventions.txt
+         └── Lang-27b/
+         ├── README.md
+         ├── bug\_detection/
+         │   ├── failing\_tests\_buggy.txt
+         │   ├── failing\_tests\_fixed.txt
+         │   ├── utbot\_fail\_buggy.txt
+         │   └── utbot\_fail\_fixed.txt
+         │
+         ├── coverage/
+         │   ├── coverage\_combined.txt
+         │   ├── coverage\_developer\_only.txt
+         │   └── coverage\_utbot\_only.txt
+         │
+         ├── generated\_tests/
+         │   ├── NumberUtilsTest.java
+         │   └── NumberUtilsTest\_timing.java
+         │
+         ├── performance/
+         │   ├── generation\_time.txt
+         │   └── utbot\_timing\_run.log
+         │
+         └── reproducibility/
+             ├── configuration.txt
+             └── interventions.txt
 
 ```
 
