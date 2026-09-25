@@ -21,7 +21,6 @@ org.apache.commons.lang3.math.NumberUtils
 ## Project Structure
 
 ```text
-
 UTBot/
 ├── Code/
 │   └── run-utbot.bat
