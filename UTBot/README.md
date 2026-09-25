@@ -1,8 +1,8 @@
 # UTBot
 
-ส่วนนี้เป็นการทดลองใช้ \*\*UTBot Java CLI\*\* สำหรับสร้าง Unit Test อัตโนมัติให้กับโปรเจกต์ Java จาก \*\*Defects4J\*\* ในงาน Project SQA
+ส่วนนี้เป็นการทดลองใช้ **UTBot Java CLI** สำหรับสร้าง Unit Test อัตโนมัติให้กับโปรเจกต์ Java จาก \*\*Defects4J\*\* ในงาน Project SQA
 
-การทดลองหลักใช้ Defects4J \*\*Lang-27\*\* และคลาส:
+การทดลองหลักใช้ Defects4J **Lang-27** และคลาส:
 
 ```text
 
