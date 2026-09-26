@@ -1,17 +1,11 @@
-# UTBot
+# UTBot Automated Test Generation
 
-ส่วนนี้เป็นการทดลองใช้ **UTBot Java CLI** สำหรับสร้าง Unit Test อัตโนมัติให้กับโปรเจกต์ Java จาก **Defects4J** ในงาน Project SQA
+ส่วนนี้เป็นการทดลองใช้ **UTBot Java CLI** เพื่อสร้าง Unit Test อัตโนมัติสำหรับ Java projects จาก **Defects4J** ใน Project SQA
 
-การทดลองหลักใช้ Defects4J **Lang-27** และคลาส:
+การทดลองแบ่งออกเป็น 2 ส่วนหลัก:
 
-```text
-org.apache.commons.lang3.math.NumberUtils
-```
-
-โดยเปรียบเทียบผลระหว่าง
-
-- `Lang-27b` — Buggy Version
-- `Lang-27f` — Fixed Version
+1. **Pilot Experiment** — ทดลองและตรวจสอบ pipeline ด้วย Defects4J Lang-27
+2. **Automated Experiment** — ใช้ Python automation รัน UTBot กับ Defects4J bugs และรวบรวมผลอัตโนมัติ
 
 ---
 
@@ -21,7 +15,8 @@ org.apache.commons.lang3.math.NumberUtils
 UTBot/
 │
 ├── Code/
-│   └── run-utbot.bat
+│   ├── run-utbot.bat
+│   └── utbot-cli-local-1.0.jar
 │
 ├── logs/
 │   └── utbot-after-classloader-fix.log
@@ -30,70 +25,62 @@ UTBot/
 │   ├── utbot-modifications.patch
 │   └── utbot-version.txt
 │
-└── Result/
-    └── Lang-27b/
-        ├── README.md
-        │
-        ├── bug_detection/
-        │   ├── failing_tests_buggy.txt
-        │   ├── failing_tests_fixed.txt
-        │   ├── utbot_fail_buggy.txt
-        │   └── utbot_fail_fixed.txt
-        │
-        ├── coverage/
-        │   ├── coverage_combined.txt
-        │   ├── coverage_developer_only.txt
-        │   └── coverage_utbot_only.txt
-        │
-        ├── generated_tests/
-        │   ├── NumberUtilsTest.java
-        │   └── NumberUtilsTest_timing.java
-        │
-        ├── performance/
-        │   ├── generation_time.txt
-        │   └── utbot_timing_run.log
-        │
-        └── reproducibility/
-            ├── configuration.txt
-            └── interventions.txt
+├── Result/
+│   └── Lang-27b/
+│       ├── bug_detection/
+│       ├── coverage/
+│       ├── generated_tests/
+│       ├── performance/
+│       ├── reproducibility/
+│       └── README.md
+│
+├── Result_Automated/
+│   ├── Lang-*/
+│   ├── Lang_summary.md
+│   ├── summary.csv
+│   └── README.md
+│
+├── scripts/
+│   ├── generate_summary.py
+│   └── run_all_defects.py
+│
+└── README.md
 ```
 
-> `utbot-cli-local-1.0.jar` ไม่ได้เก็บไว้ใน Git repository เนื่องจากไฟล์มีขนาดประมาณ 145 MB  
-> แต่สามารถ build ใหม่ได้จาก UTBot source โดยใช้ version และ patch ที่อยู่ใน `patches/`
+`Result/` เก็บผลจาก pilot experiment ส่วน `Result_Automated/` เก็บผลจาก automation pipeline
+
+> `utbot-cli-local-1.0.jar` และ raw automated results ไม่ถูกเก็บใน Git เนื่องจากมีขนาดใหญ่
 
 ---
 
-## Environment
+# Environment
 
-การทดลองนี้ใช้ environment หลักดังนี้:
+Environment หลักที่ใช้พัฒนาและทดลอง:
 
 ```text
 Operating System : Windows 11
 UTBot Runtime    : Java 17
 Defects4J        : Java 11
 Test Framework   : JUnit 4
-Target Project   : Lang
-Bug ID           : 27
-Target Class     : org.apache.commons.lang3.math.NumberUtils
+Dataset          : Defects4J
 ```
 
-UTBot ใช้ Java 17 ในการรัน CLI ส่วน Defects4J Lang ใช้ Java 11
+UTBot CLI ใช้ Java 17 ในการทำงาน ส่วน Defects4J environment ใช้ Java 11
+
+Path ของ Java และ Defects4J อาจต้องปรับให้ตรงกับเครื่องที่ใช้ทดลอง
 
 ---
 
-## UTBot Version
+# UTBot Version
 
-UTBot source ที่ใช้ในการทดลอง:
+UTBot source ที่ใช้:
 
 ```text
-Repository:
-https://github.com/UnitTestBot/UTBotJava.git
-
-Commit:
-73bd2b2aed09ba94e7cbd875c662f78db10c2da8
+Repository : https://github.com/UnitTestBot/UTBotJava.git
+Commit     : 73bd2b2aed09ba94e7cbd875c662f78db10c2da8
 ```
 
-ข้อมูล version ถูกเก็บไว้ที่:
+ข้อมูล version ถูกบันทึกไว้ใน:
 
 ```text
 patches/utbot-version.txt
@@ -101,35 +88,31 @@ patches/utbot-version.txt
 
 ---
 
-## UTBot Modifications
+# UTBot Modifications
 
-UTBot CLI เดิมไม่สามารถทำงานกับ Defects4J Lang-27 ได้โดยตรงใน environment นี้ จึงมีการแก้ไข source code บางส่วน
+UTBot CLI เดิมไม่สามารถทำงานกับ Defects4J Lang ได้โดยตรงใน environment ที่ใช้ทดลอง จึงมีการแก้ไข source code บางส่วน
 
-ปัญหาหลักที่พบคือ:
+ปัญหาหลักที่พบระหว่างการทดลอง ได้แก่
 
-1. การหา working directory ของ target class จาก fat JAR
-2. Classloader โหลด `NumberUtils` ที่อยู่ภายใน UTBot fat JAR แทน `NumberUtils` ของ Defects4J
-3. เกิดความไม่ตรงกันระหว่าง class ที่ Reflection เห็นกับ class ที่ Soot วิเคราะห์
+1. การหา working directory ของ target class จาก UTBot fat JAR
+2. Classloader โหลด class จาก dependency ภายใน UTBot แทน class ของ Defects4J
+3. ความไม่ตรงกันระหว่าง class ที่ Reflection โหลดกับ class ที่ Soot วิเคราะห์
+4. ปัญหาการทำงานร่วมกับ Defects4J บน Windows
+5. Generated tests บางส่วนใช้ Java syntax ที่ใหม่กว่า source level ของ Defects4J project
 
-จึงแก้การหา target class ให้ค้นจาก classpath ที่กำหนด และใช้ selective child-first class loading สำหรับ project classes
+UTBot จึงถูกแก้ให้ค้นหา target class จาก classpath ที่กำหนด และใช้ selective child-first class loading สำหรับ project classes
 
-Patch ที่ใช้เก็บไว้ที่:
-
-```text
-patches/utbot-modifications.patch
-```
-
-รายละเอียด intervention เพิ่มเติมอยู่ที่:
+Patch และ version information อยู่ใน:
 
 ```text
-Result/Lang-27b/reproducibility/interventions.txt
+patches/
 ```
 
 ---
 
-## Build UTBot CLI
+# Build UTBot CLI
 
-หลังจาก checkout UTBot source ตาม commit ที่กำหนดและ apply patch แล้ว สามารถ build CLI ได้ด้วย:
+หลังจาก checkout UTBot source ตาม commit ที่กำหนดและ apply modifications แล้ว สามารถ build CLI ด้วย:
 
 ```cmd
 gradlew.bat clean :utbot-cli:jar --no-daemon --no-parallel -PideType=IC -PsemVer=local-1.0 -x test
@@ -141,212 +124,329 @@ JAR ที่ได้จะอยู่ประมาณ:
 utbot-cli\build\libs\utbot-cli-local-1.0.jar
 ```
 
-จากนั้นนำ JAR มาไว้ที่:
+นำ JAR มาไว้ที่:
 
 ```text
 Project_SQA\UTBot\Code\utbot-cli-local-1.0.jar
 ```
 
-ไฟล์นี้ถูก ignore จาก Git เนื่องจากมีขนาดประมาณ 145 MB
+ไฟล์ JAR นี้ถูก ignore จาก Git เนื่องจากมีขนาดประมาณ 145 MB
 
 ---
 
-## Running UTBot
+# Running Automated Experiments
 
-ก่อนใช้งาน ต้อง compile Defects4J project ก่อน
-
-ตัวอย่าง Lang-27b:
-
-```bash
-cd /d/d4j_work/lang_27_buggy
-
-export JAVA_HOME="/c/Program Files/Eclipse Adoptium/jdk-11.0.32.101-hotspot"
-export PATH="$JAVA_HOME/bin:$PATH"
-
-defects4j compile
-```
-
-จากนั้นใช้ UTBot CLI จาก Windows CMD:
+รันคำสั่งจาก root directory ของ `Project_SQA`
 
 ```cmd
-cd UTBot\Code
-
-run-utbot.bat generate ^
-  org.apache.commons.lang3.math.NumberUtils ^
-  --classpath "D:\d4j_work\lang_27_buggy\target\classes" ^
-  --source "D:\d4j_work\lang_27_buggy\src\main\java\org\apache\commons\lang3\math\NumberUtils.java" ^
-  --test-framework junit4 ^
-  --generation-timeout 120000 ^
-  --output "..\Result\Lang-27b\generated_tests\NumberUtilsTest.java"
+cd D:\path\to\Project_SQA
 ```
 
-> Path ของ Defects4J อาจต้องเปลี่ยนให้ตรงกับเครื่องที่ใช้ทดลอง
+ดู command options:
+
+```cmd
+python UTBot\scripts\run_all_defects.py --help
+```
+
+## Run Specific Bug
+
+ใช้ `--project` และ `--bugs`
+
+ตัวอย่าง Lang-27:
+
+```cmd
+python UTBot\scripts\run_all_defects.py --project Lang --bugs 27
+```
+
+สามารถระบุหลาย Bug ID ได้:
+
+```cmd
+python UTBot\scripts\run_all_defects.py --project Lang --bugs 27 28 45
+```
+
+## Run All Active Bugs in One Project
+
+```cmd
+python UTBot\scripts\run_all_defects.py --project Lang --all-bugs
+```
+
+## Resume Experiment
+
+หากมีผลการทดลองเดิมอยู่แล้ว สามารถข้าม bugs ที่มี terminal status ได้ด้วย:
+
+```cmd
+python UTBot\scripts\run_all_defects.py --project Lang --all-bugs --resume
+```
+
+## Run All Defects4J Projects
+
+Automation script รองรับ:
+
+```cmd
+python UTBot\scripts\run_all_defects.py --all
+```
+
+ควรตรวจสอบ compatibility ของแต่ละ Defects4J project ก่อนรันชุดใหญ่ เนื่องจากแต่ละ project อาจใช้ build system, Java version และ source level แตกต่างกัน
 
 ---
 
-## Generated Tests
+# Experiment Pipeline
 
-การ generate หลักสร้าง test ได้:
-
-```text
-415 tests
-```
-
-ไฟล์:
+สำหรับแต่ละ bug automation pipeline จะดำเนินการโดยสรุปดังนี้:
 
 ```text
-Result/Lang-27b/generated_tests/NumberUtilsTest.java
+Checkout Buggy Version
+        ↓
+Checkout Fixed Version
+        ↓
+Baseline Compilation
+        ↓
+Identify Modified Classes
+        ↓
+Generate Tests with UTBot
+        ↓
+Install Generated Tests
+        ↓
+Run on Buggy Version
+        ↓
+Run Same Tests on Fixed Version
+        ↓
+Compare Failures
+        ↓
+Collect Coverage
+        ↓
+Save Results
 ```
 
-มีการรัน generation แยกอีกครั้งสำหรับวัด performance ซึ่งสร้างได้:
-
-```text
-467 tests
-```
-
-ไฟล์:
-
-```text
-Result/Lang-27b/generated_tests/NumberUtilsTest_timing.java
-```
-
-จำนวน test ที่ต่างกันแสดงให้เห็นว่า UTBot generation สามารถให้ผลต่างกันระหว่างแต่ละ run
+ก่อน baseline compilation จะมีการลบ stale UTBot-generated tests จาก previous runs เพื่อไม่ให้ผลการทดลองเก่าปนกับ baseline
 
 ---
 
-## Coverage Results
+# Bug Detection Criterion
 
-ผล Coverage ของ `NumberUtils`:
-
-| Test Suite | Line Coverage | Condition Coverage |
-|---|---:|---:|
-| Developer Tests | 97.9% (366/374) | 87.8% (309/352) |
-| UTBot Tests | 80.2% (300/374) | 63.6% (224/352) |
-| Developer + UTBot | 98.9% (370/374) | 89.8% (316/352) |
-
-เมื่อเพิ่ม UTBot tests เข้าไปกับ Developer tests:
+generated test จะถือว่าสามารถตรวจจับ defect ได้เมื่อ:
 
 ```text
-Line Coverage      +4 lines
-                   +1.0 percentage point
-
-Condition Coverage +7 conditions
-                   +2.0 percentage points
+Generated Test FAILS on Buggy Version
+                AND
+The Same Test PASSES on Fixed Version
 ```
 
-รายละเอียดอยู่ใน:
+หาก test fail ทั้ง Buggy และ Fixed version จะ **ไม่ถือว่าเป็นการตรวจจับ bug**
 
-```text
-Result/Lang-27b/coverage/
-```
+วิธีนี้ช่วยแยก failure ที่เกิดจาก generated test หรือ environment ออกจาก failure ที่สัมพันธ์กับ defect จริง
 
 ---
 
-## Bug Detection
+# Experiment Status
 
-นำ test suite ชุดเดียวกันจาก UTBot ไปรันกับทั้ง:
+Automation pipeline ใช้ terminal statuses หลักดังนี้:
+
+| Status | Meaning |
+|---|---|
+| `COMPLETED` | Generated tests สามารถ execute และเก็บ metrics ได้ |
+| `TEST_COMPILE_INCOMPATIBLE` | Generated tests ไม่สามารถ compile ภายใต้ source level ของ benchmark |
+| `GENERATION_TIMEOUT` | UTBot generation ใช้เวลาเกิน timeout ที่กำหนด |
+| `GENERATION_FAILED` | UTBot เกิด internal error ระหว่าง test generation |
+
+สถานะที่ไม่สามารถ execute generated tests ได้จะไม่ถูกนับเป็น bug ที่ตรวจไม่พบโดยอัตโนมัติ
+
+---
+
+# Automated Lang Experiment
+
+Automation pipeline ถูกใช้กับ active bugs ทั้งหมดของ Defects4J **Lang**
+
+ผลรวม:
+
+| Metric | Result |
+|---|---:|
+| Active Bugs | 61 |
+| COMPLETED | 15 (24.59%) |
+| TEST_COMPILE_INCOMPATIBLE | 42 (68.85%) |
+| GENERATION_TIMEOUT | 3 (4.92%) |
+| GENERATION_FAILED | 1 (1.64%) |
+| Generated Tests | 4,062 |
+| Detected Bugs | 1 |
+
+Bug ที่ UTBot generated tests ตรวจพบ:
 
 ```text
-Lang-27b
-Lang-27f
-```
-
-พบว่า:
-
-```text
-UTBot failures on Lang-27b : 112
-UTBot failures on Lang-27f : 112
-Unique failures on 27b     : 0
-```
-
-เมื่อเปรียบเทียบรายชื่อ test ที่ fail พบว่า 112 tests ที่ fail เป็นชุดเดียวกันทั้ง Buggy และ Fixed version
-
-ดังนั้นในการทดลองนี้ **ยังไม่พบ UTBot-generated test ที่สามารถยืนยันการตรวจจับ Lang-27 ได้** เพราะไม่มี generated test ที่ fail เฉพาะ `27b` และผ่านบน `27f`
-
-ในทางกลับกัน test เดิมของ Defects4J:
-
-```text
-NumberUtilsTest::testCreateNumber
-```
-
-fail บน `Lang-27b` แต่ไม่ fail บน `Lang-27f` จึงใช้เป็นตัวตรวจสอบว่าการเปรียบเทียบ Buggy/Fixed ทำงานถูกต้อง
-
-รายละเอียดอยู่ใน:
-
-```text
-Result/Lang-27b/bug_detection/
+Lang-45
+org.apache.commons.lang.WordUtils
 ```
 
 ---
 
-## Performance
+# Fault Detection Results
 
-มีการรัน UTBot generation แยกอีกครั้งเพื่อวัดเวลาการทำงาน โดยใช้ PowerShell Stopwatch
+Fault Detection Rate รายงานด้วย 2 denominator เพื่อแยกผลของเครื่องมือออกจาก compatibility ของ benchmark
 
-ผลที่ได้:
+| Metric | Result |
+|---|---:|
+| Detected Bugs | 1 |
+| FDR — All Active Bugs | 1 / 61 = 1.64% |
+| FDR — Executable Bugs | 1 / 15 = 6.67% |
+
+`TEST_COMPILE_INCOMPATIBLE`, `GENERATION_TIMEOUT` และ `GENERATION_FAILED` ไม่ถูกจัดเป็น bug ที่ UTBot ตรวจไม่พบ เนื่องจาก generated tests ไม่สามารถเข้าสู่ขั้นตอนเปรียบเทียบ Buggy/Fixed ได้สำเร็จ
+
+---
+
+# Coverage Results
+
+Coverage averages คำนวณจาก 15 experiments ที่มีสถานะ `COMPLETED`
+
+## Line Coverage
+
+| Test Suite | Average Coverage |
+|---|---:|
+| Developer Tests | 97.49% |
+| UTBot Tests | 63.19% |
+| Developer + UTBot | 98.15% |
+
+Average Line Coverage Gain:
 
 ```text
-Elapsed time : 181.3901473 seconds
-Exit code    : 0
-Generated    : 467 tests
++0.66 percentage points
 ```
 
-`120000 ms` เป็น generation timeout ที่กำหนดให้ UTBot ส่วน `181.39 seconds` เป็น wall-clock time ของ process ทั้งหมด ซึ่งรวมขั้นตอนอื่น เช่น JVM startup, analysis, summarization และ code generation
+## Condition Coverage
 
-รายละเอียดอยู่ใน:
+| Test Suite | Average Coverage |
+|---|---:|
+| Developer Tests | 90.06% |
+| UTBot Tests | 55.95% |
+| Developer + UTBot | 91.92% |
+
+Average Condition Coverage Gain:
 
 ```text
-Result/Lang-27b/performance/
++1.86 percentage points
+```
+
+Coverage เหล่านี้เป็น macro-average ของ bugs ที่มีสถานะ `COMPLETED`
+
+---
+
+# Generation Performance
+
+สำหรับ 15 experiments ที่ `COMPLETED`:
+
+| Metric | Result |
+|---|---:|
+| Generated Tests | 4,062 |
+| Average Tests per Completed Bug | 270.80 |
+| Average Generation Time | 116.46 s |
+| Total Generation Time | 1,746.93 s |
+| Total Generation Time | 29.12 min |
+
+---
+
+# Generate Experiment Summary
+
+หลังจาก automation สร้าง `summary.csv` แล้ว สามารถสร้าง Markdown summary ด้วย:
+
+```cmd
+python UTBot\scripts\generate_summary.py
+```
+
+ผลลัพธ์หลัก:
+
+```text
+UTBot/Result_Automated/summary.csv
+UTBot/Result_Automated/Lang_summary.md
 ```
 
 ---
 
-## Known Warnings / Limitations
+# Raw Results
 
-ระหว่างการ generate พบข้อความ เช่น:
+ผลดิบของแต่ละ bug ถูกเก็บใน:
 
 ```text
-java.lang.NoSuchFieldException: value
-Coverage is empty ...
-Fuzzing overtime ...
+UTBot/Result_Automated/Lang-<BugID>/
 ```
 
-อย่างไรก็ตาม UTBot ยังสามารถทำงานต่อและสร้าง Java test file ได้สำเร็จ
+raw results ประกอบด้วย generated tests, logs, metadata, bug detection information และ coverage artifacts ที่เกี่ยวข้องกับการทดลองแต่ละ bug
 
-นอกจากนี้ generated tests บางส่วน fail ทั้งบน Buggy และ Fixed version จึงไม่ควรนับ failure เหล่านั้นเป็นการตรวจจับ defect โดยตรง
+raw directories มีขนาดรวมสูง จึงถูก ignore จาก Git:
+
+```gitignore
+UTBot/Result_Automated/Lang-*/
+```
+
+แต่ไฟล์สรุปต่อไปนี้ถูกเก็บใน repository:
+
+```text
+UTBot/Result_Automated/summary.csv
+UTBot/Result_Automated/Lang_summary.md
+```
 
 ---
 
-## Reproducibility
+# Pilot Experiment — Lang-27
 
-ไฟล์ที่เกี่ยวข้องกับการ reproduce การทดลอง:
+ก่อนสร้าง automation pipeline มีการทดลองแบบ manual ด้วย:
 
 ```text
+Project : Lang
+Bug     : 27
+Class   : org.apache.commons.lang3.math.NumberUtils
+```
+
+ผลของ pilot experiment ถูกเก็บไว้ที่:
+
+```text
+Result/Lang-27b/
+```
+
+การทดลองนี้ถูกใช้เพื่อตรวจสอบ:
+
+- UTBot generation
+- Buggy/Fixed comparison
+- Bug detection criterion
+- Coverage collection
+- Generation performance
+- Reproducibility
+- Windows/Defects4J compatibility
+
+รายละเอียดของ pilot experiment อยู่ใน:
+
+```text
+Result/Lang-27b/README.md
+```
+
+---
+
+# Reproducibility
+
+ไฟล์สำคัญสำหรับ reproduce การทดลอง:
+
+```text
+Code/run-utbot.bat
+
 patches/utbot-version.txt
 patches/utbot-modifications.patch
 
-Result/Lang-27b/reproducibility/configuration.txt
-Result/Lang-27b/reproducibility/interventions.txt
+scripts/run_all_defects.py
+scripts/generate_summary.py
+
+Result/Lang-27b/reproducibility/
 ```
 
-ไฟล์เหล่านี้บันทึก version ของ UTBot, configuration ที่ใช้ และการแก้ไขที่จำเป็นระหว่างการทดลอง
+Automation script และ experiment summary ถูกเก็บใน Git ส่วน raw experiment artifacts ถูกเก็บไว้ในเครื่องและไม่ถูก commit เนื่องจากมีขนาดใหญ่
 
 ---
 
-## Summary
+# Current Limitations
 
-การทดลอง UTBot กับ Defects4J Lang-27 สามารถสร้าง Unit Test สำหรับ `NumberUtils` ได้สำเร็จ และช่วยเพิ่ม coverage เมื่อใช้ร่วมกับ Developer Tests
+ข้อจำกัดที่พบจากการทดลอง Lang ได้แก่:
 
-ผลหลักของการทดลอง:
+- Defects4J bugs บางส่วนใช้ Java source level รุ่นเก่า
+- UTBot generated tests อาจใช้ syntax ที่ source level เดิมไม่รองรับ
+- UTBot generation บางกรณีอาจ timeout
+- บาง target classes ทำให้ UTBot เกิด internal generation error
+- Generated tests บางชุดสามารถ execute ได้แต่ไม่ได้เพิ่ม target coverage
+- จำนวน generated tests และผล generation อาจแตกต่างกันระหว่างแต่ละ run
 
-```text
-Generated Tests              : 415
-UTBot Line Coverage          : 80.2%
-UTBot Condition Coverage     : 63.6%
-Combined Line Coverage       : 98.9%
-Combined Condition Coverage  : 89.8%
-Confirmed Bug-Revealing Test : 0
-Generation Time (timing run) : 181.3901473 seconds
-```
-
-ผลการทดลองแสดงให้เห็นว่า coverage ที่เพิ่มขึ้นไม่ได้หมายความว่าจะสามารถตรวจจับ defect ได้เสมอไป ดังนั้นการประเมินเครื่องมือสร้าง Unit Test ควรพิจารณาทั้ง Coverage, Bug Detection และ Performance ร่วมกัน
+ดังนั้นการประเมิน Automated Test Generation ไม่ควรพิจารณา coverage เพียงอย่างเดียว แต่ควรพิจารณา Fault Detection, Compatibility และ Performance ร่วมด้วย
