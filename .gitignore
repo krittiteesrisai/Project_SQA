@@ -1,1 +1,9 @@
+# UTBot executable
 UTBot/Code/utbot-cli-local-1.0.jar
+
+# UTBot automated raw experiment artifacts
+UTBot/Result_Automated/Lang-*/
+
+# Python cache
+__pycache__/
+*.pyc
