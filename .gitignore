@@ -1,8 +1,20 @@
 # UTBot executable
 UTBot/Code/utbot-cli-local-1.0.jar
 
+# JVM crash logs
+UTBot/Code/hs_err_pid*.log
+
 # UTBot automated raw experiment artifacts
-UTBot/Result_Automated/Lang-*/
+UTBot/Result_Automated/*-*/
+
+# Keep only summarized experiment results
+!UTBot/Result_Automated/README.md
+!UTBot/Result_Automated/summary.csv
+!UTBot/Result_Automated/final_summary.csv
+!UTBot/Result_Automated/final_report.md
+
+# Temporary Defects4J bug-id lists
+*_bids.txt
 
 # Python cache
 __pycache__/

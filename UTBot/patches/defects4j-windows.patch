@@ -1,0 +1,742 @@
+diff --git a/framework/core/Project.pm b/framework/core/Project.pm
+index f3398b94..652a4fcc 100644
+--- a/framework/core/Project.pm
++++ b/framework/core/Project.pm
+@@ -646,7 +646,9 @@ sub run_ext_tests {
+         $single_test_opt = "-Dtest.entry.class=$1 -Dtest.entry.method=$2";
+     }
+ 
+-    return $self->_ant_call("run.gen.tests", "-DOUTFILE=$out_file -Dd4j.test.dir=$dir -Dd4j.test.include=$include $single_test_opt");
++    return $self->_ant_call(
++    "run.gen.tests",
++    "-DOUTFILE=$out_file -Dd4j.test.dir=$dir -Dd4j.test.include=\"$include\" $single_test_opt");
+ }
+ 
+ =pod
+@@ -1174,7 +1176,7 @@ sub _ant_call_comp {
+     @_ >= 2 or die $ARG_ERROR;
+     my ($self, $target, $option_str, $log_file, $ant_cmd) =  @_;
+     $option_str = ($option_str // "");
+-    $ant_cmd = "$MAJOR_ROOT/bin/ant" unless defined $ant_cmd;
++    $ant_cmd = "$MAJOR_ROOT/bin/ant.cmd" unless defined $ant_cmd;
+     return $self->_ant_call($target, $option_str, $log_file, $ant_cmd);
+ }
+ sub _call_major {
+@@ -1184,7 +1186,7 @@ sub _call_major {
+     # Prepend path with Major's executables
+     my $path = $ENV{PATH};
+     $ENV{PATH}="$MAJOR_ROOT/bin:$ENV{PATH}";
+-    $ant_cmd = "$MAJOR_ROOT/bin/ant" unless defined $ant_cmd;
++    $ant_cmd = "$MAJOR_ROOT/bin/ant.cmd" unless defined $ant_cmd;
+     my $ret = $self->_ant_call($target, $option_str, $log_file, $ant_cmd);
+     # Reset path for downstream calls to ant
+     $ENV{PATH} = $path;
+diff --git a/framework/core/Project/Chart.pm b/framework/core/Project/Chart.pm
+index b344f9e6..1fda7458 100644
+--- a/framework/core/Project/Chart.pm
++++ b/framework/core/Project/Chart.pm
+@@ -49,7 +49,7 @@ sub new {
+ 
+     my $name = "jfreechart";
+     my $vcs = Vcs::Svn->new($PID,
+-                            "file://$REPO_DIR/$name/trunk",
++                            "file:///$REPO_DIR/$name/trunk",
+                             "$PROJECTS_DIR/$PID/$BUGS_CSV_ACTIVE",
+                             \&_post_checkout);
+ 
+diff --git a/framework/core/Project/JacksonDatabind.pm b/framework/core/Project/JacksonDatabind.pm
+index 251bf580..c0d4f2fc 100644
+--- a/framework/core/Project/JacksonDatabind.pm
++++ b/framework/core/Project/JacksonDatabind.pm
+@@ -40,6 +40,7 @@ use warnings;
+ use Constants;
+ use Vcs::Git;
+ use File::Copy;
++use File::Find;
+ 
+ our @ISA = qw(Project);
+ my $PID  = "JacksonDatabind";
+@@ -86,40 +87,44 @@ sub _post_checkout {
+     # JacksonDatabind has a Module class. Java 9 introduced a Module system for organizing code.
+     # This created a compile time ambiguity. To fix this, we attempt to convert all references
+     # to a JacksonDatabind Module to com.fasterxml.jackson.databind.Module.
+-    my $cmd = "grep -lR ' extends Module\$' $work_dir ";
+-    my $log = `$cmd`;
+-    my $ret = $?;
+-    if ($ret == 0 && length($log) > 0) {
+-        Utils::exec_cmd("grep -lR ' extends Module\$' $work_dir | xargs sed -i'.bak' -e 's/ extends Module\$/ extends com.fasterxml.jackson.databind.Module/'", "Correct Module ambiguity 1") or die;
+-    }
+-
+-    $cmd = "grep -lR ' Module ' $work_dir ";
+-    $log = `$cmd`;
+-    $ret = $?;
+-    if ($ret == 0 && length($log) > 0) {
+-        Utils::exec_cmd("grep -lR ' Module ' $work_dir | xargs sed -i'.bak' -e 's/ Module / com.fasterxml.jackson.databind.Module /'", "Correct Module ambiguity 2") or die;
+-    }
+-
+-    $cmd = "grep -lR '<Module>' $work_dir ";
+-    $log = `$cmd`;
+-    $ret = $?;
+-    if ($ret == 0 && length($log) > 0) {
+-        Utils::exec_cmd("grep -lR '<Module>' $work_dir | xargs sed -i'.bak' -e 's/<Module>/<com.fasterxml.jackson.databind.Module>/'", "Correct Module ambiguity 3") or die;
+-    }
+-
+-    $cmd = "grep -lR '(Module)' $work_dir ";
+-    $log = `$cmd`;
+-    $ret = $?;
+-    if ($ret == 0 && length($log) > 0) {
+-        Utils::exec_cmd("grep -lR '(Module)' $work_dir | xargs sed -i'.bak' -e 's/(Module)/(com.fasterxml.jackson.databind.Module)/'", "Correct Module ambiguity 4") or die;
+-    }
+-
+-    $cmd = "grep -lR 'new Module()' $work_dir ";
+-    $log = `$cmd`;
+-    $ret = $?;
+-    if ($ret == 0 && length($log) > 0) {
+-        Utils::exec_cmd("grep -lR 'new Module()' $work_dir | xargs sed -i'.bak' -e 's/new Module()/new com.fasterxml.jackson.databind.Module()/'", "Correct Module ambiguity 5") or die;
+-    }
++    # Windows-compatible replacement for the original grep | xargs | sed
++    # pipeline. Perform the same Module ambiguity substitutions directly in Perl.
++    find(
++        {
++            no_chdir => 1,
++            wanted => sub {
++                return unless -f $File::Find::name;
++
++                my $file = $File::Find::name;
++
++                # Skip files created by previous backup operations.
++                return if $file =~ /\.bak$/;
++
++                open(my $in, '<', $file) or return;
++                local $/;
++                my $content = <$in>;
++                close($in);
++
++                return unless defined $content;
++
++                my $original = $content;
++
++                $content =~ s/ extends Module$/ extends com.fasterxml.jackson.databind.Module/mg;
++                $content =~ s/ Module / com.fasterxml.jackson.databind.Module /g;
++                $content =~ s/<Module>/<com.fasterxml.jackson.databind.Module>/g;
++                $content =~ s/\(Module\)/(com.fasterxml.jackson.databind.Module)/g;
++                $content =~ s/new Module\(\)/new com.fasterxml.jackson.databind.Module()/g;
++
++                if ($content ne $original) {
++                    open(my $out, '>', $file)
++                        or die "Cannot write $file: $!";
++                    print $out $content;
++                    close($out);
++                }
++            }
++        },
++        $work_dir
++    );
+ 
+     my $project_dir = "$PROJECTS_DIR/$self->{pid}";
+     # Check whether ant build file exists
+diff --git a/framework/core/Project/JxPath.pm b/framework/core/Project/JxPath.pm
+index 87677d32..164343d8 100644
+--- a/framework/core/Project/JxPath.pm
++++ b/framework/core/Project/JxPath.pm
+@@ -134,25 +134,25 @@ sub _post_checkout {
+             $_ =~ s/compile-tests/compile\.tests/g;
+             $_ =~ s/classesdir/classes\.dir/g;
+             $_ =~ s/testclasses\.dir/test\.classes\.dir/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven2\/com\/mockrunner\/mockrunner-jdk1.3-j2ee1.3\/0\.4\/mockrunner-jdk1\.3-j2ee1\.3-0\.4\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/mockrunner-0\.4\.1\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/servletapi\/jars\/servletapi-2\.4\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/servletapi\/servletapi\/2\.4\/servletapi-2\.4\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/jspapi\/jars\/jsp-api-2\.0\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/jspapi\/jsp-api\/2\.0\/jsp-api-2\.0\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/commons-beanutils\/jars\/commons-beanutils-1\.7\.0\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/commons-beanutils\/commons-beanutils\/1\.7\.0\/commons-beanutils-1\.7\.0\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/commons-logging\/jars\/commons-logging-1\.1\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/commons-logging\/commons-logging\/1\.1\/commons-logging-1\.1\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/junit\/jars\/junit-3\.8\.2\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/junit\/junit\/3\.8\.2\/junit-3\.8\.2\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/ant\/jars\/ant-optional-1\.5\.1\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/ant\/ant-optional\/1\.5\.1\/ant-optional-1\.5\.1\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/ant\/jars\/ant-1\.5\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/ant\/ant\/1\.5\/ant-1\.5\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/ant\/jars\/ant-optional-1\.5\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/ant\/ant-optional\/1\.5\/ant-optional-1\.5\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/xerces\/jars\/xerces-1\.2\.3\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/xerces\/xerces\/1\.2\.3\/xerces-1\.2\.3\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/xerces\/jars\/xerces-2\.4\.0\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/xerces\/xerces\/2\.4\.0\/xerces-2\.4\.0\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/servletapi\/jars\/servletapi-2\.2\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/servletapi\/servletapi\/2\.2\/servletapi-2\.2\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/junit\/jars\/junit-3\.8\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/junit\/junit\/3\.8\/junit-3\.8\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/xml-apis\/jars\/xml-apis-2\.0\.2\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/xml-apis\/xml-apis\/2\.0\.2\/xml-apis-2\.0\.2\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/jdom\/jars\/jdom-1\.0\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/jdom\/jdom\/1\.0\/jdom-1\.0\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/commons-beanutils\/jars\/commons-beanutils-1\.4\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/commons-beanutils\/commons-beanutils\/1\.4\/commons-beanutils-1\.4\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/commons-logging\/jars\/commons-logging-1\.0\.4\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/commons-logging\/commons-logging\/1\.0\.4\/commons-logging-1\.0\.4\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/commons-collections\/jars\/commons-collections-2\.0\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/commons-collections\/commons-collections\/2\.0\/commons-collections-2\.0\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/junit\/jars\/junit-3\.8\.1\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/junit\/junit\/3\.8\.1\/junit-3\.8\.1\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven2\/com\/mockrunner\/mockrunner-jdk1.3-j2ee1.3\/0\.4\/mockrunner-jdk1\.3-j2ee1\.3-0\.4\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/mockrunner-0\.4\.1\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/servletapi\/jars\/servletapi-2\.4\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/servletapi\/servletapi\/2\.4\/servletapi-2\.4\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/jspapi\/jars\/jsp-api-2\.0\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/jspapi\/jsp-api\/2\.0\/jsp-api-2\.0\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/commons-beanutils\/jars\/commons-beanutils-1\.7\.0\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/commons-beanutils\/commons-beanutils\/1\.7\.0\/commons-beanutils-1\.7\.0\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/commons-logging\/jars\/commons-logging-1\.1\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/commons-logging\/commons-logging\/1\.1\/commons-logging-1\.1\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/junit\/jars\/junit-3\.8\.2\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/junit\/junit\/3\.8\.2\/junit-3\.8\.2\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/ant\/jars\/ant-optional-1\.5\.1\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/ant\/ant-optional\/1\.5\.1\/ant-optional-1\.5\.1\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/ant\/jars\/ant-1\.5\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/ant\/ant\/1\.5\/ant-1\.5\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/ant\/jars\/ant-optional-1\.5\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/ant\/ant-optional\/1\.5\/ant-optional-1\.5\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/xerces\/jars\/xerces-1\.2\.3\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/xerces\/xerces\/1\.2\.3\/xerces-1\.2\.3\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/xerces\/jars\/xerces-2\.4\.0\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/xerces\/xerces\/2\.4\.0\/xerces-2\.4\.0\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/servletapi\/jars\/servletapi-2\.2\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/servletapi\/servletapi\/2\.2\/servletapi-2\.2\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/junit\/jars\/junit-3\.8\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/junit\/junit\/3\.8\/junit-3\.8\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/xml-apis\/jars\/xml-apis-2\.0\.2\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/xml-apis\/xml-apis\/2\.0\.2\/xml-apis-2\.0\.2\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/jdom\/jars\/jdom-1\.0\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/jdom\/jdom\/1\.0\/jdom-1\.0\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/commons-beanutils\/jars\/commons-beanutils-1\.4\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/commons-beanutils\/commons-beanutils\/1\.4\/commons-beanutils-1\.4\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/commons-logging\/jars\/commons-logging-1\.0\.4\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/commons-logging\/commons-logging\/1\.0\.4\/commons-logging-1\.0\.4\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/commons-collections\/jars\/commons-collections-2\.0\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/commons-collections\/commons-collections\/2\.0\/commons-collections-2\.0\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/junit\/jars\/junit-3\.8\.1\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/junit\/junit\/3\.8\.1\/junit-3\.8\.1\.jar/g;
+             print OUT $_;
+         }
+         close(IN);
+@@ -167,25 +167,25 @@ sub _post_checkout {
+             $_ =~ s/compile-tests/compile\.tests/g;
+             $_ =~ s/classesdir/classes\.dir/g;
+             $_ =~ s/testclasses\.dir/test\.classes\.dir/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven2\/com\/mockrunner\/mockrunner-jdk1.3-j2ee1.3\/0\.4\/mockrunner-jdk1\.3-j2ee1\.3-0\.4\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/mockrunner-0\.4\.1\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/servletapi\/jars\/servletapi-2\.4\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/servletapi\/servletapi\/2\.4\/servletapi-2\.4\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/jspapi\/jars\/jsp-api-2\.0\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/jspapi\/jsp-api\/2\.0\/jsp-api-2\.0\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/commons-beanutils\/jars\/commons-beanutils-1\.7\.0\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/commons-beanutils\/commons-beanutils\/1\.7\.0\/commons-beanutils-1\.7\.0\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/commons-logging\/jars\/commons-logging-1\.1\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/commons-logging\/commons-logging\/1\.1\/commons-logging-1\.1\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/junit\/jars\/junit-3\.8\.2\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/junit\/junit\/3\.8\.2\/junit-3\.8\.2\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/ant\/jars\/ant-optional-1\.5\.1\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/ant\/ant-optional\/1\.5\.1\/ant-optional-1\.5\.1\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/ant\/jars\/ant-1\.5\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/ant\/ant\/1\.5\/ant-1\.5\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/ant\/jars\/ant-optional-1\.5\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/ant\/ant-optional\/1\.5\/ant-optional-1\.5\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/xerces\/jars\/xerces-1\.2\.3\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/xerces\/xerces\/1\.2\.3\/xerces-1\.2\.3\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/xerces\/jars\/xerces-2\.4\.0\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/xerces\/xerces\/2\.4\.0\/xerces-2\.4\.0\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/servletapi\/jars\/servletapi-2\.2\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/servletapi\/servletapi\/2\.2\/servletapi-2\.2\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/junit\/jars\/junit-3\.8\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/junit\/junit\/3\.8\/junit-3\.8\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/xml-apis\/jars\/xml-apis-2\.0\.2\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/xml-apis\/xml-apis\/2\.0\.2\/xml-apis-2\.0\.2\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/jdom\/jars\/jdom-1\.0\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/jdom\/jdom\/1\.0\/jdom-1\.0\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/commons-beanutils\/jars\/commons-beanutils-1\.4\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/commons-beanutils\/commons-beanutils\/1\.4\/commons-beanutils-1\.4\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/commons-logging\/jars\/commons-logging-1\.0\.4\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/commons-logging\/commons-logging\/1\.0\.4\/commons-logging-1\.0\.4\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/commons-collections\/jars\/commons-collections-2\.0\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/commons-collections\/commons-collections\/2\.0\/commons-collections-2\.0\.jar/g;
+-            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/junit\/jars\/junit-3\.8\.1\.jar/file:\/\/$PROJECTS_DIR\/$PID\/lib\/junit\/junit\/3\.8\.1\/junit-3\.8\.1\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven2\/com\/mockrunner\/mockrunner-jdk1.3-j2ee1.3\/0\.4\/mockrunner-jdk1\.3-j2ee1\.3-0\.4\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/mockrunner-0\.4\.1\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/servletapi\/jars\/servletapi-2\.4\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/servletapi\/servletapi\/2\.4\/servletapi-2\.4\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/jspapi\/jars\/jsp-api-2\.0\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/jspapi\/jsp-api\/2\.0\/jsp-api-2\.0\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/commons-beanutils\/jars\/commons-beanutils-1\.7\.0\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/commons-beanutils\/commons-beanutils\/1\.7\.0\/commons-beanutils-1\.7\.0\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/commons-logging\/jars\/commons-logging-1\.1\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/commons-logging\/commons-logging\/1\.1\/commons-logging-1\.1\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/junit\/jars\/junit-3\.8\.2\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/junit\/junit\/3\.8\.2\/junit-3\.8\.2\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/ant\/jars\/ant-optional-1\.5\.1\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/ant\/ant-optional\/1\.5\.1\/ant-optional-1\.5\.1\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/ant\/jars\/ant-1\.5\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/ant\/ant\/1\.5\/ant-1\.5\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/ant\/jars\/ant-optional-1\.5\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/ant\/ant-optional\/1\.5\/ant-optional-1\.5\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/xerces\/jars\/xerces-1\.2\.3\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/xerces\/xerces\/1\.2\.3\/xerces-1\.2\.3\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/xerces\/jars\/xerces-2\.4\.0\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/xerces\/xerces\/2\.4\.0\/xerces-2\.4\.0\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/servletapi\/jars\/servletapi-2\.2\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/servletapi\/servletapi\/2\.2\/servletapi-2\.2\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/junit\/jars\/junit-3\.8\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/junit\/junit\/3\.8\/junit-3\.8\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/xml-apis\/jars\/xml-apis-2\.0\.2\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/xml-apis\/xml-apis\/2\.0\.2\/xml-apis-2\.0\.2\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/jdom\/jars\/jdom-1\.0\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/jdom\/jdom\/1\.0\/jdom-1\.0\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/commons-beanutils\/jars\/commons-beanutils-1\.4\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/commons-beanutils\/commons-beanutils\/1\.4\/commons-beanutils-1\.4\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/commons-logging\/jars\/commons-logging-1\.0\.4\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/commons-logging\/commons-logging\/1\.0\.4\/commons-logging-1\.0\.4\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/commons-collections\/jars\/commons-collections-2\.0\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/commons-collections\/commons-collections\/2\.0\/commons-collections-2\.0\.jar/g;
++            $_ =~ s/http:\/\/www\.ibiblio\.org\/maven\/junit\/jars\/junit-3\.8\.1\.jar/file:\/\/\/$PROJECTS_DIR\/$PID\/lib\/junit\/junit\/3\.8\.1\/junit-3\.8\.1\.jar/g;
+             print OUT $_;
+         }
+         close(IN);
+diff --git a/framework/core/Project/Lang.pm b/framework/core/Project/Lang.pm
+index b4d17fc7..914133ed 100644
+--- a/framework/core/Project/Lang.pm
++++ b/framework/core/Project/Lang.pm
+@@ -106,17 +106,39 @@ sub _post_checkout {
+     Utils::convert_file_encoding($work_dir."/".$result->{src}."/org/apache/commons/lang3/text/translate/EntityArrays.java");
+     Utils::convert_file_encoding($work_dir."/".$result->{src}."/org/apache/commons/lang/Entities.java");
+ 
++    # Convert Windows work directory to Git Bash style for shell commands.
++    my $shell_work_dir = $work_dir;
++    if ($shell_work_dir =~ /^([A-Za-z]):[\\\/](.*)$/) {
++        my $drive = lc($1);
++        my $rest = $2;
++        $rest =~ s{\\}{/}g;
++        $shell_work_dir = "/$drive/$rest";
++    }
+ 
+     # Some of the Lang tests were created pre Java 1.5 and contain an 'enum' package.
+     # The is now a reserved word in Java so we convert all references to 'oldenum'.
+     if (-d "$work_dir/$result->{src}/org/apache/commons/lang/enum/") {
+-        Utils::exec_cmd("grep -lR '\\.enum;' $work_dir'/'$result->{src}'/org/apache/commons/lang/enum/' | xargs sed -i'.bak' 's/\\.enum;/\\.oldenum;/'", "Rename enum package in src") or die;
+-        Utils::exec_cmd("cd $work_dir/$result->{src}/org/apache/commons/lang && mv enum oldenum", "Move enum package in src") or die;
++        Utils::exec_cmd(
++            "grep -lR '\\.enum;' '$shell_work_dir/$result->{src}/org/apache/commons/lang/enum/' | xargs sed -i'.bak' 's/\\.enum;/\\.oldenum;/'",
++            "Rename enum package in src"
++        ) or die;
++
++        rename(
++            "$work_dir/$result->{src}/org/apache/commons/lang/enum",
++            "$work_dir/$result->{src}/org/apache/commons/lang/oldenum"
++        ) or die "Cannot rename enum to oldenum in src: $!";
+     }
+ 
+     if (-d "$work_dir/$result->{test}/org/apache/commons/lang/enum/") {
+-        Utils::exec_cmd("grep -lR '\\.enum;' $work_dir'/'$result->{test}'/org/apache/commons/lang/enum/' | xargs sed -i'.bak' 's/\\.enum;/\\.oldenum;/'", "Rename enum package in test") or die;
+-        Utils::exec_cmd("cd $work_dir/$result->{test}/org/apache/commons/lang && mv enum oldenum", "Move enum package in test") or die;
++        Utils::exec_cmd(
++            "grep -lR '\\.enum;' '$shell_work_dir/$result->{test}/org/apache/commons/lang/enum/' | xargs sed -i'.bak' 's/\\.enum;/\\.oldenum;/'",
++            "Rename enum package in test"
++        ) or die;
++
++        rename(
++            "$work_dir/$result->{test}/org/apache/commons/lang/enum",
++            "$work_dir/$result->{test}/org/apache/commons/lang/oldenum"
++        ) or die "Cannot rename enum to oldenum in test: $!";
+     }
+ 
+     # Check whether ant build file exists
+diff --git a/framework/core/Project/Math.pm b/framework/core/Project/Math.pm
+index 5cf37a89..6f39a647 100644
+--- a/framework/core/Project/Math.pm
++++ b/framework/core/Project/Math.pm
+@@ -74,15 +74,34 @@ sub determine_layout {
+ sub _layout1 {
+     @_ == 1 or die $ARG_ERROR;
+     my ($dir) = @_;
+-    my $src  = `grep 'name="source.home"' $dir/build.xml 2>/dev/null`; chomp $src;
+-    my $test = `grep 'name="test.home"' $dir/build.xml 2>/dev/null`; chomp $test;
+ 
+-    return undef if ($src eq "" || $test eq "");
++    my $build_file = "$dir/build.xml";
++    return undef unless -e $build_file;
+ 
+-    $src =~ s/.*"source\.home"\s*value\s*=\s*"(\S+)".*/$1/;
+-    $test=~ s/.*"test\.home"\s*value\s*=\s*"(\S+)".*/$1/;
++    open(my $fh, "<", $build_file) or return undef;
+ 
+-    return {src=>$src, test=>$test};
++    my ($src, $test);
++
++    while (my $line = <$fh>) {
++        if (!defined $src &&
++            $line =~ /name="source\.home"\s+value="([^"]+)"/) {
++            $src = $1;
++        }
++
++        if (!defined $test &&
++            $line =~ /name="test\.home"\s+value="([^"]+)"/) {
++            $test = $1;
++        }
++    }
++
++    close($fh);
++
++    return undef unless defined $src && defined $test;
++
++    return {
++        src  => $src,
++        test => $test
++    };
+ }
+ 
+ #
+@@ -91,15 +110,34 @@ sub _layout1 {
+ sub _layout2 {
+     @_ == 1 or die $ARG_ERROR;
+     my ($dir) = @_;
+-    my $src  = `grep "<sourceDirectory>" $dir/project.xml 2>/dev/null`; chomp $src;
+-    my $test = `grep "<unitTestSourceDirectory>" $dir/project.xml 2>/dev/null`; chomp $test;
+ 
+-    return undef if ($src eq "" || $test eq "");
++    my $project_file = "$dir/project.xml";
++    return undef unless -e $project_file;
++
++    open(my $fh, "<", $project_file) or return undef;
++
++    my ($src, $test);
++
++    while (my $line = <$fh>) {
++        if (!defined $src &&
++            $line =~ /<sourceDirectory>\s*([^<]+)\s*<\/sourceDirectory>/) {
++            $src = $1;
++        }
++
++        if (!defined $test &&
++            $line =~ /<unitTestSourceDirectory>\s*([^<]+)\s*<\/unitTestSourceDirectory>/) {
++            $test = $1;
++        }
++    }
++
++    close($fh);
+ 
+-    $src =~ s/.*<sourceDirectory>\s*([^<]+)\s*<\/sourceDirectory>.*/$1/;
+-    $test=~ s/.*<unitTestSourceDirectory>\s*([^<]+)\s*<\/unitTestSourceDirectory>.*/$1/;
++    return undef unless defined $src && defined $test;
+ 
+-    return {src=>$src, test=>$test};
++    return {
++        src  => $src,
++        test => $test
++    };
+ }
+ 
+ sub _post_checkout {
+diff --git a/framework/core/Project/Mockito.pm b/framework/core/Project/Mockito.pm
+index 955279d5..760ef0c1 100644
+--- a/framework/core/Project/Mockito.pm
++++ b/framework/core/Project/Mockito.pm
+@@ -36,6 +36,7 @@ package Project::Mockito;
+ 
+ use strict;
+ use warnings;
++use File::Find;
+ 
+ use Constants;
+ use Vcs::Git;
+@@ -88,9 +89,9 @@ sub _post_checkout {
+         my @tmp;
+         while (<PROP>) {
+             if (/(distributionUrl=).*\/(gradle-2.*)/) {
+-                s/(distributionUrl=).*\/(gradle-.*)/$1file\\:$lib_dir\/gradle-2.2.1-all.zip/g;
++                s/(distributionUrl=).*\/(gradle-.*)/$1file\\:\/\/\/$lib_dir\/gradle-2.2.1-all.zip/g;
+             } else {
+-                s/(distributionUrl=).*\/(gradle-.*)/$1file\\:$lib_dir\/gradle-1.12-bin.zip/g;
++                s/(distributionUrl=).*\/(gradle-.*)/$1file\\:\/\/\/$lib_dir\/gradle-1.12-bin.zip/g;
+             }
+             push(@tmp, $_);
+         }
+@@ -107,12 +108,58 @@ sub _post_checkout {
+         }
+     
+         # Enable local repository
+-        system("find $work_dir -type f -name \"build.gradle\" -exec sed -i.bak 's|jcenter()|maven { url \"$BUILD_SYSTEMS_LIB_DIR/gradle/deps\" }\\\n maven { url \"https://jcenter.bintray.com/\" }\\\n|g' {} \\;");
++        # Windows-compatible replacement for find -exec sed.
++        # Add Defects4J's cached Gradle repository before JCenter.
++        find(
++            {
++                no_chdir => 1,
++                wanted => sub {
++                    return unless -f $File::Find::name;
++                    return unless $File::Find::name =~ /(?:^|[\\\/])build\.gradle$/;
++
++                    my $file = $File::Find::name;
++
++                    open(my $in, '<', $file) or return;
++                    local $/;
++                    my $content = <$in>;
++                    close($in);
++
++                    return unless defined $content;
++
++                    my $local_repo = $BUILD_SYSTEMS_LIB_DIR . "/gradle/deps";
++                    my $needle = "jcenter()";
++                    my $replacement =
++                        'maven { url "' . $local_repo . '" }' . "\n" .
++                        ' maven { url "https://jcenter.bintray.com/" }';
++
++                    $content =~ s/\Q$needle\E/$replacement/g;
++
++                    open(my $out, '>', $file)
++                        or die "Cannot write $file: $!";
++                    print $out $content;
++                    close($out);
++                }
++            },
++            $work_dir
++        );
+     }
+ 
+     # Add Major's runtime package to the bnd config
+     if (-e "$work_dir/conf/mockito-core.bnd") {
+-      Utils::sed_cmd("s/\\(Import-Package.*\\)/\\1\\n                major.mutation\.\*;resolution:=optional, \\\\/", "$work_dir/conf/mockito-core.bnd");
++      my $bnd_file = "$work_dir/conf/mockito-core.bnd";
++
++      open(my $bnd_in, '<', $bnd_file)
++          or die "Cannot read $bnd_file: $!";
++      local $/;
++      my $bnd_content = <$bnd_in>;
++      close($bnd_in);
++
++      $bnd_content =~ s/(Import-Package.*)/$1\n                major.mutation.*;resolution:=optional, \\/;
++
++      open(my $bnd_out, '>', $bnd_file)
++          or die "Cannot write $bnd_file: $!";
++      print $bnd_out $bnd_content;
++      close($bnd_out);
+     }
+     # Set default Java target to 6 for gradle builds.
+     # (Maven and Ant builds are handled for all projects in Project.pm)
+@@ -121,6 +168,28 @@ sub _post_checkout {
+     Utils::sed_cmd("s/gradle-1.12-bin/gradle-4.9-bin/", "$work_dir/gradle/wrapper/gradle-wrapper.properties");
+     Utils::sed_cmd("s/gradle-2.2.1-all/gradle-4.9-bin/", "$work_dir/gradle/wrapper/gradle-wrapper.properties");
+     Utils::sed_cmd("s/0.7-groovy-1.8/1.1-groovy-2.4/", "$work_dir/buildSrc/build.gradle");
++
++        # Windows compatibility:
++    # Some Mockito versions invoke Ant from Gradle using:
++    #     commandLine 'ant', ...
++    # Gradle's Exec task on Windows cannot reliably resolve the Unix-style
++    # "ant" launcher, so use the native Windows launcher instead.
++    my $gradle_build = "$work_dir/build.gradle";
++
++    if (-f $gradle_build) {
++        open(my $in, '<', $gradle_build)
++            or die "Cannot open $gradle_build: $!";
++        local $/;
++        my $content = <$in>;
++        close($in);
++
++        $content =~ s/commandLine\s+'ant',/commandLine 'C:\/Program Files\/apache-ant-1.10.18\/bin\/ant.bat',/g;
++
++        open(my $out, '>', $gradle_build)
++            or die "Cannot write $gradle_build: $!";
++        print $out $content;
++        close($out);
++    }
+ }
+ 
+ sub determine_layout {
+diff --git a/framework/core/Utils.pm b/framework/core/Utils.pm
+index 291f348e..7e36928a 100644
+--- a/framework/core/Utils.pm
++++ b/framework/core/Utils.pm
+@@ -39,6 +39,7 @@ use strict;
+ 
+ use File::Basename;
+ use File::Spec;
++use File::Path qw(make_path remove_tree);
+ use Cwd qw(abs_path);
+ use Carp qw(confess);
+ use Fcntl qw< LOCK_EX SEEK_END >;
+@@ -817,14 +818,32 @@ This subroutine returns 1 on success, 0 otherwise.
+ sub extract_test_suite {
+     @_ == 2 or die $ARG_ERROR;
+     my ($test_suite, $test_dir) = @_;
+-    my %test_suites = ();
++
+     unless (-e $test_suite) {
+         print(STDERR "Test suite archive not found: $test_suite\n");
+-        return 0;;
++        return 0;
++    }
++
++    # Create/clean directory using Perl instead of shell commands.
++    if (-d $test_dir) {
++        remove_tree($test_dir);
+     }
+-    # Extract external test suite into test directory
+-    exec_cmd("mkdir -p $test_dir && rm -rf $test_dir/* && tar -xjf $test_suite -C $test_dir",
+-            "Extract test suite") or return 0;
++    make_path($test_dir);
++
++    # tar on Windows works better with forward slashes.
++    my $test_dir_tar = $test_dir;
++    $test_dir_tar =~ s|\\|/|g;
++    $test_dir_tar =~ s|^([A-Za-z]):|"/" . lc($1)|e;
++
++    my $test_suite_tar = $test_suite;
++    $test_suite_tar =~ s|\\|/|g;
++    $test_suite_tar =~ s|^([A-Za-z]):|"/" . lc($1)|e;
++
++    exec_cmd(
++        "tar -xjf \"$test_suite_tar\" -C \"$test_dir_tar\"",
++        "Extract test suite"
++    ) or return 0;
++
+     return 1;
+ }
+ 
+diff --git a/framework/core/Vcs.pm b/framework/core/Vcs.pm
+index 95a10cb7..249b59d7 100644
+--- a/framework/core/Vcs.pm
++++ b/framework/core/Vcs.pm
+@@ -393,17 +393,34 @@ command tries a few dry-runs for the most likely settings before giving up.
+ sub _apply_cmd {
+     @_ >= 3 or confess($ARG_ERROR);
+     my ($self, $work_dir, $patch_file, $ignore_err) = @_;
++
++    if ($^O eq 'MSWin32' && $patch_file =~ /\.defects4j\.diff$/) {
++        if (open(my $in, '<:raw', $patch_file)) {
++            local $/;
++            my $content = <$in>;
++            close($in);
++
++            if (defined($content) && $content =~ /\r\n/) {
++                $content =~ s/\r\n/\n/g;
++
++                open(my $out, '>:raw', $patch_file)
++                    or confess("Cannot normalize patch file ($patch_file): $!");
++                print {$out} $content;
++                close($out);
++            }
++        }
++    }
+     # -p1 is the default for git apply (a/src/...) and the most likely option.
+     # Try -p0 and -p2 as well before giving up.
+     my @try = (1, 0, 2);
+     my $log = "";
+     for my $n (@try) {
+-        my $cmd = "cd $work_dir; git apply -p$n --check $patch_file 2>&1";
++        my $cmd = "cd $work_dir && git apply -p$n --ignore-space-change --ignore-whitespace --check $patch_file 2>&1";
+         $log .= "* $cmd\n";
+         $log .= `$cmd`;
+         if ($? == 0) {
+             print(STDERR "patch applied: $patch_file\n") if $DEBUG;
+-            return("cd $work_dir; git apply -p$n $patch_file 2>&1");
++            return("cd $work_dir && git apply -p$n --ignore-space-change --ignore-whitespace $patch_file 2>&1");
+         }
+     }
+ 
+diff --git a/framework/projects/Chart/dir-layout.csv b/framework/projects/Chart/dir-layout.csv
+index ac514ea9..9962498f 100644
+--- a/framework/projects/Chart/dir-layout.csv
++++ b/framework/projects/Chart/dir-layout.csv
+@@ -47,3 +47,4 @@
+ 164,source,tests
+ 162,source,tests
+ 103,source,tests
++102,source,tests
+diff --git a/framework/projects/Cli/Cli.build.xml b/framework/projects/Cli/Cli.build.xml
+index c3680082..af09da05 100644
+--- a/framework/projects/Cli/Cli.build.xml
++++ b/framework/projects/Cli/Cli.build.xml
+@@ -28,8 +28,16 @@ of the checked-out project version.
+ <project name="D4j-Cli" basedir="${basedir}">
+ 
+     <!-- CLI requires that local dependencies use the file:// prefix -->
+-    <var name="junit.jar" unset="true"/>
+-    <property name="junit.jar" value="file://${d4j.home}/framework/projects/lib/junit-4.12.jar"/>
++       <var name="junit.jar" unset="true"/>
++
++       <property name="junit.jar"
++                 value="file:///${d4j.dir.projects}/Cli/lib/junit/junit/3.8.1/junit-3.8.1.jar"/>
++
++       <property name="commons-lang.jar"
++                 value="file:///${d4j.dir.projects}/Cli/lib/commons-lang/commons-lang/2.1/commons-lang-2.1.jar"/>
++
++              <property name="jdepend.jar"
++                        value="file:///${d4j.dir.projects}/Cli/lib/jdepend/jdepend/2.5/jdepend-2.5.jar"/>
+ 
+     <!-- Create target directory -->
+     <mkdir dir="${d4j.workdir}/target"/>
+diff --git a/framework/projects/Mockito/Mockito.build.xml b/framework/projects/Mockito/Mockito.build.xml
+index 52835601..d8a3cdfa 100644
+--- a/framework/projects/Mockito/Mockito.build.xml
++++ b/framework/projects/Mockito/Mockito.build.xml
+@@ -76,12 +76,12 @@
+         <delete file="${basedir}/buildSrc/src/test/groovy/org/mockito/release/notes/improvements/GitHubTicketFetcherTest.groovy" quiet="true" />
+ 
+         <!-- Call the Gradle build script -->
+-        <exec executable="${basedir}/gradlew" failonerror="true">
++        <exec executable="${basedir}/gradlew.bat" failonerror="true">
+             <arg value="-xtestClasses"/>
+             <arg value="-xtest"/>
+             <arg value="classes"/>
+         </exec>
+-        <exec executable="${basedir}/gradlew" failonerror="true">
++        <exec executable="${basedir}/gradlew.bat" failonerror="true">
+             <arg value="--stop"/>
+         </exec>
+     </target>
+@@ -92,11 +92,11 @@
+         <delete file="${basedir}/buildSrc/src/test/groovy/org/mockito/release/notes/improvements/GitHubTicketFetcherTest.groovy" quiet="true" />
+ 
+         <!-- Call the Gradle build script -->
+-        <exec executable="${basedir}/gradlew" failonerror="true">
++        <exec executable="${basedir}/gradlew.bat" failonerror="true">
+             <arg value="-xtest"/>
+             <arg value="testClasses"/>
+         </exec>
+-        <exec executable="${basedir}/gradlew" failonerror="true">
++        <exec executable="${basedir}/gradlew.bat" failonerror="true">
+             <arg value="--stop"/>
+         </exec>
+     </target>
+@@ -115,12 +115,12 @@
+                 <arg value="${d4j.home}"/>
+             </exec>
+              <!-- Call the Gradle build script -->
+-            <exec executable="${basedir}/gradlew" failonerror="true">
++            <exec executable="${basedir}/gradlew.bat" failonerror="true">
+                 <arg value="-xtestClasses"/>
+                 <arg value="-xtest"/>
+                 <arg value="classes"/>
+             </exec>
+-            <exec executable="${basedir}/gradlew" failonerror="true">
++            <exec executable="${basedir}/gradlew.bat" failonerror="true">
+                 <arg value="--stop"/>
+             </exec>
+         </try>
+@@ -149,7 +149,7 @@
+              this build file depend on it -->
+         <mkdir dir="${basedir}/compileLib"/>
+         <!-- Copy the correct version of libraries for compilation and testing -->
+-        <exec executable="/bin/bash" failonerror="true">
++        <exec executable="C:\Program Files\Git\usr\bin\bash.exe" failonerror="true">
+             <arg value="${d4j.home}/framework/projects/${d4j.project.id}/chooseDepedencyVersion.sh"/>
+             <arg value="${basedir}"/>
+             <arg value="${d4j.home}"/>
+diff --git a/framework/projects/defects4j.build.xml b/framework/projects/defects4j.build.xml
+index faee1838..596bf307 100644
+--- a/framework/projects/defects4j.build.xml
++++ b/framework/projects/defects4j.build.xml
+@@ -146,11 +146,11 @@ project-specific build file ("project_id"/"project_id".build.xml) for the
+             <arg value="${test.entry}"/>
+             <jvmarg value="-verbose:class"/>
+             <classpath>
+-                <pathelement path="${formatter.jar}" />
+-                <pathelement path="${junit.jar}" />
+-                <pathelement path="${d4j.dir.classes.testgen}" />
+-                <path refid="d4j.test.classpath"/>
+-                <!-- Add dependencies to runtime libraries of test generation tools -->
++                <!-- Always use Defects4J JUnit 4 for generated tests -->
++                <pathelement location="${d4j.home}/framework/projects/lib/junit-4.12-hamcrest-1.3.jar" />
++
++                <path refid="d4j.test.classpath" />
++                <pathelement path="${classes.dir}" />
+                 <path refid="d4j.lib.testgen.rt"/>
+             </classpath>
+         </java>
+@@ -261,19 +261,30 @@ project-specific build file ("project_id"/"project_id".build.xml) for the
+ 
+         <delete dir="${d4j.dir.classes.testgen}" quiet="true" />
+         <mkdir dir="${d4j.dir.classes.testgen}" />
++
++        <echo message="DEBUG d4j.home = ${d4j.home}" />
++        <echo message="DEBUG junit4 = ${d4j.home}/framework/projects/lib/junit-4.12-hamcrest-1.3.jar" />
++        <available
++            file="${d4j.home}/framework/projects/lib/junit-4.12-hamcrest-1.3.jar"
++            property="debug.junit4.exists"
++        />
++        <echo message="DEBUG junit4 exists = ${debug.junit4.exists}" />
++
+         <javac srcdir="${d4j.test.dir}"
+-               destdir="${d4j.dir.classes.testgen}"
+-               debug="true"
+-               deprecation="false"
+-               optimize="false">
+-               <compilerarg line="-Xmaxerrs 1" />
+-               <classpath>
+-                    <pathelement path="${junit.jar}" />
++            destdir="${d4j.dir.classes.testgen}"
++            debug="true"
++            deprecation="false"
++            optimize="false"
++            verbose="true">
++                <compilerarg line="-Xmaxerrs 1" />
++                <classpath>
++                    <pathelement
++                        location="${d4j.dir.projects}/lib/junit-4.12-hamcrest-1.3.jar" />
++
+                     <path refid="d4j.test.classpath" />
+                     <pathelement path="${classes.dir}" />
+-                    <!-- Add dependencies to runtime libraries of test generation tools -->
+                     <path refid="d4j.lib.testgen.rt"/>
+-               </classpath>
++                </classpath>
+         </javac>
+     </target>
+ 
+@@ -296,6 +307,8 @@ project-specific build file ("project_id"/"project_id".build.xml) for the
+                 <pathelement location="${d4j.dir.classes.instrumented}" />
+                 <pathelement path="${d4j.dir.classes.testgen}" />
+                 <pathelement path="${formatter.jar}" />
++                <pathelement path="${d4j.dir.projects}/Cli/lib/junit/junit/4.12/junit-4.12.jar" />
++                <pathelement path="${d4j.dir.projects}/Cli/lib/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar" />
+                 <pathelement path="${junit.jar}" />
+                 <pathelement path="${classes.dir}" />
+                 <path refid="d4j.test.classpath"/>
+diff --git a/framework/util/rm_broken_tests.pl b/framework/util/rm_broken_tests.pl
+index 768d7696..1631c96e 100755
+--- a/framework/util/rm_broken_tests.pl
++++ b/framework/util/rm_broken_tests.pl
+@@ -44,7 +44,7 @@ provided, then this test is maintained even if it appears in the log file.
+ #
+ # TODO: This file needs a thorough overhaul and its command-line interface is not
+ #       Defects4J standard!
+-#
++# 
+ use IO::File;
+ use File::Copy;
+ use Text::Balanced qw (extract_bracketed);
