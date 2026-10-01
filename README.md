@@ -32,26 +32,62 @@ Project_SQA/
 
 ## UTBot
 
-ส่วน `UTBot/` ใช้ **UTBot Java CLI** สำหรับสร้าง Unit Test อัตโนมัติให้กับ Java projects ใน Defects4J
+ส่วน `UTBot/` ใช้ **UTBot Java CLI** สำหรับสร้าง Automated Unit Tests ให้กับ Java projects ในชุดข้อมูล **Defects4J**
 
-การทดลองประกอบด้วย
+การทดลองครอบคลุม **17 Projects และ 854 Bugs** โดยนำ Test Cases ที่ UTBot สร้างขึ้นไปรันกับทั้ง Buggy และ Fixed versions เพื่อประเมินความสามารถในการตรวจจับ Defect รวมถึงวัด Code Coverage และ Generation Performance
 
-- Pilot experiment บน Lang-27
-- Automated experiment สำหรับ Defects4J bugs
-- Buggy/Fixed comparison
-- Fault Detection
-- Line Coverage
-- Condition Coverage
-- Generation Performance
+### Final Results
 
-รายละเอียด environment, configuration, วิธีรัน และผลการทดลองอยู่ที่:
+- Total Projects: **17**
+- Total Bugs: **854**
+- Executable Bugs: **139**
+- Detected Bugs: **7**
+- Fault Detection Rate (All Bugs): **0.82%**
+- Fault Detection Rate (Executable Bugs): **5.04%**
+- Developer Line Coverage: **89.25%**
+- UTBot Line Coverage: **53.24%**
+- Combined Line Coverage: **92.41%**
+- Developer Condition Coverage: **83.27%**
+- UTBot Condition Coverage: **45.75%**
+- Combined Condition Coverage: **87.17%**
+
+### Experiment Details
+
+รายละเอียดเกี่ยวกับ Environment, Configuration, Methodology, วิธี Reproduce และผลการทดลองอยู่ที่:
 
 ```text
 UTBot/README.md
 ```
 
-ผล Automated Experiment อยู่ที่:
+### Result Files
+
+ผลการทดลองสรุปอยู่ที่:
 
 ```text
 UTBot/Result_Automated/
+├── summary.csv
+├── final_summary.csv
+└── final_report.md
+```
+
+### Scripts
+
+Scripts สำหรับรันการทดลองและสร้างรายงาน:
+
+```text
+UTBot/scripts/
+├── run_all_defects.py
+└── generate_final_report.py
+```
+
+### Reproducibility
+
+ไฟล์ที่ใช้สำหรับ Reproduce Environment และการแก้ไขที่จำเป็นสำหรับ Defects4J และ UTBot:
+
+```text
+UTBot/patches/
+├── defects4j-windows.patch
+├── defects4j-version.txt
+├── utbot-modifications.patch
+└── utbot-version.txt
 ```
