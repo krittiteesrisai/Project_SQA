@@ -1,0 +1,7 @@
+{
+  "class": "com.fasterxml.jackson.databind.util.StdDateFormat",
+  "generated_tests": 223,
+  "generation_seconds": 137.79784,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

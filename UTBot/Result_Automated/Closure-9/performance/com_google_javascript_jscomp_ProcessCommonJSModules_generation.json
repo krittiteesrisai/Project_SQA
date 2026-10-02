@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.ProcessCommonJSModules",
+  "generated_tests": 29,
+  "generation_seconds": 132.68752,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

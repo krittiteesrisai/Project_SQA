@@ -1,0 +1,7 @@
+{
+  "class": "com.fasterxml.jackson.databind.deser.impl.ExternalTypeHandler",
+  "generated_tests": 126,
+  "generation_seconds": 139.324595,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

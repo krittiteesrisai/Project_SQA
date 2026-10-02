@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.UnreachableCodeElimination",
+  "generated_tests": 54,
+  "generation_seconds": 143.468664,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

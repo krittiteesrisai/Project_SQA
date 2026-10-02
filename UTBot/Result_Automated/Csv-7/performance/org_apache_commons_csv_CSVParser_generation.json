@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.csv.CSVParser",
+  "generated_tests": 72,
+  "generation_seconds": 137.31986,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

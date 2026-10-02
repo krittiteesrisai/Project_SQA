@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.PeepholeSubstituteAlternateSyntax",
+  "generated_tests": 197,
+  "generation_seconds": 157.485485,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

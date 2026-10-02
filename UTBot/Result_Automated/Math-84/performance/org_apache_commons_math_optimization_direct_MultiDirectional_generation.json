@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.math.optimization.direct.MultiDirectional",
+  "generated_tests": 30,
+  "generation_seconds": 129.307043,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

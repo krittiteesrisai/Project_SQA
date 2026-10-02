@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.math.stat.regression.SimpleRegression",
+  "generated_tests": 50,
+  "generation_seconds": 31.117334,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

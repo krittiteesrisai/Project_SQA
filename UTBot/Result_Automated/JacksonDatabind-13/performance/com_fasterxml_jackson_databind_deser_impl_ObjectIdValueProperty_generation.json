@@ -1,0 +1,7 @@
+{
+  "class": "com.fasterxml.jackson.databind.deser.impl.ObjectIdValueProperty",
+  "generated_tests": 105,
+  "generation_seconds": 169.703008,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

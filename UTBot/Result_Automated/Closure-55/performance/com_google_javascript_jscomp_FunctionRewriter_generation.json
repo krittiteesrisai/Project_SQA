@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.FunctionRewriter",
+  "generated_tests": 26,
+  "generation_seconds": 131.075039,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

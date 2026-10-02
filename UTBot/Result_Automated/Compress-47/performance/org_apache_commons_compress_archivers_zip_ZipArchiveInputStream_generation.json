@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.compress.archivers.zip.ZipArchiveInputStream",
+  "generated_tests": 230,
+  "generation_seconds": 136.481983,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

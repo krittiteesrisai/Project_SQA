@@ -1,0 +1,7 @@
+{
+  "class": "org.joda.time.format.DateTimeFormatter",
+  "generated_tests": 499,
+  "generation_seconds": 163.905812,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

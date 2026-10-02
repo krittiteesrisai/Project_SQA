@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.parsing.JsDocInfoParser",
+  "generated_tests": 505,
+  "generation_seconds": 137.643009,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

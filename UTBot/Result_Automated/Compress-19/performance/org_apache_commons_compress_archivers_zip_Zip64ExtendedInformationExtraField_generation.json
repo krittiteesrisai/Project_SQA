@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.compress.archivers.zip.Zip64ExtendedInformationExtraField",
+  "generated_tests": 109,
+  "generation_seconds": 117.016541,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

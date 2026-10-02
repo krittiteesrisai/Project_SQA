@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.CollapseVariableDeclarations",
+  "generated_tests": 23,
+  "generation_seconds": 132.595769,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

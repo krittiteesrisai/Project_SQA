@@ -1,0 +1,7 @@
+{
+  "class": "com.fasterxml.jackson.databind.ser.BeanPropertyWriter",
+  "generated_tests": 175,
+  "generation_seconds": 147.327186,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

@@ -1,0 +1,7 @@
+{
+  "class": "com.fasterxml.jackson.dataformat.xml.deser.FromXmlParser",
+  "generated_tests": 257,
+  "generation_seconds": 132.298146,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

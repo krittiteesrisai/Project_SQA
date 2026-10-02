@@ -1,0 +1,7 @@
+{
+  "class": "com.fasterxml.jackson.databind.JsonMappingException",
+  "generated_tests": 69,
+  "generation_seconds": 125.656931,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

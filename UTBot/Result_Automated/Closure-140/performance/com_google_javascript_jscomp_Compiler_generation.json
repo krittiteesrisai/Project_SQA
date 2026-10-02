@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.Compiler",
+  "generated_tests": 384,
+  "generation_seconds": 129.125425,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

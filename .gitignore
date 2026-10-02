@@ -4,8 +4,10 @@ UTBot/Code/utbot-cli-local-1.0.jar
 # JVM crash logs
 UTBot/Code/hs_err_pid*.log
 
-# UTBot automated raw experiment artifacts
-UTBot/Result_Automated/*-*/
+# UTBot automated experiment artifacts
+# Keep generated test source files, but ignore large logs and coverage artifacts
+UTBot/Result_Automated/*-*/logs/
+UTBot/Result_Automated/*-*/coverage/
 
 # Keep only summarized experiment results
 !UTBot/Result_Automated/README.md

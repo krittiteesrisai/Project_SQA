@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.TypeInference",
+  "generated_tests": 354,
+  "generation_seconds": 147.242466,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

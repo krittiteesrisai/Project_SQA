@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.math.stat.correlation.PearsonsCorrelation",
+  "generated_tests": 50,
+  "generation_seconds": 127.645317,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

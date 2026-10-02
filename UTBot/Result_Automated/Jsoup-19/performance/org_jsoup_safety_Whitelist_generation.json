@@ -1,0 +1,7 @@
+{
+  "class": "org.jsoup.safety.Whitelist",
+  "generated_tests": 63,
+  "generation_seconds": 141.500931,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

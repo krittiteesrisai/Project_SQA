@@ -1,0 +1,7 @@
+{
+  "class": "org.jsoup.parser.HtmlTreeBuilder",
+  "generated_tests": 356,
+  "generation_seconds": 115.608975,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

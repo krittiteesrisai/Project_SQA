@@ -1,0 +1,7 @@
+{
+  "class": "com.fasterxml.jackson.dataformat.xml.deser.XmlTokenStream",
+  "generated_tests": 150,
+  "generation_seconds": 147.268707,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

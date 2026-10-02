@@ -1,0 +1,7 @@
+{
+  "class": "org.joda.time.tz.ZoneInfoCompiler",
+  "generated_tests": 55,
+  "generation_seconds": 135.672863,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.LightweightMessageFormatter",
+  "generated_tests": 25,
+  "generation_seconds": 134.070987,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

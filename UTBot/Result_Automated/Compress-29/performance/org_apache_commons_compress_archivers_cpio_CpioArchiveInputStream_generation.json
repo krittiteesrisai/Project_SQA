@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.compress.archivers.cpio.CpioArchiveInputStream",
+  "generated_tests": 155,
+  "generation_seconds": 133.499572,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

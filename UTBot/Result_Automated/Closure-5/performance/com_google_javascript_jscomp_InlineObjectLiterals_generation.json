@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.InlineObjectLiterals",
+  "generated_tests": 0,
+  "generation_seconds": 17.211981,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

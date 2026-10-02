@@ -1,0 +1,7 @@
+{
+  "class": "com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector",
+  "generated_tests": 90,
+  "generation_seconds": 41.281737,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

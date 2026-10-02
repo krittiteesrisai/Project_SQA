@@ -1,0 +1,7 @@
+{
+  "class": "com.fasterxml.jackson.core.json.ReaderBasedJsonParser",
+  "generated_tests": 943,
+  "generation_seconds": 146.001139,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

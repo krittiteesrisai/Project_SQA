@@ -1,0 +1,7 @@
+{
+  "class": "org.joda.time.chrono.BasicMonthOfYearDateTimeField",
+  "generated_tests": 136,
+  "generation_seconds": 140.981609,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

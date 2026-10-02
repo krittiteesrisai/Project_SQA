@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.collections.map.CaseInsensitiveMap",
+  "generated_tests": 23,
+  "generation_seconds": 165.560291,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

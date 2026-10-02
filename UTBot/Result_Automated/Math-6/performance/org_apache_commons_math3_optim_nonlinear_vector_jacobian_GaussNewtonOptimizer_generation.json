@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.math3.optim.nonlinear.vector.jacobian.GaussNewtonOptimizer",
+  "generated_tests": 32,
+  "generation_seconds": 129.611588,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

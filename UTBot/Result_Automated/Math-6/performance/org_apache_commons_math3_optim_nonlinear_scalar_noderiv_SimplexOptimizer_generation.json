@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.math3.optim.nonlinear.scalar.noderiv.SimplexOptimizer",
+  "generated_tests": 74,
+  "generation_seconds": 130.390387,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

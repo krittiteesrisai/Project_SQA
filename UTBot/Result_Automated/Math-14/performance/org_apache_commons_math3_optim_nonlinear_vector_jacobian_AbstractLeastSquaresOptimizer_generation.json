@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.math3.optim.nonlinear.vector.jacobian.AbstractLeastSquaresOptimizer",
+  "generated_tests": 149,
+  "generation_seconds": 139.234682,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

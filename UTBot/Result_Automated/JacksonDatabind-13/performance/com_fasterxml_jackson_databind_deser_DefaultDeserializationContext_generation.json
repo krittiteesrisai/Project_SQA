@@ -1,0 +1,7 @@
+{
+  "class": "com.fasterxml.jackson.databind.deser.DefaultDeserializationContext",
+  "generated_tests": 54,
+  "generation_seconds": 131.692421,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

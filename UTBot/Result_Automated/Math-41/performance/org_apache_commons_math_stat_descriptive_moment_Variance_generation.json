@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.math.stat.descriptive.moment.Variance",
+  "generated_tests": 137,
+  "generation_seconds": 72.688053,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

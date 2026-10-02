@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.RenameVars",
+  "generated_tests": 59,
+  "generation_seconds": 134.033537,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.lang3.time.FastDateParser",
+  "generated_tests": 68,
+  "generation_seconds": 2564.949255,
+  "generation_exit_code": 124,
+  "generation_timeout_ms": 120000
+}

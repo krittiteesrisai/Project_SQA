@@ -1,0 +1,7 @@
+{
+  "class": "com.fasterxml.jackson.core.json.WriterBasedJsonGenerator",
+  "generated_tests": 0,
+  "generation_seconds": 300.044586,
+  "generation_exit_code": 124,
+  "generation_timeout_ms": 120000
+}

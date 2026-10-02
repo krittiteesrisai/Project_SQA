@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.math.optimization.fitting.GaussianFitter",
+  "generated_tests": 29,
+  "generation_seconds": 126.669386,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

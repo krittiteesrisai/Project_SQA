@@ -1,0 +1,7 @@
+{
+  "class": "com.fasterxml.jackson.databind.type.TypeBindings",
+  "generated_tests": 69,
+  "generation_seconds": 150.374055,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

@@ -1,0 +1,7 @@
+{
+  "class": "com.fasterxml.jackson.databind.deser.std.JsonNodeDeserializer",
+  "generated_tests": 42,
+  "generation_seconds": 31.529296,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

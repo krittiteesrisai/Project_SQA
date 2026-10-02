@@ -1,0 +1,7 @@
+{
+  "class": "com.fasterxml.jackson.core.json.JsonGeneratorImpl",
+  "generated_tests": 92,
+  "generation_seconds": 178.680821,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.math.optimization.linear.SimplexTableau",
+  "generated_tests": 337,
+  "generation_seconds": 147.556753,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

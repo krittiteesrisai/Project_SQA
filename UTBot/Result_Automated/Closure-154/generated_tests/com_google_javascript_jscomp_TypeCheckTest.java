@@ -1,0 +1,11252 @@
+package com.google.javascript.jscomp;
+
+import org.junit.Test;
+import com.google.javascript.rhino.jstype.VoidType;
+import com.google.javascript.rhino.jstype.JSTypeRegistry;
+import com.google.javascript.rhino.jstype.JSType;
+import java.lang.reflect.Method;
+import com.google.javascript.rhino.FunctionNode;
+import com.google.javascript.rhino.ScriptOrFnNode;
+import com.google.javascript.rhino.Node;
+import java.text.MessageFormat;
+import com.google.javascript.rhino.jstype.UnknownType;
+import com.google.javascript.rhino.jstype.TemplateType;
+import com.google.javascript.rhino.jstype.EnumType;
+import com.google.javascript.rhino.jstype.EnumElementType;
+import com.google.javascript.rhino.jstype.NoType;
+import com.google.javascript.rhino.JSDocInfo;
+import com.google.javascript.rhino.jstype.NoObjectType;
+import com.google.javascript.rhino.jstype.FunctionPrototypeType;
+import com.google.javascript.rhino.jstype.FunctionType;
+import java.lang.reflect.InvocationTargetException;
+import com.google.javascript.rhino.jstype.RecordType;
+import java.util.ArrayDeque;
+import java.util.LinkedList;
+import com.google.javascript.rhino.jstype.StringType;
+import com.google.javascript.rhino.jstype.BooleanType;
+import com.google.javascript.rhino.jstype.NullType;
+import com.google.javascript.rhino.jstype.ObjectType;
+import com.google.javascript.rhino.jstype.UnionType;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import com.google.javascript.rhino.jstype.JSTypeNative;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static java.lang.reflect.Array.get;
+import static org.junit.Assert.assertTrue;
+
+public final class com_google_javascript_jscomp_TypeCheckTest {
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.checkPropertyAccess
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method checkPropertyAccess(com.google.javascript.rhino.jstype.JSType, java.lang.String, com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#checkPropertyAccess(com.google.javascript.rhino.jstype.JSType,java.lang.String,com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.invokes {@link com.google.javascript.rhino.jstype.JSType#dereference()}
+ * @utbot.throwsException {@link java.lang.ArrayIndexOutOfBoundsException} in: ObjectType objectType = childType.dereference();
+ *  */
+    @Test
+    public void testCheckPropertyAccess_ThrowArrayIndexOutOfBoundsException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        VoidType voidType = ((VoidType) createInstance("com.google.javascript.rhino.jstype.VoidType"));
+        JSTypeRegistry registry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = {null};
+        setField(registry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(voidType, "com.google.javascript.rhino.jstype.JSType", "registry", registry);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.checkPropertyAccess] produces [java.lang.ArrayIndexOutOfBoundsException: Index 43 out of bounds for length 1]
+            com.google.javascript.rhino.jstype.JSTypeRegistry.getNativeType(JSTypeRegistry.java:813)
+            com.google.javascript.rhino.jstype.VoidType.restrictByNotNullOrUndefined(VoidType.java:59)
+            com.google.javascript.rhino.jstype.JSType.dereference(JSType.java:486)
+            com.google.javascript.jscomp.TypeCheck.checkPropertyAccess(TypeCheck.java:1262) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class voidTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Class stringType = Class.forName("java.lang.String");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method checkPropertyAccessMethod = typeCheckClazz.getDeclaredMethod("checkPropertyAccess", voidTypeType, stringType, nodeTraversalType, nodeType);
+        checkPropertyAccessMethod.setAccessible(true);
+        java.lang.Object[] checkPropertyAccessMethodArguments = new java.lang.Object[4];
+        checkPropertyAccessMethodArguments[0] = voidType;
+        checkPropertyAccessMethodArguments[1] = ((Object) null);
+        checkPropertyAccessMethodArguments[2] = ((Object) null);
+        checkPropertyAccessMethodArguments[3] = ((Object) null);
+        try {
+            checkPropertyAccessMethod.invoke(typeCheck, checkPropertyAccessMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#checkPropertyAccess(com.google.javascript.rhino.jstype.JSType,java.lang.String,com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.invokes {@link com.google.javascript.rhino.jstype.JSType#dereference()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: ObjectType objectType = childType.dereference();
+ *  */
+    @Test
+    public void testCheckPropertyAccess_ThrowNullPointerException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.checkPropertyAccess] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.checkPropertyAccess(TypeCheck.java:1262) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Class stringType = Class.forName("java.lang.String");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method checkPropertyAccessMethod = typeCheckClazz.getDeclaredMethod("checkPropertyAccess", jSTypeType, stringType, nodeTraversalType, nodeType);
+        checkPropertyAccessMethod.setAccessible(true);
+        java.lang.Object[] checkPropertyAccessMethodArguments = new java.lang.Object[4];
+        checkPropertyAccessMethodArguments[0] = ((Object) null);
+        checkPropertyAccessMethodArguments[1] = ((Object) null);
+        checkPropertyAccessMethodArguments[2] = ((Object) null);
+        checkPropertyAccessMethodArguments[3] = ((Object) null);
+        try {
+            checkPropertyAccessMethod.invoke(typeCheck, checkPropertyAccessMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.check
+    
+    ///region SYMBOLIC EXECUTION: EXPLICITLY THROWN UNCHECKED EXCEPTIONS for method check(com.google.javascript.rhino.Node, boolean)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#check(com.google.javascript.rhino.Node,boolean)}
+ * @utbot.invokes {@link com.google.javascript.jscomp.NodeTraversal#traverseWithScope(com.google.javascript.rhino.Node,com.google.javascript.jscomp.Scope)}
+ * @utbot.throwsException {@link java.lang.IllegalStateException} in: t.traverseWithScope(node, topScope);
+ *  */
+    @Test(expected = IllegalStateException.class)
+    public void testCheck_ThrowIllegalStateException() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Scope topScope = ((Scope) createInstance("com.google.javascript.jscomp.Scope"));
+        setField(topScope, "com.google.javascript.jscomp.Scope", "parent", topScope);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "topScope", topScope);
+        TypedScopeCreator scopeCreator = ((TypedScopeCreator) createInstance("com.google.javascript.jscomp.TypedScopeCreator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "scopeCreator", scopeCreator);
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        
+        typeCheck.check(functionNode, false);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#check(com.google.javascript.rhino.Node,boolean)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: Preconditions.checkNotNull(node);
+ *  */
+    @Test(expected = NullPointerException.class)
+    public void testCheck_ThrowNullPointerException() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        
+        typeCheck.check(null, false);
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.visit
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method visit(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node, com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visit(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.invokes {@link com.google.javascript.jscomp.NodeTraversal#getScope()}
+ * @utbot.activatesSwitch {@code switch(n.getType()) case: Token.THIS}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: ensureTyped(t, n, t.getScope().getTypeOfThis());
+ *  */
+    @Test
+    public void testVisit_ThrowNullPointerException_3() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        scriptOrFnNode.setType(42);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visit] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visit(TypeCheck.java:478) */
+        typeCheck.visit(null, scriptOrFnNode, null);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visit(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#getType()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: switch(n.getType())
+ *  */
+    @Test
+    public void testVisit_ThrowNullPointerException() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visit] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visit(TypeCheck.java:453) */
+        typeCheck.visit(null, null, null);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visit(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#getType()}
+ * @utbot.activatesSwitch {@code switch(n.getType()) case: Token.LP}
+ * @utbot.throwsException {@link java.lang.NullPointerException} when: parent.getType() != Token.FUNCTION
+ *  */
+    @Test
+    public void testVisit_ThrowNullPointerException_1() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = new Node(83);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visit] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visit(TypeCheck.java:461) */
+        typeCheck.visit(null, node, null);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visit(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#getFirstChild()}
+ * @utbot.activatesSwitch {@code switch(n.getType()) case: Token.CASE}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: JSType switchType = getJSType(parent.getFirstChild());
+ *  */
+    @Test
+    public void testVisit_ThrowNullPointerException_2() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = new Node(111);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visit] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visit(TypeCheck.java:718) */
+        typeCheck.visit(null, node, null);
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.process
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method process(com.google.javascript.rhino.Node, com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#process(com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.invokes {@link com.google.common.base.Preconditions#checkNotNull(java.lang.Object)}
+ * @utbot.invokes {@link com.google.common.base.Preconditions#checkNotNull(java.lang.Object)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: Node externsAndJs = jsRoot.getParent();
+ *  */
+    @Test
+    public void testProcess_ThrowNullPointerException() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Scope topScope = ((Scope) createInstance("com.google.javascript.jscomp.Scope"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "topScope", topScope);
+        MemoizedScopeCreator scopeCreator = ((MemoizedScopeCreator) createInstance("com.google.javascript.jscomp.MemoizedScopeCreator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "scopeCreator", scopeCreator);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.process] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.process(TypeCheck.java:335) */
+        typeCheck.process(null, null);
+    }
+    ///endregion
+    
+    ///region SYMBOLIC EXECUTION: EXPLICITLY THROWN UNCHECKED EXCEPTIONS for method process(com.google.javascript.rhino.Node, com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#process(com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.executesCondition {@code (Preconditions.checkState(externsAndJs != null);): False}
+ * @utbot.throwsException {@link java.lang.IllegalStateException} in: Preconditions.checkState(externsAndJs != null);
+ *  */
+    @Test(expected = IllegalStateException.class)
+    public void testProcess_ThrowIllegalStateException() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Scope topScope = ((Scope) createInstance("com.google.javascript.jscomp.Scope"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "topScope", topScope);
+        MemoizedScopeCreator scopeCreator = ((MemoizedScopeCreator) createInstance("com.google.javascript.jscomp.MemoizedScopeCreator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "scopeCreator", scopeCreator);
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        
+        typeCheck.process(null, functionNode);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#process(com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.executesCondition {@code (Preconditions.checkState(externsAndJs != null);): True}
+ * @utbot.executesCondition {@code (Preconditions.checkState(externsRoot == null || externsAndJs.hasChild(externsRoot));): True}
+ * @utbot.executesCondition {@code (externsRoot == null || externsAndJs.hasChild(externsRoot)): False}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#hasChild(com.google.javascript.rhino.Node)}
+ * @utbot.invokes {@link com.google.common.base.Preconditions#checkState(boolean)}
+ * @utbot.throwsException {@link java.lang.IllegalStateException} in: Preconditions.checkState(externsRoot == null || externsAndJs.hasChild(externsRoot));
+ *  */
+    @Test(expected = IllegalStateException.class)
+    public void testProcess_ThrowIllegalStateException_1() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Scope topScope = ((Scope) createInstance("com.google.javascript.jscomp.Scope"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "topScope", topScope);
+        TypedScopeCreator scopeCreator = ((TypedScopeCreator) createInstance("com.google.javascript.jscomp.TypedScopeCreator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "scopeCreator", scopeCreator);
+        Node node = new Node(0);
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        ScriptOrFnNode parent = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        setField(parent, "com.google.javascript.rhino.Node", "first", parent);
+        setField(functionNode, "com.google.javascript.rhino.Node", "parent", parent);
+        
+        typeCheck.process(node, functionNode);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#process(com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: Preconditions.checkNotNull(scopeCreator);
+ *  */
+    @Test(expected = NullPointerException.class)
+    public void testProcess_ThrowNullPointerException_2() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        
+        typeCheck.process(null, null);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#process(com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: Preconditions.checkNotNull(topScope);
+ *  */
+    @Test(expected = NullPointerException.class)
+    public void testProcess_ThrowNullPointerException_1() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        MemoizedScopeCreator scopeCreator = ((MemoizedScopeCreator) createInstance("com.google.javascript.jscomp.MemoizedScopeCreator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "scopeCreator", scopeCreator);
+        
+        typeCheck.process(null, null);
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.report
+    
+    ///region SYMBOLIC EXECUTION: SUCCESSFUL EXECUTIONS for method report(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node, com.google.javascript.jscomp.DiagnosticType, [Ljava.lang.String;)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#report(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.jscomp.DiagnosticType,java.lang.String[])}
+ * @utbot.executesCondition {@code (noTypeCheckSection == 0): False}
+ *  */
+    @Test
+    public void testReport_NoTypeCheckSectionNotEqualsZero() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "noTypeCheckSection", -255);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class diagnosticTypeType = Class.forName("com.google.javascript.jscomp.DiagnosticType");
+        Class stringArrayType = Class.forName("[Ljava.lang.String;");
+        Method reportMethod = typeCheckClazz.getDeclaredMethod("report", nodeTraversalType, nodeType, diagnosticTypeType, stringArrayType);
+        reportMethod.setAccessible(true);
+        java.lang.Object[] reportMethodArguments = new java.lang.Object[4];
+        reportMethodArguments[0] = ((Object) null);
+        reportMethodArguments[1] = ((Object) null);
+        reportMethodArguments[2] = ((Object) null);
+        reportMethodArguments[3] = ((Object) null);
+        reportMethod.invoke(typeCheck, reportMethodArguments);
+    }
+    ///endregion
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method report(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node, com.google.javascript.jscomp.DiagnosticType, [Ljava.lang.String;)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#report(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.jscomp.DiagnosticType,java.lang.String[])}
+ * @utbot.throwsException {@link java.lang.IndexOutOfBoundsException} 
+ *  */
+    @Test
+    public void testReport_ThrowIndexOutOfBoundsException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        String sourceName = "";
+        setField(nodeTraversal, "com.google.javascript.jscomp.NodeTraversal", "sourceName", sourceName);
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        setField(node, "com.google.javascript.rhino.Node", "sourcePosition", -256);
+        DiagnosticType diagnosticType = ((DiagnosticType) createInstance("com.google.javascript.jscomp.DiagnosticType"));
+        MessageFormat format = ((MessageFormat) createInstance("java.text.MessageFormat"));
+        int[] offsets = {-1};
+        setField(format, "java.text.MessageFormat", "offsets", offsets);
+        setField(diagnosticType, "com.google.javascript.jscomp.DiagnosticType", "format", format);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.report] produces [java.lang.IndexOutOfBoundsException: start 0, end -1, length 4]
+            java.base/java.lang.AbstractStringBuilder.checkRange(AbstractStringBuilder.java:1802)
+            java.base/java.lang.AbstractStringBuilder.append(AbstractStringBuilder.java:680)
+            java.base/java.lang.StringBuffer.append(StringBuffer.java:393)
+            java.base/java.text.MessageFormat.subformat(MessageFormat.java:1267)
+            java.base/java.text.MessageFormat.format(MessageFormat.java:886)
+            java.base/java.text.Format.format(Format.java:159)
+            com.google.javascript.jscomp.JSError.<init>(JSError.java:144)
+            com.google.javascript.jscomp.JSError.<init>(JSError.java:157)
+            com.google.javascript.jscomp.JSError.make(JSError.java:113)
+            com.google.javascript.jscomp.NodeTraversal.report(NodeTraversal.java:609)
+            com.google.javascript.jscomp.TypeCheck.report(TypeCheck.java:404) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class diagnosticTypeType = Class.forName("com.google.javascript.jscomp.DiagnosticType");
+        Class stringArrayType = Class.forName("[Ljava.lang.String;");
+        Method reportMethod = typeCheckClazz.getDeclaredMethod("report", nodeTraversalType, nodeType, diagnosticTypeType, stringArrayType);
+        reportMethod.setAccessible(true);
+        java.lang.Object[] reportMethodArguments = new java.lang.Object[4];
+        reportMethodArguments[0] = nodeTraversal;
+        reportMethodArguments[1] = node;
+        reportMethodArguments[2] = diagnosticType;
+        reportMethodArguments[3] = ((Object) null);
+        try {
+            reportMethod.invoke(typeCheck, reportMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#report(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.jscomp.DiagnosticType,java.lang.String[])}
+ * @utbot.throwsException {@link java.lang.ArrayIndexOutOfBoundsException} 
+ *  */
+    @Test
+    public void testReport_ThrowArrayIndexOutOfBoundsException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        String sourceName = "";
+        setField(nodeTraversal, "com.google.javascript.jscomp.NodeTraversal", "sourceName", sourceName);
+        DiagnosticType diagnosticType = ((DiagnosticType) createInstance("com.google.javascript.jscomp.DiagnosticType"));
+        MessageFormat format = ((MessageFormat) createInstance("java.text.MessageFormat"));
+        String pattern = "";
+        setField(format, "java.text.MessageFormat", "pattern", pattern);
+        int[] offsets = {};
+        setField(format, "java.text.MessageFormat", "offsets", offsets);
+        setField(diagnosticType, "com.google.javascript.jscomp.DiagnosticType", "format", format);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.report] produces [java.lang.ArrayIndexOutOfBoundsException: Index 0 out of bounds for length 0]
+            java.base/java.text.MessageFormat.subformat(MessageFormat.java:1267)
+            java.base/java.text.MessageFormat.format(MessageFormat.java:886)
+            java.base/java.text.Format.format(Format.java:159)
+            com.google.javascript.jscomp.JSError.<init>(JSError.java:144)
+            com.google.javascript.jscomp.JSError.<init>(JSError.java:157)
+            com.google.javascript.jscomp.JSError.make(JSError.java:113)
+            com.google.javascript.jscomp.NodeTraversal.report(NodeTraversal.java:609)
+            com.google.javascript.jscomp.TypeCheck.report(TypeCheck.java:404) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class diagnosticTypeType = Class.forName("com.google.javascript.jscomp.DiagnosticType");
+        Class stringArrayType = Class.forName("[Ljava.lang.String;");
+        Method reportMethod = typeCheckClazz.getDeclaredMethod("report", nodeTraversalType, nodeType, diagnosticTypeType, stringArrayType);
+        reportMethod.setAccessible(true);
+        java.lang.Object[] reportMethodArguments = new java.lang.Object[4];
+        reportMethodArguments[0] = nodeTraversal;
+        reportMethodArguments[1] = ((Object) null);
+        reportMethodArguments[2] = diagnosticType;
+        reportMethodArguments[3] = ((Object) null);
+        try {
+            reportMethod.invoke(typeCheck, reportMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#report(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.jscomp.DiagnosticType,java.lang.String[])}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: t.report(n, diagnosticType, arguments);
+ *  */
+    @Test
+    public void testReport_ThrowNullPointerException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.report] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.report(TypeCheck.java:404) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class diagnosticTypeType = Class.forName("com.google.javascript.jscomp.DiagnosticType");
+        Class stringArrayType = Class.forName("[Ljava.lang.String;");
+        Method reportMethod = typeCheckClazz.getDeclaredMethod("report", nodeTraversalType, nodeType, diagnosticTypeType, stringArrayType);
+        reportMethod.setAccessible(true);
+        java.lang.Object[] reportMethodArguments = new java.lang.Object[4];
+        reportMethodArguments[0] = ((Object) null);
+        reportMethodArguments[1] = ((Object) null);
+        reportMethodArguments[2] = ((Object) null);
+        reportMethodArguments[3] = ((Object) null);
+        try {
+            reportMethod.invoke(typeCheck, reportMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#report(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.jscomp.DiagnosticType,java.lang.String[])}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: t.report(n, diagnosticType, arguments);
+ *  */
+    @Test
+    public void testReport_ThrowNullPointerException_1() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        String sourceName = "";
+        setField(nodeTraversal, "com.google.javascript.jscomp.NodeTraversal", "sourceName", sourceName);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.report] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.JSError.<init>(JSError.java:144)
+            com.google.javascript.jscomp.JSError.<init>(JSError.java:157)
+            com.google.javascript.jscomp.JSError.make(JSError.java:113)
+            com.google.javascript.jscomp.NodeTraversal.report(NodeTraversal.java:609)
+            com.google.javascript.jscomp.TypeCheck.report(TypeCheck.java:404) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class diagnosticTypeType = Class.forName("com.google.javascript.jscomp.DiagnosticType");
+        Class stringArrayType = Class.forName("[Ljava.lang.String;");
+        Method reportMethod = typeCheckClazz.getDeclaredMethod("report", nodeTraversalType, nodeType, diagnosticTypeType, stringArrayType);
+        reportMethod.setAccessible(true);
+        java.lang.Object[] reportMethodArguments = new java.lang.Object[4];
+        reportMethodArguments[0] = nodeTraversal;
+        reportMethodArguments[1] = ((Object) null);
+        reportMethodArguments[2] = ((Object) null);
+        reportMethodArguments[3] = ((Object) null);
+        try {
+            reportMethod.invoke(typeCheck, reportMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#report(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.jscomp.DiagnosticType,java.lang.String[])}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: t.report(n, diagnosticType, arguments);
+ *  */
+    @Test
+    public void testReport_ThrowNullPointerException_3() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        String sourceName = "";
+        setField(nodeTraversal, "com.google.javascript.jscomp.NodeTraversal", "sourceName", sourceName);
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        setField(node, "com.google.javascript.rhino.Node", "sourcePosition", -1);
+        DiagnosticType diagnosticType = ((DiagnosticType) createInstance("com.google.javascript.jscomp.DiagnosticType"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.report] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.JSError.<init>(JSError.java:144)
+            com.google.javascript.jscomp.JSError.<init>(JSError.java:157)
+            com.google.javascript.jscomp.JSError.make(JSError.java:113)
+            com.google.javascript.jscomp.NodeTraversal.report(NodeTraversal.java:609)
+            com.google.javascript.jscomp.TypeCheck.report(TypeCheck.java:404) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class diagnosticTypeType = Class.forName("com.google.javascript.jscomp.DiagnosticType");
+        Class stringArrayType = Class.forName("[Ljava.lang.String;");
+        Method reportMethod = typeCheckClazz.getDeclaredMethod("report", nodeTraversalType, nodeType, diagnosticTypeType, stringArrayType);
+        reportMethod.setAccessible(true);
+        java.lang.Object[] reportMethodArguments = new java.lang.Object[4];
+        reportMethodArguments[0] = nodeTraversal;
+        reportMethodArguments[1] = node;
+        reportMethodArguments[2] = diagnosticType;
+        reportMethodArguments[3] = ((Object) null);
+        try {
+            reportMethod.invoke(typeCheck, reportMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#report(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.jscomp.DiagnosticType,java.lang.String[])}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: t.report(n, diagnosticType, arguments);
+ *  */
+    @Test
+    public void testReport_ThrowNullPointerException_4() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        String sourceName = "";
+        setField(nodeTraversal, "com.google.javascript.jscomp.NodeTraversal", "sourceName", sourceName);
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        setField(node, "com.google.javascript.rhino.Node", "sourcePosition", -256);
+        DiagnosticType diagnosticType = ((DiagnosticType) createInstance("com.google.javascript.jscomp.DiagnosticType"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.report] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.JSError.<init>(JSError.java:144)
+            com.google.javascript.jscomp.JSError.<init>(JSError.java:157)
+            com.google.javascript.jscomp.JSError.make(JSError.java:113)
+            com.google.javascript.jscomp.NodeTraversal.report(NodeTraversal.java:609)
+            com.google.javascript.jscomp.TypeCheck.report(TypeCheck.java:404) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class diagnosticTypeType = Class.forName("com.google.javascript.jscomp.DiagnosticType");
+        Class stringArrayType = Class.forName("[Ljava.lang.String;");
+        Method reportMethod = typeCheckClazz.getDeclaredMethod("report", nodeTraversalType, nodeType, diagnosticTypeType, stringArrayType);
+        reportMethod.setAccessible(true);
+        java.lang.Object[] reportMethodArguments = new java.lang.Object[4];
+        reportMethodArguments[0] = nodeTraversal;
+        reportMethodArguments[1] = node;
+        reportMethodArguments[2] = diagnosticType;
+        reportMethodArguments[3] = ((Object) null);
+        try {
+            reportMethod.invoke(typeCheck, reportMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#report(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.jscomp.DiagnosticType,java.lang.String[])}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: t.report(n, diagnosticType, arguments);
+ *  */
+    @Test
+    public void testReport_ThrowNullPointerException_2() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        String sourceName = "";
+        setField(nodeTraversal, "com.google.javascript.jscomp.NodeTraversal", "sourceName", sourceName);
+        DiagnosticType diagnosticType = ((DiagnosticType) createInstance("com.google.javascript.jscomp.DiagnosticType"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.report] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.JSError.<init>(JSError.java:144)
+            com.google.javascript.jscomp.JSError.<init>(JSError.java:157)
+            com.google.javascript.jscomp.JSError.make(JSError.java:113)
+            com.google.javascript.jscomp.NodeTraversal.report(NodeTraversal.java:609)
+            com.google.javascript.jscomp.TypeCheck.report(TypeCheck.java:404) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class diagnosticTypeType = Class.forName("com.google.javascript.jscomp.DiagnosticType");
+        Class stringArrayType = Class.forName("[Ljava.lang.String;");
+        Method reportMethod = typeCheckClazz.getDeclaredMethod("report", nodeTraversalType, nodeType, diagnosticTypeType, stringArrayType);
+        reportMethod.setAccessible(true);
+        java.lang.Object[] reportMethodArguments = new java.lang.Object[4];
+        reportMethodArguments[0] = nodeTraversal;
+        reportMethodArguments[1] = ((Object) null);
+        reportMethodArguments[2] = diagnosticType;
+        reportMethodArguments[3] = ((Object) null);
+        try {
+            reportMethod.invoke(typeCheck, reportMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.doPercentTypedAccounting
+    
+    ///region SYMBOLIC EXECUTION: SUCCESSFUL EXECUTIONS for method doPercentTypedAccounting(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#doPercentTypedAccounting(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ *  */
+    @Test
+    public void testDoPercentTypedAccounting() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "nullCount", -255);
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method doPercentTypedAccountingMethod = typeCheckClazz.getDeclaredMethod("doPercentTypedAccounting", nodeTraversalType, scriptOrFnNodeType);
+        doPercentTypedAccountingMethod.setAccessible(true);
+        java.lang.Object[] doPercentTypedAccountingMethodArguments = new java.lang.Object[2];
+        doPercentTypedAccountingMethodArguments[0] = ((Object) null);
+        doPercentTypedAccountingMethodArguments[1] = scriptOrFnNode;
+        doPercentTypedAccountingMethod.invoke(typeCheck, doPercentTypedAccountingMethodArguments);
+        
+        int finalTypeCheckNullCount = ((Integer) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "nullCount"));
+        
+        assertEquals(-254, finalTypeCheckNullCount);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#doPercentTypedAccounting(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.invokes {@link com.google.javascript.rhino.jstype.JSType#isUnknownType()}
+ * @utbot.invokes {@link com.google.javascript.jscomp.CheckLevel#isOn()}
+ *  */
+    @Test
+    public void testDoPercentTypedAccounting_CheckLevelIsOn() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        CheckLevel reportUnknownTypes = CheckLevel.OFF;
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "reportUnknownTypes", reportUnknownTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "unknownCount", 4);
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        UnknownType jsType = ((UnknownType) createInstance("com.google.javascript.rhino.jstype.UnknownType"));
+        setField(functionNode, "com.google.javascript.rhino.Node", "jsType", jsType);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method doPercentTypedAccountingMethod = typeCheckClazz.getDeclaredMethod("doPercentTypedAccounting", nodeTraversalType, functionNodeType);
+        doPercentTypedAccountingMethod.setAccessible(true);
+        java.lang.Object[] doPercentTypedAccountingMethodArguments = new java.lang.Object[2];
+        doPercentTypedAccountingMethodArguments[0] = ((Object) null);
+        doPercentTypedAccountingMethodArguments[1] = functionNode;
+        doPercentTypedAccountingMethod.invoke(typeCheck, doPercentTypedAccountingMethodArguments);
+        
+        int finalTypeCheckUnknownCount = ((Integer) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "unknownCount"));
+        
+        assertEquals(5, finalTypeCheckUnknownCount);
+    }
+    ///endregion
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method doPercentTypedAccounting(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#doPercentTypedAccounting(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: JSType type = n.getJSType();
+ *  */
+    @Test
+    public void testDoPercentTypedAccounting_ThrowNullPointerException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.doPercentTypedAccounting] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.doPercentTypedAccounting(TypeCheck.java:807) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method doPercentTypedAccountingMethod = typeCheckClazz.getDeclaredMethod("doPercentTypedAccounting", nodeTraversalType, nodeType);
+        doPercentTypedAccountingMethod.setAccessible(true);
+        java.lang.Object[] doPercentTypedAccountingMethodArguments = new java.lang.Object[2];
+        doPercentTypedAccountingMethodArguments[0] = ((Object) null);
+        doPercentTypedAccountingMethodArguments[1] = ((Object) null);
+        try {
+            doPercentTypedAccountingMethod.invoke(typeCheck, doPercentTypedAccountingMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#doPercentTypedAccounting(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} when: reportUnknownTypes.isOn()
+ *  */
+    @Test
+    public void testDoPercentTypedAccounting_ThrowNullPointerException_1() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        UnknownType jsType = ((UnknownType) createInstance("com.google.javascript.rhino.jstype.UnknownType"));
+        setField(functionNode, "com.google.javascript.rhino.Node", "jsType", jsType);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.doPercentTypedAccounting] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.doPercentTypedAccounting(TypeCheck.java:811) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method doPercentTypedAccountingMethod = typeCheckClazz.getDeclaredMethod("doPercentTypedAccounting", nodeTraversalType, functionNodeType);
+        doPercentTypedAccountingMethod.setAccessible(true);
+        java.lang.Object[] doPercentTypedAccountingMethodArguments = new java.lang.Object[2];
+        doPercentTypedAccountingMethodArguments[0] = ((Object) null);
+        doPercentTypedAccountingMethodArguments[1] = functionNode;
+        try {
+            doPercentTypedAccountingMethod.invoke(typeCheck, doPercentTypedAccountingMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#doPercentTypedAccounting(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} when: reportUnknownTypes.isOn()
+ *  */
+    @Test
+    public void testDoPercentTypedAccounting_ThrowNullPointerException_2() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        TemplateType jsType = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        UnknownType referencedType = ((UnknownType) createInstance("com.google.javascript.rhino.jstype.UnknownType"));
+        setField(jsType, "com.google.javascript.rhino.jstype.ProxyObjectType", "referencedType", referencedType);
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "jsType", jsType);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.doPercentTypedAccounting] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.doPercentTypedAccounting(TypeCheck.java:811) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method doPercentTypedAccountingMethod = typeCheckClazz.getDeclaredMethod("doPercentTypedAccounting", nodeTraversalType, scriptOrFnNodeType);
+        doPercentTypedAccountingMethod.setAccessible(true);
+        java.lang.Object[] doPercentTypedAccountingMethodArguments = new java.lang.Object[2];
+        doPercentTypedAccountingMethodArguments[0] = ((Object) null);
+        doPercentTypedAccountingMethodArguments[1] = scriptOrFnNode;
+        try {
+            doPercentTypedAccountingMethod.invoke(typeCheck, doPercentTypedAccountingMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///region OTHER: ERROR SUITE for method doPercentTypedAccounting(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node)
+    
+    @Test(expected = StackOverflowError.class)
+    public void testDoPercentTypedAccounting1() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Object numberNode = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        TemplateType jsType = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(jsType, "com.google.javascript.rhino.jstype.ProxyObjectType", "referencedType", jsType);
+        setField(numberNode, "com.google.javascript.rhino.Node", "jsType", jsType);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class numberNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method doPercentTypedAccountingMethod = typeCheckClazz.getDeclaredMethod("doPercentTypedAccounting", nodeTraversalType, numberNodeType);
+        doPercentTypedAccountingMethod.setAccessible(true);
+        java.lang.Object[] doPercentTypedAccountingMethodArguments = new java.lang.Object[2];
+        doPercentTypedAccountingMethodArguments[0] = nodeTraversal;
+        doPercentTypedAccountingMethodArguments[1] = numberNode;
+        try {
+            doPercentTypedAccountingMethod.invoke(typeCheck, doPercentTypedAccountingMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testDoPercentTypedAccounting2() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Object numberNode = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        TemplateType jsType = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        TemplateType referencedType = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        Object referencedType1 = createInstance("com.google.javascript.rhino.jstype.UnresolvedTypeExpression");
+        setField(referencedType, "com.google.javascript.rhino.jstype.ProxyObjectType", "referencedType", referencedType1);
+        setField(jsType, "com.google.javascript.rhino.jstype.ProxyObjectType", "referencedType", referencedType);
+        setField(numberNode, "com.google.javascript.rhino.Node", "jsType", jsType);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.doPercentTypedAccounting] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.doPercentTypedAccounting(TypeCheck.java:811) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class numberNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method doPercentTypedAccountingMethod = typeCheckClazz.getDeclaredMethod("doPercentTypedAccounting", nodeTraversalType, numberNodeType);
+        doPercentTypedAccountingMethod.setAccessible(true);
+        java.lang.Object[] doPercentTypedAccountingMethodArguments = new java.lang.Object[2];
+        doPercentTypedAccountingMethodArguments[0] = nodeTraversal;
+        doPercentTypedAccountingMethodArguments[1] = numberNode;
+        try {
+            doPercentTypedAccountingMethod.invoke(typeCheck, doPercentTypedAccountingMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testDoPercentTypedAccounting3() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        CheckLevel reportUnknownTypes = CheckLevel.WARNING;
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "reportUnknownTypes", reportUnknownTypes);
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        Object jsType = createInstance("com.google.javascript.rhino.jstype.UnresolvedTypeExpression");
+        setField(node, "com.google.javascript.rhino.Node", "jsType", jsType);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.doPercentTypedAccounting] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.doPercentTypedAccounting(TypeCheck.java:813) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method doPercentTypedAccountingMethod = typeCheckClazz.getDeclaredMethod("doPercentTypedAccounting", nodeTraversalType, nodeType);
+        doPercentTypedAccountingMethod.setAccessible(true);
+        java.lang.Object[] doPercentTypedAccountingMethodArguments = new java.lang.Object[2];
+        doPercentTypedAccountingMethodArguments[0] = ((Object) null);
+        doPercentTypedAccountingMethodArguments[1] = node;
+        try {
+            doPercentTypedAccountingMethod.invoke(typeCheck, doPercentTypedAccountingMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.checkEnumInitializer
+    
+    ///region SYMBOLIC EXECUTION: SUCCESSFUL EXECUTIONS for method checkEnumInitializer(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node, com.google.javascript.rhino.jstype.JSType)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#checkEnumInitializer(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType)}
+ *  */
+    @Test
+    public void testCheckEnumInitializer() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        functionNode.setType(64);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method checkEnumInitializerMethod = typeCheckClazz.getDeclaredMethod("checkEnumInitializer", nodeTraversalType, functionNodeType, jSTypeType);
+        checkEnumInitializerMethod.setAccessible(true);
+        java.lang.Object[] checkEnumInitializerMethodArguments = new java.lang.Object[3];
+        checkEnumInitializerMethodArguments[0] = ((Object) null);
+        checkEnumInitializerMethodArguments[1] = functionNode;
+        checkEnumInitializerMethodArguments[2] = ((Object) null);
+        checkEnumInitializerMethod.invoke(typeCheck, checkEnumInitializerMethodArguments);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#checkEnumInitializer(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType)}
+ * @utbot.executesCondition {@code (value.getJSType() instanceof EnumType): False}
+ *  */
+    @Test
+    public void testCheckEnumInitializer_NotValueGetJSTypeNotInstanceOfEnumType() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        functionNode.setType(-255);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method checkEnumInitializerMethod = typeCheckClazz.getDeclaredMethod("checkEnumInitializer", nodeTraversalType, functionNodeType, jSTypeType);
+        checkEnumInitializerMethod.setAccessible(true);
+        java.lang.Object[] checkEnumInitializerMethodArguments = new java.lang.Object[3];
+        checkEnumInitializerMethodArguments[0] = ((Object) null);
+        checkEnumInitializerMethodArguments[1] = functionNode;
+        checkEnumInitializerMethodArguments[2] = ((Object) null);
+        checkEnumInitializerMethod.invoke(typeCheck, checkEnumInitializerMethodArguments);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#checkEnumInitializer(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType)}
+ * @utbot.executesCondition {@code (value.getJSType() instanceof EnumType): True}
+ *  */
+    @Test
+    public void testCheckEnumInitializer_ValueGetJSTypeInstanceOfEnumType() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        TypeValidator validator = ((TypeValidator) createInstance("com.google.javascript.jscomp.TypeValidator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "validator", validator);
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        functionNode.setType(-255);
+        EnumType jsType = ((EnumType) createInstance("com.google.javascript.rhino.jstype.EnumType"));
+        EnumElementType elementsType = ((EnumElementType) createInstance("com.google.javascript.rhino.jstype.EnumElementType"));
+        UnknownType primitiveType = ((UnknownType) createInstance("com.google.javascript.rhino.jstype.UnknownType"));
+        setField(elementsType, "com.google.javascript.rhino.jstype.EnumElementType", "primitiveType", primitiveType);
+        setField(jsType, "com.google.javascript.rhino.jstype.EnumType", "elementsType", elementsType);
+        setField(functionNode, "com.google.javascript.rhino.Node", "jsType", jsType);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method checkEnumInitializerMethod = typeCheckClazz.getDeclaredMethod("checkEnumInitializer", nodeTraversalType, functionNodeType, jSTypeType);
+        checkEnumInitializerMethod.setAccessible(true);
+        java.lang.Object[] checkEnumInitializerMethodArguments = new java.lang.Object[3];
+        checkEnumInitializerMethodArguments[0] = ((Object) null);
+        checkEnumInitializerMethodArguments[1] = functionNode;
+        checkEnumInitializerMethodArguments[2] = ((Object) null);
+        checkEnumInitializerMethod.invoke(typeCheck, checkEnumInitializerMethodArguments);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#checkEnumInitializer(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType)}
+ *  */
+    @Test
+    public void testCheckEnumInitializer_1() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        TypeValidator validator = ((TypeValidator) createInstance("com.google.javascript.jscomp.TypeValidator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "validator", validator);
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        scriptOrFnNode.setType(64);
+        FunctionNode first = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        setField(first, "com.google.javascript.rhino.Node", "first", first);
+        UnknownType jsType = ((UnknownType) createInstance("com.google.javascript.rhino.jstype.UnknownType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "first", first);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method checkEnumInitializerMethod = typeCheckClazz.getDeclaredMethod("checkEnumInitializer", nodeTraversalType, scriptOrFnNodeType, jSTypeType);
+        checkEnumInitializerMethod.setAccessible(true);
+        java.lang.Object[] checkEnumInitializerMethodArguments = new java.lang.Object[3];
+        checkEnumInitializerMethodArguments[0] = ((Object) null);
+        checkEnumInitializerMethodArguments[1] = scriptOrFnNode;
+        checkEnumInitializerMethodArguments[2] = ((Object) null);
+        checkEnumInitializerMethod.invoke(typeCheck, checkEnumInitializerMethodArguments);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#checkEnumInitializer(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType)}
+ * @utbot.executesCondition {@code (value.getJSType() instanceof EnumType): True}
+ *  */
+    @Test
+    public void testCheckEnumInitializer_ValueGetJSTypeInstanceOfEnumType_1() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        TypeValidator validator = ((TypeValidator) createInstance("com.google.javascript.jscomp.TypeValidator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "validator", validator);
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        functionNode.setType(-255);
+        EnumType jsType = ((EnumType) createInstance("com.google.javascript.rhino.jstype.EnumType"));
+        EnumElementType elementsType = ((EnumElementType) createInstance("com.google.javascript.rhino.jstype.EnumElementType"));
+        TemplateType primitiveType = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        TemplateType referencedType = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        Object referencedType1 = createInstance("com.google.javascript.rhino.jstype.UnresolvedTypeExpression");
+        setField(referencedType, "com.google.javascript.rhino.jstype.ProxyObjectType", "referencedType", referencedType1);
+        setField(primitiveType, "com.google.javascript.rhino.jstype.ProxyObjectType", "referencedType", referencedType);
+        setField(elementsType, "com.google.javascript.rhino.jstype.EnumElementType", "primitiveType", primitiveType);
+        setField(jsType, "com.google.javascript.rhino.jstype.EnumType", "elementsType", elementsType);
+        setField(functionNode, "com.google.javascript.rhino.Node", "jsType", jsType);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method checkEnumInitializerMethod = typeCheckClazz.getDeclaredMethod("checkEnumInitializer", nodeTraversalType, functionNodeType, jSTypeType);
+        checkEnumInitializerMethod.setAccessible(true);
+        java.lang.Object[] checkEnumInitializerMethodArguments = new java.lang.Object[3];
+        checkEnumInitializerMethodArguments[0] = ((Object) null);
+        checkEnumInitializerMethodArguments[1] = functionNode;
+        checkEnumInitializerMethodArguments[2] = ((Object) null);
+        checkEnumInitializerMethod.invoke(typeCheck, checkEnumInitializerMethodArguments);
+    }
+    ///endregion
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method checkEnumInitializer(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node, com.google.javascript.rhino.jstype.JSType)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#checkEnumInitializer(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType)}
+ * @utbot.throwsException {@link java.lang.ArrayIndexOutOfBoundsException} 
+ *  */
+    @Test
+    public void testCheckEnumInitializer_ThrowArrayIndexOutOfBoundsException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        TypeValidator validator = ((TypeValidator) createInstance("com.google.javascript.jscomp.TypeValidator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "validator", validator);
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = {};
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        node.setType(64);
+        FunctionNode first = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        Node first1 = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        setField(first, "com.google.javascript.rhino.Node", "first", first1);
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.checkEnumInitializer] produces [java.lang.ArrayIndexOutOfBoundsException: Index 35 out of bounds for length 0]
+            com.google.javascript.rhino.jstype.JSTypeRegistry.getNativeType(JSTypeRegistry.java:813)
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1711)
+            com.google.javascript.jscomp.TypeCheck.checkEnumInitializer(TypeCheck.java:1660) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method checkEnumInitializerMethod = typeCheckClazz.getDeclaredMethod("checkEnumInitializer", nodeTraversalType, nodeType, jSTypeType);
+        checkEnumInitializerMethod.setAccessible(true);
+        java.lang.Object[] checkEnumInitializerMethodArguments = new java.lang.Object[3];
+        checkEnumInitializerMethodArguments[0] = ((Object) null);
+        checkEnumInitializerMethodArguments[1] = node;
+        checkEnumInitializerMethodArguments[2] = ((Object) null);
+        try {
+            checkEnumInitializerMethod.invoke(typeCheck, checkEnumInitializerMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#checkEnumInitializer(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} when: value.getType() == Token.OBJECTLIT
+ *  */
+    @Test
+    public void testCheckEnumInitializer_ThrowNullPointerException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.checkEnumInitializer] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.checkEnumInitializer(TypeCheck.java:1653) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method checkEnumInitializerMethod = typeCheckClazz.getDeclaredMethod("checkEnumInitializer", nodeTraversalType, nodeType, jSTypeType);
+        checkEnumInitializerMethod.setAccessible(true);
+        java.lang.Object[] checkEnumInitializerMethodArguments = new java.lang.Object[3];
+        checkEnumInitializerMethodArguments[0] = ((Object) null);
+        checkEnumInitializerMethodArguments[1] = ((Object) null);
+        checkEnumInitializerMethodArguments[2] = ((Object) null);
+        try {
+            checkEnumInitializerMethod.invoke(typeCheck, checkEnumInitializerMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#checkEnumInitializer(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType)}
+ * @utbot.executesCondition {@code (value.getJSType() instanceof EnumType): True}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: valueEnumType.getElementsType().getPrimitiveType()
+ *  */
+    @Test
+    public void testCheckEnumInitializer_ThrowNullPointerException_1() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        functionNode.setType(-255);
+        EnumType jsType = ((EnumType) createInstance("com.google.javascript.rhino.jstype.EnumType"));
+        setField(functionNode, "com.google.javascript.rhino.Node", "jsType", jsType);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.checkEnumInitializer] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.checkEnumInitializer(TypeCheck.java:1671) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method checkEnumInitializerMethod = typeCheckClazz.getDeclaredMethod("checkEnumInitializer", nodeTraversalType, functionNodeType, jSTypeType);
+        checkEnumInitializerMethod.setAccessible(true);
+        java.lang.Object[] checkEnumInitializerMethodArguments = new java.lang.Object[3];
+        checkEnumInitializerMethodArguments[0] = ((Object) null);
+        checkEnumInitializerMethodArguments[1] = functionNode;
+        checkEnumInitializerMethodArguments[2] = ((Object) null);
+        try {
+            checkEnumInitializerMethod.invoke(typeCheck, checkEnumInitializerMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#checkEnumInitializer(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: validator.expectCanAssignTo(t, propValue, getJSType(propValue), primitiveType, "element type must match enum's type");
+ *  */
+    @Test
+    public void testCheckEnumInitializer_ThrowNullPointerException_4() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        scriptOrFnNode.setType(64);
+        FunctionNode first = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        setField(first, "com.google.javascript.rhino.Node", "first", first);
+        NoType jsType = ((NoType) createInstance("com.google.javascript.rhino.jstype.NoType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.checkEnumInitializer] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.checkEnumInitializer(TypeCheck.java:1659) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method checkEnumInitializerMethod = typeCheckClazz.getDeclaredMethod("checkEnumInitializer", nodeTraversalType, scriptOrFnNodeType, jSTypeType);
+        checkEnumInitializerMethod.setAccessible(true);
+        java.lang.Object[] checkEnumInitializerMethodArguments = new java.lang.Object[3];
+        checkEnumInitializerMethodArguments[0] = ((Object) null);
+        checkEnumInitializerMethodArguments[1] = scriptOrFnNode;
+        checkEnumInitializerMethodArguments[2] = ((Object) null);
+        try {
+            checkEnumInitializerMethod.invoke(typeCheck, checkEnumInitializerMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#checkEnumInitializer(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: t
+ *  */
+    @Test
+    public void testCheckEnumInitializer_ThrowNullPointerException_3() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        scriptOrFnNode.setType(64);
+        FunctionNode first = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.checkEnumInitializer] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1705)
+            com.google.javascript.jscomp.TypeCheck.checkEnumInitializer(TypeCheck.java:1660) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method checkEnumInitializerMethod = typeCheckClazz.getDeclaredMethod("checkEnumInitializer", nodeTraversalType, scriptOrFnNodeType, jSTypeType);
+        checkEnumInitializerMethod.setAccessible(true);
+        java.lang.Object[] checkEnumInitializerMethodArguments = new java.lang.Object[3];
+        checkEnumInitializerMethodArguments[0] = ((Object) null);
+        checkEnumInitializerMethodArguments[1] = scriptOrFnNode;
+        checkEnumInitializerMethodArguments[2] = ((Object) null);
+        try {
+            checkEnumInitializerMethod.invoke(typeCheck, checkEnumInitializerMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#checkEnumInitializer(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType)}
+ * @utbot.executesCondition {@code (value.getJSType() instanceof EnumType): True}
+ * @utbot.invokes {@link com.google.javascript.rhino.jstype.EnumElementType#getPrimitiveType()}
+ * @utbot.invokes {@link com.google.javascript.jscomp.TypeValidator#expectCanAssignTo(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType,com.google.javascript.rhino.jstype.JSType,java.lang.String)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: validator.expectCanAssignTo(t, value, valueEnumPrimitiveType, primitiveType, "incompatible enum element types");
+ *  */
+    @Test
+    public void testCheckEnumInitializer_ThrowNullPointerException_2() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        functionNode.setType(-255);
+        EnumType jsType = ((EnumType) createInstance("com.google.javascript.rhino.jstype.EnumType"));
+        EnumElementType elementsType = ((EnumElementType) createInstance("com.google.javascript.rhino.jstype.EnumElementType"));
+        setField(jsType, "com.google.javascript.rhino.jstype.EnumType", "elementsType", elementsType);
+        setField(functionNode, "com.google.javascript.rhino.Node", "jsType", jsType);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.checkEnumInitializer] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.checkEnumInitializer(TypeCheck.java:1672) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method checkEnumInitializerMethod = typeCheckClazz.getDeclaredMethod("checkEnumInitializer", nodeTraversalType, functionNodeType, jSTypeType);
+        checkEnumInitializerMethod.setAccessible(true);
+        java.lang.Object[] checkEnumInitializerMethodArguments = new java.lang.Object[3];
+        checkEnumInitializerMethodArguments[0] = ((Object) null);
+        checkEnumInitializerMethodArguments[1] = functionNode;
+        checkEnumInitializerMethodArguments[2] = ((Object) null);
+        try {
+            checkEnumInitializerMethod.invoke(typeCheck, checkEnumInitializerMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#checkEnumInitializer(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: t
+ *  */
+    @Test
+    public void testCheckEnumInitializer_ThrowNullPointerException_5() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        TypeValidator validator = ((TypeValidator) createInstance("com.google.javascript.jscomp.TypeValidator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "validator", validator);
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        node.setType(64);
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        FunctionNode first1 = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        setField(first, "com.google.javascript.rhino.Node", "first", first1);
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.checkEnumInitializer] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1711)
+            com.google.javascript.jscomp.TypeCheck.checkEnumInitializer(TypeCheck.java:1660) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method checkEnumInitializerMethod = typeCheckClazz.getDeclaredMethod("checkEnumInitializer", nodeTraversalType, nodeType, jSTypeType);
+        checkEnumInitializerMethod.setAccessible(true);
+        java.lang.Object[] checkEnumInitializerMethodArguments = new java.lang.Object[3];
+        checkEnumInitializerMethodArguments[0] = ((Object) null);
+        checkEnumInitializerMethodArguments[1] = node;
+        checkEnumInitializerMethodArguments[2] = ((Object) null);
+        try {
+            checkEnumInitializerMethod.invoke(typeCheck, checkEnumInitializerMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#checkEnumInitializer(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: validator.expectCanAssignTo(t, propValue, getJSType(propValue), primitiveType, "element type must match enum's type");
+ *  */
+    @Test
+    public void testCheckEnumInitializer_ThrowNullPointerException_6() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = new com.google.javascript.rhino.jstype.JSType[36];
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        functionNode.setType(64);
+        Node first = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        Node first1 = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        setField(first, "com.google.javascript.rhino.Node", "first", first1);
+        setField(functionNode, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.checkEnumInitializer] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.checkEnumInitializer(TypeCheck.java:1659) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method checkEnumInitializerMethod = typeCheckClazz.getDeclaredMethod("checkEnumInitializer", nodeTraversalType, functionNodeType, jSTypeType);
+        checkEnumInitializerMethod.setAccessible(true);
+        java.lang.Object[] checkEnumInitializerMethodArguments = new java.lang.Object[3];
+        checkEnumInitializerMethodArguments[0] = ((Object) null);
+        checkEnumInitializerMethodArguments[1] = functionNode;
+        checkEnumInitializerMethodArguments[2] = ((Object) null);
+        try {
+            checkEnumInitializerMethod.invoke(typeCheck, checkEnumInitializerMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.propertyIsImplicitCast
+    
+    ///region SYMBOLIC EXECUTION: SUCCESSFUL EXECUTIONS for method propertyIsImplicitCast(com.google.javascript.rhino.jstype.ObjectType, java.lang.String)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#propertyIsImplicitCast(com.google.javascript.rhino.jstype.ObjectType,java.lang.String)}
+ * @utbot.returnsFrom {@code return false;}
+ *  */
+    @Test
+    public void testPropertyIsImplicitCast_ReturnFalse() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class objectTypeType = Class.forName("com.google.javascript.rhino.jstype.ObjectType");
+        Class stringType = Class.forName("java.lang.String");
+        Method propertyIsImplicitCastMethod = typeCheckClazz.getDeclaredMethod("propertyIsImplicitCast", objectTypeType, stringType);
+        propertyIsImplicitCastMethod.setAccessible(true);
+        java.lang.Object[] propertyIsImplicitCastMethodArguments = new java.lang.Object[2];
+        propertyIsImplicitCastMethodArguments[0] = ((Object) null);
+        propertyIsImplicitCastMethodArguments[1] = ((Object) null);
+        boolean actual = ((Boolean) propertyIsImplicitCastMethod.invoke(typeCheck, propertyIsImplicitCastMethodArguments));
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.checkNoTypeCheckSection
+    
+    ///region SYMBOLIC EXECUTION: SUCCESSFUL EXECUTIONS for method checkNoTypeCheckSection(com.google.javascript.rhino.Node, boolean)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#checkNoTypeCheckSection(com.google.javascript.rhino.Node,boolean)}
+ * @utbot.activatesSwitch {@code switch(n.getType()) case: default}
+ *  */
+    @Test
+    public void testCheckNoTypeCheckSection_SwitchNGetTypeCasedefault() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        functionNode.setType(-255);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class booleanType = boolean.class;
+        Method checkNoTypeCheckSectionMethod = typeCheckClazz.getDeclaredMethod("checkNoTypeCheckSection", functionNodeType, booleanType);
+        checkNoTypeCheckSectionMethod.setAccessible(true);
+        java.lang.Object[] checkNoTypeCheckSectionMethodArguments = new java.lang.Object[2];
+        checkNoTypeCheckSectionMethodArguments[0] = functionNode;
+        checkNoTypeCheckSectionMethodArguments[1] = false;
+        checkNoTypeCheckSectionMethod.invoke(typeCheck, checkNoTypeCheckSectionMethodArguments);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#checkNoTypeCheckSection(com.google.javascript.rhino.Node,boolean)}
+ * @utbot.executesCondition {@code (info != null): False}
+ * @utbot.executesCondition {@code (validator.setShouldReport(noTypeCheckSection == 0);): False}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#getJSDocInfo()}
+ * @utbot.invokes {@link com.google.javascript.jscomp.TypeValidator#setShouldReport(boolean)}
+ * @utbot.activatesSwitch {@code switch(n.getType()) case: default}
+ *  */
+    @Test
+    public void testCheckNoTypeCheckSection_ValidatorSetShouldReport() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        TypeValidator validator = ((TypeValidator) createInstance("com.google.javascript.jscomp.TypeValidator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "validator", validator);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "noTypeCheckSection", -255);
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        functionNode.setType(125);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class booleanType = boolean.class;
+        Method checkNoTypeCheckSectionMethod = typeCheckClazz.getDeclaredMethod("checkNoTypeCheckSection", functionNodeType, booleanType);
+        checkNoTypeCheckSectionMethod.setAccessible(true);
+        java.lang.Object[] checkNoTypeCheckSectionMethodArguments = new java.lang.Object[2];
+        checkNoTypeCheckSectionMethodArguments[0] = functionNode;
+        checkNoTypeCheckSectionMethodArguments[1] = false;
+        checkNoTypeCheckSectionMethod.invoke(typeCheck, checkNoTypeCheckSectionMethodArguments);
+    }
+    ///endregion
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method checkNoTypeCheckSection(com.google.javascript.rhino.Node, boolean)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#checkNoTypeCheckSection(com.google.javascript.rhino.Node,boolean)}
+ * @utbot.throwsException {@link java.lang.ClassCastException} in: JSDocInfo info = n.getJSDocInfo();
+ *  */
+    @Test
+    public void testCheckNoTypeCheckSection_ThrowClassCastException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        functionNode.setType(86);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        byte[] objectValue = {};
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "objectValue", objectValue);
+        setField(functionNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.checkNoTypeCheckSection] produces [java.lang.ClassCastException: class [B cannot be cast to class com.google.javascript.rhino.JSDocInfo ([B is in module java.base of loader 'bootstrap'; com.google.javascript.rhino.JSDocInfo is in unnamed module of loader org.utbot.instrumentation.process.HandlerClassesLoader @3067726d)]
+            com.google.javascript.rhino.Node.getJSDocInfo(Node.java:1961)
+            com.google.javascript.jscomp.TypeCheck.checkNoTypeCheckSection(TypeCheck.java:388) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class booleanType = boolean.class;
+        Method checkNoTypeCheckSectionMethod = typeCheckClazz.getDeclaredMethod("checkNoTypeCheckSection", functionNodeType, booleanType);
+        checkNoTypeCheckSectionMethod.setAccessible(true);
+        java.lang.Object[] checkNoTypeCheckSectionMethodArguments = new java.lang.Object[2];
+        checkNoTypeCheckSectionMethodArguments[0] = functionNode;
+        checkNoTypeCheckSectionMethodArguments[1] = false;
+        try {
+            checkNoTypeCheckSectionMethod.invoke(typeCheck, checkNoTypeCheckSectionMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#checkNoTypeCheckSection(com.google.javascript.rhino.Node,boolean)}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#getType()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: switch(n.getType())
+ *  */
+    @Test
+    public void testCheckNoTypeCheckSection_ThrowNullPointerException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.checkNoTypeCheckSection] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.checkNoTypeCheckSection(TypeCheck.java:382) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class booleanType = boolean.class;
+        Method checkNoTypeCheckSectionMethod = typeCheckClazz.getDeclaredMethod("checkNoTypeCheckSection", nodeType, booleanType);
+        checkNoTypeCheckSectionMethod.setAccessible(true);
+        java.lang.Object[] checkNoTypeCheckSectionMethodArguments = new java.lang.Object[2];
+        checkNoTypeCheckSectionMethodArguments[0] = ((Object) null);
+        checkNoTypeCheckSectionMethodArguments[1] = false;
+        try {
+            checkNoTypeCheckSectionMethod.invoke(typeCheck, checkNoTypeCheckSectionMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#checkNoTypeCheckSection(com.google.javascript.rhino.Node,boolean)}
+ * @utbot.executesCondition {@code (info != null): False}
+ * @utbot.executesCondition {@code (validator.setShouldReport(noTypeCheckSection == 0);): False}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: validator.setShouldReport(noTypeCheckSection == 0);
+ *  */
+    @Test
+    public void testCheckNoTypeCheckSection_ThrowNullPointerException_1() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "noTypeCheckSection", -255);
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        functionNode.setType(125);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.checkNoTypeCheckSection] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.checkNoTypeCheckSection(TypeCheck.java:396) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class booleanType = boolean.class;
+        Method checkNoTypeCheckSectionMethod = typeCheckClazz.getDeclaredMethod("checkNoTypeCheckSection", functionNodeType, booleanType);
+        checkNoTypeCheckSectionMethod.setAccessible(true);
+        java.lang.Object[] checkNoTypeCheckSectionMethodArguments = new java.lang.Object[2];
+        checkNoTypeCheckSectionMethodArguments[0] = functionNode;
+        checkNoTypeCheckSectionMethodArguments[1] = false;
+        try {
+            checkNoTypeCheckSectionMethod.invoke(typeCheck, checkNoTypeCheckSectionMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#checkNoTypeCheckSection(com.google.javascript.rhino.Node,boolean)}
+ * @utbot.executesCondition {@code (info != null): False}
+ * @utbot.executesCondition {@code (validator.setShouldReport(noTypeCheckSection == 0);): True}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: validator.setShouldReport(noTypeCheckSection == 0);
+ *  */
+    @Test
+    public void testCheckNoTypeCheckSection_ThrowNullPointerException_2() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        functionNode.setType(125);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.checkNoTypeCheckSection] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.checkNoTypeCheckSection(TypeCheck.java:396) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class booleanType = boolean.class;
+        Method checkNoTypeCheckSectionMethod = typeCheckClazz.getDeclaredMethod("checkNoTypeCheckSection", functionNodeType, booleanType);
+        checkNoTypeCheckSectionMethod.setAccessible(true);
+        java.lang.Object[] checkNoTypeCheckSectionMethodArguments = new java.lang.Object[2];
+        checkNoTypeCheckSectionMethodArguments[0] = functionNode;
+        checkNoTypeCheckSectionMethodArguments[1] = false;
+        try {
+            checkNoTypeCheckSectionMethod.invoke(typeCheck, checkNoTypeCheckSectionMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#checkNoTypeCheckSection(com.google.javascript.rhino.Node,boolean)}
+ * @utbot.executesCondition {@code (info != null): True}
+ * @utbot.executesCondition {@code (info.isNoTypeCheck()): False}
+ * @utbot.executesCondition {@code (validator.setShouldReport(noTypeCheckSection == 0);): True}
+ * @utbot.activatesSwitch {@code switch(n.getType()) case: default}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: validator.setShouldReport(noTypeCheckSection == 0);
+ *  */
+    @Test
+    public void testCheckNoTypeCheckSection_ThrowNullPointerException_3() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        functionNode.setType(105);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        JSDocInfo objectValue = ((JSDocInfo) createInstance("com.google.javascript.rhino.JSDocInfo"));
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "objectValue", objectValue);
+        setField(functionNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.checkNoTypeCheckSection] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.checkNoTypeCheckSection(TypeCheck.java:396) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class booleanType = boolean.class;
+        Method checkNoTypeCheckSectionMethod = typeCheckClazz.getDeclaredMethod("checkNoTypeCheckSection", functionNodeType, booleanType);
+        checkNoTypeCheckSectionMethod.setAccessible(true);
+        java.lang.Object[] checkNoTypeCheckSectionMethodArguments = new java.lang.Object[2];
+        checkNoTypeCheckSectionMethodArguments[0] = functionNode;
+        checkNoTypeCheckSectionMethodArguments[1] = false;
+        try {
+            checkNoTypeCheckSectionMethod.invoke(typeCheck, checkNoTypeCheckSectionMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#checkNoTypeCheckSection(com.google.javascript.rhino.Node,boolean)}
+ * @utbot.executesCondition {@code (info != null): True}
+ * @utbot.executesCondition {@code (info.isNoTypeCheck()): True}
+ * @utbot.executesCondition {@code (enterSection): False}
+ * @utbot.executesCondition {@code (validator.setShouldReport(noTypeCheckSection == 0);): False}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: validator.setShouldReport(noTypeCheckSection == 0);
+ *  */
+    @Test
+    public void testCheckNoTypeCheckSection_ThrowNullPointerException_4() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        functionNode.setType(118);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        JSDocInfo objectValue = ((JSDocInfo) createInstance("com.google.javascript.rhino.JSDocInfo"));
+        setField(objectValue, "com.google.javascript.rhino.JSDocInfo", "bitset", 32);
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "objectValue", objectValue);
+        setField(functionNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.checkNoTypeCheckSection] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.checkNoTypeCheckSection(TypeCheck.java:396) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class booleanType = boolean.class;
+        Method checkNoTypeCheckSectionMethod = typeCheckClazz.getDeclaredMethod("checkNoTypeCheckSection", functionNodeType, booleanType);
+        checkNoTypeCheckSectionMethod.setAccessible(true);
+        java.lang.Object[] checkNoTypeCheckSectionMethodArguments = new java.lang.Object[2];
+        checkNoTypeCheckSectionMethodArguments[0] = functionNode;
+        checkNoTypeCheckSectionMethodArguments[1] = false;
+        try {
+            checkNoTypeCheckSectionMethod.invoke(typeCheck, checkNoTypeCheckSectionMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#checkNoTypeCheckSection(com.google.javascript.rhino.Node,boolean)}
+ * @utbot.executesCondition {@code (info != null): True}
+ * @utbot.executesCondition {@code (info.isNoTypeCheck()): True}
+ * @utbot.executesCondition {@code (enterSection): True}
+ * @utbot.executesCondition {@code (validator.setShouldReport(noTypeCheckSection == 0);): False}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: validator.setShouldReport(noTypeCheckSection == 0);
+ *  */
+    @Test
+    public void testCheckNoTypeCheckSection_ThrowNullPointerException_5() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        functionNode.setType(118);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        JSDocInfo objectValue = ((JSDocInfo) createInstance("com.google.javascript.rhino.JSDocInfo"));
+        setField(objectValue, "com.google.javascript.rhino.JSDocInfo", "bitset", 32);
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "objectValue", objectValue);
+        setField(functionNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.checkNoTypeCheckSection] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.checkNoTypeCheckSection(TypeCheck.java:396) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class booleanType = boolean.class;
+        Method checkNoTypeCheckSectionMethod = typeCheckClazz.getDeclaredMethod("checkNoTypeCheckSection", functionNodeType, booleanType);
+        checkNoTypeCheckSectionMethod.setAccessible(true);
+        java.lang.Object[] checkNoTypeCheckSectionMethodArguments = new java.lang.Object[2];
+        checkNoTypeCheckSectionMethodArguments[0] = functionNode;
+        checkNoTypeCheckSectionMethodArguments[1] = true;
+        try {
+            checkNoTypeCheckSectionMethod.invoke(typeCheck, checkNoTypeCheckSectionMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#checkNoTypeCheckSection(com.google.javascript.rhino.Node,boolean)}
+ * @utbot.executesCondition {@code (info != null): False}
+ * @utbot.executesCondition {@code (validator.setShouldReport(noTypeCheckSection == 0);): True}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: validator.setShouldReport(noTypeCheckSection == 0);
+ *  */
+    @Test
+    public void testCheckNoTypeCheckSection_ThrowNullPointerException_6() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        functionNode.setType(86);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(functionNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.checkNoTypeCheckSection] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.checkNoTypeCheckSection(TypeCheck.java:396) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class booleanType = boolean.class;
+        Method checkNoTypeCheckSectionMethod = typeCheckClazz.getDeclaredMethod("checkNoTypeCheckSection", functionNodeType, booleanType);
+        checkNoTypeCheckSectionMethod.setAccessible(true);
+        java.lang.Object[] checkNoTypeCheckSectionMethodArguments = new java.lang.Object[2];
+        checkNoTypeCheckSectionMethodArguments[0] = functionNode;
+        checkNoTypeCheckSectionMethodArguments[1] = false;
+        try {
+            checkNoTypeCheckSectionMethod.invoke(typeCheck, checkNoTypeCheckSectionMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#checkNoTypeCheckSection(com.google.javascript.rhino.Node,boolean)}
+ * @utbot.executesCondition {@code (info != null): False}
+ * @utbot.executesCondition {@code (validator.setShouldReport(noTypeCheckSection == 0);): False}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: validator.setShouldReport(noTypeCheckSection == 0);
+ *  */
+    @Test
+    public void testCheckNoTypeCheckSection_ThrowNullPointerException_7() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "noTypeCheckSection", 1);
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        functionNode.setType(118);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(functionNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.checkNoTypeCheckSection] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.checkNoTypeCheckSection(TypeCheck.java:396) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class booleanType = boolean.class;
+        Method checkNoTypeCheckSectionMethod = typeCheckClazz.getDeclaredMethod("checkNoTypeCheckSection", functionNodeType, booleanType);
+        checkNoTypeCheckSectionMethod.setAccessible(true);
+        java.lang.Object[] checkNoTypeCheckSectionMethodArguments = new java.lang.Object[2];
+        checkNoTypeCheckSectionMethodArguments[0] = functionNode;
+        checkNoTypeCheckSectionMethodArguments[1] = false;
+        try {
+            checkNoTypeCheckSectionMethod.invoke(typeCheck, checkNoTypeCheckSectionMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.reportMissingProperties
+    
+    ///region SYMBOLIC EXECUTION: SUCCESSFUL EXECUTIONS for method reportMissingProperties(boolean)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#reportMissingProperties(boolean)}
+ * @utbot.returnsFrom {@code return this;}
+ *  */
+    @Test
+    public void testReportMissingProperties_Return() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        
+        TypeCheck actual = typeCheck.reportMissingProperties(false);
+        
+        AbstractCompiler actualCompiler = ((AbstractCompiler) getFieldValue(actual, "com.google.javascript.jscomp.TypeCheck", "compiler"));
+        assertNull(actualCompiler);
+        
+        TypeValidator actualValidator = ((TypeValidator) getFieldValue(actual, "com.google.javascript.jscomp.TypeCheck", "validator"));
+        assertNull(actualValidator);
+        
+        ReverseAbstractInterpreter actualReverseInterpreter = ((ReverseAbstractInterpreter) getFieldValue(actual, "com.google.javascript.jscomp.TypeCheck", "reverseInterpreter"));
+        assertNull(actualReverseInterpreter);
+        
+        JSTypeRegistry actualTypeRegistry = ((JSTypeRegistry) getFieldValue(actual, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        assertNull(actualTypeRegistry);
+        
+        Scope actualTopScope = ((Scope) getFieldValue(actual, "com.google.javascript.jscomp.TypeCheck", "topScope"));
+        assertNull(actualTopScope);
+        
+        ScopeCreator actualScopeCreator = ((ScopeCreator) getFieldValue(actual, "com.google.javascript.jscomp.TypeCheck", "scopeCreator"));
+        assertNull(actualScopeCreator);
+        
+        CheckLevel actualReportMissingOverride = ((CheckLevel) getFieldValue(actual, "com.google.javascript.jscomp.TypeCheck", "reportMissingOverride"));
+        assertNull(actualReportMissingOverride);
+        
+        CheckLevel actualReportUnknownTypes = ((CheckLevel) getFieldValue(actual, "com.google.javascript.jscomp.TypeCheck", "reportUnknownTypes"));
+        assertNull(actualReportUnknownTypes);
+        
+        boolean actualReportMissingProperties = ((Boolean) getFieldValue(actual, "com.google.javascript.jscomp.TypeCheck", "reportMissingProperties"));
+        assertFalse(actualReportMissingProperties);
+        
+        InferJSDocInfo actualInferJSDocInfo = ((InferJSDocInfo) getFieldValue(actual, "com.google.javascript.jscomp.TypeCheck", "inferJSDocInfo"));
+        assertNull(actualInferJSDocInfo);
+        
+        int typeCheckTypedCount = ((Integer) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typedCount"));
+        int actualTypedCount = ((Integer) getFieldValue(actual, "com.google.javascript.jscomp.TypeCheck", "typedCount"));
+        assertEquals(typeCheckTypedCount, actualTypedCount);
+        
+        int typeCheckNullCount = ((Integer) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "nullCount"));
+        int actualNullCount = ((Integer) getFieldValue(actual, "com.google.javascript.jscomp.TypeCheck", "nullCount"));
+        assertEquals(typeCheckNullCount, actualNullCount);
+        
+        int typeCheckUnknownCount = ((Integer) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "unknownCount"));
+        int actualUnknownCount = ((Integer) getFieldValue(actual, "com.google.javascript.jscomp.TypeCheck", "unknownCount"));
+        assertEquals(typeCheckUnknownCount, actualUnknownCount);
+        
+        boolean actualInExterns = ((Boolean) getFieldValue(actual, "com.google.javascript.jscomp.TypeCheck", "inExterns"));
+        assertFalse(actualInExterns);
+        
+        int typeCheckNoTypeCheckSection = ((Integer) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "noTypeCheckSection"));
+        int actualNoTypeCheckSection = ((Integer) getFieldValue(actual, "com.google.javascript.jscomp.TypeCheck", "noTypeCheckSection"));
+        assertEquals(typeCheckNoTypeCheckSection, actualNoTypeCheckSection);
+        
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.visitAnnotatedAssignGetprop
+    
+    ///region SYMBOLIC EXECUTION: SUCCESSFUL EXECUTIONS for method visitAnnotatedAssignGetprop(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node, com.google.javascript.rhino.jstype.JSType, com.google.javascript.rhino.Node, java.lang.String, com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitAnnotatedAssignGetprop(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType,com.google.javascript.rhino.Node,java.lang.String,com.google.javascript.rhino.Node)}
+ *  */
+    @Test
+    public void testVisitAnnotatedAssignGetprop() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        TypeValidator validator = ((TypeValidator) createInstance("com.google.javascript.jscomp.TypeValidator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "validator", validator);
+        NoType noType = ((NoType) createInstance("com.google.javascript.rhino.jstype.NoType"));
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        TemplateType jsType = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(functionNode, "com.google.javascript.rhino.Node", "jsType", jsType);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class noTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Class stringType = Class.forName("java.lang.String");
+        Method visitAnnotatedAssignGetpropMethod = typeCheckClazz.getDeclaredMethod("visitAnnotatedAssignGetprop", nodeTraversalType, nodeType, noTypeType, nodeType, stringType, nodeType);
+        visitAnnotatedAssignGetpropMethod.setAccessible(true);
+        java.lang.Object[] visitAnnotatedAssignGetpropMethodArguments = new java.lang.Object[6];
+        visitAnnotatedAssignGetpropMethodArguments[0] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[1] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[2] = noType;
+        visitAnnotatedAssignGetpropMethodArguments[3] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[4] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[5] = functionNode;
+        visitAnnotatedAssignGetpropMethod.invoke(typeCheck, visitAnnotatedAssignGetpropMethodArguments);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitAnnotatedAssignGetprop(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType,com.google.javascript.rhino.Node,java.lang.String,com.google.javascript.rhino.Node)}
+ *  */
+    @Test
+    public void testVisitAnnotatedAssignGetprop_1() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        TypeValidator validator = ((TypeValidator) createInstance("com.google.javascript.jscomp.TypeValidator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "validator", validator);
+        TemplateType templateType = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        NoType referencedType = ((NoType) createInstance("com.google.javascript.rhino.jstype.NoType"));
+        setField(templateType, "com.google.javascript.rhino.jstype.ProxyObjectType", "referencedType", referencedType);
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        TemplateType jsType = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(functionNode, "com.google.javascript.rhino.Node", "jsType", jsType);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class templateTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Class stringType = Class.forName("java.lang.String");
+        Method visitAnnotatedAssignGetpropMethod = typeCheckClazz.getDeclaredMethod("visitAnnotatedAssignGetprop", nodeTraversalType, nodeType, templateTypeType, nodeType, stringType, nodeType);
+        visitAnnotatedAssignGetpropMethod.setAccessible(true);
+        java.lang.Object[] visitAnnotatedAssignGetpropMethodArguments = new java.lang.Object[6];
+        visitAnnotatedAssignGetpropMethodArguments[0] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[1] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[2] = templateType;
+        visitAnnotatedAssignGetpropMethodArguments[3] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[4] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[5] = functionNode;
+        visitAnnotatedAssignGetpropMethod.invoke(typeCheck, visitAnnotatedAssignGetpropMethodArguments);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitAnnotatedAssignGetprop(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType,com.google.javascript.rhino.Node,java.lang.String,com.google.javascript.rhino.Node)}
+ *  */
+    @Test
+    public void testVisitAnnotatedAssignGetprop_2() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        TypeValidator validator = ((TypeValidator) createInstance("com.google.javascript.jscomp.TypeValidator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "validator", validator);
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = new com.google.javascript.rhino.jstype.JSType[37];
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        TemplateType templateType = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        TemplateType referencedType = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        NoType referencedType1 = ((NoType) createInstance("com.google.javascript.rhino.jstype.NoType"));
+        setField(referencedType, "com.google.javascript.rhino.jstype.ProxyObjectType", "referencedType", referencedType1);
+        setField(templateType, "com.google.javascript.rhino.jstype.ProxyObjectType", "referencedType", referencedType);
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class templateTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Class stringType = Class.forName("java.lang.String");
+        Method visitAnnotatedAssignGetpropMethod = typeCheckClazz.getDeclaredMethod("visitAnnotatedAssignGetprop", nodeTraversalType, nodeType, templateTypeType, nodeType, stringType, nodeType);
+        visitAnnotatedAssignGetpropMethod.setAccessible(true);
+        java.lang.Object[] visitAnnotatedAssignGetpropMethodArguments = new java.lang.Object[6];
+        visitAnnotatedAssignGetpropMethodArguments[0] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[1] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[2] = templateType;
+        visitAnnotatedAssignGetpropMethodArguments[3] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[4] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[5] = functionNode;
+        visitAnnotatedAssignGetpropMethod.invoke(typeCheck, visitAnnotatedAssignGetpropMethodArguments);
+        
+        JSTypeRegistry typeCheckTypeRegistry = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistryTypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes0 = ((JSType) get(typeCheckTypeRegistryTypeRegistryNativeTypes, 0));
+        JSTypeRegistry typeCheckTypeRegistry1 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry1TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry1, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes1 = ((JSType) get(typeCheckTypeRegistry1TypeRegistryNativeTypes, 1));
+        JSTypeRegistry typeCheckTypeRegistry2 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry2TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry2, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes2 = ((JSType) get(typeCheckTypeRegistry2TypeRegistryNativeTypes, 2));
+        JSTypeRegistry typeCheckTypeRegistry3 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry3TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry3, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes3 = ((JSType) get(typeCheckTypeRegistry3TypeRegistryNativeTypes, 3));
+        JSTypeRegistry typeCheckTypeRegistry4 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry4TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry4, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes4 = ((JSType) get(typeCheckTypeRegistry4TypeRegistryNativeTypes, 4));
+        JSTypeRegistry typeCheckTypeRegistry5 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry5TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry5, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes5 = ((JSType) get(typeCheckTypeRegistry5TypeRegistryNativeTypes, 5));
+        JSTypeRegistry typeCheckTypeRegistry6 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry6TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry6, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes6 = ((JSType) get(typeCheckTypeRegistry6TypeRegistryNativeTypes, 6));
+        JSTypeRegistry typeCheckTypeRegistry7 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry7TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry7, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes7 = ((JSType) get(typeCheckTypeRegistry7TypeRegistryNativeTypes, 7));
+        JSTypeRegistry typeCheckTypeRegistry8 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry8TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry8, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes8 = ((JSType) get(typeCheckTypeRegistry8TypeRegistryNativeTypes, 8));
+        JSTypeRegistry typeCheckTypeRegistry9 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry9TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry9, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes9 = ((JSType) get(typeCheckTypeRegistry9TypeRegistryNativeTypes, 9));
+        JSTypeRegistry typeCheckTypeRegistry10 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry10TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry10, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes10 = ((JSType) get(typeCheckTypeRegistry10TypeRegistryNativeTypes, 10));
+        JSTypeRegistry typeCheckTypeRegistry11 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry11TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry11, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes11 = ((JSType) get(typeCheckTypeRegistry11TypeRegistryNativeTypes, 11));
+        JSTypeRegistry typeCheckTypeRegistry12 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry12TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry12, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes12 = ((JSType) get(typeCheckTypeRegistry12TypeRegistryNativeTypes, 12));
+        JSTypeRegistry typeCheckTypeRegistry13 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry13TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry13, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes13 = ((JSType) get(typeCheckTypeRegistry13TypeRegistryNativeTypes, 13));
+        JSTypeRegistry typeCheckTypeRegistry14 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry14TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry14, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes14 = ((JSType) get(typeCheckTypeRegistry14TypeRegistryNativeTypes, 14));
+        JSTypeRegistry typeCheckTypeRegistry15 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry15TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry15, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes15 = ((JSType) get(typeCheckTypeRegistry15TypeRegistryNativeTypes, 15));
+        JSTypeRegistry typeCheckTypeRegistry16 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry16TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry16, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes16 = ((JSType) get(typeCheckTypeRegistry16TypeRegistryNativeTypes, 16));
+        JSTypeRegistry typeCheckTypeRegistry17 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry17TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry17, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes17 = ((JSType) get(typeCheckTypeRegistry17TypeRegistryNativeTypes, 17));
+        JSTypeRegistry typeCheckTypeRegistry18 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry18TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry18, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes18 = ((JSType) get(typeCheckTypeRegistry18TypeRegistryNativeTypes, 18));
+        JSTypeRegistry typeCheckTypeRegistry19 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry19TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry19, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes19 = ((JSType) get(typeCheckTypeRegistry19TypeRegistryNativeTypes, 19));
+        JSTypeRegistry typeCheckTypeRegistry20 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry20TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry20, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes20 = ((JSType) get(typeCheckTypeRegistry20TypeRegistryNativeTypes, 20));
+        JSTypeRegistry typeCheckTypeRegistry21 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry21TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry21, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes21 = ((JSType) get(typeCheckTypeRegistry21TypeRegistryNativeTypes, 21));
+        JSTypeRegistry typeCheckTypeRegistry22 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry22TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry22, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes22 = ((JSType) get(typeCheckTypeRegistry22TypeRegistryNativeTypes, 22));
+        JSTypeRegistry typeCheckTypeRegistry23 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry23TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry23, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes23 = ((JSType) get(typeCheckTypeRegistry23TypeRegistryNativeTypes, 23));
+        JSTypeRegistry typeCheckTypeRegistry24 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry24TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry24, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes24 = ((JSType) get(typeCheckTypeRegistry24TypeRegistryNativeTypes, 24));
+        JSTypeRegistry typeCheckTypeRegistry25 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry25TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry25, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes25 = ((JSType) get(typeCheckTypeRegistry25TypeRegistryNativeTypes, 25));
+        JSTypeRegistry typeCheckTypeRegistry26 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry26TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry26, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes26 = ((JSType) get(typeCheckTypeRegistry26TypeRegistryNativeTypes, 26));
+        JSTypeRegistry typeCheckTypeRegistry27 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry27TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry27, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes27 = ((JSType) get(typeCheckTypeRegistry27TypeRegistryNativeTypes, 27));
+        JSTypeRegistry typeCheckTypeRegistry28 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry28TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry28, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes28 = ((JSType) get(typeCheckTypeRegistry28TypeRegistryNativeTypes, 28));
+        JSTypeRegistry typeCheckTypeRegistry29 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry29TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry29, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes29 = ((JSType) get(typeCheckTypeRegistry29TypeRegistryNativeTypes, 29));
+        JSTypeRegistry typeCheckTypeRegistry30 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry30TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry30, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes30 = ((JSType) get(typeCheckTypeRegistry30TypeRegistryNativeTypes, 30));
+        JSTypeRegistry typeCheckTypeRegistry31 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry31TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry31, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes31 = ((JSType) get(typeCheckTypeRegistry31TypeRegistryNativeTypes, 31));
+        JSTypeRegistry typeCheckTypeRegistry32 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry32TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry32, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes32 = ((JSType) get(typeCheckTypeRegistry32TypeRegistryNativeTypes, 32));
+        JSTypeRegistry typeCheckTypeRegistry33 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry33TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry33, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes33 = ((JSType) get(typeCheckTypeRegistry33TypeRegistryNativeTypes, 33));
+        JSTypeRegistry typeCheckTypeRegistry34 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry34TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry34, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes34 = ((JSType) get(typeCheckTypeRegistry34TypeRegistryNativeTypes, 34));
+        JSTypeRegistry typeCheckTypeRegistry35 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry35TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry35, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes35 = ((JSType) get(typeCheckTypeRegistry35TypeRegistryNativeTypes, 35));
+        JSTypeRegistry typeCheckTypeRegistry36 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry36TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry36, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes36 = ((JSType) get(typeCheckTypeRegistry36TypeRegistryNativeTypes, 36));
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes0);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes1);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes2);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes3);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes4);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes5);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes6);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes7);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes8);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes9);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes10);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes11);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes12);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes13);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes14);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes15);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes16);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes17);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes18);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes19);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes20);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes21);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes22);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes23);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes24);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes25);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes26);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes27);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes28);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes29);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes30);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes31);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes32);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes33);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes34);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes35);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes36);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitAnnotatedAssignGetprop(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType,com.google.javascript.rhino.Node,java.lang.String,com.google.javascript.rhino.Node)}
+ *  */
+    @Test
+    public void testVisitAnnotatedAssignGetprop_3() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        TypeValidator validator = ((TypeValidator) createInstance("com.google.javascript.jscomp.TypeValidator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "validator", validator);
+        TemplateType templateType = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        TemplateType referencedType = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        Object referencedType1 = createInstance("com.google.javascript.rhino.jstype.NamedType");
+        NoType referencedType2 = ((NoType) createInstance("com.google.javascript.rhino.jstype.NoType"));
+        setField(referencedType1, "com.google.javascript.rhino.jstype.ProxyObjectType", "referencedType", referencedType2);
+        setField(referencedType, "com.google.javascript.rhino.jstype.ProxyObjectType", "referencedType", referencedType1);
+        setField(templateType, "com.google.javascript.rhino.jstype.ProxyObjectType", "referencedType", referencedType);
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        setField(functionNode, "com.google.javascript.rhino.Node", "jsType", referencedType);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class templateTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Class stringType = Class.forName("java.lang.String");
+        Method visitAnnotatedAssignGetpropMethod = typeCheckClazz.getDeclaredMethod("visitAnnotatedAssignGetprop", nodeTraversalType, nodeType, templateTypeType, nodeType, stringType, nodeType);
+        visitAnnotatedAssignGetpropMethod.setAccessible(true);
+        java.lang.Object[] visitAnnotatedAssignGetpropMethodArguments = new java.lang.Object[6];
+        visitAnnotatedAssignGetpropMethodArguments[0] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[1] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[2] = templateType;
+        visitAnnotatedAssignGetpropMethodArguments[3] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[4] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[5] = functionNode;
+        visitAnnotatedAssignGetpropMethod.invoke(typeCheck, visitAnnotatedAssignGetpropMethodArguments);
+    }
+    ///endregion
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method visitAnnotatedAssignGetprop(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node, com.google.javascript.rhino.jstype.JSType, com.google.javascript.rhino.Node, java.lang.String, com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitAnnotatedAssignGetprop(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType,com.google.javascript.rhino.Node,java.lang.String,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.ArrayIndexOutOfBoundsException} 
+ *  */
+    @Test
+    public void testVisitAnnotatedAssignGetprop_ThrowArrayIndexOutOfBoundsException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        TypeValidator validator = ((TypeValidator) createInstance("com.google.javascript.jscomp.TypeValidator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "validator", validator);
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = {};
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitAnnotatedAssignGetprop] produces [java.lang.ArrayIndexOutOfBoundsException: Index 35 out of bounds for length 0]
+            com.google.javascript.rhino.jstype.JSTypeRegistry.getNativeType(JSTypeRegistry.java:813)
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1711)
+            com.google.javascript.jscomp.TypeCheck.visitAnnotatedAssignGetprop(TypeCheck.java:1177) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Class stringType = Class.forName("java.lang.String");
+        Method visitAnnotatedAssignGetpropMethod = typeCheckClazz.getDeclaredMethod("visitAnnotatedAssignGetprop", nodeTraversalType, nodeType, jSTypeType, nodeType, stringType, nodeType);
+        visitAnnotatedAssignGetpropMethod.setAccessible(true);
+        java.lang.Object[] visitAnnotatedAssignGetpropMethodArguments = new java.lang.Object[6];
+        visitAnnotatedAssignGetpropMethodArguments[0] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[1] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[2] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[3] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[4] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[5] = scriptOrFnNode;
+        try {
+            visitAnnotatedAssignGetpropMethod.invoke(typeCheck, visitAnnotatedAssignGetpropMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitAnnotatedAssignGetprop(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType,com.google.javascript.rhino.Node,java.lang.String,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: validator.expectCanAssignToPropertyOf(t, assign, getJSType(rvalue), type, object, property);
+ *  */
+    @Test
+    public void testVisitAnnotatedAssignGetprop_ThrowNullPointerException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        TemplateType jsType = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(functionNode, "com.google.javascript.rhino.Node", "jsType", jsType);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitAnnotatedAssignGetprop] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitAnnotatedAssignGetprop(TypeCheck.java:1177) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Class stringType = Class.forName("java.lang.String");
+        Method visitAnnotatedAssignGetpropMethod = typeCheckClazz.getDeclaredMethod("visitAnnotatedAssignGetprop", nodeTraversalType, nodeType, jSTypeType, nodeType, stringType, nodeType);
+        visitAnnotatedAssignGetpropMethod.setAccessible(true);
+        java.lang.Object[] visitAnnotatedAssignGetpropMethodArguments = new java.lang.Object[6];
+        visitAnnotatedAssignGetpropMethodArguments[0] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[1] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[2] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[3] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[4] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[5] = functionNode;
+        try {
+            visitAnnotatedAssignGetpropMethod.invoke(typeCheck, visitAnnotatedAssignGetpropMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitAnnotatedAssignGetprop(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType,com.google.javascript.rhino.Node,java.lang.String,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: validator.expectCanAssignToPropertyOf(t, assign, getJSType(rvalue), type, object, property);
+ *  */
+    @Test
+    public void testVisitAnnotatedAssignGetprop_ThrowNullPointerException_1() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitAnnotatedAssignGetprop] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1705)
+            com.google.javascript.jscomp.TypeCheck.visitAnnotatedAssignGetprop(TypeCheck.java:1177) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Class stringType = Class.forName("java.lang.String");
+        Method visitAnnotatedAssignGetpropMethod = typeCheckClazz.getDeclaredMethod("visitAnnotatedAssignGetprop", nodeTraversalType, nodeType, jSTypeType, nodeType, stringType, nodeType);
+        visitAnnotatedAssignGetpropMethod.setAccessible(true);
+        java.lang.Object[] visitAnnotatedAssignGetpropMethodArguments = new java.lang.Object[6];
+        visitAnnotatedAssignGetpropMethodArguments[0] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[1] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[2] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[3] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[4] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[5] = ((Object) null);
+        try {
+            visitAnnotatedAssignGetpropMethod.invoke(typeCheck, visitAnnotatedAssignGetpropMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitAnnotatedAssignGetprop(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType,com.google.javascript.rhino.Node,java.lang.String,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: validator.expectCanAssignToPropertyOf(t, assign, getJSType(rvalue), type, object, property);
+ *  */
+    @Test
+    public void testVisitAnnotatedAssignGetprop_ThrowNullPointerException_2() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        TypeValidator validator = ((TypeValidator) createInstance("com.google.javascript.jscomp.TypeValidator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "validator", validator);
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitAnnotatedAssignGetprop] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1711)
+            com.google.javascript.jscomp.TypeCheck.visitAnnotatedAssignGetprop(TypeCheck.java:1177) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Class stringType = Class.forName("java.lang.String");
+        Method visitAnnotatedAssignGetpropMethod = typeCheckClazz.getDeclaredMethod("visitAnnotatedAssignGetprop", nodeTraversalType, nodeType, jSTypeType, nodeType, stringType, nodeType);
+        visitAnnotatedAssignGetpropMethod.setAccessible(true);
+        java.lang.Object[] visitAnnotatedAssignGetpropMethodArguments = new java.lang.Object[6];
+        visitAnnotatedAssignGetpropMethodArguments[0] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[1] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[2] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[3] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[4] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[5] = functionNode;
+        try {
+            visitAnnotatedAssignGetpropMethod.invoke(typeCheck, visitAnnotatedAssignGetpropMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitAnnotatedAssignGetprop(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType,com.google.javascript.rhino.Node,java.lang.String,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: validator.expectCanAssignToPropertyOf(t, assign, getJSType(rvalue), type, object, property);
+ *  */
+    @Test
+    public void testVisitAnnotatedAssignGetprop_ThrowNullPointerException_3() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = new com.google.javascript.rhino.jstype.JSType[40];
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitAnnotatedAssignGetprop] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitAnnotatedAssignGetprop(TypeCheck.java:1177) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Class stringType = Class.forName("java.lang.String");
+        Method visitAnnotatedAssignGetpropMethod = typeCheckClazz.getDeclaredMethod("visitAnnotatedAssignGetprop", nodeTraversalType, nodeType, jSTypeType, nodeType, stringType, nodeType);
+        visitAnnotatedAssignGetpropMethod.setAccessible(true);
+        java.lang.Object[] visitAnnotatedAssignGetpropMethodArguments = new java.lang.Object[6];
+        visitAnnotatedAssignGetpropMethodArguments[0] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[1] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[2] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[3] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[4] = ((Object) null);
+        visitAnnotatedAssignGetpropMethodArguments[5] = functionNode;
+        try {
+            visitAnnotatedAssignGetpropMethod.invoke(typeCheck, visitAnnotatedAssignGetpropMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.visitInterfaceGetprop
+    
+    ///region SYMBOLIC EXECUTION: SUCCESSFUL EXECUTIONS for method visitInterfaceGetprop(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node, com.google.javascript.rhino.Node, java.lang.String, com.google.javascript.rhino.Node, com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitInterfaceGetprop(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node,java.lang.String,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.invokes com.google.javascript.jscomp.TypeCheck#getJSType(com.google.javascript.rhino.Node)
+ * @utbot.invokes {@link com.google.javascript.jscomp.AbstractCompiler#getCodingConvention()}
+ * @utbot.invokes {@link com.google.javascript.jscomp.CodingConvention#getAbstractMethodName()}
+ * @utbot.invokes {@link com.google.javascript.rhino.jstype.JSType#isOrdinaryFunction()}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#getLastChild()}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#getType()}
+ *  */
+    @Test
+    public void testVisitInterfaceGetprop_NodeGetType() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Compiler compiler = ((Compiler) createInstance("com.google.javascript.jscomp.Compiler"));
+        CompilerOptions options = ((CompilerOptions) createInstance("com.google.javascript.jscomp.CompilerOptions"));
+        compiler.options = options;
+        GoogleCodingConvention defaultCodingConvention = ((GoogleCodingConvention) createInstance("com.google.javascript.jscomp.GoogleCodingConvention"));
+        setField(compiler, "com.google.javascript.jscomp.Compiler", "defaultCodingConvention", defaultCodingConvention);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "compiler", compiler);
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        ScriptOrFnNode last = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        last.setType(-255);
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "last", last);
+        ScriptOrFnNode scriptOrFnNode1 = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        NoType jsType = ((NoType) createInstance("com.google.javascript.rhino.jstype.NoType"));
+        Class kindClazz = Class.forName("com.google.javascript.rhino.jstype.FunctionType$Kind");
+        Object kind = getEnumConstantByName(kindClazz, "ORDINARY");
+        setField(jsType, "com.google.javascript.rhino.jstype.FunctionType", "kind", kind);
+        setField(scriptOrFnNode1, "com.google.javascript.rhino.Node", "jsType", jsType);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class stringType = Class.forName("java.lang.String");
+        Method visitInterfaceGetpropMethod = typeCheckClazz.getDeclaredMethod("visitInterfaceGetprop", nodeTraversalType, scriptOrFnNodeType, scriptOrFnNodeType, stringType, scriptOrFnNodeType, scriptOrFnNodeType);
+        visitInterfaceGetpropMethod.setAccessible(true);
+        java.lang.Object[] visitInterfaceGetpropMethodArguments = new java.lang.Object[6];
+        visitInterfaceGetpropMethodArguments[0] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[1] = scriptOrFnNode;
+        visitInterfaceGetpropMethodArguments[2] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[3] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[4] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[5] = scriptOrFnNode1;
+        visitInterfaceGetpropMethod.invoke(typeCheck, visitInterfaceGetpropMethodArguments);
+    }
+    ///endregion
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method visitInterfaceGetprop(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node, com.google.javascript.rhino.Node, java.lang.String, com.google.javascript.rhino.Node, com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitInterfaceGetprop(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node,java.lang.String,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.ArrayIndexOutOfBoundsException} 
+ *  */
+    @Test
+    public void testVisitInterfaceGetprop_ThrowArrayIndexOutOfBoundsException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = {};
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitInterfaceGetprop] produces [java.lang.ArrayIndexOutOfBoundsException: Index 35 out of bounds for length 0]
+            com.google.javascript.rhino.jstype.JSTypeRegistry.getNativeType(JSTypeRegistry.java:813)
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1711)
+            com.google.javascript.jscomp.TypeCheck.visitInterfaceGetprop(TypeCheck.java:1137) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class stringType = Class.forName("java.lang.String");
+        Method visitInterfaceGetpropMethod = typeCheckClazz.getDeclaredMethod("visitInterfaceGetprop", nodeTraversalType, nodeType, nodeType, stringType, nodeType, nodeType);
+        visitInterfaceGetpropMethod.setAccessible(true);
+        java.lang.Object[] visitInterfaceGetpropMethodArguments = new java.lang.Object[6];
+        visitInterfaceGetpropMethodArguments[0] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[1] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[2] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[3] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[4] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[5] = scriptOrFnNode;
+        try {
+            visitInterfaceGetpropMethod.invoke(typeCheck, visitInterfaceGetpropMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitInterfaceGetprop(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node,java.lang.String,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: JSType rvalueType = getJSType(rvalue);
+ *  */
+    @Test
+    public void testVisitInterfaceGetprop_ThrowNullPointerException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitInterfaceGetprop] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1705)
+            com.google.javascript.jscomp.TypeCheck.visitInterfaceGetprop(TypeCheck.java:1137) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class stringType = Class.forName("java.lang.String");
+        Method visitInterfaceGetpropMethod = typeCheckClazz.getDeclaredMethod("visitInterfaceGetprop", nodeTraversalType, nodeType, nodeType, stringType, nodeType, nodeType);
+        visitInterfaceGetpropMethod.setAccessible(true);
+        java.lang.Object[] visitInterfaceGetpropMethodArguments = new java.lang.Object[6];
+        visitInterfaceGetpropMethodArguments[0] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[1] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[2] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[3] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[4] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[5] = ((Object) null);
+        try {
+            visitInterfaceGetpropMethod.invoke(typeCheck, visitInterfaceGetpropMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitInterfaceGetprop(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node,java.lang.String,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: compiler.getCodingConvention().getAbstractMethodName()
+ *  */
+    @Test
+    public void testVisitInterfaceGetprop_ThrowNullPointerException_1() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        TemplateType jsType = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "jsType", jsType);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitInterfaceGetprop] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitInterfaceGetprop(TypeCheck.java:1146) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class stringType = Class.forName("java.lang.String");
+        Method visitInterfaceGetpropMethod = typeCheckClazz.getDeclaredMethod("visitInterfaceGetprop", nodeTraversalType, nodeType, nodeType, stringType, nodeType, nodeType);
+        visitInterfaceGetpropMethod.setAccessible(true);
+        java.lang.Object[] visitInterfaceGetpropMethodArguments = new java.lang.Object[6];
+        visitInterfaceGetpropMethodArguments[0] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[1] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[2] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[3] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[4] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[5] = scriptOrFnNode;
+        try {
+            visitInterfaceGetpropMethod.invoke(typeCheck, visitInterfaceGetpropMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitInterfaceGetprop(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node,java.lang.String,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} when: assign.getLastChild().getType() == Token.FUNCTION && !NodeUtil.isEmptyBlock(assign.getLastChild().getLastChild())
+ *  */
+    @Test
+    public void testVisitInterfaceGetprop_ThrowNullPointerException_7() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Compiler compiler = ((Compiler) createInstance("com.google.javascript.jscomp.Compiler"));
+        CompilerOptions options = ((CompilerOptions) createInstance("com.google.javascript.jscomp.CompilerOptions"));
+        DefaultCodingConvention codingConvention = ((DefaultCodingConvention) createInstance("com.google.javascript.jscomp.DefaultCodingConvention"));
+        options.setCodingConvention(codingConvention);
+        compiler.options = options;
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "compiler", compiler);
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        NoType jsType = ((NoType) createInstance("com.google.javascript.rhino.jstype.NoType"));
+        Class kindClazz = Class.forName("com.google.javascript.rhino.jstype.FunctionType$Kind");
+        Object kind = getEnumConstantByName(kindClazz, "ORDINARY");
+        setField(jsType, "com.google.javascript.rhino.jstype.FunctionType", "kind", kind);
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "jsType", jsType);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitInterfaceGetprop] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitInterfaceGetprop(TypeCheck.java:1159) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class stringType = Class.forName("java.lang.String");
+        Method visitInterfaceGetpropMethod = typeCheckClazz.getDeclaredMethod("visitInterfaceGetprop", nodeTraversalType, nodeType, nodeType, stringType, nodeType, nodeType);
+        visitInterfaceGetpropMethod.setAccessible(true);
+        java.lang.Object[] visitInterfaceGetpropMethodArguments = new java.lang.Object[6];
+        visitInterfaceGetpropMethodArguments[0] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[1] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[2] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[3] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[4] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[5] = scriptOrFnNode;
+        try {
+            visitInterfaceGetpropMethod.invoke(typeCheck, visitInterfaceGetpropMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitInterfaceGetprop(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node,java.lang.String,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: compiler.getCodingConvention().getAbstractMethodName()
+ *  */
+    @Test
+    public void testVisitInterfaceGetprop_ThrowNullPointerException_5() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = new com.google.javascript.rhino.jstype.JSType[37];
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitInterfaceGetprop] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitInterfaceGetprop(TypeCheck.java:1146) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class stringType = Class.forName("java.lang.String");
+        Method visitInterfaceGetpropMethod = typeCheckClazz.getDeclaredMethod("visitInterfaceGetprop", nodeTraversalType, nodeType, nodeType, stringType, nodeType, nodeType);
+        visitInterfaceGetpropMethod.setAccessible(true);
+        java.lang.Object[] visitInterfaceGetpropMethodArguments = new java.lang.Object[6];
+        visitInterfaceGetpropMethodArguments[0] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[1] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[2] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[3] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[4] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[5] = functionNode;
+        try {
+            visitInterfaceGetpropMethod.invoke(typeCheck, visitInterfaceGetpropMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitInterfaceGetprop(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node,java.lang.String,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: compiler.getCodingConvention().getAbstractMethodName()
+ *  */
+    @Test
+    public void testVisitInterfaceGetprop_ThrowNullPointerException_2() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Compiler compiler = ((Compiler) createInstance("com.google.javascript.jscomp.Compiler"));
+        CompilerOptions options = ((CompilerOptions) createInstance("com.google.javascript.jscomp.CompilerOptions"));
+        compiler.options = options;
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "compiler", compiler);
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        TemplateType jsType = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "jsType", jsType);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitInterfaceGetprop] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitInterfaceGetprop(TypeCheck.java:1146) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class stringType = Class.forName("java.lang.String");
+        Method visitInterfaceGetpropMethod = typeCheckClazz.getDeclaredMethod("visitInterfaceGetprop", nodeTraversalType, nodeType, nodeType, stringType, nodeType, nodeType);
+        visitInterfaceGetpropMethod.setAccessible(true);
+        java.lang.Object[] visitInterfaceGetpropMethodArguments = new java.lang.Object[6];
+        visitInterfaceGetpropMethodArguments[0] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[1] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[2] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[3] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[4] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[5] = scriptOrFnNode;
+        try {
+            visitInterfaceGetpropMethod.invoke(typeCheck, visitInterfaceGetpropMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitInterfaceGetprop(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node,java.lang.String,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} when: assign.getLastChild().getType() == Token.FUNCTION && !NodeUtil.isEmptyBlock(assign.getLastChild().getLastChild())
+ *  */
+    @Test
+    public void testVisitInterfaceGetprop_ThrowNullPointerException_3() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Compiler compiler = ((Compiler) createInstance("com.google.javascript.jscomp.Compiler"));
+        CompilerOptions options = ((CompilerOptions) createInstance("com.google.javascript.jscomp.CompilerOptions"));
+        compiler.options = options;
+        ClosureCodingConvention defaultCodingConvention = ((ClosureCodingConvention) createInstance("com.google.javascript.jscomp.ClosureCodingConvention"));
+        setField(compiler, "com.google.javascript.jscomp.Compiler", "defaultCodingConvention", defaultCodingConvention);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "compiler", compiler);
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        NoObjectType jsType = ((NoObjectType) createInstance("com.google.javascript.rhino.jstype.NoObjectType"));
+        Class kindClazz = Class.forName("com.google.javascript.rhino.jstype.FunctionType$Kind");
+        Object kind = getEnumConstantByName(kindClazz, "ORDINARY");
+        setField(jsType, "com.google.javascript.rhino.jstype.FunctionType", "kind", kind);
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "jsType", jsType);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitInterfaceGetprop] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitInterfaceGetprop(TypeCheck.java:1159) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class stringType = Class.forName("java.lang.String");
+        Method visitInterfaceGetpropMethod = typeCheckClazz.getDeclaredMethod("visitInterfaceGetprop", nodeTraversalType, nodeType, nodeType, stringType, nodeType, nodeType);
+        visitInterfaceGetpropMethod.setAccessible(true);
+        java.lang.Object[] visitInterfaceGetpropMethodArguments = new java.lang.Object[6];
+        visitInterfaceGetpropMethodArguments[0] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[1] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[2] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[3] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[4] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[5] = scriptOrFnNode;
+        try {
+            visitInterfaceGetpropMethod.invoke(typeCheck, visitInterfaceGetpropMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitInterfaceGetprop(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node,java.lang.String,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#getLastChild()}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#getType()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} when: assign.getLastChild().getType() == Token.FUNCTION && !NodeUtil.isEmptyBlock(assign.getLastChild().getLastChild())
+ *  */
+    @Test
+    public void testVisitInterfaceGetprop_ThrowNullPointerException_4() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Compiler compiler = ((Compiler) createInstance("com.google.javascript.jscomp.Compiler"));
+        CompilerOptions options = ((CompilerOptions) createInstance("com.google.javascript.jscomp.CompilerOptions"));
+        compiler.options = options;
+        ClosureCodingConvention defaultCodingConvention = ((ClosureCodingConvention) createInstance("com.google.javascript.jscomp.ClosureCodingConvention"));
+        setField(compiler, "com.google.javascript.jscomp.Compiler", "defaultCodingConvention", defaultCodingConvention);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "compiler", compiler);
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        NoType jsType = ((NoType) createInstance("com.google.javascript.rhino.jstype.NoType"));
+        Class kindClazz = Class.forName("com.google.javascript.rhino.jstype.FunctionType$Kind");
+        Object kind = getEnumConstantByName(kindClazz, "ORDINARY");
+        setField(jsType, "com.google.javascript.rhino.jstype.FunctionType", "kind", kind);
+        setField(node, "com.google.javascript.rhino.Node", "jsType", jsType);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitInterfaceGetprop] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitInterfaceGetprop(TypeCheck.java:1159) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class stringType = Class.forName("java.lang.String");
+        Method visitInterfaceGetpropMethod = typeCheckClazz.getDeclaredMethod("visitInterfaceGetprop", nodeTraversalType, scriptOrFnNodeType, scriptOrFnNodeType, stringType, scriptOrFnNodeType, scriptOrFnNodeType);
+        visitInterfaceGetpropMethod.setAccessible(true);
+        java.lang.Object[] visitInterfaceGetpropMethodArguments = new java.lang.Object[6];
+        visitInterfaceGetpropMethodArguments[0] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[1] = scriptOrFnNode;
+        visitInterfaceGetpropMethodArguments[2] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[3] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[4] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[5] = node;
+        try {
+            visitInterfaceGetpropMethod.invoke(typeCheck, visitInterfaceGetpropMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitInterfaceGetprop(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node,java.lang.String,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} when: !rvalueType.isOrdinaryFunction() && !(rvalue.isQualifiedName() && rvalue.getQualifiedName().equals(abstractMethodName))
+ *  */
+    @Test
+    public void testVisitInterfaceGetprop_ThrowNullPointerException_6() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Compiler compiler = ((Compiler) createInstance("com.google.javascript.jscomp.Compiler"));
+        CompilerOptions options = ((CompilerOptions) createInstance("com.google.javascript.jscomp.CompilerOptions"));
+        compiler.options = options;
+        GoogleCodingConvention defaultCodingConvention = ((GoogleCodingConvention) createInstance("com.google.javascript.jscomp.GoogleCodingConvention"));
+        setField(compiler, "com.google.javascript.jscomp.Compiler", "defaultCodingConvention", defaultCodingConvention);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "compiler", compiler);
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = new com.google.javascript.rhino.jstype.JSType[37];
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitInterfaceGetprop] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitInterfaceGetprop(TypeCheck.java:1147) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class stringType = Class.forName("java.lang.String");
+        Method visitInterfaceGetpropMethod = typeCheckClazz.getDeclaredMethod("visitInterfaceGetprop", nodeTraversalType, nodeType, nodeType, stringType, nodeType, nodeType);
+        visitInterfaceGetpropMethod.setAccessible(true);
+        java.lang.Object[] visitInterfaceGetpropMethodArguments = new java.lang.Object[6];
+        visitInterfaceGetpropMethodArguments[0] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[1] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[2] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[3] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[4] = ((Object) null);
+        visitInterfaceGetpropMethodArguments[5] = functionNode;
+        try {
+            visitInterfaceGetpropMethod.invoke(typeCheck, visitInterfaceGetpropMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.hasUnknownOrEmptySupertype
+    
+    ///region SYMBOLIC EXECUTION: SUCCESSFUL EXECUTIONS for method hasUnknownOrEmptySupertype(com.google.javascript.rhino.jstype.FunctionType)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#hasUnknownOrEmptySupertype(com.google.javascript.rhino.jstype.FunctionType)}
+ *  */
+    @Test
+    public void testHasUnknownOrEmptySupertype_1() throws Exception  {
+        NoObjectType noObjectType = ((NoObjectType) createInstance("com.google.javascript.rhino.jstype.NoObjectType"));
+        FunctionPrototypeType prototype = ((FunctionPrototypeType) createInstance("com.google.javascript.rhino.jstype.FunctionPrototypeType"));
+        UnknownType implicitPrototypeFallback = ((UnknownType) createInstance("com.google.javascript.rhino.jstype.UnknownType"));
+        setField(prototype, "com.google.javascript.rhino.jstype.PrototypeObjectType", "implicitPrototypeFallback", implicitPrototypeFallback);
+        setField(noObjectType, "com.google.javascript.rhino.jstype.FunctionType", "prototype", prototype);
+        Class kindClazz = Class.forName("com.google.javascript.rhino.jstype.FunctionType$Kind");
+        Object kind = getEnumConstantByName(kindClazz, "CONSTRUCTOR");
+        setField(noObjectType, "com.google.javascript.rhino.jstype.FunctionType", "kind", kind);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class noObjectTypeType = Class.forName("com.google.javascript.rhino.jstype.FunctionType");
+        Method hasUnknownOrEmptySupertypeMethod = typeCheckClazz.getDeclaredMethod("hasUnknownOrEmptySupertype", noObjectTypeType);
+        hasUnknownOrEmptySupertypeMethod.setAccessible(true);
+        java.lang.Object[] hasUnknownOrEmptySupertypeMethodArguments = new java.lang.Object[1];
+        hasUnknownOrEmptySupertypeMethodArguments[0] = noObjectType;
+        boolean actual = ((Boolean) hasUnknownOrEmptySupertypeMethod.invoke(null, hasUnknownOrEmptySupertypeMethodArguments));
+        
+        assertTrue(actual);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#hasUnknownOrEmptySupertype(com.google.javascript.rhino.jstype.FunctionType)}
+ *  */
+    @Test
+    public void testHasUnknownOrEmptySupertype() throws Exception  {
+        NoObjectType noObjectType = ((NoObjectType) createInstance("com.google.javascript.rhino.jstype.NoObjectType"));
+        FunctionPrototypeType prototype = ((FunctionPrototypeType) createInstance("com.google.javascript.rhino.jstype.FunctionPrototypeType"));
+        setField(noObjectType, "com.google.javascript.rhino.jstype.FunctionType", "prototype", prototype);
+        Class kindClazz = Class.forName("com.google.javascript.rhino.jstype.FunctionType$Kind");
+        Object kind = getEnumConstantByName(kindClazz, "CONSTRUCTOR");
+        setField(noObjectType, "com.google.javascript.rhino.jstype.FunctionType", "kind", kind);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class noObjectTypeType = Class.forName("com.google.javascript.rhino.jstype.FunctionType");
+        Method hasUnknownOrEmptySupertypeMethod = typeCheckClazz.getDeclaredMethod("hasUnknownOrEmptySupertype", noObjectTypeType);
+        hasUnknownOrEmptySupertypeMethod.setAccessible(true);
+        java.lang.Object[] hasUnknownOrEmptySupertypeMethodArguments = new java.lang.Object[1];
+        hasUnknownOrEmptySupertypeMethodArguments[0] = noObjectType;
+        boolean actual = ((Boolean) hasUnknownOrEmptySupertypeMethod.invoke(null, hasUnknownOrEmptySupertypeMethodArguments));
+        
+        assertFalse(actual);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#hasUnknownOrEmptySupertype(com.google.javascript.rhino.jstype.FunctionType)}
+ *  */
+    @Test
+    public void testHasUnknownOrEmptySupertype_2() throws Exception  {
+        NoObjectType noObjectType = ((NoObjectType) createInstance("com.google.javascript.rhino.jstype.NoObjectType"));
+        FunctionPrototypeType prototype = ((FunctionPrototypeType) createInstance("com.google.javascript.rhino.jstype.FunctionPrototypeType"));
+        setField(noObjectType, "com.google.javascript.rhino.jstype.FunctionType", "prototype", prototype);
+        Class kindClazz = Class.forName("com.google.javascript.rhino.jstype.FunctionType$Kind");
+        Object kind = getEnumConstantByName(kindClazz, "INTERFACE");
+        setField(noObjectType, "com.google.javascript.rhino.jstype.FunctionType", "kind", kind);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class noObjectTypeType = Class.forName("com.google.javascript.rhino.jstype.FunctionType");
+        Method hasUnknownOrEmptySupertypeMethod = typeCheckClazz.getDeclaredMethod("hasUnknownOrEmptySupertype", noObjectTypeType);
+        hasUnknownOrEmptySupertypeMethod.setAccessible(true);
+        java.lang.Object[] hasUnknownOrEmptySupertypeMethodArguments = new java.lang.Object[1];
+        hasUnknownOrEmptySupertypeMethodArguments[0] = noObjectType;
+        boolean actual = ((Boolean) hasUnknownOrEmptySupertypeMethod.invoke(null, hasUnknownOrEmptySupertypeMethodArguments));
+        
+        assertFalse(actual);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#hasUnknownOrEmptySupertype(com.google.javascript.rhino.jstype.FunctionType)}
+ *  */
+    @Test
+    public void testHasUnknownOrEmptySupertype_3() throws Exception  {
+        NoObjectType noObjectType = ((NoObjectType) createInstance("com.google.javascript.rhino.jstype.NoObjectType"));
+        FunctionPrototypeType prototype = ((FunctionPrototypeType) createInstance("com.google.javascript.rhino.jstype.FunctionPrototypeType"));
+        TemplateType implicitPrototypeFallback = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        Object referencedType = createInstance("com.google.javascript.rhino.jstype.UnresolvedTypeExpression");
+        setField(implicitPrototypeFallback, "com.google.javascript.rhino.jstype.ProxyObjectType", "referencedType", referencedType);
+        setField(prototype, "com.google.javascript.rhino.jstype.PrototypeObjectType", "implicitPrototypeFallback", implicitPrototypeFallback);
+        setField(noObjectType, "com.google.javascript.rhino.jstype.FunctionType", "prototype", prototype);
+        Class kindClazz = Class.forName("com.google.javascript.rhino.jstype.FunctionType$Kind");
+        Object kind = getEnumConstantByName(kindClazz, "INTERFACE");
+        setField(noObjectType, "com.google.javascript.rhino.jstype.FunctionType", "kind", kind);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class noObjectTypeType = Class.forName("com.google.javascript.rhino.jstype.FunctionType");
+        Method hasUnknownOrEmptySupertypeMethod = typeCheckClazz.getDeclaredMethod("hasUnknownOrEmptySupertype", noObjectTypeType);
+        hasUnknownOrEmptySupertypeMethod.setAccessible(true);
+        java.lang.Object[] hasUnknownOrEmptySupertypeMethodArguments = new java.lang.Object[1];
+        hasUnknownOrEmptySupertypeMethodArguments[0] = noObjectType;
+        boolean actual = ((Boolean) hasUnknownOrEmptySupertypeMethod.invoke(null, hasUnknownOrEmptySupertypeMethodArguments));
+        
+        assertTrue(actual);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#hasUnknownOrEmptySupertype(com.google.javascript.rhino.jstype.FunctionType)}
+ *  */
+    @Test
+    public void testHasUnknownOrEmptySupertype_4() throws Exception  {
+        NoObjectType noObjectType = ((NoObjectType) createInstance("com.google.javascript.rhino.jstype.NoObjectType"));
+        FunctionPrototypeType prototype = ((FunctionPrototypeType) createInstance("com.google.javascript.rhino.jstype.FunctionPrototypeType"));
+        setField(noObjectType, "com.google.javascript.rhino.jstype.FunctionType", "prototype", prototype);
+        Class kindClazz = Class.forName("com.google.javascript.rhino.jstype.FunctionType$Kind");
+        Object kind = getEnumConstantByName(kindClazz, "INTERFACE");
+        setField(noObjectType, "com.google.javascript.rhino.jstype.FunctionType", "kind", kind);
+        setField(noObjectType, "com.google.javascript.rhino.jstype.ObjectType", "unknown", true);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class noObjectTypeType = Class.forName("com.google.javascript.rhino.jstype.FunctionType");
+        Method hasUnknownOrEmptySupertypeMethod = typeCheckClazz.getDeclaredMethod("hasUnknownOrEmptySupertype", noObjectTypeType);
+        hasUnknownOrEmptySupertypeMethod.setAccessible(true);
+        java.lang.Object[] hasUnknownOrEmptySupertypeMethodArguments = new java.lang.Object[1];
+        hasUnknownOrEmptySupertypeMethodArguments[0] = noObjectType;
+        boolean actual = ((Boolean) hasUnknownOrEmptySupertypeMethod.invoke(null, hasUnknownOrEmptySupertypeMethodArguments));
+        
+        assertFalse(actual);
+        
+        boolean finalNoObjectTypeUnknown = ((Boolean) getFieldValue(noObjectType, "com.google.javascript.rhino.jstype.ObjectType", "unknown"));
+        
+        assertFalse(finalNoObjectTypeUnknown);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#hasUnknownOrEmptySupertype(com.google.javascript.rhino.jstype.FunctionType)}
+ *  */
+    @Test
+    public void testHasUnknownOrEmptySupertype_5() throws Exception  {
+        FunctionType functionType = ((FunctionType) createInstance("com.google.javascript.rhino.jstype.FunctionType"));
+        FunctionPrototypeType prototype = ((FunctionPrototypeType) createInstance("com.google.javascript.rhino.jstype.FunctionPrototypeType"));
+        setField(functionType, "com.google.javascript.rhino.jstype.FunctionType", "prototype", prototype);
+        Class kindClazz = Class.forName("com.google.javascript.rhino.jstype.FunctionType$Kind");
+        Object kind = getEnumConstantByName(kindClazz, "INTERFACE");
+        setField(functionType, "com.google.javascript.rhino.jstype.FunctionType", "kind", kind);
+        NoType implicitPrototypeFallback = ((NoType) createInstance("com.google.javascript.rhino.jstype.NoType"));
+        setField(implicitPrototypeFallback, "com.google.javascript.rhino.jstype.PrototypeObjectType", "nativeType", true);
+        setField(functionType, "com.google.javascript.rhino.jstype.PrototypeObjectType", "implicitPrototypeFallback", implicitPrototypeFallback);
+        setField(functionType, "com.google.javascript.rhino.jstype.ObjectType", "unknown", true);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class functionTypeType = Class.forName("com.google.javascript.rhino.jstype.FunctionType");
+        Method hasUnknownOrEmptySupertypeMethod = typeCheckClazz.getDeclaredMethod("hasUnknownOrEmptySupertype", functionTypeType);
+        hasUnknownOrEmptySupertypeMethod.setAccessible(true);
+        java.lang.Object[] hasUnknownOrEmptySupertypeMethodArguments = new java.lang.Object[1];
+        hasUnknownOrEmptySupertypeMethodArguments[0] = functionType;
+        boolean actual = ((Boolean) hasUnknownOrEmptySupertypeMethod.invoke(null, hasUnknownOrEmptySupertypeMethodArguments));
+        
+        assertFalse(actual);
+        
+        boolean finalFunctionTypeUnknown = ((Boolean) getFieldValue(functionType, "com.google.javascript.rhino.jstype.ObjectType", "unknown"));
+        
+        assertFalse(finalFunctionTypeUnknown);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#hasUnknownOrEmptySupertype(com.google.javascript.rhino.jstype.FunctionType)}
+ *  */
+    @Test
+    public void testHasUnknownOrEmptySupertype_6() throws Exception  {
+        FunctionType functionType = ((FunctionType) createInstance("com.google.javascript.rhino.jstype.FunctionType"));
+        FunctionPrototypeType prototype = ((FunctionPrototypeType) createInstance("com.google.javascript.rhino.jstype.FunctionPrototypeType"));
+        setField(functionType, "com.google.javascript.rhino.jstype.FunctionType", "prototype", prototype);
+        Class kindClazz = Class.forName("com.google.javascript.rhino.jstype.FunctionType$Kind");
+        Object kind = getEnumConstantByName(kindClazz, "CONSTRUCTOR");
+        setField(functionType, "com.google.javascript.rhino.jstype.FunctionType", "kind", kind);
+        setField(functionType, "com.google.javascript.rhino.jstype.ObjectType", "unknown", true);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class functionTypeType = Class.forName("com.google.javascript.rhino.jstype.FunctionType");
+        Method hasUnknownOrEmptySupertypeMethod = typeCheckClazz.getDeclaredMethod("hasUnknownOrEmptySupertype", functionTypeType);
+        hasUnknownOrEmptySupertypeMethod.setAccessible(true);
+        java.lang.Object[] hasUnknownOrEmptySupertypeMethodArguments = new java.lang.Object[1];
+        hasUnknownOrEmptySupertypeMethodArguments[0] = functionType;
+        boolean actual = ((Boolean) hasUnknownOrEmptySupertypeMethod.invoke(null, hasUnknownOrEmptySupertypeMethodArguments));
+        
+        assertFalse(actual);
+        
+        boolean finalFunctionTypeUnknown = ((Boolean) getFieldValue(functionType, "com.google.javascript.rhino.jstype.ObjectType", "unknown"));
+        
+        assertFalse(finalFunctionTypeUnknown);
+    }
+    ///endregion
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method hasUnknownOrEmptySupertype(com.google.javascript.rhino.jstype.FunctionType)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#hasUnknownOrEmptySupertype(com.google.javascript.rhino.jstype.FunctionType)}
+ * @utbot.invokes {@link com.google.javascript.rhino.jstype.FunctionType#isConstructor()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: Preconditions.checkArgument(ctor.isConstructor() || ctor.isInterface());
+ *  */
+    @Test
+    public void testHasUnknownOrEmptySupertype_ThrowNullPointerException() throws Throwable  {
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.hasUnknownOrEmptySupertype] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.hasUnknownOrEmptySupertype(TypeCheck.java:1105) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class functionTypeType = Class.forName("com.google.javascript.rhino.jstype.FunctionType");
+        Method hasUnknownOrEmptySupertypeMethod = typeCheckClazz.getDeclaredMethod("hasUnknownOrEmptySupertype", functionTypeType);
+        hasUnknownOrEmptySupertypeMethod.setAccessible(true);
+        java.lang.Object[] hasUnknownOrEmptySupertypeMethodArguments = new java.lang.Object[1];
+        hasUnknownOrEmptySupertypeMethodArguments[0] = ((Object) null);
+        try {
+            hasUnknownOrEmptySupertypeMethod.invoke(null, hasUnknownOrEmptySupertypeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///region SYMBOLIC EXECUTION: EXPLICITLY THROWN UNCHECKED EXCEPTIONS for method hasUnknownOrEmptySupertype(com.google.javascript.rhino.jstype.FunctionType)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#hasUnknownOrEmptySupertype(com.google.javascript.rhino.jstype.FunctionType)}
+ * @utbot.invokes {@link com.google.javascript.rhino.jstype.FunctionType#isConstructor()}
+ * @utbot.invokes {@link com.google.javascript.rhino.jstype.FunctionType#isInterface()}
+ * @utbot.invokes {@link com.google.common.base.Preconditions#checkArgument(boolean)}
+ * @utbot.throwsException {@link java.lang.IllegalArgumentException} in: Preconditions.checkArgument(ctor.isConstructor() || ctor.isInterface());
+ *  */
+    @Test(expected = IllegalArgumentException.class)
+    public void testHasUnknownOrEmptySupertype_ThrowIllegalArgumentException() throws Throwable  {
+        NoObjectType noObjectType = ((NoObjectType) createInstance("com.google.javascript.rhino.jstype.NoObjectType"));
+        Class kindClazz = Class.forName("com.google.javascript.rhino.jstype.FunctionType$Kind");
+        Object kind = getEnumConstantByName(kindClazz, "ORDINARY");
+        setField(noObjectType, "com.google.javascript.rhino.jstype.FunctionType", "kind", kind);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class noObjectTypeType = Class.forName("com.google.javascript.rhino.jstype.FunctionType");
+        Method hasUnknownOrEmptySupertypeMethod = typeCheckClazz.getDeclaredMethod("hasUnknownOrEmptySupertype", noObjectTypeType);
+        hasUnknownOrEmptySupertypeMethod.setAccessible(true);
+        java.lang.Object[] hasUnknownOrEmptySupertypeMethodArguments = new java.lang.Object[1];
+        hasUnknownOrEmptySupertypeMethodArguments[0] = noObjectType;
+        try {
+            hasUnknownOrEmptySupertypeMethod.invoke(null, hasUnknownOrEmptySupertypeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///region FUZZER: ERROR SUITE for method hasUnknownOrEmptySupertype(com.google.javascript.rhino.jstype.FunctionType)
+    
+    /**
+     * @utbot.classUnderTest {@link com.google.javascript.jscomp.TypeCheck}
+     * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#hasUnknownOrEmptySupertype(com.google.javascript.rhino.jstype.FunctionType)}
+     */
+    @Test
+    public void testHasUnknownOrEmptySupertypeThrowsNPE() throws Throwable  {
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.hasUnknownOrEmptySupertype] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.hasUnknownOrEmptySupertype(TypeCheck.java:1105) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class functionTypeType = Class.forName("com.google.javascript.rhino.jstype.FunctionType");
+        Method hasUnknownOrEmptySupertypeMethod = typeCheckClazz.getDeclaredMethod("hasUnknownOrEmptySupertype", functionTypeType);
+        hasUnknownOrEmptySupertypeMethod.setAccessible(true);
+        java.lang.Object[] hasUnknownOrEmptySupertypeMethodArguments = new java.lang.Object[1];
+        hasUnknownOrEmptySupertypeMethodArguments[0] = ((Object) null);
+        try {
+            hasUnknownOrEmptySupertypeMethod.invoke(null, hasUnknownOrEmptySupertypeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.checkDeclaredPropertyInheritance
+    
+    ///region SYMBOLIC EXECUTION: SUCCESSFUL EXECUTIONS for method checkDeclaredPropertyInheritance(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node, com.google.javascript.rhino.jstype.FunctionType, java.lang.String, com.google.javascript.rhino.JSDocInfo, com.google.javascript.rhino.jstype.JSType)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#checkDeclaredPropertyInheritance(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.FunctionType,java.lang.String,com.google.javascript.rhino.JSDocInfo,com.google.javascript.rhino.jstype.JSType)}
+ * @utbot.returnsFrom {@code return;}
+ *  */
+    @Test
+    public void testCheckDeclaredPropertyInheritance_Return() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        FunctionType functionType = ((FunctionType) createInstance("com.google.javascript.rhino.jstype.FunctionType"));
+        FunctionPrototypeType prototype = ((FunctionPrototypeType) createInstance("com.google.javascript.rhino.jstype.FunctionPrototypeType"));
+        UnknownType implicitPrototypeFallback = ((UnknownType) createInstance("com.google.javascript.rhino.jstype.UnknownType"));
+        setField(prototype, "com.google.javascript.rhino.jstype.PrototypeObjectType", "implicitPrototypeFallback", implicitPrototypeFallback);
+        setField(functionType, "com.google.javascript.rhino.jstype.FunctionType", "prototype", prototype);
+        Class kindClazz = Class.forName("com.google.javascript.rhino.jstype.FunctionType$Kind");
+        Object kind = getEnumConstantByName(kindClazz, "CONSTRUCTOR");
+        setField(functionType, "com.google.javascript.rhino.jstype.FunctionType", "kind", kind);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class functionTypeType = Class.forName("com.google.javascript.rhino.jstype.FunctionType");
+        Class stringType = Class.forName("java.lang.String");
+        Class jSDocInfoType = Class.forName("com.google.javascript.rhino.JSDocInfo");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method checkDeclaredPropertyInheritanceMethod = typeCheckClazz.getDeclaredMethod("checkDeclaredPropertyInheritance", nodeTraversalType, nodeType, functionTypeType, stringType, jSDocInfoType, jSTypeType);
+        checkDeclaredPropertyInheritanceMethod.setAccessible(true);
+        java.lang.Object[] checkDeclaredPropertyInheritanceMethodArguments = new java.lang.Object[6];
+        checkDeclaredPropertyInheritanceMethodArguments[0] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[1] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[2] = functionType;
+        checkDeclaredPropertyInheritanceMethodArguments[3] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[4] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[5] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethod.invoke(typeCheck, checkDeclaredPropertyInheritanceMethodArguments);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#checkDeclaredPropertyInheritance(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.FunctionType,java.lang.String,com.google.javascript.rhino.JSDocInfo,com.google.javascript.rhino.jstype.JSType)}
+ * @utbot.returnsFrom {@code return;}
+ *  */
+    @Test
+    public void testCheckDeclaredPropertyInheritance_Return_2() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        FunctionType functionType = ((FunctionType) createInstance("com.google.javascript.rhino.jstype.FunctionType"));
+        FunctionPrototypeType prototype = ((FunctionPrototypeType) createInstance("com.google.javascript.rhino.jstype.FunctionPrototypeType"));
+        setField(prototype, "com.google.javascript.rhino.jstype.PrototypeObjectType", "nativeType", true);
+        UnknownType implicitPrototypeFallback = ((UnknownType) createInstance("com.google.javascript.rhino.jstype.UnknownType"));
+        setField(prototype, "com.google.javascript.rhino.jstype.PrototypeObjectType", "implicitPrototypeFallback", implicitPrototypeFallback);
+        setField(functionType, "com.google.javascript.rhino.jstype.FunctionType", "prototype", prototype);
+        Class kindClazz = Class.forName("com.google.javascript.rhino.jstype.FunctionType$Kind");
+        Object kind = getEnumConstantByName(kindClazz, "CONSTRUCTOR");
+        setField(functionType, "com.google.javascript.rhino.jstype.FunctionType", "kind", kind);
+        setField(functionType, "com.google.javascript.rhino.jstype.PrototypeObjectType", "implicitPrototypeFallback", prototype);
+        setField(functionType, "com.google.javascript.rhino.jstype.ObjectType", "unknown", true);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class functionTypeType = Class.forName("com.google.javascript.rhino.jstype.FunctionType");
+        Class stringType = Class.forName("java.lang.String");
+        Class jSDocInfoType = Class.forName("com.google.javascript.rhino.JSDocInfo");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method checkDeclaredPropertyInheritanceMethod = typeCheckClazz.getDeclaredMethod("checkDeclaredPropertyInheritance", nodeTraversalType, nodeType, functionTypeType, stringType, jSDocInfoType, jSTypeType);
+        checkDeclaredPropertyInheritanceMethod.setAccessible(true);
+        java.lang.Object[] checkDeclaredPropertyInheritanceMethodArguments = new java.lang.Object[6];
+        checkDeclaredPropertyInheritanceMethodArguments[0] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[1] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[2] = functionType;
+        checkDeclaredPropertyInheritanceMethodArguments[3] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[4] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[5] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethod.invoke(typeCheck, checkDeclaredPropertyInheritanceMethodArguments);
+        
+        boolean finalFunctionTypeUnknown = ((Boolean) getFieldValue(functionType, "com.google.javascript.rhino.jstype.ObjectType", "unknown"));
+        
+        assertFalse(finalFunctionTypeUnknown);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#checkDeclaredPropertyInheritance(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.FunctionType,java.lang.String,com.google.javascript.rhino.JSDocInfo,com.google.javascript.rhino.jstype.JSType)}
+ * @utbot.returnsFrom {@code return;}
+ *  */
+    @Test
+    public void testCheckDeclaredPropertyInheritance_Return_3() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        FunctionType functionType = ((FunctionType) createInstance("com.google.javascript.rhino.jstype.FunctionType"));
+        FunctionPrototypeType prototype = ((FunctionPrototypeType) createInstance("com.google.javascript.rhino.jstype.FunctionPrototypeType"));
+        UnknownType implicitPrototypeFallback = ((UnknownType) createInstance("com.google.javascript.rhino.jstype.UnknownType"));
+        setField(prototype, "com.google.javascript.rhino.jstype.PrototypeObjectType", "implicitPrototypeFallback", implicitPrototypeFallback);
+        setField(functionType, "com.google.javascript.rhino.jstype.FunctionType", "prototype", prototype);
+        Class kindClazz = Class.forName("com.google.javascript.rhino.jstype.FunctionType$Kind");
+        Object kind = getEnumConstantByName(kindClazz, "INTERFACE");
+        setField(functionType, "com.google.javascript.rhino.jstype.FunctionType", "kind", kind);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class functionTypeType = Class.forName("com.google.javascript.rhino.jstype.FunctionType");
+        Class stringType = Class.forName("java.lang.String");
+        Class jSDocInfoType = Class.forName("com.google.javascript.rhino.JSDocInfo");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method checkDeclaredPropertyInheritanceMethod = typeCheckClazz.getDeclaredMethod("checkDeclaredPropertyInheritance", nodeTraversalType, nodeType, functionTypeType, stringType, jSDocInfoType, jSTypeType);
+        checkDeclaredPropertyInheritanceMethod.setAccessible(true);
+        java.lang.Object[] checkDeclaredPropertyInheritanceMethodArguments = new java.lang.Object[6];
+        checkDeclaredPropertyInheritanceMethodArguments[0] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[1] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[2] = functionType;
+        checkDeclaredPropertyInheritanceMethodArguments[3] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[4] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[5] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethod.invoke(typeCheck, checkDeclaredPropertyInheritanceMethodArguments);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#checkDeclaredPropertyInheritance(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.FunctionType,java.lang.String,com.google.javascript.rhino.JSDocInfo,com.google.javascript.rhino.jstype.JSType)}
+ * @utbot.returnsFrom {@code return;}
+ *  */
+    @Test
+    public void testCheckDeclaredPropertyInheritance_Return_1() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        FunctionType functionType = ((FunctionType) createInstance("com.google.javascript.rhino.jstype.FunctionType"));
+        FunctionPrototypeType prototype = ((FunctionPrototypeType) createInstance("com.google.javascript.rhino.jstype.FunctionPrototypeType"));
+        UnknownType implicitPrototypeFallback = ((UnknownType) createInstance("com.google.javascript.rhino.jstype.UnknownType"));
+        setField(prototype, "com.google.javascript.rhino.jstype.PrototypeObjectType", "implicitPrototypeFallback", implicitPrototypeFallback);
+        setField(functionType, "com.google.javascript.rhino.jstype.FunctionType", "prototype", prototype);
+        Class kindClazz = Class.forName("com.google.javascript.rhino.jstype.FunctionType$Kind");
+        Object kind = getEnumConstantByName(kindClazz, "CONSTRUCTOR");
+        setField(functionType, "com.google.javascript.rhino.jstype.FunctionType", "kind", kind);
+        setField(functionType, "com.google.javascript.rhino.jstype.ObjectType", "unknown", true);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class functionTypeType = Class.forName("com.google.javascript.rhino.jstype.FunctionType");
+        Class stringType = Class.forName("java.lang.String");
+        Class jSDocInfoType = Class.forName("com.google.javascript.rhino.JSDocInfo");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method checkDeclaredPropertyInheritanceMethod = typeCheckClazz.getDeclaredMethod("checkDeclaredPropertyInheritance", nodeTraversalType, nodeType, functionTypeType, stringType, jSDocInfoType, jSTypeType);
+        checkDeclaredPropertyInheritanceMethod.setAccessible(true);
+        java.lang.Object[] checkDeclaredPropertyInheritanceMethodArguments = new java.lang.Object[6];
+        checkDeclaredPropertyInheritanceMethodArguments[0] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[1] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[2] = functionType;
+        checkDeclaredPropertyInheritanceMethodArguments[3] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[4] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[5] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethod.invoke(typeCheck, checkDeclaredPropertyInheritanceMethodArguments);
+        
+        boolean finalFunctionTypeUnknown = ((Boolean) getFieldValue(functionType, "com.google.javascript.rhino.jstype.ObjectType", "unknown"));
+        
+        assertFalse(finalFunctionTypeUnknown);
+    }
+    ///endregion
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method checkDeclaredPropertyInheritance(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node, com.google.javascript.rhino.jstype.FunctionType, java.lang.String, com.google.javascript.rhino.JSDocInfo, com.google.javascript.rhino.jstype.JSType)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#checkDeclaredPropertyInheritance(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.FunctionType,java.lang.String,com.google.javascript.rhino.JSDocInfo,com.google.javascript.rhino.jstype.JSType)}
+ * @utbot.invokes com.google.javascript.jscomp.TypeCheck#hasUnknownOrEmptySupertype(com.google.javascript.rhino.jstype.FunctionType)
+ * @utbot.throwsException {@link java.lang.NullPointerException} when: hasUnknownOrEmptySupertype(ctorType)
+ *  */
+    @Test
+    public void testCheckDeclaredPropertyInheritance_ThrowNullPointerException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.checkDeclaredPropertyInheritance] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.hasUnknownOrEmptySupertype(TypeCheck.java:1105)
+            com.google.javascript.jscomp.TypeCheck.checkDeclaredPropertyInheritance(TypeCheck.java:1019) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class functionTypeType = Class.forName("com.google.javascript.rhino.jstype.FunctionType");
+        Class stringType = Class.forName("java.lang.String");
+        Class jSDocInfoType = Class.forName("com.google.javascript.rhino.JSDocInfo");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method checkDeclaredPropertyInheritanceMethod = typeCheckClazz.getDeclaredMethod("checkDeclaredPropertyInheritance", nodeTraversalType, nodeType, functionTypeType, stringType, jSDocInfoType, jSTypeType);
+        checkDeclaredPropertyInheritanceMethod.setAccessible(true);
+        java.lang.Object[] checkDeclaredPropertyInheritanceMethodArguments = new java.lang.Object[6];
+        checkDeclaredPropertyInheritanceMethodArguments[0] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[1] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[2] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[3] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[4] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[5] = ((Object) null);
+        try {
+            checkDeclaredPropertyInheritanceMethod.invoke(typeCheck, checkDeclaredPropertyInheritanceMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///region OTHER: SUCCESSFUL EXECUTIONS for method checkDeclaredPropertyInheritance(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node, com.google.javascript.rhino.jstype.FunctionType, java.lang.String, com.google.javascript.rhino.JSDocInfo, com.google.javascript.rhino.jstype.JSType)
+    
+    @Test
+    public void testCheckDeclaredPropertyInheritance1() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        FunctionType functionType = ((FunctionType) createInstance("com.google.javascript.rhino.jstype.FunctionType"));
+        FunctionPrototypeType prototype = ((FunctionPrototypeType) createInstance("com.google.javascript.rhino.jstype.FunctionPrototypeType"));
+        setField(functionType, "com.google.javascript.rhino.jstype.FunctionType", "prototype", prototype);
+        Class kindClazz = Class.forName("com.google.javascript.rhino.jstype.FunctionType$Kind");
+        Object kind = getEnumConstantByName(kindClazz, "INTERFACE");
+        setField(functionType, "com.google.javascript.rhino.jstype.FunctionType", "kind", kind);
+        Object implicitPrototypeFallback = createInstance("com.google.javascript.rhino.jstype.NoResolvedType");
+        setField(implicitPrototypeFallback, "com.google.javascript.rhino.jstype.PrototypeObjectType", "nativeType", true);
+        setField(functionType, "com.google.javascript.rhino.jstype.PrototypeObjectType", "implicitPrototypeFallback", implicitPrototypeFallback);
+        setField(functionType, "com.google.javascript.rhino.jstype.ObjectType", "unknown", true);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class functionTypeType = Class.forName("com.google.javascript.rhino.jstype.FunctionType");
+        Class stringType = Class.forName("java.lang.String");
+        Class jSDocInfoType = Class.forName("com.google.javascript.rhino.JSDocInfo");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method checkDeclaredPropertyInheritanceMethod = typeCheckClazz.getDeclaredMethod("checkDeclaredPropertyInheritance", nodeTraversalType, nodeType, functionTypeType, stringType, jSDocInfoType, jSTypeType);
+        checkDeclaredPropertyInheritanceMethod.setAccessible(true);
+        java.lang.Object[] checkDeclaredPropertyInheritanceMethodArguments = new java.lang.Object[6];
+        checkDeclaredPropertyInheritanceMethodArguments[0] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[1] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[2] = functionType;
+        checkDeclaredPropertyInheritanceMethodArguments[3] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[4] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[5] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethod.invoke(typeCheck, checkDeclaredPropertyInheritanceMethodArguments);
+        
+        boolean finalFunctionTypeUnknown = ((Boolean) getFieldValue(functionType, "com.google.javascript.rhino.jstype.ObjectType", "unknown"));
+        
+        assertFalse(finalFunctionTypeUnknown);
+    }
+    
+    @Test
+    public void testCheckDeclaredPropertyInheritance2() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Object stringNode = createInstance("com.google.javascript.rhino.Node$StringNode");
+        FunctionType functionType = ((FunctionType) createInstance("com.google.javascript.rhino.jstype.FunctionType"));
+        FunctionPrototypeType prototype = ((FunctionPrototypeType) createInstance("com.google.javascript.rhino.jstype.FunctionPrototypeType"));
+        TemplateType implicitPrototypeFallback = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        UnknownType referencedType = ((UnknownType) createInstance("com.google.javascript.rhino.jstype.UnknownType"));
+        setField(implicitPrototypeFallback, "com.google.javascript.rhino.jstype.ProxyObjectType", "referencedType", referencedType);
+        setField(prototype, "com.google.javascript.rhino.jstype.PrototypeObjectType", "implicitPrototypeFallback", implicitPrototypeFallback);
+        setField(functionType, "com.google.javascript.rhino.jstype.FunctionType", "prototype", prototype);
+        Class kindClazz = Class.forName("com.google.javascript.rhino.jstype.FunctionType$Kind");
+        Object kind = getEnumConstantByName(kindClazz, "CONSTRUCTOR");
+        setField(functionType, "com.google.javascript.rhino.jstype.FunctionType", "kind", kind);
+        Object implicitPrototypeFallback1 = createInstance("com.google.javascript.rhino.jstype.NoResolvedType");
+        setField(implicitPrototypeFallback1, "com.google.javascript.rhino.jstype.PrototypeObjectType", "nativeType", true);
+        setField(functionType, "com.google.javascript.rhino.jstype.PrototypeObjectType", "implicitPrototypeFallback", implicitPrototypeFallback1);
+        setField(functionType, "com.google.javascript.rhino.jstype.ObjectType", "unknown", true);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class stringNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class functionTypeType = Class.forName("com.google.javascript.rhino.jstype.FunctionType");
+        Class stringType = Class.forName("java.lang.String");
+        Class jSDocInfoType = Class.forName("com.google.javascript.rhino.JSDocInfo");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method checkDeclaredPropertyInheritanceMethod = typeCheckClazz.getDeclaredMethod("checkDeclaredPropertyInheritance", nodeTraversalType, stringNodeType, functionTypeType, stringType, jSDocInfoType, jSTypeType);
+        checkDeclaredPropertyInheritanceMethod.setAccessible(true);
+        java.lang.Object[] checkDeclaredPropertyInheritanceMethodArguments = new java.lang.Object[6];
+        checkDeclaredPropertyInheritanceMethodArguments[0] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[1] = stringNode;
+        checkDeclaredPropertyInheritanceMethodArguments[2] = functionType;
+        checkDeclaredPropertyInheritanceMethodArguments[3] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[4] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[5] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethod.invoke(typeCheck, checkDeclaredPropertyInheritanceMethodArguments);
+        
+        boolean finalFunctionTypeUnknown = ((Boolean) getFieldValue(functionType, "com.google.javascript.rhino.jstype.ObjectType", "unknown"));
+        
+        assertFalse(finalFunctionTypeUnknown);
+    }
+    
+    @Test
+    public void testCheckDeclaredPropertyInheritance3() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = new Node(0);
+        FunctionType functionType = ((FunctionType) createInstance("com.google.javascript.rhino.jstype.FunctionType"));
+        FunctionPrototypeType prototype = ((FunctionPrototypeType) createInstance("com.google.javascript.rhino.jstype.FunctionPrototypeType"));
+        setField(functionType, "com.google.javascript.rhino.jstype.FunctionType", "prototype", prototype);
+        Class kindClazz = Class.forName("com.google.javascript.rhino.jstype.FunctionType$Kind");
+        Object kind = getEnumConstantByName(kindClazz, "INTERFACE");
+        setField(functionType, "com.google.javascript.rhino.jstype.FunctionType", "kind", kind);
+        setField(functionType, "com.google.javascript.rhino.jstype.ObjectType", "unknown", true);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class functionTypeType = Class.forName("com.google.javascript.rhino.jstype.FunctionType");
+        Class stringType = Class.forName("java.lang.String");
+        Class jSDocInfoType = Class.forName("com.google.javascript.rhino.JSDocInfo");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method checkDeclaredPropertyInheritanceMethod = typeCheckClazz.getDeclaredMethod("checkDeclaredPropertyInheritance", nodeTraversalType, nodeType, functionTypeType, stringType, jSDocInfoType, jSTypeType);
+        checkDeclaredPropertyInheritanceMethod.setAccessible(true);
+        java.lang.Object[] checkDeclaredPropertyInheritanceMethodArguments = new java.lang.Object[6];
+        checkDeclaredPropertyInheritanceMethodArguments[0] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[1] = node;
+        checkDeclaredPropertyInheritanceMethodArguments[2] = functionType;
+        checkDeclaredPropertyInheritanceMethodArguments[3] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[4] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[5] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethod.invoke(typeCheck, checkDeclaredPropertyInheritanceMethodArguments);
+        
+        boolean finalFunctionTypeUnknown = ((Boolean) getFieldValue(functionType, "com.google.javascript.rhino.jstype.ObjectType", "unknown"));
+        
+        assertFalse(finalFunctionTypeUnknown);
+    }
+    ///endregion
+    
+    ///region OTHER: ERROR SUITE for method checkDeclaredPropertyInheritance(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node, com.google.javascript.rhino.jstype.FunctionType, java.lang.String, com.google.javascript.rhino.JSDocInfo, com.google.javascript.rhino.jstype.JSType)
+    
+    @Test
+    public void testCheckDeclaredPropertyInheritance4() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Object noResolvedType = createInstance("com.google.javascript.rhino.jstype.NoResolvedType");
+        Class kindClazz = Class.forName("com.google.javascript.rhino.jstype.FunctionType$Kind");
+        Object kind = getEnumConstantByName(kindClazz, "INTERFACE");
+        setField(noResolvedType, "com.google.javascript.rhino.jstype.FunctionType", "kind", kind);
+        setField(noResolvedType, "com.google.javascript.rhino.jstype.ObjectType", "unknown", true);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.checkDeclaredPropertyInheritance] produces [java.lang.NullPointerException]
+            com.google.javascript.rhino.jstype.PrototypeObjectType.<init>(PrototypeObjectType.java:118)
+            com.google.javascript.rhino.jstype.FunctionPrototypeType.<init>(FunctionPrototypeType.java:55)
+            com.google.javascript.rhino.jstype.FunctionPrototypeType.<init>(FunctionPrototypeType.java:62)
+            com.google.javascript.rhino.jstype.FunctionType.getPrototype(FunctionType.java:261)
+            com.google.javascript.jscomp.TypeCheck.hasUnknownOrEmptySupertype(TypeCheck.java:1112)
+            com.google.javascript.jscomp.TypeCheck.checkDeclaredPropertyInheritance(TypeCheck.java:1019) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class noResolvedTypeType = Class.forName("com.google.javascript.rhino.jstype.FunctionType");
+        Class stringType = Class.forName("java.lang.String");
+        Class jSDocInfoType = Class.forName("com.google.javascript.rhino.JSDocInfo");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method checkDeclaredPropertyInheritanceMethod = typeCheckClazz.getDeclaredMethod("checkDeclaredPropertyInheritance", nodeTraversalType, nodeType, noResolvedTypeType, stringType, jSDocInfoType, jSTypeType);
+        checkDeclaredPropertyInheritanceMethod.setAccessible(true);
+        java.lang.Object[] checkDeclaredPropertyInheritanceMethodArguments = new java.lang.Object[6];
+        checkDeclaredPropertyInheritanceMethodArguments[0] = nodeTraversal;
+        checkDeclaredPropertyInheritanceMethodArguments[1] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[2] = noResolvedType;
+        checkDeclaredPropertyInheritanceMethodArguments[3] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[4] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[5] = ((Object) null);
+        try {
+            checkDeclaredPropertyInheritanceMethod.invoke(typeCheck, checkDeclaredPropertyInheritanceMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testCheckDeclaredPropertyInheritance5() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Object noResolvedType = createInstance("com.google.javascript.rhino.jstype.NoResolvedType");
+        Class kindClazz = Class.forName("com.google.javascript.rhino.jstype.FunctionType$Kind");
+        Object kind = getEnumConstantByName(kindClazz, "CONSTRUCTOR");
+        setField(noResolvedType, "com.google.javascript.rhino.jstype.FunctionType", "kind", kind);
+        setField(noResolvedType, "com.google.javascript.rhino.jstype.ObjectType", "unknown", true);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.checkDeclaredPropertyInheritance] produces [java.lang.NullPointerException]
+            com.google.javascript.rhino.jstype.PrototypeObjectType.<init>(PrototypeObjectType.java:118)
+            com.google.javascript.rhino.jstype.FunctionPrototypeType.<init>(FunctionPrototypeType.java:55)
+            com.google.javascript.rhino.jstype.FunctionPrototypeType.<init>(FunctionPrototypeType.java:62)
+            com.google.javascript.rhino.jstype.FunctionType.getPrototype(FunctionType.java:261)
+            com.google.javascript.jscomp.TypeCheck.hasUnknownOrEmptySupertype(TypeCheck.java:1112)
+            com.google.javascript.jscomp.TypeCheck.checkDeclaredPropertyInheritance(TypeCheck.java:1019) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class noResolvedTypeType = Class.forName("com.google.javascript.rhino.jstype.FunctionType");
+        Class stringType = Class.forName("java.lang.String");
+        Class jSDocInfoType = Class.forName("com.google.javascript.rhino.JSDocInfo");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method checkDeclaredPropertyInheritanceMethod = typeCheckClazz.getDeclaredMethod("checkDeclaredPropertyInheritance", nodeTraversalType, nodeType, noResolvedTypeType, stringType, jSDocInfoType, jSTypeType);
+        checkDeclaredPropertyInheritanceMethod.setAccessible(true);
+        java.lang.Object[] checkDeclaredPropertyInheritanceMethodArguments = new java.lang.Object[6];
+        checkDeclaredPropertyInheritanceMethodArguments[0] = nodeTraversal;
+        checkDeclaredPropertyInheritanceMethodArguments[1] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[2] = noResolvedType;
+        checkDeclaredPropertyInheritanceMethodArguments[3] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[4] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[5] = ((Object) null);
+        try {
+            checkDeclaredPropertyInheritanceMethod.invoke(typeCheck, checkDeclaredPropertyInheritanceMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testCheckDeclaredPropertyInheritance6() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        FunctionType functionType = ((FunctionType) createInstance("com.google.javascript.rhino.jstype.FunctionType"));
+        Class kindClazz = Class.forName("com.google.javascript.rhino.jstype.FunctionType$Kind");
+        Object kind = getEnumConstantByName(kindClazz, "INTERFACE");
+        setField(functionType, "com.google.javascript.rhino.jstype.FunctionType", "kind", kind);
+        FunctionType implicitPrototypeFallback = ((FunctionType) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry$1"));
+        setField(functionType, "com.google.javascript.rhino.jstype.PrototypeObjectType", "implicitPrototypeFallback", implicitPrototypeFallback);
+        setField(functionType, "com.google.javascript.rhino.jstype.ObjectType", "unknown", true);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.checkDeclaredPropertyInheritance] produces [java.lang.NullPointerException]
+            com.google.javascript.rhino.jstype.PrototypeObjectType.<init>(PrototypeObjectType.java:118)
+            com.google.javascript.rhino.jstype.FunctionPrototypeType.<init>(FunctionPrototypeType.java:55)
+            com.google.javascript.rhino.jstype.FunctionPrototypeType.<init>(FunctionPrototypeType.java:62)
+            com.google.javascript.rhino.jstype.FunctionType.getPrototype(FunctionType.java:261)
+            com.google.javascript.jscomp.TypeCheck.hasUnknownOrEmptySupertype(TypeCheck.java:1112)
+            com.google.javascript.jscomp.TypeCheck.checkDeclaredPropertyInheritance(TypeCheck.java:1019) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class functionTypeType = Class.forName("com.google.javascript.rhino.jstype.FunctionType");
+        Class stringType = Class.forName("java.lang.String");
+        Class jSDocInfoType = Class.forName("com.google.javascript.rhino.JSDocInfo");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method checkDeclaredPropertyInheritanceMethod = typeCheckClazz.getDeclaredMethod("checkDeclaredPropertyInheritance", nodeTraversalType, nodeType, functionTypeType, stringType, jSDocInfoType, jSTypeType);
+        checkDeclaredPropertyInheritanceMethod.setAccessible(true);
+        java.lang.Object[] checkDeclaredPropertyInheritanceMethodArguments = new java.lang.Object[6];
+        checkDeclaredPropertyInheritanceMethodArguments[0] = nodeTraversal;
+        checkDeclaredPropertyInheritanceMethodArguments[1] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[2] = functionType;
+        checkDeclaredPropertyInheritanceMethodArguments[3] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[4] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[5] = ((Object) null);
+        try {
+            checkDeclaredPropertyInheritanceMethod.invoke(typeCheck, checkDeclaredPropertyInheritanceMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testCheckDeclaredPropertyInheritance7() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        FunctionType functionType = ((FunctionType) createInstance("com.google.javascript.rhino.jstype.FunctionType"));
+        Class kindClazz = Class.forName("com.google.javascript.rhino.jstype.FunctionType$Kind");
+        Object kind = getEnumConstantByName(kindClazz, "INTERFACE");
+        setField(functionType, "com.google.javascript.rhino.jstype.FunctionType", "kind", kind);
+        Object implicitPrototypeFallback = createInstance("com.google.javascript.rhino.jstype.NamedType");
+        setField(functionType, "com.google.javascript.rhino.jstype.PrototypeObjectType", "implicitPrototypeFallback", implicitPrototypeFallback);
+        setField(functionType, "com.google.javascript.rhino.jstype.ObjectType", "unknown", true);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.checkDeclaredPropertyInheritance] produces [java.lang.NullPointerException]
+            com.google.javascript.rhino.jstype.ProxyObjectType.isUnknownType(ProxyObjectType.java:128)
+            com.google.javascript.rhino.jstype.ObjectType.isUnknownType(ObjectType.java:477)
+            com.google.javascript.jscomp.TypeCheck.hasUnknownOrEmptySupertype(TypeCheck.java:1106)
+            com.google.javascript.jscomp.TypeCheck.checkDeclaredPropertyInheritance(TypeCheck.java:1019) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class functionTypeType = Class.forName("com.google.javascript.rhino.jstype.FunctionType");
+        Class stringType = Class.forName("java.lang.String");
+        Class jSDocInfoType = Class.forName("com.google.javascript.rhino.JSDocInfo");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method checkDeclaredPropertyInheritanceMethod = typeCheckClazz.getDeclaredMethod("checkDeclaredPropertyInheritance", nodeTraversalType, nodeType, functionTypeType, stringType, jSDocInfoType, jSTypeType);
+        checkDeclaredPropertyInheritanceMethod.setAccessible(true);
+        java.lang.Object[] checkDeclaredPropertyInheritanceMethodArguments = new java.lang.Object[6];
+        checkDeclaredPropertyInheritanceMethodArguments[0] = nodeTraversal;
+        checkDeclaredPropertyInheritanceMethodArguments[1] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[2] = functionType;
+        checkDeclaredPropertyInheritanceMethodArguments[3] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[4] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[5] = ((Object) null);
+        try {
+            checkDeclaredPropertyInheritanceMethod.invoke(typeCheck, checkDeclaredPropertyInheritanceMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testCheckDeclaredPropertyInheritance8() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        FunctionType anonymousFunctionType = ((FunctionType) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry$1"));
+        Class kindClazz = Class.forName("com.google.javascript.rhino.jstype.FunctionType$Kind");
+        Object kind = getEnumConstantByName(kindClazz, "CONSTRUCTOR");
+        setField(anonymousFunctionType, "com.google.javascript.rhino.jstype.FunctionType", "kind", kind);
+        FunctionPrototypeType implicitPrototypeFallback = ((FunctionPrototypeType) createInstance("com.google.javascript.rhino.jstype.FunctionPrototypeType"));
+        setField(anonymousFunctionType, "com.google.javascript.rhino.jstype.PrototypeObjectType", "implicitPrototypeFallback", implicitPrototypeFallback);
+        setField(anonymousFunctionType, "com.google.javascript.rhino.jstype.ObjectType", "unknown", true);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.checkDeclaredPropertyInheritance] produces [java.lang.NullPointerException]
+            com.google.javascript.rhino.jstype.PrototypeObjectType.<init>(PrototypeObjectType.java:118)
+            com.google.javascript.rhino.jstype.FunctionPrototypeType.<init>(FunctionPrototypeType.java:55)
+            com.google.javascript.rhino.jstype.FunctionPrototypeType.<init>(FunctionPrototypeType.java:62)
+            com.google.javascript.rhino.jstype.FunctionType.getPrototype(FunctionType.java:261)
+            com.google.javascript.jscomp.TypeCheck.hasUnknownOrEmptySupertype(TypeCheck.java:1112)
+            com.google.javascript.jscomp.TypeCheck.checkDeclaredPropertyInheritance(TypeCheck.java:1019) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class anonymousFunctionTypeType = Class.forName("com.google.javascript.rhino.jstype.FunctionType");
+        Class stringType = Class.forName("java.lang.String");
+        Class jSDocInfoType = Class.forName("com.google.javascript.rhino.JSDocInfo");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method checkDeclaredPropertyInheritanceMethod = typeCheckClazz.getDeclaredMethod("checkDeclaredPropertyInheritance", nodeTraversalType, nodeType, anonymousFunctionTypeType, stringType, jSDocInfoType, jSTypeType);
+        checkDeclaredPropertyInheritanceMethod.setAccessible(true);
+        java.lang.Object[] checkDeclaredPropertyInheritanceMethodArguments = new java.lang.Object[6];
+        checkDeclaredPropertyInheritanceMethodArguments[0] = nodeTraversal;
+        checkDeclaredPropertyInheritanceMethodArguments[1] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[2] = anonymousFunctionType;
+        checkDeclaredPropertyInheritanceMethodArguments[3] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[4] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[5] = ((Object) null);
+        try {
+            checkDeclaredPropertyInheritanceMethod.invoke(typeCheck, checkDeclaredPropertyInheritanceMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testCheckDeclaredPropertyInheritance9() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        FunctionType functionType = ((FunctionType) createInstance("com.google.javascript.rhino.jstype.FunctionType"));
+        Class kindClazz = Class.forName("com.google.javascript.rhino.jstype.FunctionType$Kind");
+        Object kind = getEnumConstantByName(kindClazz, "CONSTRUCTOR");
+        setField(functionType, "com.google.javascript.rhino.jstype.FunctionType", "kind", kind);
+        Object implicitPrototypeFallback = createInstance("com.google.javascript.rhino.jstype.NamedType");
+        setField(functionType, "com.google.javascript.rhino.jstype.PrototypeObjectType", "implicitPrototypeFallback", implicitPrototypeFallback);
+        setField(functionType, "com.google.javascript.rhino.jstype.ObjectType", "unknown", true);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.checkDeclaredPropertyInheritance] produces [java.lang.NullPointerException]
+            com.google.javascript.rhino.jstype.ProxyObjectType.isUnknownType(ProxyObjectType.java:128)
+            com.google.javascript.rhino.jstype.ObjectType.isUnknownType(ObjectType.java:477)
+            com.google.javascript.jscomp.TypeCheck.hasUnknownOrEmptySupertype(TypeCheck.java:1106)
+            com.google.javascript.jscomp.TypeCheck.checkDeclaredPropertyInheritance(TypeCheck.java:1019) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class functionTypeType = Class.forName("com.google.javascript.rhino.jstype.FunctionType");
+        Class stringType = Class.forName("java.lang.String");
+        Class jSDocInfoType = Class.forName("com.google.javascript.rhino.JSDocInfo");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method checkDeclaredPropertyInheritanceMethod = typeCheckClazz.getDeclaredMethod("checkDeclaredPropertyInheritance", nodeTraversalType, nodeType, functionTypeType, stringType, jSDocInfoType, jSTypeType);
+        checkDeclaredPropertyInheritanceMethod.setAccessible(true);
+        java.lang.Object[] checkDeclaredPropertyInheritanceMethodArguments = new java.lang.Object[6];
+        checkDeclaredPropertyInheritanceMethodArguments[0] = nodeTraversal;
+        checkDeclaredPropertyInheritanceMethodArguments[1] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[2] = functionType;
+        checkDeclaredPropertyInheritanceMethodArguments[3] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[4] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[5] = ((Object) null);
+        try {
+            checkDeclaredPropertyInheritanceMethod.invoke(typeCheck, checkDeclaredPropertyInheritanceMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testCheckDeclaredPropertyInheritance10() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Object noResolvedType = createInstance("com.google.javascript.rhino.jstype.NoResolvedType");
+        FunctionPrototypeType prototype = ((FunctionPrototypeType) createInstance("com.google.javascript.rhino.jstype.FunctionPrototypeType"));
+        Object implicitPrototypeFallback = createInstance("com.google.javascript.rhino.jstype.NamedType");
+        setField(prototype, "com.google.javascript.rhino.jstype.PrototypeObjectType", "implicitPrototypeFallback", implicitPrototypeFallback);
+        setField(noResolvedType, "com.google.javascript.rhino.jstype.FunctionType", "prototype", prototype);
+        Class kindClazz = Class.forName("com.google.javascript.rhino.jstype.FunctionType$Kind");
+        Object kind = getEnumConstantByName(kindClazz, "INTERFACE");
+        setField(noResolvedType, "com.google.javascript.rhino.jstype.FunctionType", "kind", kind);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.checkDeclaredPropertyInheritance] produces [java.lang.NullPointerException]
+            com.google.javascript.rhino.jstype.ProxyObjectType.isUnknownType(ProxyObjectType.java:128)
+            com.google.javascript.jscomp.TypeCheck.hasUnknownOrEmptySupertype(TypeCheck.java:1116)
+            com.google.javascript.jscomp.TypeCheck.checkDeclaredPropertyInheritance(TypeCheck.java:1019) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class noResolvedTypeType = Class.forName("com.google.javascript.rhino.jstype.FunctionType");
+        Class stringType = Class.forName("java.lang.String");
+        Class jSDocInfoType = Class.forName("com.google.javascript.rhino.JSDocInfo");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method checkDeclaredPropertyInheritanceMethod = typeCheckClazz.getDeclaredMethod("checkDeclaredPropertyInheritance", nodeTraversalType, nodeType, noResolvedTypeType, stringType, jSDocInfoType, jSTypeType);
+        checkDeclaredPropertyInheritanceMethod.setAccessible(true);
+        java.lang.Object[] checkDeclaredPropertyInheritanceMethodArguments = new java.lang.Object[6];
+        checkDeclaredPropertyInheritanceMethodArguments[0] = nodeTraversal;
+        checkDeclaredPropertyInheritanceMethodArguments[1] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[2] = noResolvedType;
+        checkDeclaredPropertyInheritanceMethodArguments[3] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[4] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[5] = ((Object) null);
+        try {
+            checkDeclaredPropertyInheritanceMethod.invoke(typeCheck, checkDeclaredPropertyInheritanceMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testCheckDeclaredPropertyInheritance11() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        FunctionType functionType = ((FunctionType) createInstance("com.google.javascript.rhino.jstype.FunctionType"));
+        FunctionPrototypeType prototype = ((FunctionPrototypeType) createInstance("com.google.javascript.rhino.jstype.FunctionPrototypeType"));
+        setField(prototype, "com.google.javascript.rhino.jstype.PrototypeObjectType", "nativeType", true);
+        TemplateType implicitPrototypeFallback = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(prototype, "com.google.javascript.rhino.jstype.PrototypeObjectType", "implicitPrototypeFallback", implicitPrototypeFallback);
+        setField(functionType, "com.google.javascript.rhino.jstype.FunctionType", "prototype", prototype);
+        Class kindClazz = Class.forName("com.google.javascript.rhino.jstype.FunctionType$Kind");
+        Object kind = getEnumConstantByName(kindClazz, "CONSTRUCTOR");
+        setField(functionType, "com.google.javascript.rhino.jstype.FunctionType", "kind", kind);
+        setField(functionType, "com.google.javascript.rhino.jstype.PrototypeObjectType", "implicitPrototypeFallback", prototype);
+        setField(functionType, "com.google.javascript.rhino.jstype.ObjectType", "unknown", true);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.checkDeclaredPropertyInheritance] produces [java.lang.NullPointerException]
+            com.google.javascript.rhino.jstype.ProxyObjectType.isUnknownType(ProxyObjectType.java:128)
+            com.google.javascript.rhino.jstype.TemplateType.isUnknownType(TemplateType.java:48)
+            com.google.javascript.jscomp.TypeCheck.hasUnknownOrEmptySupertype(TypeCheck.java:1116)
+            com.google.javascript.jscomp.TypeCheck.checkDeclaredPropertyInheritance(TypeCheck.java:1019) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class functionTypeType = Class.forName("com.google.javascript.rhino.jstype.FunctionType");
+        Class stringType = Class.forName("java.lang.String");
+        Class jSDocInfoType = Class.forName("com.google.javascript.rhino.JSDocInfo");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method checkDeclaredPropertyInheritanceMethod = typeCheckClazz.getDeclaredMethod("checkDeclaredPropertyInheritance", nodeTraversalType, nodeType, functionTypeType, stringType, jSDocInfoType, jSTypeType);
+        checkDeclaredPropertyInheritanceMethod.setAccessible(true);
+        java.lang.Object[] checkDeclaredPropertyInheritanceMethodArguments = new java.lang.Object[6];
+        checkDeclaredPropertyInheritanceMethodArguments[0] = nodeTraversal;
+        checkDeclaredPropertyInheritanceMethodArguments[1] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[2] = functionType;
+        checkDeclaredPropertyInheritanceMethodArguments[3] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[4] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[5] = ((Object) null);
+        try {
+            checkDeclaredPropertyInheritanceMethod.invoke(typeCheck, checkDeclaredPropertyInheritanceMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testCheckDeclaredPropertyInheritance12() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        FunctionType anonymousFunctionType = ((FunctionType) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry$1"));
+        FunctionPrototypeType prototype = ((FunctionPrototypeType) createInstance("com.google.javascript.rhino.jstype.FunctionPrototypeType"));
+        Object implicitPrototypeFallback = createInstance("com.google.javascript.rhino.jstype.NamedType");
+        setField(prototype, "com.google.javascript.rhino.jstype.PrototypeObjectType", "implicitPrototypeFallback", implicitPrototypeFallback);
+        setField(anonymousFunctionType, "com.google.javascript.rhino.jstype.FunctionType", "prototype", prototype);
+        Class kindClazz = Class.forName("com.google.javascript.rhino.jstype.FunctionType$Kind");
+        Object kind = getEnumConstantByName(kindClazz, "CONSTRUCTOR");
+        setField(anonymousFunctionType, "com.google.javascript.rhino.jstype.FunctionType", "kind", kind);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.checkDeclaredPropertyInheritance] produces [java.lang.NullPointerException]
+            com.google.javascript.rhino.jstype.ProxyObjectType.isUnknownType(ProxyObjectType.java:128)
+            com.google.javascript.jscomp.TypeCheck.hasUnknownOrEmptySupertype(TypeCheck.java:1116)
+            com.google.javascript.jscomp.TypeCheck.checkDeclaredPropertyInheritance(TypeCheck.java:1019) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class anonymousFunctionTypeType = Class.forName("com.google.javascript.rhino.jstype.FunctionType");
+        Class stringType = Class.forName("java.lang.String");
+        Class jSDocInfoType = Class.forName("com.google.javascript.rhino.JSDocInfo");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method checkDeclaredPropertyInheritanceMethod = typeCheckClazz.getDeclaredMethod("checkDeclaredPropertyInheritance", nodeTraversalType, nodeType, anonymousFunctionTypeType, stringType, jSDocInfoType, jSTypeType);
+        checkDeclaredPropertyInheritanceMethod.setAccessible(true);
+        java.lang.Object[] checkDeclaredPropertyInheritanceMethodArguments = new java.lang.Object[6];
+        checkDeclaredPropertyInheritanceMethodArguments[0] = nodeTraversal;
+        checkDeclaredPropertyInheritanceMethodArguments[1] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[2] = anonymousFunctionType;
+        checkDeclaredPropertyInheritanceMethodArguments[3] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[4] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[5] = ((Object) null);
+        try {
+            checkDeclaredPropertyInheritanceMethod.invoke(typeCheck, checkDeclaredPropertyInheritanceMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testCheckDeclaredPropertyInheritance13() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        FunctionType anonymousFunctionType = ((FunctionType) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry$1"));
+        FunctionPrototypeType prototype = ((FunctionPrototypeType) createInstance("com.google.javascript.rhino.jstype.FunctionPrototypeType"));
+        setField(anonymousFunctionType, "com.google.javascript.rhino.jstype.FunctionType", "prototype", prototype);
+        Class kindClazz = Class.forName("com.google.javascript.rhino.jstype.FunctionType$Kind");
+        Object kind = getEnumConstantByName(kindClazz, "CONSTRUCTOR");
+        setField(anonymousFunctionType, "com.google.javascript.rhino.jstype.FunctionType", "kind", kind);
+        Object implicitPrototypeFallback = createInstance("com.google.javascript.rhino.jstype.NoResolvedType");
+        setField(implicitPrototypeFallback, "com.google.javascript.rhino.jstype.PrototypeObjectType", "nativeType", true);
+        setField(anonymousFunctionType, "com.google.javascript.rhino.jstype.PrototypeObjectType", "implicitPrototypeFallback", implicitPrototypeFallback);
+        setField(anonymousFunctionType, "com.google.javascript.rhino.jstype.ObjectType", "unknown", true);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.checkDeclaredPropertyInheritance] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.checkDeclaredPropertyInheritance(TypeCheck.java:1030) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class anonymousFunctionTypeType = Class.forName("com.google.javascript.rhino.jstype.FunctionType");
+        Class stringType = Class.forName("java.lang.String");
+        Class jSDocInfoType = Class.forName("com.google.javascript.rhino.JSDocInfo");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method checkDeclaredPropertyInheritanceMethod = typeCheckClazz.getDeclaredMethod("checkDeclaredPropertyInheritance", nodeTraversalType, nodeType, anonymousFunctionTypeType, stringType, jSDocInfoType, jSTypeType);
+        checkDeclaredPropertyInheritanceMethod.setAccessible(true);
+        java.lang.Object[] checkDeclaredPropertyInheritanceMethodArguments = new java.lang.Object[6];
+        checkDeclaredPropertyInheritanceMethodArguments[0] = nodeTraversal;
+        checkDeclaredPropertyInheritanceMethodArguments[1] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[2] = anonymousFunctionType;
+        checkDeclaredPropertyInheritanceMethodArguments[3] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[4] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[5] = ((Object) null);
+        try {
+            checkDeclaredPropertyInheritanceMethod.invoke(typeCheck, checkDeclaredPropertyInheritanceMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testCheckDeclaredPropertyInheritance14() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        FunctionType anonymousFunctionType = ((FunctionType) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry$1"));
+        Class kindClazz = Class.forName("com.google.javascript.rhino.jstype.FunctionType$Kind");
+        Object kind = getEnumConstantByName(kindClazz, "INTERFACE");
+        setField(anonymousFunctionType, "com.google.javascript.rhino.jstype.FunctionType", "kind", kind);
+        Object implicitPrototypeFallback = createInstance("com.google.javascript.rhino.jstype.NoResolvedType");
+        setField(implicitPrototypeFallback, "com.google.javascript.rhino.jstype.PrototypeObjectType", "nativeType", true);
+        setField(anonymousFunctionType, "com.google.javascript.rhino.jstype.PrototypeObjectType", "implicitPrototypeFallback", implicitPrototypeFallback);
+        setField(anonymousFunctionType, "com.google.javascript.rhino.jstype.ObjectType", "unknown", true);
+        String string = "";
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.checkDeclaredPropertyInheritance] produces [java.lang.NullPointerException]
+            com.google.javascript.rhino.jstype.PrototypeObjectType.<init>(PrototypeObjectType.java:118)
+            com.google.javascript.rhino.jstype.FunctionPrototypeType.<init>(FunctionPrototypeType.java:55)
+            com.google.javascript.rhino.jstype.FunctionPrototypeType.<init>(FunctionPrototypeType.java:62)
+            com.google.javascript.rhino.jstype.FunctionType.getPrototype(FunctionType.java:261)
+            com.google.javascript.jscomp.TypeCheck.hasUnknownOrEmptySupertype(TypeCheck.java:1112)
+            com.google.javascript.jscomp.TypeCheck.checkDeclaredPropertyInheritance(TypeCheck.java:1019) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class anonymousFunctionTypeType = Class.forName("com.google.javascript.rhino.jstype.FunctionType");
+        Class stringType = Class.forName("java.lang.String");
+        Class jSDocInfoType = Class.forName("com.google.javascript.rhino.JSDocInfo");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method checkDeclaredPropertyInheritanceMethod = typeCheckClazz.getDeclaredMethod("checkDeclaredPropertyInheritance", nodeTraversalType, nodeType, anonymousFunctionTypeType, stringType, jSDocInfoType, jSTypeType);
+        checkDeclaredPropertyInheritanceMethod.setAccessible(true);
+        java.lang.Object[] checkDeclaredPropertyInheritanceMethodArguments = new java.lang.Object[6];
+        checkDeclaredPropertyInheritanceMethodArguments[0] = nodeTraversal;
+        checkDeclaredPropertyInheritanceMethodArguments[1] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[2] = anonymousFunctionType;
+        checkDeclaredPropertyInheritanceMethodArguments[3] = string;
+        checkDeclaredPropertyInheritanceMethodArguments[4] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[5] = ((Object) null);
+        try {
+            checkDeclaredPropertyInheritanceMethod.invoke(typeCheck, checkDeclaredPropertyInheritanceMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testCheckDeclaredPropertyInheritance15() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        NoType noType = ((NoType) createInstance("com.google.javascript.rhino.jstype.NoType"));
+        Class kindClazz = Class.forName("com.google.javascript.rhino.jstype.FunctionType$Kind");
+        Object kind = getEnumConstantByName(kindClazz, "CONSTRUCTOR");
+        setField(noType, "com.google.javascript.rhino.jstype.FunctionType", "kind", kind);
+        JSTypeRegistry registry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        setField(noType, "com.google.javascript.rhino.jstype.JSType", "registry", registry);
+        String string = "";
+        JSDocInfo jSDocInfo = new JSDocInfo();
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.checkDeclaredPropertyInheritance] produces [java.lang.NullPointerException]
+            com.google.javascript.rhino.jstype.JSTypeRegistry.getNativeType(JSTypeRegistry.java:813)
+            com.google.javascript.rhino.jstype.JSTypeRegistry.getNativeObjectType(JSTypeRegistry.java:817)
+            com.google.javascript.rhino.jstype.PrototypeObjectType.<init>(PrototypeObjectType.java:118)
+            com.google.javascript.rhino.jstype.FunctionPrototypeType.<init>(FunctionPrototypeType.java:55)
+            com.google.javascript.rhino.jstype.FunctionPrototypeType.<init>(FunctionPrototypeType.java:62)
+            com.google.javascript.rhino.jstype.FunctionType.getPrototype(FunctionType.java:261)
+            com.google.javascript.jscomp.TypeCheck.hasUnknownOrEmptySupertype(TypeCheck.java:1112)
+            com.google.javascript.jscomp.TypeCheck.checkDeclaredPropertyInheritance(TypeCheck.java:1019) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class noTypeType = Class.forName("com.google.javascript.rhino.jstype.FunctionType");
+        Class stringType = Class.forName("java.lang.String");
+        Class jSDocInfoType = Class.forName("com.google.javascript.rhino.JSDocInfo");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method checkDeclaredPropertyInheritanceMethod = typeCheckClazz.getDeclaredMethod("checkDeclaredPropertyInheritance", nodeTraversalType, scriptOrFnNodeType, noTypeType, stringType, jSDocInfoType, jSTypeType);
+        checkDeclaredPropertyInheritanceMethod.setAccessible(true);
+        java.lang.Object[] checkDeclaredPropertyInheritanceMethodArguments = new java.lang.Object[6];
+        checkDeclaredPropertyInheritanceMethodArguments[0] = ((Object) null);
+        checkDeclaredPropertyInheritanceMethodArguments[1] = scriptOrFnNode;
+        checkDeclaredPropertyInheritanceMethodArguments[2] = noType;
+        checkDeclaredPropertyInheritanceMethodArguments[3] = string;
+        checkDeclaredPropertyInheritanceMethodArguments[4] = jSDocInfo;
+        checkDeclaredPropertyInheritanceMethodArguments[5] = ((Object) null);
+        try {
+            checkDeclaredPropertyInheritanceMethod.invoke(typeCheck, checkDeclaredPropertyInheritanceMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.visitBinaryOperator
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method visitBinaryOperator(int, com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitBinaryOperator(int,com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.ArrayIndexOutOfBoundsException} in: JSType leftType = getJSType(left);
+ *  */
+    @Test
+    public void testVisitBinaryOperator_ThrowArrayIndexOutOfBoundsException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = {};
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.ArrayIndexOutOfBoundsException: Index 35 out of bounds for length 0]
+            com.google.javascript.rhino.jstype.JSTypeRegistry.getNativeType(JSTypeRegistry.java:813)
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1711)
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1581) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, nodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = 1;
+        visitBinaryOperatorMethodArguments[1] = ((Object) null);
+        visitBinaryOperatorMethodArguments[2] = node;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitBinaryOperator(int,com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: Node left = n.getFirstChild();
+ *  */
+    @Test
+    public void testVisitBinaryOperator_ThrowNullPointerException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1580) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, nodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = -255;
+        visitBinaryOperatorMethodArguments[1] = ((Object) null);
+        visitBinaryOperatorMethodArguments[2] = ((Object) null);
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitBinaryOperator(int,com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: JSType leftType = getJSType(left);
+ *  */
+    @Test
+    public void testVisitBinaryOperator_ThrowNullPointerException_1() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1705)
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1581) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, scriptOrFnNodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = -255;
+        visitBinaryOperatorMethodArguments[1] = ((Object) null);
+        visitBinaryOperatorMethodArguments[2] = scriptOrFnNode;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitBinaryOperator(int,com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: JSType leftType = getJSType(left);
+ *  */
+    @Test
+    public void testVisitBinaryOperator_ThrowNullPointerException_2() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        Node first = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        setField(functionNode, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1711)
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1581) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, functionNodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = -255;
+        visitBinaryOperatorMethodArguments[1] = ((Object) null);
+        visitBinaryOperatorMethodArguments[2] = functionNode;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitBinaryOperator(int,com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#getLastChild()}
+ * @utbot.invokes com.google.javascript.jscomp.TypeCheck#getJSType(com.google.javascript.rhino.Node)
+ * @utbot.invokes {@link com.google.javascript.jscomp.TypeValidator#expectBitwiseable(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType,java.lang.String)}
+ * @utbot.activatesSwitch {@code switch(op) case: Token.BITOR}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: validator.expectBitwiseable(t, left, leftType, "bad left operand to bitwise operator");
+ *  */
+    @Test
+    public void testVisitBinaryOperator_ThrowNullPointerException_3() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        FunctionNode first = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        TemplateType jsType = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(functionNode, "com.google.javascript.rhino.Node", "first", first);
+        FunctionNode last = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        setField(last, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(functionNode, "com.google.javascript.rhino.Node", "last", last);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1619) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, functionNodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = 88;
+        visitBinaryOperatorMethodArguments[1] = ((Object) null);
+        visitBinaryOperatorMethodArguments[2] = functionNode;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///region OTHER: ERROR SUITE for method visitBinaryOperator(int, com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node)
+    
+    @Test
+    public void testVisitBinaryOperator1() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        VoidType jsType = ((VoidType) createInstance("com.google.javascript.rhino.jstype.VoidType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        ScriptOrFnNode last = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        TemplateType jsType1 = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(last, "com.google.javascript.rhino.Node", "jsType", jsType1);
+        setField(node, "com.google.javascript.rhino.Node", "last", last);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.NodeTraversal.report(NodeTraversal.java:610)
+            com.google.javascript.jscomp.TypeCheck.report(TypeCheck.java:404)
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1630) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, nodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = 46;
+        visitBinaryOperatorMethodArguments[1] = nodeTraversal;
+        visitBinaryOperatorMethodArguments[2] = node;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitBinaryOperator2() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        VoidType jsType = ((VoidType) createInstance("com.google.javascript.rhino.jstype.VoidType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        ScriptOrFnNode last = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        TemplateType jsType1 = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(last, "com.google.javascript.rhino.Node", "jsType", jsType1);
+        setField(node, "com.google.javascript.rhino.Node", "last", last);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.NodeTraversal.report(NodeTraversal.java:610)
+            com.google.javascript.jscomp.TypeCheck.report(TypeCheck.java:404)
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1630) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, nodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = 79;
+        visitBinaryOperatorMethodArguments[1] = nodeTraversal;
+        visitBinaryOperatorMethodArguments[2] = node;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitBinaryOperator3() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        VoidType jsType = ((VoidType) createInstance("com.google.javascript.rhino.jstype.VoidType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        ScriptOrFnNode last = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        TemplateType jsType1 = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(last, "com.google.javascript.rhino.Node", "jsType", jsType1);
+        setField(node, "com.google.javascript.rhino.Node", "last", last);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.NodeTraversal.report(NodeTraversal.java:610)
+            com.google.javascript.jscomp.TypeCheck.report(TypeCheck.java:404)
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1630) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, nodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = 85;
+        visitBinaryOperatorMethodArguments[1] = nodeTraversal;
+        visitBinaryOperatorMethodArguments[2] = node;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitBinaryOperator4() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        VoidType jsType = ((VoidType) createInstance("com.google.javascript.rhino.jstype.VoidType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        ScriptOrFnNode last = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        TemplateType jsType1 = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(last, "com.google.javascript.rhino.Node", "jsType", jsType1);
+        setField(node, "com.google.javascript.rhino.Node", "last", last);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.NodeTraversal.report(NodeTraversal.java:610)
+            com.google.javascript.jscomp.TypeCheck.report(TypeCheck.java:404)
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1592) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, nodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = 90;
+        visitBinaryOperatorMethodArguments[1] = nodeTraversal;
+        visitBinaryOperatorMethodArguments[2] = node;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitBinaryOperator5() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        VoidType jsType = ((VoidType) createInstance("com.google.javascript.rhino.jstype.VoidType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        ScriptOrFnNode last = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        TemplateType jsType1 = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(last, "com.google.javascript.rhino.Node", "jsType", jsType1);
+        setField(node, "com.google.javascript.rhino.Node", "last", last);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.NodeTraversal.report(NodeTraversal.java:610)
+            com.google.javascript.jscomp.TypeCheck.report(TypeCheck.java:404)
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1630) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, nodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = 60;
+        visitBinaryOperatorMethodArguments[1] = nodeTraversal;
+        visitBinaryOperatorMethodArguments[2] = node;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitBinaryOperator6() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        VoidType jsType = ((VoidType) createInstance("com.google.javascript.rhino.jstype.VoidType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        ScriptOrFnNode last = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        TemplateType jsType1 = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(last, "com.google.javascript.rhino.Node", "jsType", jsType1);
+        setField(node, "com.google.javascript.rhino.Node", "last", last);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.NodeTraversal.report(NodeTraversal.java:610)
+            com.google.javascript.jscomp.TypeCheck.report(TypeCheck.java:404)
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1630) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, nodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = 41;
+        visitBinaryOperatorMethodArguments[1] = nodeTraversal;
+        visitBinaryOperatorMethodArguments[2] = node;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitBinaryOperator7() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        VoidType jsType = ((VoidType) createInstance("com.google.javascript.rhino.jstype.VoidType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        ScriptOrFnNode last = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        TemplateType jsType1 = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(last, "com.google.javascript.rhino.Node", "jsType", jsType1);
+        setField(node, "com.google.javascript.rhino.Node", "last", last);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.NodeTraversal.report(NodeTraversal.java:610)
+            com.google.javascript.jscomp.TypeCheck.report(TypeCheck.java:404)
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1630) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, nodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = 15;
+        visitBinaryOperatorMethodArguments[1] = nodeTraversal;
+        visitBinaryOperatorMethodArguments[2] = node;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitBinaryOperator8() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        VoidType jsType = ((VoidType) createInstance("com.google.javascript.rhino.jstype.VoidType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        ScriptOrFnNode last = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        TemplateType jsType1 = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(last, "com.google.javascript.rhino.Node", "jsType", jsType1);
+        setField(node, "com.google.javascript.rhino.Node", "last", last);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.NodeTraversal.report(NodeTraversal.java:610)
+            com.google.javascript.jscomp.TypeCheck.report(TypeCheck.java:404)
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1630) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, nodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = 65;
+        visitBinaryOperatorMethodArguments[1] = nodeTraversal;
+        visitBinaryOperatorMethodArguments[2] = node;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitBinaryOperator9() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        VoidType jsType = ((VoidType) createInstance("com.google.javascript.rhino.jstype.VoidType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        ScriptOrFnNode last = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        TemplateType jsType1 = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(last, "com.google.javascript.rhino.Node", "jsType", jsType1);
+        setField(node, "com.google.javascript.rhino.Node", "last", last);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.NodeTraversal.report(NodeTraversal.java:610)
+            com.google.javascript.jscomp.TypeCheck.report(TypeCheck.java:404)
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1630) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, nodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = 86;
+        visitBinaryOperatorMethodArguments[1] = nodeTraversal;
+        visitBinaryOperatorMethodArguments[2] = node;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitBinaryOperator10() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        VoidType jsType = ((VoidType) createInstance("com.google.javascript.rhino.jstype.VoidType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        ScriptOrFnNode last = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        TemplateType jsType1 = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(last, "com.google.javascript.rhino.Node", "jsType", jsType1);
+        setField(node, "com.google.javascript.rhino.Node", "last", last);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.NodeTraversal.report(NodeTraversal.java:610)
+            com.google.javascript.jscomp.TypeCheck.report(TypeCheck.java:404)
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1630) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, nodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = 55;
+        visitBinaryOperatorMethodArguments[1] = nodeTraversal;
+        visitBinaryOperatorMethodArguments[2] = node;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitBinaryOperator11() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        VoidType jsType = ((VoidType) createInstance("com.google.javascript.rhino.jstype.VoidType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        ScriptOrFnNode last = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        TemplateType jsType1 = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(last, "com.google.javascript.rhino.Node", "jsType", jsType1);
+        setField(node, "com.google.javascript.rhino.Node", "last", last);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.NodeTraversal.report(NodeTraversal.java:610)
+            com.google.javascript.jscomp.TypeCheck.report(TypeCheck.java:404)
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1630) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, nodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = 64;
+        visitBinaryOperatorMethodArguments[1] = nodeTraversal;
+        visitBinaryOperatorMethodArguments[2] = node;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitBinaryOperator12() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        VoidType jsType = ((VoidType) createInstance("com.google.javascript.rhino.jstype.VoidType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        ScriptOrFnNode last = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        TemplateType jsType1 = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(last, "com.google.javascript.rhino.Node", "jsType", jsType1);
+        setField(node, "com.google.javascript.rhino.Node", "last", last);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.NodeTraversal.report(NodeTraversal.java:610)
+            com.google.javascript.jscomp.TypeCheck.report(TypeCheck.java:404)
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1630) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, nodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = 26;
+        visitBinaryOperatorMethodArguments[1] = nodeTraversal;
+        visitBinaryOperatorMethodArguments[2] = node;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitBinaryOperator13() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        VoidType jsType = ((VoidType) createInstance("com.google.javascript.rhino.jstype.VoidType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        ScriptOrFnNode last = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        TemplateType jsType1 = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(last, "com.google.javascript.rhino.Node", "jsType", jsType1);
+        setField(node, "com.google.javascript.rhino.Node", "last", last);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.NodeTraversal.report(NodeTraversal.java:610)
+            com.google.javascript.jscomp.TypeCheck.report(TypeCheck.java:404)
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1630) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, nodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = 84;
+        visitBinaryOperatorMethodArguments[1] = nodeTraversal;
+        visitBinaryOperatorMethodArguments[2] = node;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitBinaryOperator14() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        VoidType jsType = ((VoidType) createInstance("com.google.javascript.rhino.jstype.VoidType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        ScriptOrFnNode last = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        TemplateType jsType1 = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(last, "com.google.javascript.rhino.Node", "jsType", jsType1);
+        setField(node, "com.google.javascript.rhino.Node", "last", last);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.NodeTraversal.report(NodeTraversal.java:610)
+            com.google.javascript.jscomp.TypeCheck.report(TypeCheck.java:404)
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1630) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, nodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = 80;
+        visitBinaryOperatorMethodArguments[1] = nodeTraversal;
+        visitBinaryOperatorMethodArguments[2] = node;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitBinaryOperator15() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        VoidType jsType = ((VoidType) createInstance("com.google.javascript.rhino.jstype.VoidType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        ScriptOrFnNode last = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        TemplateType jsType1 = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(last, "com.google.javascript.rhino.Node", "jsType", jsType1);
+        setField(node, "com.google.javascript.rhino.Node", "last", last);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.NodeTraversal.report(NodeTraversal.java:610)
+            com.google.javascript.jscomp.TypeCheck.report(TypeCheck.java:404)
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1630) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, nodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = 43;
+        visitBinaryOperatorMethodArguments[1] = nodeTraversal;
+        visitBinaryOperatorMethodArguments[2] = node;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitBinaryOperator16() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        VoidType jsType = ((VoidType) createInstance("com.google.javascript.rhino.jstype.VoidType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        ScriptOrFnNode last = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        TemplateType jsType1 = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(last, "com.google.javascript.rhino.Node", "jsType", jsType1);
+        setField(node, "com.google.javascript.rhino.Node", "last", last);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.NodeTraversal.report(NodeTraversal.java:610)
+            com.google.javascript.jscomp.TypeCheck.report(TypeCheck.java:404)
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1630) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, nodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = 34;
+        visitBinaryOperatorMethodArguments[1] = nodeTraversal;
+        visitBinaryOperatorMethodArguments[2] = node;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitBinaryOperator17() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        VoidType jsType = ((VoidType) createInstance("com.google.javascript.rhino.jstype.VoidType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        ScriptOrFnNode last = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        TemplateType jsType1 = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(last, "com.google.javascript.rhino.Node", "jsType", jsType1);
+        setField(node, "com.google.javascript.rhino.Node", "last", last);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.NodeTraversal.report(NodeTraversal.java:610)
+            com.google.javascript.jscomp.TypeCheck.report(TypeCheck.java:404)
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1630) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, nodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = 63;
+        visitBinaryOperatorMethodArguments[1] = nodeTraversal;
+        visitBinaryOperatorMethodArguments[2] = node;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitBinaryOperator18() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        VoidType jsType = ((VoidType) createInstance("com.google.javascript.rhino.jstype.VoidType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        ScriptOrFnNode last = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        TemplateType jsType1 = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(last, "com.google.javascript.rhino.Node", "jsType", jsType1);
+        setField(node, "com.google.javascript.rhino.Node", "last", last);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.ensureTyped(TypeCheck.java:1743)
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1632) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, nodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = 93;
+        visitBinaryOperatorMethodArguments[1] = nodeTraversal;
+        visitBinaryOperatorMethodArguments[2] = node;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitBinaryOperator19() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        VoidType jsType = ((VoidType) createInstance("com.google.javascript.rhino.jstype.VoidType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        ScriptOrFnNode last = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        TemplateType jsType1 = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(last, "com.google.javascript.rhino.Node", "jsType", jsType1);
+        setField(node, "com.google.javascript.rhino.Node", "last", last);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.NodeTraversal.report(NodeTraversal.java:610)
+            com.google.javascript.jscomp.TypeCheck.report(TypeCheck.java:404)
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1630) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, nodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = 29;
+        visitBinaryOperatorMethodArguments[1] = nodeTraversal;
+        visitBinaryOperatorMethodArguments[2] = node;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitBinaryOperator20() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        VoidType jsType = ((VoidType) createInstance("com.google.javascript.rhino.jstype.VoidType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        ScriptOrFnNode last = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        TemplateType jsType1 = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(last, "com.google.javascript.rhino.Node", "jsType", jsType1);
+        setField(node, "com.google.javascript.rhino.Node", "last", last);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.NodeTraversal.report(NodeTraversal.java:610)
+            com.google.javascript.jscomp.TypeCheck.report(TypeCheck.java:404)
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1630) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, nodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = 38;
+        visitBinaryOperatorMethodArguments[1] = nodeTraversal;
+        visitBinaryOperatorMethodArguments[2] = node;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitBinaryOperator21() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        VoidType jsType = ((VoidType) createInstance("com.google.javascript.rhino.jstype.VoidType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        ScriptOrFnNode last = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        TemplateType jsType1 = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(last, "com.google.javascript.rhino.Node", "jsType", jsType1);
+        setField(node, "com.google.javascript.rhino.Node", "last", last);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.NodeTraversal.report(NodeTraversal.java:610)
+            com.google.javascript.jscomp.TypeCheck.report(TypeCheck.java:404)
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1630) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, nodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = 49;
+        visitBinaryOperatorMethodArguments[1] = nodeTraversal;
+        visitBinaryOperatorMethodArguments[2] = node;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitBinaryOperator22() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Object stringNode = createInstance("com.google.javascript.rhino.Node$StringNode");
+        Object first = createInstance("com.google.javascript.rhino.Node$StringNode");
+        FunctionType jsType = ((FunctionType) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry$1"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(stringNode, "com.google.javascript.rhino.Node", "first", first);
+        ScriptOrFnNode last = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        TemplateType jsType1 = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(last, "com.google.javascript.rhino.Node", "jsType", jsType1);
+        setField(stringNode, "com.google.javascript.rhino.Node", "last", last);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.rhino.jstype.PrototypeObjectType.hasOwnProperty(PrototypeObjectType.java:154)
+            com.google.javascript.rhino.jstype.FunctionType.hasOwnProperty(FunctionType.java:371)
+            com.google.javascript.rhino.jstype.FunctionType.getPropertyType(FunctionType.java:379)
+            com.google.javascript.rhino.jstype.PrototypeObjectType.hasOverridenNativeProperty(PrototypeObjectType.java:302)
+            com.google.javascript.rhino.jstype.PrototypeObjectType.matchesNumberContext(PrototypeObjectType.java:283)
+            com.google.javascript.rhino.jstype.FunctionType.matchesNumberContext(FunctionType.java:65)
+            com.google.javascript.rhino.jstype.JSType.matchesInt32Context(JSType.java:363)
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1591) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class stringNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, stringNodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = 20;
+        visitBinaryOperatorMethodArguments[1] = nodeTraversal;
+        visitBinaryOperatorMethodArguments[2] = stringNode;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitBinaryOperator23() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        VoidType jsType = ((VoidType) createInstance("com.google.javascript.rhino.jstype.VoidType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        ScriptOrFnNode last = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        TemplateType jsType1 = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(last, "com.google.javascript.rhino.Node", "jsType", jsType1);
+        setField(node, "com.google.javascript.rhino.Node", "last", last);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.NodeTraversal.report(NodeTraversal.java:610)
+            com.google.javascript.jscomp.TypeCheck.report(TypeCheck.java:404)
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1630) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, nodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = 33;
+        visitBinaryOperatorMethodArguments[1] = nodeTraversal;
+        visitBinaryOperatorMethodArguments[2] = node;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitBinaryOperator24() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        TemplateType jsType = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1705)
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1583) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, scriptOrFnNodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = 0;
+        visitBinaryOperatorMethodArguments[1] = nodeTraversal;
+        visitBinaryOperatorMethodArguments[2] = scriptOrFnNode;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitBinaryOperator25() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        Object first = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        VoidType jsType = ((VoidType) createInstance("com.google.javascript.rhino.jstype.VoidType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(functionNode, "com.google.javascript.rhino.Node", "first", first);
+        ScriptOrFnNode last = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        TemplateType jsType1 = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(last, "com.google.javascript.rhino.Node", "jsType", jsType1);
+        setField(functionNode, "com.google.javascript.rhino.Node", "last", last);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.report(TypeCheck.java:404)
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1630) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, functionNodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = 0;
+        visitBinaryOperatorMethodArguments[1] = ((Object) null);
+        visitBinaryOperatorMethodArguments[2] = functionNode;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitBinaryOperator26() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        TypeValidator validator = ((TypeValidator) createInstance("com.google.javascript.jscomp.TypeValidator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "validator", validator);
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Object stringNode = createInstance("com.google.javascript.rhino.Node$StringNode");
+        FunctionNode first = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        NoType jsType = ((NoType) createInstance("com.google.javascript.rhino.jstype.NoType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(stringNode, "com.google.javascript.rhino.Node", "first", first);
+        ScriptOrFnNode last = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        TemplateType jsType1 = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(last, "com.google.javascript.rhino.Node", "jsType", jsType1);
+        setField(stringNode, "com.google.javascript.rhino.Node", "last", last);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.rhino.jstype.ProxyObjectType.matchesNumberContext(ProxyObjectType.java:94)
+            com.google.javascript.rhino.jstype.TemplateType.matchesNumberContext(TemplateType.java:48)
+            com.google.javascript.jscomp.TypeValidator.expectBitwiseable(TypeValidator.java:210)
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1621) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class stringNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, stringNodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = 88;
+        visitBinaryOperatorMethodArguments[1] = nodeTraversal;
+        visitBinaryOperatorMethodArguments[2] = stringNode;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitBinaryOperator27() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        TypeValidator validator = ((TypeValidator) createInstance("com.google.javascript.jscomp.TypeValidator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "validator", validator);
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Object stringNode = createInstance("com.google.javascript.rhino.Node$StringNode");
+        FunctionNode first = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        VoidType jsType = ((VoidType) createInstance("com.google.javascript.rhino.jstype.VoidType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(stringNode, "com.google.javascript.rhino.Node", "first", first);
+        ScriptOrFnNode last = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        TemplateType jsType1 = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(last, "com.google.javascript.rhino.Node", "jsType", jsType1);
+        setField(stringNode, "com.google.javascript.rhino.Node", "last", last);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeValidator.getNativeType(TypeValidator.java:729)
+            com.google.javascript.jscomp.TypeValidator.mismatch(TypeValidator.java:602)
+            com.google.javascript.jscomp.TypeValidator.expectNumber(TypeValidator.java:200)
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1609) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class stringNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, stringNodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = 95;
+        visitBinaryOperatorMethodArguments[1] = nodeTraversal;
+        visitBinaryOperatorMethodArguments[2] = stringNode;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitBinaryOperator28() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        TypeValidator validator = ((TypeValidator) createInstance("com.google.javascript.jscomp.TypeValidator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "validator", validator);
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Object stringNode = createInstance("com.google.javascript.rhino.Node$StringNode");
+        FunctionNode first = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        NoType jsType = ((NoType) createInstance("com.google.javascript.rhino.jstype.NoType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(stringNode, "com.google.javascript.rhino.Node", "first", first);
+        ScriptOrFnNode last = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        TemplateType jsType1 = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(last, "com.google.javascript.rhino.Node", "jsType", jsType1);
+        setField(stringNode, "com.google.javascript.rhino.Node", "last", last);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.rhino.jstype.ProxyObjectType.matchesNumberContext(ProxyObjectType.java:94)
+            com.google.javascript.rhino.jstype.TemplateType.matchesNumberContext(TemplateType.java:48)
+            com.google.javascript.jscomp.TypeValidator.expectNumber(TypeValidator.java:199)
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1610) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class stringNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, stringNodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = 96;
+        visitBinaryOperatorMethodArguments[1] = nodeTraversal;
+        visitBinaryOperatorMethodArguments[2] = stringNode;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitBinaryOperator29() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        VoidType jsType = ((VoidType) createInstance("com.google.javascript.rhino.jstype.VoidType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        ScriptOrFnNode last = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        TemplateType jsType1 = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(last, "com.google.javascript.rhino.Node", "jsType", jsType1);
+        setField(node, "com.google.javascript.rhino.Node", "last", last);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1609) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, nodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = 97;
+        visitBinaryOperatorMethodArguments[1] = nodeTraversal;
+        visitBinaryOperatorMethodArguments[2] = node;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitBinaryOperator30() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = new com.google.javascript.rhino.jstype.JSType[38];
+        Object proxyObjectType = createInstance("com.google.javascript.rhino.jstype.ProxyObjectType");
+        nativeTypes[35] = ((JSType) proxyObjectType);
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1705)
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1583) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, scriptOrFnNodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = 0;
+        visitBinaryOperatorMethodArguments[1] = ((Object) null);
+        visitBinaryOperatorMethodArguments[2] = scriptOrFnNode;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitBinaryOperator31() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        Node first = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        RecordType jsType = ((RecordType) createInstance("com.google.javascript.rhino.jstype.RecordType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(functionNode, "com.google.javascript.rhino.Node", "first", first);
+        Object last = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        setField(functionNode, "com.google.javascript.rhino.Node", "last", last);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitBinaryOperator] produces [java.lang.NullPointerException]
+            com.google.javascript.rhino.jstype.JSTypeRegistry.getNativeType(JSTypeRegistry.java:813)
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1711)
+            com.google.javascript.jscomp.TypeCheck.visitBinaryOperator(TypeCheck.java:1583) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class intType = int.class;
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitBinaryOperatorMethod = typeCheckClazz.getDeclaredMethod("visitBinaryOperator", intType, nodeTraversalType, functionNodeType);
+        visitBinaryOperatorMethod.setAccessible(true);
+        java.lang.Object[] visitBinaryOperatorMethodArguments = new java.lang.Object[3];
+        visitBinaryOperatorMethodArguments[0] = 0;
+        visitBinaryOperatorMethodArguments[1] = ((Object) null);
+        visitBinaryOperatorMethodArguments[2] = functionNode;
+        try {
+            visitBinaryOperatorMethod.invoke(typeCheck, visitBinaryOperatorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.shouldTraverse
+    
+    ///region SYMBOLIC EXECUTION: SUCCESSFUL EXECUTIONS for method shouldTraverse(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node, com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#shouldTraverse(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.returnsFrom {@code return true;}
+ *  */
+    @Test
+    public void testShouldTraverse_ReturnTrue() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        scriptOrFnNode.setType(-255);
+        
+        boolean actual = typeCheck.shouldTraverse(null, scriptOrFnNode, null);
+        
+        assertTrue(actual);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#shouldTraverse(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.returnsFrom {@code return true;}
+ *  */
+    @Test
+    public void testShouldTraverse_ReturnTrue_1() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        TypeValidator validator = ((TypeValidator) createInstance("com.google.javascript.jscomp.TypeValidator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "validator", validator);
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        scriptOrFnNode.setType(118);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        boolean actual = typeCheck.shouldTraverse(null, scriptOrFnNode, null);
+        
+        assertTrue(actual);
+        
+        TypeValidator typeCheckValidator = ((TypeValidator) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "validator"));
+        boolean finalTypeCheckValidatorShouldReport = ((Boolean) getFieldValue(typeCheckValidator, "com.google.javascript.jscomp.TypeValidator", "shouldReport"));
+        
+        assertTrue(finalTypeCheckValidatorShouldReport);
+    }
+    ///endregion
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method shouldTraverse(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node, com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#shouldTraverse(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.ClassCastException} in: checkNoTypeCheckSection(n, true);
+ *  */
+    @Test
+    public void testShouldTraverse_ThrowClassCastException() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        scriptOrFnNode.setType(132);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        byte[] objectValue = {};
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "objectValue", objectValue);
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.shouldTraverse] produces [java.lang.ClassCastException: class [B cannot be cast to class com.google.javascript.rhino.JSDocInfo ([B is in module java.base of loader 'bootstrap'; com.google.javascript.rhino.JSDocInfo is in unnamed module of loader org.utbot.instrumentation.process.HandlerClassesLoader @3067726d)]
+            com.google.javascript.rhino.Node.getJSDocInfo(Node.java:1961)
+            com.google.javascript.jscomp.TypeCheck.checkNoTypeCheckSection(TypeCheck.java:388)
+            com.google.javascript.jscomp.TypeCheck.shouldTraverse(TypeCheck.java:410) */
+        typeCheck.shouldTraverse(null, scriptOrFnNode, null);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#shouldTraverse(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: checkNoTypeCheckSection(n, true);
+ *  */
+    @Test
+    public void testShouldTraverse_ThrowNullPointerException_3() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.shouldTraverse] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.checkNoTypeCheckSection(TypeCheck.java:382)
+            com.google.javascript.jscomp.TypeCheck.shouldTraverse(TypeCheck.java:410) */
+        typeCheck.shouldTraverse(null, null, null);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#shouldTraverse(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#getType()}
+ * @utbot.invokes {@link com.google.javascript.jscomp.NodeTraversal#getScope()}
+ * @utbot.activatesSwitch {@code switch(n.getType()) case: default}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: final Scope outerScope = t.getScope();
+ *  */
+    @Test
+    public void testShouldTraverse_ThrowNullPointerException_2() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        TypeValidator validator = ((TypeValidator) createInstance("com.google.javascript.jscomp.TypeValidator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "validator", validator);
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        scriptOrFnNode.setType(105);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.shouldTraverse] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.shouldTraverse(TypeCheck.java:415) */
+        typeCheck.shouldTraverse(null, scriptOrFnNode, null);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#shouldTraverse(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: checkNoTypeCheckSection(n, true);
+ *  */
+    @Test
+    public void testShouldTraverse_ThrowNullPointerException() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "noTypeCheckSection", -1);
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        scriptOrFnNode.setType(118);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        JSDocInfo objectValue = ((JSDocInfo) createInstance("com.google.javascript.rhino.JSDocInfo"));
+        setField(objectValue, "com.google.javascript.rhino.JSDocInfo", "bitset", 32);
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "objectValue", objectValue);
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.shouldTraverse] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.checkNoTypeCheckSection(TypeCheck.java:396)
+            com.google.javascript.jscomp.TypeCheck.shouldTraverse(TypeCheck.java:410) */
+        typeCheck.shouldTraverse(null, scriptOrFnNode, null);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#shouldTraverse(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: checkNoTypeCheckSection(n, true);
+ *  */
+    @Test
+    public void testShouldTraverse_ThrowNullPointerException_1() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "noTypeCheckSection", 1);
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        scriptOrFnNode.setType(105);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.shouldTraverse] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.checkNoTypeCheckSection(TypeCheck.java:396)
+            com.google.javascript.jscomp.TypeCheck.shouldTraverse(TypeCheck.java:410) */
+        typeCheck.shouldTraverse(null, scriptOrFnNode, null);
+    }
+    ///endregion
+    
+    ///region OTHER: SUCCESSFUL EXECUTIONS for method shouldTraverse(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node, com.google.javascript.rhino.Node)
+    
+    @Test
+    public void testShouldTraverse1() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        TypeValidator validator = ((TypeValidator) createInstance("com.google.javascript.jscomp.TypeValidator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "validator", validator);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "noTypeCheckSection", 1);
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        scriptOrFnNode.setType(125);
+        
+        boolean actual = typeCheck.shouldTraverse(nodeTraversal, scriptOrFnNode, null);
+        
+        assertTrue(actual);
+    }
+    
+    @Test
+    public void testShouldTraverse2() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        TypeValidator validator = ((TypeValidator) createInstance("com.google.javascript.jscomp.TypeValidator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "validator", validator);
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        scriptOrFnNode.setType(118);
+        
+        boolean actual = typeCheck.shouldTraverse(nodeTraversal, scriptOrFnNode, null);
+        
+        assertTrue(actual);
+        
+        TypeValidator typeCheckValidator = ((TypeValidator) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "validator"));
+        boolean finalTypeCheckValidatorShouldReport = ((Boolean) getFieldValue(typeCheckValidator, "com.google.javascript.jscomp.TypeValidator", "shouldReport"));
+        
+        assertTrue(finalTypeCheckValidatorShouldReport);
+    }
+    
+    @Test
+    public void testShouldTraverse3() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        TypeValidator validator = ((TypeValidator) createInstance("com.google.javascript.jscomp.TypeValidator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "validator", validator);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "noTypeCheckSection", 1);
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        scriptOrFnNode.setType(86);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        JSDocInfo objectValue = ((JSDocInfo) createInstance("com.google.javascript.rhino.JSDocInfo"));
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "objectValue", objectValue);
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        boolean actual = typeCheck.shouldTraverse(null, scriptOrFnNode, null);
+        
+        assertTrue(actual);
+    }
+    
+    @Test
+    public void testShouldTraverse4() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        TypeValidator validator = ((TypeValidator) createInstance("com.google.javascript.jscomp.TypeValidator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "validator", validator);
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        scriptOrFnNode.setType(86);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        JSDocInfo objectValue = ((JSDocInfo) createInstance("com.google.javascript.rhino.JSDocInfo"));
+        setField(objectValue, "com.google.javascript.rhino.JSDocInfo", "bitset", 32);
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "objectValue", objectValue);
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        boolean actual = typeCheck.shouldTraverse(null, scriptOrFnNode, null);
+        
+        assertTrue(actual);
+        
+        int finalTypeCheckNoTypeCheckSection = ((Integer) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "noTypeCheckSection"));
+        
+        assertEquals(1, finalTypeCheckNoTypeCheckSection);
+    }
+    
+    @Test
+    public void testShouldTraverse5() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        TypeValidator validator = ((TypeValidator) createInstance("com.google.javascript.jscomp.TypeValidator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "validator", validator);
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        scriptOrFnNode.setType(118);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        Object next = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(next, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        JSDocInfo objectValue = ((JSDocInfo) createInstance("com.google.javascript.rhino.JSDocInfo"));
+        setField(next, "com.google.javascript.rhino.Node$PropListItem", "objectValue", objectValue);
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "next", next);
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        boolean actual = typeCheck.shouldTraverse(nodeTraversal, scriptOrFnNode, null);
+        
+        assertTrue(actual);
+    }
+    
+    @Test
+    public void testShouldTraverse6() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        TypeValidator validator = ((TypeValidator) createInstance("com.google.javascript.jscomp.TypeValidator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "validator", validator);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "noTypeCheckSection", 1);
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        scriptOrFnNode.setType(86);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        boolean actual = typeCheck.shouldTraverse(nodeTraversal, scriptOrFnNode, null);
+        
+        assertTrue(actual);
+    }
+    ///endregion
+    
+    ///region OTHER: ERROR SUITE for method shouldTraverse(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node, com.google.javascript.rhino.Node)
+    
+    @Test
+    public void testShouldTraverse7() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        scriptOrFnNode.setType(105);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        Object next = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(next, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        JSDocInfo objectValue = ((JSDocInfo) createInstance("com.google.javascript.rhino.JSDocInfo"));
+        setField(next, "com.google.javascript.rhino.Node$PropListItem", "objectValue", objectValue);
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "next", next);
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        ScriptOrFnNode scriptOrFnNode1 = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.shouldTraverse] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.checkNoTypeCheckSection(TypeCheck.java:396)
+            com.google.javascript.jscomp.TypeCheck.shouldTraverse(TypeCheck.java:410) */
+        typeCheck.shouldTraverse(nodeTraversal, scriptOrFnNode, scriptOrFnNode1);
+    }
+    
+    @Test
+    public void testShouldTraverse8() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        TypeValidator validator = ((TypeValidator) createInstance("com.google.javascript.jscomp.TypeValidator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "validator", validator);
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        scriptOrFnNode.setType(105);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        ScriptOrFnNode scriptOrFnNode1 = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.shouldTraverse] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.NodeTraversal.getScope(NodeTraversal.java:556)
+            com.google.javascript.jscomp.TypeCheck.shouldTraverse(TypeCheck.java:415) */
+        typeCheck.shouldTraverse(nodeTraversal, scriptOrFnNode, scriptOrFnNode1);
+    }
+    
+    @Test
+    public void testShouldTraverse9() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        TypeValidator validator = ((TypeValidator) createInstance("com.google.javascript.jscomp.TypeValidator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "validator", validator);
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        scriptOrFnNode.setType(105);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        JSDocInfo objectValue = ((JSDocInfo) createInstance("com.google.javascript.rhino.JSDocInfo"));
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "objectValue", objectValue);
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.shouldTraverse] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.shouldTraverse(TypeCheck.java:415) */
+        typeCheck.shouldTraverse(null, scriptOrFnNode, null);
+    }
+    
+    @Test
+    public void testShouldTraverse10() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        TypeValidator validator = ((TypeValidator) createInstance("com.google.javascript.jscomp.TypeValidator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "validator", validator);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "noTypeCheckSection", 1);
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        scriptOrFnNode.setType(105);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.shouldTraverse] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.NodeTraversal.getScope(NodeTraversal.java:556)
+            com.google.javascript.jscomp.TypeCheck.shouldTraverse(TypeCheck.java:415) */
+        typeCheck.shouldTraverse(nodeTraversal, scriptOrFnNode, null);
+    }
+    
+    @Test
+    public void testShouldTraverse11() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        scriptOrFnNode.setType(118);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        Object next = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(next, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        JSDocInfo objectValue = ((JSDocInfo) createInstance("com.google.javascript.rhino.JSDocInfo"));
+        setField(objectValue, "com.google.javascript.rhino.JSDocInfo", "bitset", 32);
+        setField(next, "com.google.javascript.rhino.Node$PropListItem", "objectValue", objectValue);
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "next", next);
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.shouldTraverse] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.checkNoTypeCheckSection(TypeCheck.java:396)
+            com.google.javascript.jscomp.TypeCheck.shouldTraverse(TypeCheck.java:410) */
+        typeCheck.shouldTraverse(null, scriptOrFnNode, null);
+    }
+    
+    @Test
+    public void testShouldTraverse12() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        TypeValidator validator = ((TypeValidator) createInstance("com.google.javascript.jscomp.TypeValidator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "validator", validator);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "noTypeCheckSection", 1);
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        ArrayDeque scopes = new ArrayDeque();
+        setField(nodeTraversal, "com.google.javascript.jscomp.NodeTraversal", "scopes", scopes);
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        scriptOrFnNode.setType(105);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        ScriptOrFnNode scriptOrFnNode1 = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.shouldTraverse] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.NodeTraversal.getScope(NodeTraversal.java:557)
+            com.google.javascript.jscomp.TypeCheck.shouldTraverse(TypeCheck.java:415) */
+        typeCheck.shouldTraverse(nodeTraversal, scriptOrFnNode, scriptOrFnNode1);
+    }
+    
+    @Test
+    public void testShouldTraverse13() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        TypeValidator validator = ((TypeValidator) createInstance("com.google.javascript.jscomp.TypeValidator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "validator", validator);
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        LinkedList scopes = new LinkedList();
+        setField(nodeTraversal, "com.google.javascript.jscomp.NodeTraversal", "scopes", scopes);
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        scriptOrFnNode.setType(105);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.shouldTraverse] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.NodeTraversal.getScope(NodeTraversal.java:557)
+            com.google.javascript.jscomp.TypeCheck.shouldTraverse(TypeCheck.java:415) */
+        typeCheck.shouldTraverse(nodeTraversal, scriptOrFnNode, null);
+    }
+    
+    @Test
+    public void testShouldTraverse14() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        TypeValidator validator = ((TypeValidator) createInstance("com.google.javascript.jscomp.TypeValidator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "validator", validator);
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        scriptOrFnNode.setType(105);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        Object next = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "next", next);
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.shouldTraverse] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.shouldTraverse(TypeCheck.java:415) */
+        typeCheck.shouldTraverse(null, scriptOrFnNode, null);
+    }
+    ///endregion
+    
+    ///region OTHER: TIMEOUTS for method shouldTraverse(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node, com.google.javascript.rhino.Node)
+    
+    @Test(timeout = 1000L)
+    public void testShouldTraverse15() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        scriptOrFnNode.setType(86);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "next", propListHead);
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        /* This execution may take longer than the 1000 ms timeout
+         and therefore fail due to exceeding the timeout. */
+        typeCheck.shouldTraverse(nodeTraversal, scriptOrFnNode, null);
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.processForTesting
+    
+    ///region SYMBOLIC EXECUTION: EXPLICITLY THROWN UNCHECKED EXCEPTIONS for method processForTesting(com.google.javascript.rhino.Node, com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#processForTesting(com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.executesCondition {@code (Preconditions.checkState(scopeCreator == null);): False}
+ * @utbot.throwsException {@link java.lang.IllegalStateException} in: Preconditions.checkState(scopeCreator == null);
+ *  */
+    @Test(expected = IllegalStateException.class)
+    public void testProcessForTesting_ThrowIllegalStateException() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        TypedScopeCreator scopeCreator = ((TypedScopeCreator) createInstance("com.google.javascript.jscomp.TypedScopeCreator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "scopeCreator", scopeCreator);
+        
+        typeCheck.processForTesting(null, null);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#processForTesting(com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.executesCondition {@code (Preconditions.checkState(scopeCreator == null);): True}
+ * @utbot.executesCondition {@code (Preconditions.checkState(topScope == null);): False}
+ * @utbot.throwsException {@link java.lang.IllegalStateException} in: Preconditions.checkState(topScope == null);
+ *  */
+    @Test(expected = IllegalStateException.class)
+    public void testProcessForTesting_ThrowIllegalStateException_1() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Scope topScope = ((Scope) createInstance("com.google.javascript.jscomp.Scope"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "topScope", topScope);
+        
+        typeCheck.processForTesting(null, null);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#processForTesting(com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.executesCondition {@code (Preconditions.checkState(scopeCreator == null);): True}
+ * @utbot.executesCondition {@code (Preconditions.checkState(topScope == null);): True}
+ * @utbot.executesCondition {@code (Preconditions.checkState(jsRoot.getParent() != null);): False}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#getParent()}
+ * @utbot.invokes {@link com.google.common.base.Preconditions#checkState(boolean)}
+ * @utbot.throwsException {@link java.lang.IllegalStateException} in: Preconditions.checkState(jsRoot.getParent() != null);
+ *  */
+    @Test(expected = IllegalStateException.class)
+    public void testProcessForTesting_ThrowIllegalStateException_2() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        
+        typeCheck.processForTesting(null, functionNode);
+    }
+    ///endregion
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method processForTesting(com.google.javascript.rhino.Node, com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#processForTesting(com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.executesCondition {@code (Preconditions.checkState(scopeCreator == null);): True}
+ * @utbot.executesCondition {@code (Preconditions.checkState(topScope == null);): True}
+ * @utbot.invokes {@link com.google.common.base.Preconditions#checkState(boolean)}
+ * @utbot.invokes {@link com.google.common.base.Preconditions#checkState(boolean)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: Preconditions.checkState(jsRoot.getParent() != null);
+ *  */
+    @Test
+    public void testProcessForTesting_ThrowNullPointerException() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.processForTesting] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.processForTesting(TypeCheck.java:351) */
+        typeCheck.processForTesting(null, null);
+    }
+    ///endregion
+    
+    ///region OTHER: EXPLICITLY THROWN UNCHECKED EXCEPTIONS for method processForTesting(com.google.javascript.rhino.Node, com.google.javascript.rhino.Node)
+    
+    @Test(expected = IllegalStateException.class)
+    public void testProcessForTesting1() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Compiler compiler = ((Compiler) createInstance("com.google.javascript.jscomp.Compiler"));
+        CompilerOptions options = ((CompilerOptions) createInstance("com.google.javascript.jscomp.CompilerOptions"));
+        GoogleCodingConvention codingConvention = ((GoogleCodingConvention) createInstance("com.google.javascript.jscomp.GoogleCodingConvention"));
+        Class compilerOptionsClazz = Class.forName("com.google.javascript.jscomp.CompilerOptions");
+        Class codingConventionType = Class.forName("com.google.javascript.jscomp.CodingConvention");
+        Method setCodingConventionMethod = compilerOptionsClazz.getDeclaredMethod("setCodingConvention", codingConventionType);
+        setCodingConventionMethod.setAccessible(true);
+        java.lang.Object[] setCodingConventionMethodArguments = new java.lang.Object[1];
+        setCodingConventionMethodArguments[0] = codingConvention;
+        setCodingConventionMethod.invoke(options, setCodingConventionMethodArguments);
+        compiler.options = options;
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "compiler", compiler);
+        Object stringNode = createInstance("com.google.javascript.rhino.Node$StringNode");
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        ScriptOrFnNode parent = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "parent", parent);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class stringNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method processForTestingMethod = typeCheckClazz.getDeclaredMethod("processForTesting", stringNodeType, stringNodeType);
+        processForTestingMethod.setAccessible(true);
+        java.lang.Object[] processForTestingMethodArguments = new java.lang.Object[2];
+        processForTestingMethodArguments[0] = stringNode;
+        processForTestingMethodArguments[1] = scriptOrFnNode;
+        try {
+            processForTestingMethod.invoke(typeCheck, processForTestingMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///region OTHER: ERROR SUITE for method processForTesting(com.google.javascript.rhino.Node, com.google.javascript.rhino.Node)
+    
+    @Test
+    public void testProcessForTesting2() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Compiler compiler = ((Compiler) createInstance("com.google.javascript.jscomp.Compiler"));
+        CompilerOptions options = ((CompilerOptions) createInstance("com.google.javascript.jscomp.CompilerOptions"));
+        compiler.options = options;
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "compiler", compiler);
+        Object stringNode = createInstance("com.google.javascript.rhino.Node$StringNode");
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        ScriptOrFnNode parent = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "parent", parent);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.processForTesting] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypedScopeCreator.createScope(TypedScopeCreator.java:218)
+            com.google.javascript.jscomp.MemoizedScopeCreator.createScope(MemoizedScopeCreator.java:53)
+            com.google.javascript.jscomp.TypeCheck.processForTesting(TypeCheck.java:355) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class stringNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method processForTestingMethod = typeCheckClazz.getDeclaredMethod("processForTesting", stringNodeType, stringNodeType);
+        processForTestingMethod.setAccessible(true);
+        java.lang.Object[] processForTestingMethodArguments = new java.lang.Object[2];
+        processForTestingMethodArguments[0] = stringNode;
+        processForTestingMethodArguments[1] = scriptOrFnNode;
+        try {
+            processForTestingMethod.invoke(typeCheck, processForTestingMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testProcessForTesting3() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Compiler compiler = ((Compiler) createInstance("com.google.javascript.jscomp.Compiler"));
+        CompilerOptions options = ((CompilerOptions) createInstance("com.google.javascript.jscomp.CompilerOptions"));
+        DefaultCodingConvention codingConvention = ((DefaultCodingConvention) createInstance("com.google.javascript.jscomp.DefaultCodingConvention"));
+        options.setCodingConvention(codingConvention);
+        compiler.options = options;
+        TypeValidator typeValidator = ((TypeValidator) createInstance("com.google.javascript.jscomp.TypeValidator"));
+        setField(compiler, "com.google.javascript.jscomp.Compiler", "typeValidator", typeValidator);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "compiler", compiler);
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        ScriptOrFnNode parent = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "parent", parent);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.processForTesting] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.Compiler.report(Compiler.java:1677)
+            com.google.javascript.jscomp.NodeTraversal.report(NodeTraversal.java:610)
+            com.google.javascript.jscomp.TypeCheck.report(TypeCheck.java:404)
+            com.google.javascript.jscomp.TypeCheck.visit(TypeCheck.java:787)
+            com.google.javascript.jscomp.NodeTraversal.traverseBranch(NodeTraversal.java:464)
+            com.google.javascript.jscomp.NodeTraversal.traverseWithScope(NodeTraversal.java:312)
+            com.google.javascript.jscomp.TypeCheck.check(TypeCheck.java:372)
+            com.google.javascript.jscomp.TypeCheck.process(TypeCheck.java:343)
+            com.google.javascript.jscomp.TypeCheck.processForTesting(TypeCheck.java:361) */
+        typeCheck.processForTesting(null, scriptOrFnNode);
+    }
+    
+    @Test
+    public void testProcessForTesting4() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Compiler compiler = ((Compiler) createInstance("com.google.javascript.jscomp.Compiler"));
+        CompilerOptions options = ((CompilerOptions) createInstance("com.google.javascript.jscomp.CompilerOptions"));
+        compiler.options = options;
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        setField(compiler, "com.google.javascript.jscomp.Compiler", "typeRegistry", typeRegistry);
+        TypeValidator typeValidator = ((TypeValidator) createInstance("com.google.javascript.jscomp.TypeValidator"));
+        setField(compiler, "com.google.javascript.jscomp.Compiler", "typeValidator", typeValidator);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "compiler", compiler);
+        Object numberNode = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        ScriptOrFnNode parent = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "parent", parent);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.processForTesting] produces [java.lang.NullPointerException]
+            com.google.javascript.rhino.jstype.JSTypeRegistry.getNativeType(JSTypeRegistry.java:813)
+            com.google.javascript.rhino.jstype.JSTypeRegistry.getNativeObjectType(JSTypeRegistry.java:817)
+            com.google.javascript.jscomp.Scope.<init>(Scope.java:313)
+            com.google.javascript.jscomp.TypedScopeCreator.createInitialScope(TypedScopeCreator.java:234)
+            com.google.javascript.jscomp.TypedScopeCreator.createScope(TypedScopeCreator.java:187)
+            com.google.javascript.jscomp.MemoizedScopeCreator.createScope(MemoizedScopeCreator.java:53)
+            com.google.javascript.jscomp.TypeCheck.processForTesting(TypeCheck.java:355) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class numberNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method processForTestingMethod = typeCheckClazz.getDeclaredMethod("processForTesting", numberNodeType, numberNodeType);
+        processForTestingMethod.setAccessible(true);
+        java.lang.Object[] processForTestingMethodArguments = new java.lang.Object[2];
+        processForTestingMethodArguments[0] = numberNode;
+        processForTestingMethodArguments[1] = scriptOrFnNode;
+        try {
+            processForTestingMethod.invoke(typeCheck, processForTestingMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.visitName
+    
+    ///region SYMBOLIC EXECUTION: SUCCESSFUL EXECUTIONS for method visitName(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node, com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitName(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.executesCondition {@code (parentNodeType == Token.FUNCTION): True}
+ * @utbot.returnsFrom {@code return false;}
+ *  */
+    @Test
+    public void testVisitName_ParentNodeTypeEqualsTokenFUNCTION() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        functionNode.setType(105);
+        
+        boolean actual = typeCheck.visitName(null, null, functionNode);
+        
+        assertFalse(actual);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitName(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.executesCondition {@code (parentNodeType == Token.FUNCTION): False}
+ * @utbot.executesCondition {@code (parentNodeType == Token.CATCH): False}
+ * @utbot.executesCondition {@code (parentNodeType == Token.LP): True}
+ * @utbot.returnsFrom {@code return false;}
+ *  */
+    @Test
+    public void testVisitName_ParentNodeTypeEqualsTokenLP() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        functionNode.setType(83);
+        
+        boolean actual = typeCheck.visitName(null, null, functionNode);
+        
+        assertFalse(actual);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitName(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.executesCondition {@code (parentNodeType == Token.FUNCTION): False}
+ * @utbot.executesCondition {@code (parentNodeType == Token.CATCH): False}
+ * @utbot.executesCondition {@code (parentNodeType == Token.LP): False}
+ * @utbot.executesCondition {@code (parentNodeType == Token.VAR): True}
+ * @utbot.returnsFrom {@code return false;}
+ *  */
+    @Test
+    public void testVisitName_ParentNodeTypeEqualsTokenVAR() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        functionNode.setType(118);
+        
+        boolean actual = typeCheck.visitName(null, null, functionNode);
+        
+        assertFalse(actual);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitName(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.executesCondition {@code (parentNodeType == Token.FUNCTION): False}
+ * @utbot.executesCondition {@code (parentNodeType == Token.CATCH): True}
+ * @utbot.returnsFrom {@code return false;}
+ *  */
+    @Test
+    public void testVisitName_ParentNodeTypeEqualsTokenCATCH() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        functionNode.setType(120);
+        
+        boolean actual = typeCheck.visitName(null, null, functionNode);
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method visitName(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node, com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitName(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#getType()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: int parentNodeType = parent.getType();
+ *  */
+    @Test
+    public void testVisitName_ThrowNullPointerException() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitName] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitName(TypeCheck.java:1198) */
+        typeCheck.visitName(null, null, null);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitName(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.executesCondition {@code (parentNodeType == Token.FUNCTION): False}
+ * @utbot.executesCondition {@code (parentNodeType == Token.CATCH): False}
+ * @utbot.executesCondition {@code (parentNodeType == Token.LP): False}
+ * @utbot.executesCondition {@code (parentNodeType == Token.VAR): False}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#getJSType()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: JSType type = n.getJSType();
+ *  */
+    @Test
+    public void testVisitName_ThrowNullPointerException_1() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = new Node(-255);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitName] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitName(TypeCheck.java:1206) */
+        typeCheck.visitName(null, null, node);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitName(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.executesCondition {@code (parentNodeType == Token.FUNCTION): False}
+ * @utbot.executesCondition {@code (parentNodeType == Token.CATCH): False}
+ * @utbot.executesCondition {@code (parentNodeType == Token.LP): False}
+ * @utbot.executesCondition {@code (parentNodeType == Token.VAR): False}
+ * @utbot.executesCondition {@code (type == null): True}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: Var var = t.getScope().getVar(n.getString());
+ *  */
+    @Test
+    public void testVisitName_ThrowNullPointerException_2() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = new com.google.javascript.rhino.jstype.JSType[37];
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        ScriptOrFnNode scriptOrFnNode1 = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        scriptOrFnNode1.setType(-252);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitName] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitName(TypeCheck.java:1209) */
+        typeCheck.visitName(null, scriptOrFnNode, scriptOrFnNode1);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitName(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.executesCondition {@code (parentNodeType == Token.FUNCTION): False}
+ * @utbot.executesCondition {@code (parentNodeType == Token.CATCH): False}
+ * @utbot.executesCondition {@code (parentNodeType == Token.LP): False}
+ * @utbot.executesCondition {@code (parentNodeType == Token.VAR): False}
+ * @utbot.executesCondition {@code (type == null): True}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: type = getNativeType(UNKNOWN_TYPE);
+ *  */
+    @Test
+    public void testVisitName_ThrowNullPointerException_3() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        scriptOrFnNode.setType(1);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitName] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.visitName(TypeCheck.java:1208) */
+        typeCheck.visitName(null, functionNode, scriptOrFnNode);
+    }
+    ///endregion
+    
+    ///region OTHER: SUCCESSFUL EXECUTIONS for method visitName(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node, com.google.javascript.rhino.Node)
+    
+    @Test
+    public void testVisitName1() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Object numberNode = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        setField(numberNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        TemplateType jsType = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(numberNode, "com.google.javascript.rhino.Node", "jsType", jsType);
+        Object stringNode = createInstance("com.google.javascript.rhino.Node$StringNode");
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class numberNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitNameMethod = typeCheckClazz.getDeclaredMethod("visitName", nodeTraversalType, numberNodeType, numberNodeType);
+        visitNameMethod.setAccessible(true);
+        java.lang.Object[] visitNameMethodArguments = new java.lang.Object[3];
+        visitNameMethodArguments[0] = ((Object) null);
+        visitNameMethodArguments[1] = numberNode;
+        visitNameMethodArguments[2] = stringNode;
+        boolean actual = ((Boolean) visitNameMethod.invoke(typeCheck, visitNameMethodArguments));
+        
+        assertTrue(actual);
+    }
+    
+    @Test
+    public void testVisitName2() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Object numberNode = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        (((Node) numberNode)).setType(105);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(numberNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        NoType jsType = ((NoType) createInstance("com.google.javascript.rhino.jstype.NoType"));
+        setField(numberNode, "com.google.javascript.rhino.Node", "jsType", jsType);
+        Object stringNode = createInstance("com.google.javascript.rhino.Node$StringNode");
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class numberNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitNameMethod = typeCheckClazz.getDeclaredMethod("visitName", nodeTraversalType, numberNodeType, numberNodeType);
+        visitNameMethod.setAccessible(true);
+        java.lang.Object[] visitNameMethodArguments = new java.lang.Object[3];
+        visitNameMethodArguments[0] = nodeTraversal;
+        visitNameMethodArguments[1] = numberNode;
+        visitNameMethodArguments[2] = stringNode;
+        boolean actual = ((Boolean) visitNameMethod.invoke(typeCheck, visitNameMethodArguments));
+        
+        assertTrue(actual);
+    }
+    
+    @Test
+    public void testVisitName3() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Object stringNode = createInstance("com.google.javascript.rhino.Node$StringNode");
+        (((Node) stringNode)).setType(105);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(stringNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        UnknownType jsType = ((UnknownType) createInstance("com.google.javascript.rhino.jstype.UnknownType"));
+        setField(stringNode, "com.google.javascript.rhino.Node", "jsType", jsType);
+        Object stringNode1 = createInstance("com.google.javascript.rhino.Node$StringNode");
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class stringNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitNameMethod = typeCheckClazz.getDeclaredMethod("visitName", nodeTraversalType, stringNodeType, stringNodeType);
+        visitNameMethod.setAccessible(true);
+        java.lang.Object[] visitNameMethodArguments = new java.lang.Object[3];
+        visitNameMethodArguments[0] = ((Object) null);
+        visitNameMethodArguments[1] = stringNode;
+        visitNameMethodArguments[2] = stringNode1;
+        boolean actual = ((Boolean) visitNameMethod.invoke(typeCheck, visitNameMethodArguments));
+        
+        assertTrue(actual);
+    }
+    ///endregion
+    
+    ///region OTHER: ERROR SUITE for method visitName(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node, com.google.javascript.rhino.Node)
+    
+    @Test
+    public void testVisitName4() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = {null, null, null, null, null, null, null, null, null};
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Node node = new Node(0);
+        Object stringNode = createInstance("com.google.javascript.rhino.Node$StringNode");
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitName] produces [java.lang.ArrayIndexOutOfBoundsException: Index 35 out of bounds for length 9]
+            com.google.javascript.rhino.jstype.JSTypeRegistry.getNativeType(JSTypeRegistry.java:813)
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.visitName(TypeCheck.java:1208) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitNameMethod = typeCheckClazz.getDeclaredMethod("visitName", nodeTraversalType, nodeType, nodeType);
+        visitNameMethod.setAccessible(true);
+        java.lang.Object[] visitNameMethodArguments = new java.lang.Object[3];
+        visitNameMethodArguments[0] = nodeTraversal;
+        visitNameMethodArguments[1] = node;
+        visitNameMethodArguments[2] = stringNode;
+        try {
+            visitNameMethod.invoke(typeCheck, visitNameMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitName5() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Object numberNode = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        (((Node) numberNode)).setType(105);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        Object objectValue = createInstance("java.lang.Object");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "objectValue", objectValue);
+        setField(numberNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        NoType jsType = ((NoType) createInstance("com.google.javascript.rhino.jstype.NoType"));
+        setField(numberNode, "com.google.javascript.rhino.Node", "jsType", jsType);
+        Object stringNode = createInstance("com.google.javascript.rhino.Node$StringNode");
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitName] produces [java.lang.ClassCastException: class java.lang.Object cannot be cast to class com.google.javascript.rhino.JSDocInfo (java.lang.Object is in module java.base of loader 'bootstrap'; com.google.javascript.rhino.JSDocInfo is in unnamed module of loader org.utbot.instrumentation.process.HandlerClassesLoader @3067726d)]
+            com.google.javascript.rhino.Node.getJSDocInfo(Node.java:1961)
+            com.google.javascript.jscomp.TypeCheck.ensureTyped(TypeCheck.java:1773)
+            com.google.javascript.jscomp.TypeCheck.visitName(TypeCheck.java:1217) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class numberNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitNameMethod = typeCheckClazz.getDeclaredMethod("visitName", nodeTraversalType, numberNodeType, numberNodeType);
+        visitNameMethod.setAccessible(true);
+        java.lang.Object[] visitNameMethodArguments = new java.lang.Object[3];
+        visitNameMethodArguments[0] = nodeTraversal;
+        visitNameMethodArguments[1] = numberNode;
+        visitNameMethodArguments[2] = stringNode;
+        try {
+            visitNameMethod.invoke(typeCheck, visitNameMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitName6() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Object stringNode = createInstance("com.google.javascript.rhino.Node$StringNode");
+        (((Node) stringNode)).setType(105);
+        TemplateType jsType = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(stringNode, "com.google.javascript.rhino.Node", "jsType", jsType);
+        Object stringNode1 = createInstance("com.google.javascript.rhino.Node$StringNode");
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitName] produces [java.lang.NullPointerException]
+            com.google.javascript.rhino.jstype.ProxyObjectType.isUnknownType(ProxyObjectType.java:128)
+            com.google.javascript.rhino.jstype.TemplateType.isUnknownType(TemplateType.java:48)
+            com.google.javascript.jscomp.TypeCheck.ensureTyped(TypeCheck.java:1772)
+            com.google.javascript.jscomp.TypeCheck.visitName(TypeCheck.java:1217) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class stringNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitNameMethod = typeCheckClazz.getDeclaredMethod("visitName", nodeTraversalType, stringNodeType, stringNodeType);
+        visitNameMethod.setAccessible(true);
+        java.lang.Object[] visitNameMethodArguments = new java.lang.Object[3];
+        visitNameMethodArguments[0] = ((Object) null);
+        visitNameMethodArguments[1] = stringNode;
+        visitNameMethodArguments[2] = stringNode1;
+        try {
+            visitNameMethod.invoke(typeCheck, visitNameMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitName7() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = new com.google.javascript.rhino.jstype.JSType[38];
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        LinkedList scopes = new LinkedList();
+        setField(nodeTraversal, "com.google.javascript.jscomp.NodeTraversal", "scopes", scopes);
+        Node node = new Node(0);
+        Object stringNode = createInstance("com.google.javascript.rhino.Node$StringNode");
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitName] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.NodeTraversal.getScope(NodeTraversal.java:557)
+            com.google.javascript.jscomp.TypeCheck.visitName(TypeCheck.java:1209) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitNameMethod = typeCheckClazz.getDeclaredMethod("visitName", nodeTraversalType, nodeType, nodeType);
+        visitNameMethod.setAccessible(true);
+        java.lang.Object[] visitNameMethodArguments = new java.lang.Object[3];
+        visitNameMethodArguments[0] = nodeTraversal;
+        visitNameMethodArguments[1] = node;
+        visitNameMethodArguments[2] = stringNode;
+        try {
+            visitNameMethod.invoke(typeCheck, visitNameMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.visitAssign
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method visitAssign(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitAssign(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.ClassCastException} in: JSDocInfo info = assign.getJSDocInfo();
+ *  */
+    @Test
+    public void testVisitAssign_ThrowClassCastException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        short[] objectValue = {};
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "objectValue", objectValue);
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitAssign] produces [java.lang.ClassCastException: class [S cannot be cast to class com.google.javascript.rhino.JSDocInfo ([S is in module java.base of loader 'bootstrap'; com.google.javascript.rhino.JSDocInfo is in unnamed module of loader org.utbot.instrumentation.process.HandlerClassesLoader @3067726d)]
+            com.google.javascript.rhino.Node.getJSDocInfo(Node.java:1961)
+            com.google.javascript.jscomp.TypeCheck.visitAssign(TypeCheck.java:830) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitAssignMethod = typeCheckClazz.getDeclaredMethod("visitAssign", nodeTraversalType, scriptOrFnNodeType);
+        visitAssignMethod.setAccessible(true);
+        java.lang.Object[] visitAssignMethodArguments = new java.lang.Object[2];
+        visitAssignMethodArguments[0] = ((Object) null);
+        visitAssignMethodArguments[1] = scriptOrFnNode;
+        try {
+            visitAssignMethod.invoke(typeCheck, visitAssignMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitAssign(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.ClassCastException} in: JSDocInfo info = assign.getJSDocInfo();
+ *  */
+    @Test
+    public void testVisitAssign_ThrowClassCastException_1() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        Object next = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(next, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        byte[] objectValue = {};
+        setField(next, "com.google.javascript.rhino.Node$PropListItem", "objectValue", objectValue);
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "next", next);
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "type", -255);
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitAssign] produces [java.lang.ClassCastException: class [B cannot be cast to class com.google.javascript.rhino.JSDocInfo ([B is in module java.base of loader 'bootstrap'; com.google.javascript.rhino.JSDocInfo is in unnamed module of loader org.utbot.instrumentation.process.HandlerClassesLoader @3067726d)]
+            com.google.javascript.rhino.Node.getJSDocInfo(Node.java:1961)
+            com.google.javascript.jscomp.TypeCheck.visitAssign(TypeCheck.java:830) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitAssignMethod = typeCheckClazz.getDeclaredMethod("visitAssign", nodeTraversalType, scriptOrFnNodeType);
+        visitAssignMethod.setAccessible(true);
+        java.lang.Object[] visitAssignMethodArguments = new java.lang.Object[2];
+        visitAssignMethodArguments[0] = ((Object) null);
+        visitAssignMethodArguments[1] = scriptOrFnNode;
+        try {
+            visitAssignMethod.invoke(typeCheck, visitAssignMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitAssign(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: JSDocInfo info = assign.getJSDocInfo();
+ *  */
+    @Test
+    public void testVisitAssign_ThrowNullPointerException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitAssign] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitAssign(TypeCheck.java:830) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitAssignMethod = typeCheckClazz.getDeclaredMethod("visitAssign", nodeTraversalType, nodeType);
+        visitAssignMethod.setAccessible(true);
+        java.lang.Object[] visitAssignMethodArguments = new java.lang.Object[2];
+        visitAssignMethodArguments[0] = ((Object) null);
+        visitAssignMethodArguments[1] = ((Object) null);
+        try {
+            visitAssignMethod.invoke(typeCheck, visitAssignMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitAssign(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} when: lvalue.getType() == Token.GETPROP
+ *  */
+    @Test
+    public void testVisitAssign_ThrowNullPointerException_1() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        Node last = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        setField(functionNode, "com.google.javascript.rhino.Node", "last", last);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        setField(functionNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitAssign] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitAssign(TypeCheck.java:834) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitAssignMethod = typeCheckClazz.getDeclaredMethod("visitAssign", nodeTraversalType, functionNodeType);
+        visitAssignMethod.setAccessible(true);
+        java.lang.Object[] visitAssignMethodArguments = new java.lang.Object[2];
+        visitAssignMethodArguments[0] = ((Object) null);
+        visitAssignMethodArguments[1] = functionNode;
+        try {
+            visitAssignMethod.invoke(typeCheck, visitAssignMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitAssign(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} when: lvalue.getType() == Token.GETPROP
+ *  */
+    @Test
+    public void testVisitAssign_ThrowNullPointerException_2() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitAssign] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitAssign(TypeCheck.java:834) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitAssignMethod = typeCheckClazz.getDeclaredMethod("visitAssign", nodeTraversalType, scriptOrFnNodeType);
+        visitAssignMethod.setAccessible(true);
+        java.lang.Object[] visitAssignMethodArguments = new java.lang.Object[2];
+        visitAssignMethodArguments[0] = ((Object) null);
+        visitAssignMethodArguments[1] = scriptOrFnNode;
+        try {
+            visitAssignMethod.invoke(typeCheck, visitAssignMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitAssign(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#getType()}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#getFirstChild()}
+ * @utbot.invokes com.google.javascript.jscomp.TypeCheck#getJSType(com.google.javascript.rhino.Node)
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: JSType objectJsType = getJSType(object);
+ *  */
+    @Test
+    public void testVisitAssign_ThrowNullPointerException_3() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        first.setType(33);
+        FunctionNode first1 = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        setField(first, "com.google.javascript.rhino.Node", "first", first1);
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        FunctionNode last = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        setField(node, "com.google.javascript.rhino.Node", "last", last);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitAssign] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1711)
+            com.google.javascript.jscomp.TypeCheck.visitAssign(TypeCheck.java:836) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitAssignMethod = typeCheckClazz.getDeclaredMethod("visitAssign", nodeTraversalType, nodeType);
+        visitAssignMethod.setAccessible(true);
+        java.lang.Object[] visitAssignMethodArguments = new java.lang.Object[2];
+        visitAssignMethodArguments[0] = ((Object) null);
+        visitAssignMethodArguments[1] = node;
+        try {
+            visitAssignMethod.invoke(typeCheck, visitAssignMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///region OTHER: ERROR SUITE for method visitAssign(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node)
+    
+    @Test
+    public void testVisitAssign1() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = {null, null, null, null, null, null, null, null, null, null};
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        Object first = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        JSDocInfo objectValue = ((JSDocInfo) createInstance("com.google.javascript.rhino.JSDocInfo"));
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "objectValue", objectValue);
+        setField(node, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitAssign] produces [java.lang.ArrayIndexOutOfBoundsException: Index 35 out of bounds for length 10]
+            com.google.javascript.rhino.jstype.JSTypeRegistry.getNativeType(JSTypeRegistry.java:813)
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1711)
+            com.google.javascript.jscomp.TypeCheck.visitAssign(TypeCheck.java:925) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitAssignMethod = typeCheckClazz.getDeclaredMethod("visitAssign", nodeTraversalType, nodeType);
+        visitAssignMethod.setAccessible(true);
+        java.lang.Object[] visitAssignMethodArguments = new java.lang.Object[2];
+        visitAssignMethodArguments[0] = nodeTraversal;
+        visitAssignMethodArguments[1] = node;
+        try {
+            visitAssignMethod.invoke(typeCheck, visitAssignMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitAssign2() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = {null, null, null, null, null, null, null, null, null};
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        Object first = createInstance("com.google.javascript.rhino.Node$StringNode");
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitAssign] produces [java.lang.ArrayIndexOutOfBoundsException: Index 35 out of bounds for length 9]
+            com.google.javascript.rhino.jstype.JSTypeRegistry.getNativeType(JSTypeRegistry.java:813)
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1711)
+            com.google.javascript.jscomp.TypeCheck.visitAssign(TypeCheck.java:925) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitAssignMethod = typeCheckClazz.getDeclaredMethod("visitAssign", nodeTraversalType, scriptOrFnNodeType);
+        visitAssignMethod.setAccessible(true);
+        java.lang.Object[] visitAssignMethodArguments = new java.lang.Object[2];
+        visitAssignMethodArguments[0] = nodeTraversal;
+        visitAssignMethodArguments[1] = scriptOrFnNode;
+        try {
+            visitAssignMethod.invoke(typeCheck, visitAssignMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitAssign3() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Object stringNode = createInstance("com.google.javascript.rhino.Node$StringNode");
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        first.setType(38);
+        setField(stringNode, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitAssign] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1705)
+            com.google.javascript.jscomp.TypeCheck.visitAssign(TypeCheck.java:915) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class stringNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitAssignMethod = typeCheckClazz.getDeclaredMethod("visitAssign", nodeTraversalType, stringNodeType);
+        visitAssignMethod.setAccessible(true);
+        java.lang.Object[] visitAssignMethodArguments = new java.lang.Object[2];
+        visitAssignMethodArguments[0] = nodeTraversal;
+        visitAssignMethodArguments[1] = stringNode;
+        try {
+            visitAssignMethod.invoke(typeCheck, visitAssignMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitAssign4() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Object numberNode = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        first.setType(38);
+        Object jsType = createInstance("com.google.javascript.rhino.jstype.ArrowType");
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(numberNode, "com.google.javascript.rhino.Node", "first", first);
+        setField(numberNode, "com.google.javascript.rhino.Node", "last", first);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        setField(numberNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitAssign] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitAssign(TypeCheck.java:916) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class numberNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitAssignMethod = typeCheckClazz.getDeclaredMethod("visitAssign", nodeTraversalType, numberNodeType);
+        visitAssignMethod.setAccessible(true);
+        java.lang.Object[] visitAssignMethodArguments = new java.lang.Object[2];
+        visitAssignMethodArguments[0] = ((Object) null);
+        visitAssignMethodArguments[1] = numberNode;
+        try {
+            visitAssignMethod.invoke(typeCheck, visitAssignMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitAssign5() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        Object jsType = createInstance("com.google.javascript.rhino.jstype.ArrowType");
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(functionNode, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitAssign] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1705)
+            com.google.javascript.jscomp.TypeCheck.visitAssign(TypeCheck.java:927) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitAssignMethod = typeCheckClazz.getDeclaredMethod("visitAssign", nodeTraversalType, functionNodeType);
+        visitAssignMethod.setAccessible(true);
+        java.lang.Object[] visitAssignMethodArguments = new java.lang.Object[2];
+        visitAssignMethodArguments[0] = nodeTraversal;
+        visitAssignMethodArguments[1] = functionNode;
+        try {
+            visitAssignMethod.invoke(typeCheck, visitAssignMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitAssign6() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Object numberNode = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        Object next = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "next", next);
+        setField(numberNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitAssign] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitAssign(TypeCheck.java:834) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class numberNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitAssignMethod = typeCheckClazz.getDeclaredMethod("visitAssign", nodeTraversalType, numberNodeType);
+        visitAssignMethod.setAccessible(true);
+        java.lang.Object[] visitAssignMethodArguments = new java.lang.Object[2];
+        visitAssignMethodArguments[0] = nodeTraversal;
+        visitAssignMethodArguments[1] = numberNode;
+        try {
+            visitAssignMethod.invoke(typeCheck, visitAssignMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitAssign7() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Object numberNode = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        setField(numberNode, "com.google.javascript.rhino.Node", "first", first);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(numberNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitAssign] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1711)
+            com.google.javascript.jscomp.TypeCheck.visitAssign(TypeCheck.java:925) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class numberNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitAssignMethod = typeCheckClazz.getDeclaredMethod("visitAssign", nodeTraversalType, numberNodeType);
+        visitAssignMethod.setAccessible(true);
+        java.lang.Object[] visitAssignMethodArguments = new java.lang.Object[2];
+        visitAssignMethodArguments[0] = nodeTraversal;
+        visitAssignMethodArguments[1] = numberNode;
+        try {
+            visitAssignMethod.invoke(typeCheck, visitAssignMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitAssign8() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Object numberNode = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        first.setType(33);
+        setField(numberNode, "com.google.javascript.rhino.Node", "first", first);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(numberNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitAssign] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1705)
+            com.google.javascript.jscomp.TypeCheck.visitAssign(TypeCheck.java:836) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class numberNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitAssignMethod = typeCheckClazz.getDeclaredMethod("visitAssign", nodeTraversalType, numberNodeType);
+        visitAssignMethod.setAccessible(true);
+        java.lang.Object[] visitAssignMethodArguments = new java.lang.Object[2];
+        visitAssignMethodArguments[0] = nodeTraversal;
+        visitAssignMethodArguments[1] = numberNode;
+        try {
+            visitAssignMethod.invoke(typeCheck, visitAssignMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitAssign9() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Object numberNode = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        first.setType(33);
+        setField(first, "com.google.javascript.rhino.Node", "first", first);
+        StringType jsType = ((StringType) createInstance("com.google.javascript.rhino.jstype.StringType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(numberNode, "com.google.javascript.rhino.Node", "first", first);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        JSDocInfo objectValue = ((JSDocInfo) createInstance("com.google.javascript.rhino.JSDocInfo"));
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "objectValue", objectValue);
+        setField(numberNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitAssign] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitAssign(TypeCheck.java:837) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class numberNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitAssignMethod = typeCheckClazz.getDeclaredMethod("visitAssign", nodeTraversalType, numberNodeType);
+        visitAssignMethod.setAccessible(true);
+        java.lang.Object[] visitAssignMethodArguments = new java.lang.Object[2];
+        visitAssignMethodArguments[0] = ((Object) null);
+        visitAssignMethodArguments[1] = numberNode;
+        try {
+            visitAssignMethod.invoke(typeCheck, visitAssignMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitAssign10() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Object numberNode = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        Object jsType = createInstance("com.google.javascript.rhino.jstype.ArrowType");
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(numberNode, "com.google.javascript.rhino.Node", "first", first);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        JSDocInfo objectValue = ((JSDocInfo) createInstance("com.google.javascript.rhino.JSDocInfo"));
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "objectValue", objectValue);
+        setField(numberNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitAssign] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1705)
+            com.google.javascript.jscomp.TypeCheck.visitAssign(TypeCheck.java:927) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class numberNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitAssignMethod = typeCheckClazz.getDeclaredMethod("visitAssign", nodeTraversalType, numberNodeType);
+        visitAssignMethod.setAccessible(true);
+        java.lang.Object[] visitAssignMethodArguments = new java.lang.Object[2];
+        visitAssignMethodArguments[0] = ((Object) null);
+        visitAssignMethodArguments[1] = numberNode;
+        try {
+            visitAssignMethod.invoke(typeCheck, visitAssignMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitAssign11() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Object numberNode = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        setField(numberNode, "com.google.javascript.rhino.Node", "first", first);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        Object next = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(next, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        JSDocInfo objectValue = ((JSDocInfo) createInstance("com.google.javascript.rhino.JSDocInfo"));
+        setField(next, "com.google.javascript.rhino.Node$PropListItem", "objectValue", objectValue);
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "next", next);
+        setField(numberNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitAssign] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1711)
+            com.google.javascript.jscomp.TypeCheck.visitAssign(TypeCheck.java:925) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class numberNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitAssignMethod = typeCheckClazz.getDeclaredMethod("visitAssign", nodeTraversalType, numberNodeType);
+        visitAssignMethod.setAccessible(true);
+        java.lang.Object[] visitAssignMethodArguments = new java.lang.Object[2];
+        visitAssignMethodArguments[0] = ((Object) null);
+        visitAssignMethodArguments[1] = numberNode;
+        try {
+            visitAssignMethod.invoke(typeCheck, visitAssignMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitAssign12() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Object stringNode = createInstance("com.google.javascript.rhino.Node$StringNode");
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        first.setType(33);
+        setField(first, "com.google.javascript.rhino.Node", "first", first);
+        BooleanType jsType = ((BooleanType) createInstance("com.google.javascript.rhino.jstype.BooleanType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(stringNode, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitAssign] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitAssign(TypeCheck.java:837) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class stringNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitAssignMethod = typeCheckClazz.getDeclaredMethod("visitAssign", nodeTraversalType, stringNodeType);
+        visitAssignMethod.setAccessible(true);
+        java.lang.Object[] visitAssignMethodArguments = new java.lang.Object[2];
+        visitAssignMethodArguments[0] = nodeTraversal;
+        visitAssignMethodArguments[1] = stringNode;
+        try {
+            visitAssignMethod.invoke(typeCheck, visitAssignMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitAssign13() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        Object first = createInstance("com.google.javascript.rhino.Node$StringNode");
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        Object last = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        setField(node, "com.google.javascript.rhino.Node", "last", last);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        setField(node, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitAssign] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1711)
+            com.google.javascript.jscomp.TypeCheck.visitAssign(TypeCheck.java:925) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitAssignMethod = typeCheckClazz.getDeclaredMethod("visitAssign", nodeTraversalType, nodeType);
+        visitAssignMethod.setAccessible(true);
+        java.lang.Object[] visitAssignMethodArguments = new java.lang.Object[2];
+        visitAssignMethodArguments[0] = nodeTraversal;
+        visitAssignMethodArguments[1] = node;
+        try {
+            visitAssignMethod.invoke(typeCheck, visitAssignMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitAssign14() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = new com.google.javascript.rhino.jstype.JSType[37];
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        Node last = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        setField(node, "com.google.javascript.rhino.Node", "last", last);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitAssign] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitAssign(TypeCheck.java:928) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitAssignMethod = typeCheckClazz.getDeclaredMethod("visitAssign", nodeTraversalType, nodeType);
+        visitAssignMethod.setAccessible(true);
+        java.lang.Object[] visitAssignMethodArguments = new java.lang.Object[2];
+        visitAssignMethodArguments[0] = ((Object) null);
+        visitAssignMethodArguments[1] = node;
+        try {
+            visitAssignMethod.invoke(typeCheck, visitAssignMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitAssign15() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Object numberNode = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        first.setType(33);
+        setField(numberNode, "com.google.javascript.rhino.Node", "first", first);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        Object next = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(next, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        JSDocInfo objectValue = ((JSDocInfo) createInstance("com.google.javascript.rhino.JSDocInfo"));
+        setField(next, "com.google.javascript.rhino.Node$PropListItem", "objectValue", objectValue);
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "next", next);
+        setField(numberNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitAssign] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1705)
+            com.google.javascript.jscomp.TypeCheck.visitAssign(TypeCheck.java:836) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class numberNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitAssignMethod = typeCheckClazz.getDeclaredMethod("visitAssign", nodeTraversalType, numberNodeType);
+        visitAssignMethod.setAccessible(true);
+        java.lang.Object[] visitAssignMethodArguments = new java.lang.Object[2];
+        visitAssignMethodArguments[0] = ((Object) null);
+        visitAssignMethodArguments[1] = numberNode;
+        try {
+            visitAssignMethod.invoke(typeCheck, visitAssignMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitAssign16() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = new com.google.javascript.rhino.jstype.JSType[40];
+        Object indexedType = createInstance("com.google.javascript.rhino.jstype.IndexedType");
+        nativeTypes[35] = ((JSType) indexedType);
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        Object first = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        setField(node, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitAssign] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1705)
+            com.google.javascript.jscomp.TypeCheck.visitAssign(TypeCheck.java:927) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitAssignMethod = typeCheckClazz.getDeclaredMethod("visitAssign", nodeTraversalType, nodeType);
+        visitAssignMethod.setAccessible(true);
+        java.lang.Object[] visitAssignMethodArguments = new java.lang.Object[2];
+        visitAssignMethodArguments[0] = ((Object) null);
+        visitAssignMethodArguments[1] = node;
+        try {
+            visitAssignMethod.invoke(typeCheck, visitAssignMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitAssign17() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = new com.google.javascript.rhino.jstype.JSType[37];
+        Object indexedType = createInstance("com.google.javascript.rhino.jstype.IndexedType");
+        nativeTypes[35] = ((JSType) indexedType);
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        FunctionNode first = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        first.setType(33);
+        ScriptOrFnNode first1 = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        setField(first, "com.google.javascript.rhino.Node", "first", first1);
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitAssign] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitAssign(TypeCheck.java:837) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitAssignMethod = typeCheckClazz.getDeclaredMethod("visitAssign", nodeTraversalType, nodeType);
+        visitAssignMethod.setAccessible(true);
+        java.lang.Object[] visitAssignMethodArguments = new java.lang.Object[2];
+        visitAssignMethodArguments[0] = ((Object) null);
+        visitAssignMethodArguments[1] = node;
+        try {
+            visitAssignMethod.invoke(typeCheck, visitAssignMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///region OTHER: TIMEOUTS for method visitAssign(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node)
+    
+    @Test(timeout = 1000L)
+    public void testVisitAssign18() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Object numberNode = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "next", propListHead);
+        setField(numberNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        /* This execution may take longer than the 1000 ms timeout
+         and therefore fail due to exceeding the timeout. */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class numberNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitAssignMethod = typeCheckClazz.getDeclaredMethod("visitAssign", nodeTraversalType, numberNodeType);
+        visitAssignMethod.setAccessible(true);
+        java.lang.Object[] visitAssignMethodArguments = new java.lang.Object[2];
+        visitAssignMethodArguments[0] = nodeTraversal;
+        visitAssignMethodArguments[1] = numberNode;
+        try {
+            visitAssignMethod.invoke(typeCheck, visitAssignMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.visitObjLitKey
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method visitObjLitKey(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node, com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitObjLitKey(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: Node rvalue = key.getFirstChild();
+ *  */
+    @Test
+    public void testVisitObjLitKey_ThrowNullPointerException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitObjLitKey] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitObjLitKey(TypeCheck.java:951) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitObjLitKeyMethod = typeCheckClazz.getDeclaredMethod("visitObjLitKey", nodeTraversalType, nodeType, nodeType);
+        visitObjLitKeyMethod.setAccessible(true);
+        java.lang.Object[] visitObjLitKeyMethodArguments = new java.lang.Object[3];
+        visitObjLitKeyMethodArguments[0] = ((Object) null);
+        visitObjLitKeyMethodArguments[1] = ((Object) null);
+        visitObjLitKeyMethodArguments[2] = ((Object) null);
+        try {
+            visitObjLitKeyMethod.invoke(typeCheck, visitObjLitKeyMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitObjLitKey(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#getFirstChild()}
+ * @utbot.invokes com.google.javascript.jscomp.TypeCheck#getJSType(com.google.javascript.rhino.Node)
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: key
+ *  */
+    @Test
+    public void testVisitObjLitKey_ThrowNullPointerException_1() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitObjLitKey] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1705)
+            com.google.javascript.jscomp.TypeCheck.visitObjLitKey(TypeCheck.java:953) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitObjLitKeyMethod = typeCheckClazz.getDeclaredMethod("visitObjLitKey", nodeTraversalType, scriptOrFnNodeType, scriptOrFnNodeType);
+        visitObjLitKeyMethod.setAccessible(true);
+        java.lang.Object[] visitObjLitKeyMethodArguments = new java.lang.Object[3];
+        visitObjLitKeyMethodArguments[0] = ((Object) null);
+        visitObjLitKeyMethodArguments[1] = scriptOrFnNode;
+        visitObjLitKeyMethodArguments[2] = ((Object) null);
+        try {
+            visitObjLitKeyMethod.invoke(typeCheck, visitObjLitKeyMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///region OTHER: ERROR SUITE for method visitObjLitKey(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node, com.google.javascript.rhino.Node)
+    
+    @Test
+    public void testVisitObjLitKey1() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = new com.google.javascript.rhino.jstype.JSType[24];
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Object stringNode = createInstance("com.google.javascript.rhino.Node$StringNode");
+        (((Node) stringNode)).setType(147);
+        Node first = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        FunctionType jsType = ((FunctionType) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry$1"));
+        Object call = createInstance("com.google.javascript.rhino.jstype.ArrowType");
+        setField(jsType, "com.google.javascript.rhino.jstype.FunctionType", "call", call);
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(stringNode, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitObjLitKey] produces [java.lang.ArrayIndexOutOfBoundsException: Index 35 out of bounds for length 24]
+            com.google.javascript.rhino.jstype.JSTypeRegistry.getNativeType(JSTypeRegistry.java:813)
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.visitObjLitKey(TypeCheck.java:955) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class stringNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitObjLitKeyMethod = typeCheckClazz.getDeclaredMethod("visitObjLitKey", nodeTraversalType, stringNodeType, stringNodeType);
+        visitObjLitKeyMethod.setAccessible(true);
+        java.lang.Object[] visitObjLitKeyMethodArguments = new java.lang.Object[3];
+        visitObjLitKeyMethodArguments[0] = nodeTraversal;
+        visitObjLitKeyMethodArguments[1] = stringNode;
+        visitObjLitKeyMethodArguments[2] = ((Object) null);
+        try {
+            visitObjLitKeyMethod.invoke(typeCheck, visitObjLitKeyMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitObjLitKey2() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Object stringNode = createInstance("com.google.javascript.rhino.Node$StringNode");
+        FunctionNode first = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        TemplateType jsType = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(stringNode, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitObjLitKey] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1711)
+            com.google.javascript.jscomp.TypeCheck.visitObjLitKey(TypeCheck.java:962) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class stringNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitObjLitKeyMethod = typeCheckClazz.getDeclaredMethod("visitObjLitKey", nodeTraversalType, stringNodeType, stringNodeType);
+        visitObjLitKeyMethod.setAccessible(true);
+        java.lang.Object[] visitObjLitKeyMethodArguments = new java.lang.Object[3];
+        visitObjLitKeyMethodArguments[0] = ((Object) null);
+        visitObjLitKeyMethodArguments[1] = stringNode;
+        visitObjLitKeyMethodArguments[2] = ((Object) null);
+        try {
+            visitObjLitKeyMethod.invoke(typeCheck, visitObjLitKeyMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitObjLitKey3() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        node.setType(148);
+        Object first = createInstance("com.google.javascript.rhino.Node$StringNode");
+        FunctionType jsType = ((FunctionType) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry$1"));
+        Object call = createInstance("com.google.javascript.rhino.jstype.ArrowType");
+        Object parameters = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        FunctionNode first1 = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        setField(parameters, "com.google.javascript.rhino.Node", "first", first1);
+        setField(call, "com.google.javascript.rhino.jstype.ArrowType", "parameters", parameters);
+        setField(jsType, "com.google.javascript.rhino.jstype.FunctionType", "call", call);
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitObjLitKey] produces [java.lang.NullPointerException]
+            com.google.javascript.rhino.jstype.JSTypeRegistry.getNativeType(JSTypeRegistry.java:813)
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.visitObjLitKey(TypeCheck.java:955) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitObjLitKeyMethod = typeCheckClazz.getDeclaredMethod("visitObjLitKey", nodeTraversalType, nodeType, nodeType);
+        visitObjLitKeyMethod.setAccessible(true);
+        java.lang.Object[] visitObjLitKeyMethodArguments = new java.lang.Object[3];
+        visitObjLitKeyMethodArguments[0] = nodeTraversal;
+        visitObjLitKeyMethodArguments[1] = node;
+        visitObjLitKeyMethodArguments[2] = ((Object) null);
+        try {
+            visitObjLitKeyMethod.invoke(typeCheck, visitObjLitKeyMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitObjLitKey4() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = new com.google.javascript.rhino.jstype.JSType[37];
+        Object namedType = createInstance("com.google.javascript.rhino.jstype.NamedType");
+        nativeTypes[35] = ((JSType) namedType);
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        Object stringNode = createInstance("com.google.javascript.rhino.Node$StringNode");
+        (((Node) stringNode)).setType(148);
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        setField(stringNode, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitObjLitKey] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitObjLitKey(TypeCheck.java:963) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class stringNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitObjLitKeyMethod = typeCheckClazz.getDeclaredMethod("visitObjLitKey", nodeTraversalType, stringNodeType, stringNodeType);
+        visitObjLitKeyMethod.setAccessible(true);
+        java.lang.Object[] visitObjLitKeyMethodArguments = new java.lang.Object[3];
+        visitObjLitKeyMethodArguments[0] = ((Object) null);
+        visitObjLitKeyMethodArguments[1] = stringNode;
+        visitObjLitKeyMethodArguments[2] = stringNode;
+        try {
+            visitObjLitKeyMethod.invoke(typeCheck, visitObjLitKeyMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitObjLitKey5() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = new com.google.javascript.rhino.jstype.JSType[37];
+        Object namedType = createInstance("com.google.javascript.rhino.jstype.NamedType");
+        nativeTypes[35] = ((JSType) namedType);
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        Object stringNode = createInstance("com.google.javascript.rhino.Node$StringNode");
+        (((Node) stringNode)).setType(147);
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        setField(stringNode, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitObjLitKey] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitObjLitKey(TypeCheck.java:963) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class stringNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitObjLitKeyMethod = typeCheckClazz.getDeclaredMethod("visitObjLitKey", nodeTraversalType, stringNodeType, stringNodeType);
+        visitObjLitKeyMethod.setAccessible(true);
+        java.lang.Object[] visitObjLitKeyMethodArguments = new java.lang.Object[3];
+        visitObjLitKeyMethodArguments[0] = ((Object) null);
+        visitObjLitKeyMethodArguments[1] = stringNode;
+        visitObjLitKeyMethodArguments[2] = stringNode;
+        try {
+            visitObjLitKeyMethod.invoke(typeCheck, visitObjLitKeyMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///region OTHER: EXPLICITLY THROWN UNCHECKED EXCEPTIONS for method visitObjLitKey(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node, com.google.javascript.rhino.Node)
+    
+    @Test(expected = IllegalStateException.class)
+    public void testVisitObjLitKey6() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = new com.google.javascript.rhino.jstype.JSType[36];
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        setField(functionNode, "com.google.javascript.rhino.Node", "first", first);
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitObjLitKeyMethod = typeCheckClazz.getDeclaredMethod("visitObjLitKey", nodeTraversalType, functionNodeType, functionNodeType);
+        visitObjLitKeyMethod.setAccessible(true);
+        java.lang.Object[] visitObjLitKeyMethodArguments = new java.lang.Object[3];
+        visitObjLitKeyMethodArguments[0] = nodeTraversal;
+        visitObjLitKeyMethodArguments[1] = functionNode;
+        visitObjLitKeyMethodArguments[2] = scriptOrFnNode;
+        try {
+            visitObjLitKeyMethod.invoke(typeCheck, visitObjLitKeyMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test(expected = IllegalStateException.class)
+    public void testVisitObjLitKey7() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = new com.google.javascript.rhino.jstype.JSType[36];
+        Object proxyObjectType = createInstance("com.google.javascript.rhino.jstype.ProxyObjectType");
+        nativeTypes[35] = ((JSType) proxyObjectType);
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        setField(functionNode, "com.google.javascript.rhino.Node", "first", first);
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitObjLitKeyMethod = typeCheckClazz.getDeclaredMethod("visitObjLitKey", nodeTraversalType, functionNodeType, functionNodeType);
+        visitObjLitKeyMethod.setAccessible(true);
+        java.lang.Object[] visitObjLitKeyMethodArguments = new java.lang.Object[3];
+        visitObjLitKeyMethodArguments[0] = nodeTraversal;
+        visitObjLitKeyMethodArguments[1] = functionNode;
+        visitObjLitKeyMethodArguments[2] = scriptOrFnNode;
+        try {
+            visitObjLitKeyMethod.invoke(typeCheck, visitObjLitKeyMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test(expected = UnsupportedOperationException.class)
+    public void testVisitObjLitKey8() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        scriptOrFnNode.setType(147);
+        Object first = createInstance("com.google.javascript.rhino.Node$StringNode");
+        FunctionType jsType = ((FunctionType) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry$1"));
+        Object call = createInstance("com.google.javascript.rhino.jstype.ArrowType");
+        VoidType returnType = ((VoidType) createInstance("com.google.javascript.rhino.jstype.VoidType"));
+        setField(call, "com.google.javascript.rhino.jstype.ArrowType", "returnType", returnType);
+        setField(jsType, "com.google.javascript.rhino.jstype.FunctionType", "call", call);
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "first", first);
+        NullType jsType1 = ((NullType) createInstance("com.google.javascript.rhino.jstype.NullType"));
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "jsType", jsType1);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitObjLitKeyMethod = typeCheckClazz.getDeclaredMethod("visitObjLitKey", nodeTraversalType, scriptOrFnNodeType, scriptOrFnNodeType);
+        visitObjLitKeyMethod.setAccessible(true);
+        java.lang.Object[] visitObjLitKeyMethodArguments = new java.lang.Object[3];
+        visitObjLitKeyMethodArguments[0] = nodeTraversal;
+        visitObjLitKeyMethodArguments[1] = scriptOrFnNode;
+        visitObjLitKeyMethodArguments[2] = ((Object) null);
+        try {
+            visitObjLitKeyMethod.invoke(typeCheck, visitObjLitKeyMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test(expected = UnsupportedOperationException.class)
+    public void testVisitObjLitKey9() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = new com.google.javascript.rhino.jstype.JSType[40];
+        Object noResolvedType = createInstance("com.google.javascript.rhino.jstype.NoResolvedType");
+        nativeTypes[35] = ((JSType) noResolvedType);
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        node.setType(147);
+        Node first = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        Object numberNode = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitObjLitKeyMethod = typeCheckClazz.getDeclaredMethod("visitObjLitKey", nodeTraversalType, nodeType, nodeType);
+        visitObjLitKeyMethod.setAccessible(true);
+        java.lang.Object[] visitObjLitKeyMethodArguments = new java.lang.Object[3];
+        visitObjLitKeyMethodArguments[0] = ((Object) null);
+        visitObjLitKeyMethodArguments[1] = node;
+        visitObjLitKeyMethodArguments[2] = numberNode;
+        try {
+            visitObjLitKeyMethod.invoke(typeCheck, visitObjLitKeyMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test(expected = UnsupportedOperationException.class)
+    public void testVisitObjLitKey10() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = new com.google.javascript.rhino.jstype.JSType[40];
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        scriptOrFnNode.setType(147);
+        Object first = createInstance("com.google.javascript.rhino.Node$StringNode");
+        FunctionType jsType = ((FunctionType) createInstance("com.google.javascript.rhino.jstype.FunctionType"));
+        Object call = createInstance("com.google.javascript.rhino.jstype.ArrowType");
+        setField(jsType, "com.google.javascript.rhino.jstype.FunctionType", "call", call);
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "first", first);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitObjLitKeyMethod = typeCheckClazz.getDeclaredMethod("visitObjLitKey", nodeTraversalType, scriptOrFnNodeType, scriptOrFnNodeType);
+        visitObjLitKeyMethod.setAccessible(true);
+        java.lang.Object[] visitObjLitKeyMethodArguments = new java.lang.Object[3];
+        visitObjLitKeyMethodArguments[0] = ((Object) null);
+        visitObjLitKeyMethodArguments[1] = scriptOrFnNode;
+        visitObjLitKeyMethodArguments[2] = ((Object) null);
+        try {
+            visitObjLitKeyMethod.invoke(typeCheck, visitObjLitKeyMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.getJSType
+    
+    ///region SYMBOLIC EXECUTION: SUCCESSFUL EXECUTIONS for method getJSType(com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#getJSType(com.google.javascript.rhino.Node)}
+ * @utbot.executesCondition {@code (jsType == null): True}
+ * @utbot.invokes com.google.javascript.jscomp.TypeCheck#getNativeType(com.google.javascript.rhino.jstype.JSTypeNative)
+ * @utbot.returnsFrom {@code return getNativeType(UNKNOWN_TYPE);}
+ *  */
+    @Test
+    public void testGetJSType_JsTypeEqualsNull() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = new com.google.javascript.rhino.jstype.JSType[37];
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        Node node = new Node(0);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method getJSTypeMethod = typeCheckClazz.getDeclaredMethod("getJSType", nodeType);
+        getJSTypeMethod.setAccessible(true);
+        java.lang.Object[] getJSTypeMethodArguments = new java.lang.Object[1];
+        getJSTypeMethodArguments[0] = node;
+        JSType actual = ((JSType) getJSTypeMethod.invoke(typeCheck, getJSTypeMethodArguments));
+        
+        assertNull(actual);
+        
+        JSTypeRegistry typeCheckTypeRegistry = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistryTypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes0 = ((JSType) get(typeCheckTypeRegistryTypeRegistryNativeTypes, 0));
+        JSTypeRegistry typeCheckTypeRegistry1 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry1TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry1, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes1 = ((JSType) get(typeCheckTypeRegistry1TypeRegistryNativeTypes, 1));
+        JSTypeRegistry typeCheckTypeRegistry2 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry2TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry2, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes2 = ((JSType) get(typeCheckTypeRegistry2TypeRegistryNativeTypes, 2));
+        JSTypeRegistry typeCheckTypeRegistry3 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry3TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry3, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes3 = ((JSType) get(typeCheckTypeRegistry3TypeRegistryNativeTypes, 3));
+        JSTypeRegistry typeCheckTypeRegistry4 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry4TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry4, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes4 = ((JSType) get(typeCheckTypeRegistry4TypeRegistryNativeTypes, 4));
+        JSTypeRegistry typeCheckTypeRegistry5 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry5TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry5, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes5 = ((JSType) get(typeCheckTypeRegistry5TypeRegistryNativeTypes, 5));
+        JSTypeRegistry typeCheckTypeRegistry6 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry6TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry6, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes6 = ((JSType) get(typeCheckTypeRegistry6TypeRegistryNativeTypes, 6));
+        JSTypeRegistry typeCheckTypeRegistry7 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry7TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry7, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes7 = ((JSType) get(typeCheckTypeRegistry7TypeRegistryNativeTypes, 7));
+        JSTypeRegistry typeCheckTypeRegistry8 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry8TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry8, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes8 = ((JSType) get(typeCheckTypeRegistry8TypeRegistryNativeTypes, 8));
+        JSTypeRegistry typeCheckTypeRegistry9 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry9TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry9, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes9 = ((JSType) get(typeCheckTypeRegistry9TypeRegistryNativeTypes, 9));
+        JSTypeRegistry typeCheckTypeRegistry10 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry10TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry10, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes10 = ((JSType) get(typeCheckTypeRegistry10TypeRegistryNativeTypes, 10));
+        JSTypeRegistry typeCheckTypeRegistry11 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry11TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry11, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes11 = ((JSType) get(typeCheckTypeRegistry11TypeRegistryNativeTypes, 11));
+        JSTypeRegistry typeCheckTypeRegistry12 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry12TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry12, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes12 = ((JSType) get(typeCheckTypeRegistry12TypeRegistryNativeTypes, 12));
+        JSTypeRegistry typeCheckTypeRegistry13 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry13TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry13, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes13 = ((JSType) get(typeCheckTypeRegistry13TypeRegistryNativeTypes, 13));
+        JSTypeRegistry typeCheckTypeRegistry14 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry14TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry14, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes14 = ((JSType) get(typeCheckTypeRegistry14TypeRegistryNativeTypes, 14));
+        JSTypeRegistry typeCheckTypeRegistry15 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry15TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry15, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes15 = ((JSType) get(typeCheckTypeRegistry15TypeRegistryNativeTypes, 15));
+        JSTypeRegistry typeCheckTypeRegistry16 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry16TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry16, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes16 = ((JSType) get(typeCheckTypeRegistry16TypeRegistryNativeTypes, 16));
+        JSTypeRegistry typeCheckTypeRegistry17 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry17TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry17, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes17 = ((JSType) get(typeCheckTypeRegistry17TypeRegistryNativeTypes, 17));
+        JSTypeRegistry typeCheckTypeRegistry18 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry18TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry18, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes18 = ((JSType) get(typeCheckTypeRegistry18TypeRegistryNativeTypes, 18));
+        JSTypeRegistry typeCheckTypeRegistry19 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry19TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry19, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes19 = ((JSType) get(typeCheckTypeRegistry19TypeRegistryNativeTypes, 19));
+        JSTypeRegistry typeCheckTypeRegistry20 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry20TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry20, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes20 = ((JSType) get(typeCheckTypeRegistry20TypeRegistryNativeTypes, 20));
+        JSTypeRegistry typeCheckTypeRegistry21 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry21TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry21, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes21 = ((JSType) get(typeCheckTypeRegistry21TypeRegistryNativeTypes, 21));
+        JSTypeRegistry typeCheckTypeRegistry22 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry22TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry22, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes22 = ((JSType) get(typeCheckTypeRegistry22TypeRegistryNativeTypes, 22));
+        JSTypeRegistry typeCheckTypeRegistry23 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry23TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry23, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes23 = ((JSType) get(typeCheckTypeRegistry23TypeRegistryNativeTypes, 23));
+        JSTypeRegistry typeCheckTypeRegistry24 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry24TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry24, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes24 = ((JSType) get(typeCheckTypeRegistry24TypeRegistryNativeTypes, 24));
+        JSTypeRegistry typeCheckTypeRegistry25 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry25TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry25, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes25 = ((JSType) get(typeCheckTypeRegistry25TypeRegistryNativeTypes, 25));
+        JSTypeRegistry typeCheckTypeRegistry26 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry26TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry26, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes26 = ((JSType) get(typeCheckTypeRegistry26TypeRegistryNativeTypes, 26));
+        JSTypeRegistry typeCheckTypeRegistry27 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry27TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry27, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes27 = ((JSType) get(typeCheckTypeRegistry27TypeRegistryNativeTypes, 27));
+        JSTypeRegistry typeCheckTypeRegistry28 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry28TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry28, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes28 = ((JSType) get(typeCheckTypeRegistry28TypeRegistryNativeTypes, 28));
+        JSTypeRegistry typeCheckTypeRegistry29 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry29TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry29, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes29 = ((JSType) get(typeCheckTypeRegistry29TypeRegistryNativeTypes, 29));
+        JSTypeRegistry typeCheckTypeRegistry30 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry30TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry30, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes30 = ((JSType) get(typeCheckTypeRegistry30TypeRegistryNativeTypes, 30));
+        JSTypeRegistry typeCheckTypeRegistry31 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry31TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry31, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes31 = ((JSType) get(typeCheckTypeRegistry31TypeRegistryNativeTypes, 31));
+        JSTypeRegistry typeCheckTypeRegistry32 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry32TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry32, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes32 = ((JSType) get(typeCheckTypeRegistry32TypeRegistryNativeTypes, 32));
+        JSTypeRegistry typeCheckTypeRegistry33 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry33TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry33, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes33 = ((JSType) get(typeCheckTypeRegistry33TypeRegistryNativeTypes, 33));
+        JSTypeRegistry typeCheckTypeRegistry34 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry34TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry34, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes34 = ((JSType) get(typeCheckTypeRegistry34TypeRegistryNativeTypes, 34));
+        JSTypeRegistry typeCheckTypeRegistry35 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry35TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry35, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes35 = ((JSType) get(typeCheckTypeRegistry35TypeRegistryNativeTypes, 35));
+        JSTypeRegistry typeCheckTypeRegistry36 = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistry36TypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry36, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes36 = ((JSType) get(typeCheckTypeRegistry36TypeRegistryNativeTypes, 36));
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes0);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes1);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes2);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes3);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes4);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes5);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes6);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes7);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes8);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes9);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes10);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes11);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes12);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes13);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes14);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes15);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes16);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes17);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes18);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes19);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes20);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes21);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes22);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes23);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes24);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes25);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes26);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes27);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes28);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes29);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes30);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes31);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes32);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes33);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes34);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes35);
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes36);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#getJSType(com.google.javascript.rhino.Node)}
+ * @utbot.executesCondition {@code (jsType == null): False}
+ * @utbot.returnsFrom {@code return jsType;}
+ *  */
+    @Test
+    public void testGetJSType_JsTypeNotEqualsNull() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        TemplateType jsType = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "jsType", jsType);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method getJSTypeMethod = typeCheckClazz.getDeclaredMethod("getJSType", scriptOrFnNodeType);
+        getJSTypeMethod.setAccessible(true);
+        java.lang.Object[] getJSTypeMethodArguments = new java.lang.Object[1];
+        getJSTypeMethodArguments[0] = scriptOrFnNode;
+        TemplateType actual = ((TemplateType) getJSTypeMethod.invoke(typeCheck, getJSTypeMethodArguments));
+        
+        String actualName = ((String) getFieldValue(actual, "com.google.javascript.rhino.jstype.TemplateType", "name"));
+        assertNull(actualName);
+        
+        JSType actualReferencedType = ((JSType) getFieldValue(actual, "com.google.javascript.rhino.jstype.ProxyObjectType", "referencedType"));
+        assertNull(actualReferencedType);
+        
+        ObjectType actualReferencedObjType = ((ObjectType) getFieldValue(actual, "com.google.javascript.rhino.jstype.ProxyObjectType", "referencedObjType"));
+        assertNull(actualReferencedObjType);
+        
+        boolean actualVisited = ((Boolean) getFieldValue(actual, "com.google.javascript.rhino.jstype.ObjectType", "visited"));
+        assertFalse(actualVisited);
+        
+        JSDocInfo actualDocInfo = ((JSDocInfo) getFieldValue(actual, "com.google.javascript.rhino.jstype.ObjectType", "docInfo"));
+        assertNull(actualDocInfo);
+        
+        boolean actualUnknown = ((Boolean) getFieldValue(actual, "com.google.javascript.rhino.jstype.ObjectType", "unknown"));
+        assertFalse(actualUnknown);
+        
+        boolean actualResolved = ((Boolean) getFieldValue(actual, "com.google.javascript.rhino.jstype.JSType", "resolved"));
+        assertFalse(actualResolved);
+        
+        JSType actualResolveResult = ((JSType) getFieldValue(actual, "com.google.javascript.rhino.jstype.JSType", "resolveResult"));
+        assertNull(actualResolveResult);
+        
+        JSTypeRegistry actualRegistry = ((JSTypeRegistry) getFieldValue(actual, "com.google.javascript.rhino.jstype.JSType", "registry"));
+        assertNull(actualRegistry);
+        
+    }
+    ///endregion
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method getJSType(com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#getJSType(com.google.javascript.rhino.Node)}
+ * @utbot.executesCondition {@code (jsType == null): True}
+ * @utbot.throwsException {@link java.lang.ArrayIndexOutOfBoundsException} in: return getNativeType(UNKNOWN_TYPE);
+ *  */
+    @Test
+    public void testGetJSType_ThrowArrayIndexOutOfBoundsException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = {};
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.getJSType] produces [java.lang.ArrayIndexOutOfBoundsException: Index 35 out of bounds for length 0]
+            com.google.javascript.rhino.jstype.JSTypeRegistry.getNativeType(JSTypeRegistry.java:813)
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1711) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method getJSTypeMethod = typeCheckClazz.getDeclaredMethod("getJSType", scriptOrFnNodeType);
+        getJSTypeMethod.setAccessible(true);
+        java.lang.Object[] getJSTypeMethodArguments = new java.lang.Object[1];
+        getJSTypeMethodArguments[0] = scriptOrFnNode;
+        try {
+            getJSTypeMethod.invoke(typeCheck, getJSTypeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#getJSType(com.google.javascript.rhino.Node)}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#getJSType()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: JSType jsType = n.getJSType();
+ *  */
+    @Test
+    public void testGetJSType_ThrowNullPointerException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.getJSType] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1705) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method getJSTypeMethod = typeCheckClazz.getDeclaredMethod("getJSType", nodeType);
+        getJSTypeMethod.setAccessible(true);
+        java.lang.Object[] getJSTypeMethodArguments = new java.lang.Object[1];
+        getJSTypeMethodArguments[0] = ((Object) null);
+        try {
+            getJSTypeMethod.invoke(typeCheck, getJSTypeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#getJSType(com.google.javascript.rhino.Node)}
+ * @utbot.executesCondition {@code (jsType == null): True}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: return getNativeType(UNKNOWN_TYPE);
+ *  */
+    @Test
+    public void testGetJSType_ThrowNullPointerException_1() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.getJSType] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1711) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method getJSTypeMethod = typeCheckClazz.getDeclaredMethod("getJSType", scriptOrFnNodeType);
+        getJSTypeMethod.setAccessible(true);
+        java.lang.Object[] getJSTypeMethodArguments = new java.lang.Object[1];
+        getJSTypeMethodArguments[0] = scriptOrFnNode;
+        try {
+            getJSTypeMethod.invoke(typeCheck, getJSTypeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.visitParameterList
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method visitParameterList(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node, com.google.javascript.rhino.jstype.FunctionType)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitParameterList(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.FunctionType)}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#children()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: Iterator<Node> arguments = call.children().iterator();
+ *  */
+    @Test
+    public void testVisitParameterList_ThrowNullPointerException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitParameterList] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitParameterList(TypeCheck.java:1491) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class functionTypeType = Class.forName("com.google.javascript.rhino.jstype.FunctionType");
+        Method visitParameterListMethod = typeCheckClazz.getDeclaredMethod("visitParameterList", nodeTraversalType, nodeType, functionTypeType);
+        visitParameterListMethod.setAccessible(true);
+        java.lang.Object[] visitParameterListMethodArguments = new java.lang.Object[3];
+        visitParameterListMethodArguments[0] = ((Object) null);
+        visitParameterListMethodArguments[1] = ((Object) null);
+        visitParameterListMethodArguments[2] = ((Object) null);
+        try {
+            visitParameterListMethod.invoke(typeCheck, visitParameterListMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///region OTHER: ERROR SUITE for method visitParameterList(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node, com.google.javascript.rhino.jstype.FunctionType)
+    
+    @Test
+    public void testVisitParameterList1() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Object stringNode = createInstance("com.google.javascript.rhino.Node$StringNode");
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitParameterList] produces [java.util.NoSuchElementException]
+            java.base/java.util.Collections$EmptyIterator.next(Collections.java:4310)
+            com.google.javascript.jscomp.TypeCheck.visitParameterList(TypeCheck.java:1492) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class stringNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class functionTypeType = Class.forName("com.google.javascript.rhino.jstype.FunctionType");
+        Method visitParameterListMethod = typeCheckClazz.getDeclaredMethod("visitParameterList", nodeTraversalType, stringNodeType, functionTypeType);
+        visitParameterListMethod.setAccessible(true);
+        java.lang.Object[] visitParameterListMethodArguments = new java.lang.Object[3];
+        visitParameterListMethodArguments[0] = nodeTraversal;
+        visitParameterListMethodArguments[1] = stringNode;
+        visitParameterListMethodArguments[2] = ((Object) null);
+        try {
+            visitParameterListMethod.invoke(typeCheck, visitParameterListMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitParameterList2() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Object stringNode = createInstance("com.google.javascript.rhino.Node$StringNode");
+        Object first = createInstance("com.google.javascript.rhino.Node$StringNode");
+        setField(stringNode, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitParameterList] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitParameterList(TypeCheck.java:1494) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class stringNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class functionTypeType = Class.forName("com.google.javascript.rhino.jstype.FunctionType");
+        Method visitParameterListMethod = typeCheckClazz.getDeclaredMethod("visitParameterList", nodeTraversalType, stringNodeType, functionTypeType);
+        visitParameterListMethod.setAccessible(true);
+        java.lang.Object[] visitParameterListMethodArguments = new java.lang.Object[3];
+        visitParameterListMethodArguments[0] = ((Object) null);
+        visitParameterListMethodArguments[1] = stringNode;
+        visitParameterListMethodArguments[2] = ((Object) null);
+        try {
+            visitParameterListMethod.invoke(typeCheck, visitParameterListMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.visitCall
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method visitCall(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitCall(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.ArrayIndexOutOfBoundsException} 
+ *  */
+    @Test
+    public void testVisitCall_ThrowArrayIndexOutOfBoundsException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = {};
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitCall] produces [java.lang.ArrayIndexOutOfBoundsException: Index 35 out of bounds for length 0]
+            com.google.javascript.rhino.jstype.JSTypeRegistry.getNativeType(JSTypeRegistry.java:813)
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1711)
+            com.google.javascript.jscomp.TypeCheck.visitCall(TypeCheck.java:1456) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitCallMethod = typeCheckClazz.getDeclaredMethod("visitCall", nodeTraversalType, scriptOrFnNodeType);
+        visitCallMethod.setAccessible(true);
+        java.lang.Object[] visitCallMethodArguments = new java.lang.Object[2];
+        visitCallMethodArguments[0] = ((Object) null);
+        visitCallMethodArguments[1] = scriptOrFnNode;
+        try {
+            visitCallMethod.invoke(typeCheck, visitCallMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitCall(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: Node child = n.getFirstChild();
+ *  */
+    @Test
+    public void testVisitCall_ThrowNullPointerException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitCall] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitCall(TypeCheck.java:1455) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitCallMethod = typeCheckClazz.getDeclaredMethod("visitCall", nodeTraversalType, nodeType);
+        visitCallMethod.setAccessible(true);
+        java.lang.Object[] visitCallMethodArguments = new java.lang.Object[2];
+        visitCallMethodArguments[0] = ((Object) null);
+        visitCallMethodArguments[1] = ((Object) null);
+        try {
+            visitCallMethod.invoke(typeCheck, visitCallMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitCall(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: JSType childType = getJSType(child).restrictByNotNullOrUndefined();
+ *  */
+    @Test
+    public void testVisitCall_ThrowNullPointerException_1() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = new Node(0);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitCall] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1705)
+            com.google.javascript.jscomp.TypeCheck.visitCall(TypeCheck.java:1456) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitCallMethod = typeCheckClazz.getDeclaredMethod("visitCall", nodeTraversalType, nodeType);
+        visitCallMethod.setAccessible(true);
+        java.lang.Object[] visitCallMethodArguments = new java.lang.Object[2];
+        visitCallMethodArguments[0] = ((Object) null);
+        visitCallMethodArguments[1] = node;
+        try {
+            visitCallMethod.invoke(typeCheck, visitCallMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitCall(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.invokes {@link com.google.javascript.rhino.jstype.JSType#restrictByNotNullOrUndefined()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: JSType childType = getJSType(child).restrictByNotNullOrUndefined();
+ *  */
+    @Test
+    public void testVisitCall_ThrowNullPointerException_2() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = new com.google.javascript.rhino.jstype.JSType[37];
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        FunctionNode first = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        setField(functionNode, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitCall] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitCall(TypeCheck.java:1456) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitCallMethod = typeCheckClazz.getDeclaredMethod("visitCall", nodeTraversalType, functionNodeType);
+        visitCallMethod.setAccessible(true);
+        java.lang.Object[] visitCallMethodArguments = new java.lang.Object[2];
+        visitCallMethodArguments[0] = ((Object) null);
+        visitCallMethodArguments[1] = functionNode;
+        try {
+            visitCallMethod.invoke(typeCheck, visitCallMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitCall(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: JSType childType = getJSType(child).restrictByNotNullOrUndefined();
+ *  */
+    @Test
+    public void testVisitCall_ThrowNullPointerException_3() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        FunctionNode first = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        setField(functionNode, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitCall] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1711)
+            com.google.javascript.jscomp.TypeCheck.visitCall(TypeCheck.java:1456) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitCallMethod = typeCheckClazz.getDeclaredMethod("visitCall", nodeTraversalType, functionNodeType);
+        visitCallMethod.setAccessible(true);
+        java.lang.Object[] visitCallMethodArguments = new java.lang.Object[2];
+        visitCallMethodArguments[0] = ((Object) null);
+        visitCallMethodArguments[1] = functionNode;
+        try {
+            visitCallMethod.invoke(typeCheck, visitCallMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///region OTHER: ERROR SUITE for method visitCall(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node)
+    
+    @Test
+    public void testVisitCall1() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Object numberNode = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        VoidType jsType = ((VoidType) createInstance("com.google.javascript.rhino.jstype.VoidType"));
+        JSTypeRegistry registry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = {null, null, null, null, null, null, null, null, null, null};
+        setField(registry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(jsType, "com.google.javascript.rhino.jstype.JSType", "registry", registry);
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(numberNode, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitCall] produces [java.lang.ArrayIndexOutOfBoundsException: Index 43 out of bounds for length 10]
+            com.google.javascript.rhino.jstype.JSTypeRegistry.getNativeType(JSTypeRegistry.java:813)
+            com.google.javascript.rhino.jstype.VoidType.restrictByNotNullOrUndefined(VoidType.java:59)
+            com.google.javascript.jscomp.TypeCheck.visitCall(TypeCheck.java:1456) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class numberNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitCallMethod = typeCheckClazz.getDeclaredMethod("visitCall", nodeTraversalType, numberNodeType);
+        visitCallMethod.setAccessible(true);
+        java.lang.Object[] visitCallMethodArguments = new java.lang.Object[2];
+        visitCallMethodArguments[0] = nodeTraversal;
+        visitCallMethodArguments[1] = numberNode;
+        try {
+            visitCallMethod.invoke(typeCheck, visitCallMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitCall2() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        Object first = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        BooleanType jsType = ((BooleanType) createInstance("com.google.javascript.rhino.jstype.BooleanType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(functionNode, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitCall] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.NodeTraversal.report(NodeTraversal.java:610)
+            com.google.javascript.jscomp.TypeCheck.report(TypeCheck.java:404)
+            com.google.javascript.jscomp.TypeCheck.visitCall(TypeCheck.java:1459) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitCallMethod = typeCheckClazz.getDeclaredMethod("visitCall", nodeTraversalType, functionNodeType);
+        visitCallMethod.setAccessible(true);
+        java.lang.Object[] visitCallMethodArguments = new java.lang.Object[2];
+        visitCallMethodArguments[0] = nodeTraversal;
+        visitCallMethodArguments[1] = functionNode;
+        try {
+            visitCallMethod.invoke(typeCheck, visitCallMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitCall3() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = new com.google.javascript.rhino.jstype.JSType[36];
+        UnionType unionType = ((UnionType) createInstance("com.google.javascript.rhino.jstype.UnionType"));
+        ArrayList alternates = new ArrayList();
+        setField(unionType, "com.google.javascript.rhino.jstype.UnionType", "alternates", alternates);
+        nativeTypes[35] = ((JSType) unionType);
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        FunctionNode first = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitCall] produces [java.lang.NullPointerException]
+            com.google.javascript.rhino.jstype.UnionTypeBuilder.reduceAlternatesWithoutUnion(UnionTypeBuilder.java:181)
+            com.google.javascript.rhino.jstype.UnionTypeBuilder.build(UnionTypeBuilder.java:193)
+            com.google.javascript.rhino.jstype.UnionType.restrictByNotNullOrUndefined(UnionType.java:222)
+            com.google.javascript.jscomp.TypeCheck.visitCall(TypeCheck.java:1456) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitCallMethod = typeCheckClazz.getDeclaredMethod("visitCall", nodeTraversalType, scriptOrFnNodeType);
+        visitCallMethod.setAccessible(true);
+        java.lang.Object[] visitCallMethodArguments = new java.lang.Object[2];
+        visitCallMethodArguments[0] = nodeTraversal;
+        visitCallMethodArguments[1] = scriptOrFnNode;
+        try {
+            visitCallMethod.invoke(typeCheck, visitCallMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.isPropertyTest
+    
+    ///region SYMBOLIC EXECUTION: SUCCESSFUL EXECUTIONS #0 for method isPropertyTest(com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#isPropertyTest(com.google.javascript.rhino.Node)}
+ * @utbot.activatesSwitch {@code switch(parent.getType()) case: default}
+ * @utbot.returnsFrom {@code return true;}
+ *  */
+    @Test
+    public void testIsPropertyTest_ReturnTrue() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        Node parent = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        parent.setType(32);
+        setField(node, "com.google.javascript.rhino.Node", "parent", parent);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method isPropertyTestMethod = typeCheckClazz.getDeclaredMethod("isPropertyTest", nodeType);
+        isPropertyTestMethod.setAccessible(true);
+        java.lang.Object[] isPropertyTestMethodArguments = new java.lang.Object[1];
+        isPropertyTestMethodArguments[0] = node;
+        boolean actual = ((Boolean) isPropertyTestMethod.invoke(typeCheck, isPropertyTestMethodArguments));
+        
+        assertTrue(actual);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#isPropertyTest(com.google.javascript.rhino.Node)}
+ * @utbot.activatesSwitch {@code switch(parent.getType()) case: default}
+ * @utbot.returnsFrom {@code return false;}
+ *  */
+    @Test
+    public void testIsPropertyTest_ReturnFalse() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode parent = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        parent.setType(-255);
+        setField(node, "com.google.javascript.rhino.Node", "parent", parent);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method isPropertyTestMethod = typeCheckClazz.getDeclaredMethod("isPropertyTest", nodeType);
+        isPropertyTestMethod.setAccessible(true);
+        java.lang.Object[] isPropertyTestMethodArguments = new java.lang.Object[1];
+        isPropertyTestMethodArguments[0] = node;
+        boolean actual = ((Boolean) isPropertyTestMethod.invoke(typeCheck, isPropertyTestMethodArguments));
+        
+        assertFalse(actual);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#isPropertyTest(com.google.javascript.rhino.Node)}
+ * @utbot.returnsFrom {@code return parent.getFirstChild() != getProp && compiler.getCodingConvention().isPropertyTestFunction(parent);}
+ *  */
+    @Test
+    public void testIsPropertyTest_ParentGetFirstChildEqualsGetPropAndCompilerGetCodingConventionIsPropertyTestFunction() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode parent = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        parent.setType(37);
+        setField(parent, "com.google.javascript.rhino.Node", "first", node);
+        setField(node, "com.google.javascript.rhino.Node", "parent", parent);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method isPropertyTestMethod = typeCheckClazz.getDeclaredMethod("isPropertyTest", nodeType);
+        isPropertyTestMethod.setAccessible(true);
+        java.lang.Object[] isPropertyTestMethodArguments = new java.lang.Object[1];
+        isPropertyTestMethodArguments[0] = node;
+        boolean actual = ((Boolean) isPropertyTestMethod.invoke(typeCheck, isPropertyTestMethodArguments));
+        
+        assertFalse(actual);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#isPropertyTest(com.google.javascript.rhino.Node)}
+ * @utbot.returnsFrom {@code return parent.getFirstChild() == getProp;}
+ *  */
+    @Test
+    public void testIsPropertyTest_ParentGetFirstChildEqualsGetProp() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode parent = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        parent.setType(101);
+        setField(parent, "com.google.javascript.rhino.Node", "first", node);
+        setField(node, "com.google.javascript.rhino.Node", "parent", parent);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method isPropertyTestMethod = typeCheckClazz.getDeclaredMethod("isPropertyTest", nodeType);
+        isPropertyTestMethod.setAccessible(true);
+        java.lang.Object[] isPropertyTestMethodArguments = new java.lang.Object[1];
+        isPropertyTestMethodArguments[0] = node;
+        boolean actual = ((Boolean) isPropertyTestMethod.invoke(typeCheck, isPropertyTestMethodArguments));
+        
+        assertTrue(actual);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#isPropertyTest(com.google.javascript.rhino.Node)}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#getParent()}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#getType()}
+ * @utbot.activatesSwitch {@code switch(parent.getType()) case: default}
+ * @utbot.returnsFrom {@code return parent.getParent().getType() == Token.OR && parent.getParent().getFirstChild() == parent;}
+ *  */
+    @Test
+    public void testIsPropertyTest_ParentGetParentGetTypeNotEqualsTokenORAndParentGetParentGetFirstChildNotEqualsParent() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode parent = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        parent.setType(26);
+        ScriptOrFnNode parent1 = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        parent1.setType(-255);
+        setField(parent, "com.google.javascript.rhino.Node", "parent", parent1);
+        setField(node, "com.google.javascript.rhino.Node", "parent", parent);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method isPropertyTestMethod = typeCheckClazz.getDeclaredMethod("isPropertyTest", nodeType);
+        isPropertyTestMethod.setAccessible(true);
+        java.lang.Object[] isPropertyTestMethodArguments = new java.lang.Object[1];
+        isPropertyTestMethodArguments[0] = node;
+        boolean actual = ((Boolean) isPropertyTestMethod.invoke(typeCheck, isPropertyTestMethodArguments));
+        
+        assertFalse(actual);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#isPropertyTest(com.google.javascript.rhino.Node)}
+ * @utbot.returnsFrom {@code return parent.getFirstChild() == getProp;}
+ *  */
+    @Test
+    public void testIsPropertyTest_ParentGetFirstChildNotEqualsGetProp() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode parent = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        parent.setType(101);
+        setField(node, "com.google.javascript.rhino.Node", "parent", parent);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method isPropertyTestMethod = typeCheckClazz.getDeclaredMethod("isPropertyTest", nodeType);
+        isPropertyTestMethod.setAccessible(true);
+        java.lang.Object[] isPropertyTestMethodArguments = new java.lang.Object[1];
+        isPropertyTestMethodArguments[0] = node;
+        boolean actual = ((Boolean) isPropertyTestMethod.invoke(typeCheck, isPropertyTestMethodArguments));
+        
+        assertFalse(actual);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#isPropertyTest(com.google.javascript.rhino.Node)}
+ * @utbot.executesCondition {@code (compiler.getCodingConvention().isPropertyTestFunction(parent)): False}
+ * @utbot.invokes {@link com.google.javascript.jscomp.AbstractCompiler#getCodingConvention()}
+ * @utbot.invokes {@link com.google.javascript.jscomp.CodingConvention#isPropertyTestFunction(com.google.javascript.rhino.Node)}
+ * @utbot.returnsFrom {@code return parent.getFirstChild() != getProp && compiler.getCodingConvention().isPropertyTestFunction(parent);}
+ *  */
+    @Test
+    public void testIsPropertyTest_NotCompilerGetCodingConventionIsPropertyTestFunction() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Compiler compiler = ((Compiler) createInstance("com.google.javascript.jscomp.Compiler"));
+        CompilerOptions options = ((CompilerOptions) createInstance("com.google.javascript.jscomp.CompilerOptions"));
+        compiler.options = options;
+        DefaultCodingConvention defaultCodingConvention = ((DefaultCodingConvention) createInstance("com.google.javascript.jscomp.DefaultCodingConvention"));
+        setField(compiler, "com.google.javascript.jscomp.Compiler", "defaultCodingConvention", defaultCodingConvention);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "compiler", compiler);
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode parent = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        parent.setType(37);
+        setField(node, "com.google.javascript.rhino.Node", "parent", parent);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method isPropertyTestMethod = typeCheckClazz.getDeclaredMethod("isPropertyTest", nodeType);
+        isPropertyTestMethod.setAccessible(true);
+        java.lang.Object[] isPropertyTestMethodArguments = new java.lang.Object[1];
+        isPropertyTestMethodArguments[0] = node;
+        boolean actual = ((Boolean) isPropertyTestMethod.invoke(typeCheck, isPropertyTestMethodArguments));
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region SYMBOLIC EXECUTION: SUCCESSFUL EXECUTIONS #1 for method isPropertyTest(com.google.javascript.rhino.Node)
+    /// 
+    /// Common steps:
+    /// <pre>
+    /// Tests invoke:
+    ///     {@link com.google.javascript.jscomp.NodeUtil#getConditionExpression(com.google.javascript.rhino.Node)} once
+    /// return from: {@code return NodeUtil.getConditionExpression(parent) == getProp;}
+    /// </pre>
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#isPropertyTest(com.google.javascript.rhino.Node)}
+ * @utbot.returnsFrom {@code return NodeUtil.getConditionExpression(parent) == getProp;}
+ *  */
+    @Test
+    public void testIsPropertyTest_NodeUtilGetConditionExpressionEqualsGetProp() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        Node parent = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        parent.setType(114);
+        setField(parent, "com.google.javascript.rhino.Node", "last", node);
+        setField(node, "com.google.javascript.rhino.Node", "parent", parent);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method isPropertyTestMethod = typeCheckClazz.getDeclaredMethod("isPropertyTest", nodeType);
+        isPropertyTestMethod.setAccessible(true);
+        java.lang.Object[] isPropertyTestMethodArguments = new java.lang.Object[1];
+        isPropertyTestMethodArguments[0] = node;
+        boolean actual = ((Boolean) isPropertyTestMethod.invoke(typeCheck, isPropertyTestMethodArguments));
+        
+        assertTrue(actual);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#isPropertyTest(com.google.javascript.rhino.Node)}
+ * @utbot.returnsFrom {@code return NodeUtil.getConditionExpression(parent) == getProp;}
+ *  */
+    @Test
+    public void testIsPropertyTest_NodeUtilGetConditionExpressionNotEqualsGetProp() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode parent = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        parent.setType(114);
+        setField(node, "com.google.javascript.rhino.Node", "parent", parent);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method isPropertyTestMethod = typeCheckClazz.getDeclaredMethod("isPropertyTest", nodeType);
+        isPropertyTestMethod.setAccessible(true);
+        java.lang.Object[] isPropertyTestMethodArguments = new java.lang.Object[1];
+        isPropertyTestMethodArguments[0] = node;
+        boolean actual = ((Boolean) isPropertyTestMethod.invoke(typeCheck, isPropertyTestMethodArguments));
+        
+        assertFalse(actual);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#isPropertyTest(com.google.javascript.rhino.Node)}
+ * @utbot.activatesSwitch {@code switch(parent.getType()) case: default}
+ * @utbot.returnsFrom {@code return NodeUtil.getConditionExpression(parent) == getProp;}
+ *  */
+    @Test
+    public void testIsPropertyTest_SwitchParentGetTypeCasedefault() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode parent = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        parent.setType(108);
+        setField(node, "com.google.javascript.rhino.Node", "parent", parent);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method isPropertyTestMethod = typeCheckClazz.getDeclaredMethod("isPropertyTest", nodeType);
+        isPropertyTestMethod.setAccessible(true);
+        java.lang.Object[] isPropertyTestMethodArguments = new java.lang.Object[1];
+        isPropertyTestMethodArguments[0] = node;
+        boolean actual = ((Boolean) isPropertyTestMethod.invoke(typeCheck, isPropertyTestMethodArguments));
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method isPropertyTest(com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#isPropertyTest(com.google.javascript.rhino.Node)}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#getParent()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: Node parent = getProp.getParent();
+ *  */
+    @Test
+    public void testIsPropertyTest_ThrowNullPointerException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.isPropertyTest] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.isPropertyTest(TypeCheck.java:1291) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method isPropertyTestMethod = typeCheckClazz.getDeclaredMethod("isPropertyTest", nodeType);
+        isPropertyTestMethod.setAccessible(true);
+        java.lang.Object[] isPropertyTestMethodArguments = new java.lang.Object[1];
+        isPropertyTestMethodArguments[0] = ((Object) null);
+        try {
+            isPropertyTestMethod.invoke(typeCheck, isPropertyTestMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#isPropertyTest(com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: switch(parent.getType())
+ *  */
+    @Test
+    public void testIsPropertyTest_ThrowNullPointerException_1() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.isPropertyTest] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.isPropertyTest(TypeCheck.java:1292) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method isPropertyTestMethod = typeCheckClazz.getDeclaredMethod("isPropertyTest", nodeType);
+        isPropertyTestMethod.setAccessible(true);
+        java.lang.Object[] isPropertyTestMethodArguments = new java.lang.Object[1];
+        isPropertyTestMethodArguments[0] = node;
+        try {
+            isPropertyTestMethod.invoke(typeCheck, isPropertyTestMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#isPropertyTest(com.google.javascript.rhino.Node)}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#getParent()}
+ * @utbot.activatesSwitch {@code switch(parent.getType()) case: default}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: return parent.getParent().getType() == Token.OR && parent.getParent().getFirstChild() == parent;
+ *  */
+    @Test
+    public void testIsPropertyTest_ThrowNullPointerException_4() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode parent = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        parent.setType(26);
+        setField(node, "com.google.javascript.rhino.Node", "parent", parent);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.isPropertyTest] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.isPropertyTest(TypeCheck.java:1312) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method isPropertyTestMethod = typeCheckClazz.getDeclaredMethod("isPropertyTest", nodeType);
+        isPropertyTestMethod.setAccessible(true);
+        java.lang.Object[] isPropertyTestMethodArguments = new java.lang.Object[1];
+        isPropertyTestMethodArguments[0] = node;
+        try {
+            isPropertyTestMethod.invoke(typeCheck, isPropertyTestMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#isPropertyTest(com.google.javascript.rhino.Node)}
+ * @utbot.invokes {@link com.google.javascript.jscomp.AbstractCompiler#getCodingConvention()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: compiler.getCodingConvention().isPropertyTestFunction(parent)
+ *  */
+    @Test
+    public void testIsPropertyTest_ThrowNullPointerException_2() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode parent = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        parent.setType(37);
+        setField(node, "com.google.javascript.rhino.Node", "parent", parent);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.isPropertyTest] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.isPropertyTest(TypeCheck.java:1295) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method isPropertyTestMethod = typeCheckClazz.getDeclaredMethod("isPropertyTest", nodeType);
+        isPropertyTestMethod.setAccessible(true);
+        java.lang.Object[] isPropertyTestMethodArguments = new java.lang.Object[1];
+        isPropertyTestMethodArguments[0] = node;
+        try {
+            isPropertyTestMethod.invoke(typeCheck, isPropertyTestMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#isPropertyTest(com.google.javascript.rhino.Node)}
+ * @utbot.invokes {@link com.google.javascript.jscomp.AbstractCompiler#getCodingConvention()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: compiler.getCodingConvention().isPropertyTestFunction(parent)
+ *  */
+    @Test
+    public void testIsPropertyTest_ThrowNullPointerException_3() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Compiler compiler = ((Compiler) createInstance("com.google.javascript.jscomp.Compiler"));
+        CompilerOptions options = ((CompilerOptions) createInstance("com.google.javascript.jscomp.CompilerOptions"));
+        compiler.options = options;
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "compiler", compiler);
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        ScriptOrFnNode parent = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        parent.setType(37);
+        setField(functionNode, "com.google.javascript.rhino.Node", "parent", parent);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.isPropertyTest] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.isPropertyTest(TypeCheck.java:1295) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method isPropertyTestMethod = typeCheckClazz.getDeclaredMethod("isPropertyTest", functionNodeType);
+        isPropertyTestMethod.setAccessible(true);
+        java.lang.Object[] isPropertyTestMethodArguments = new java.lang.Object[1];
+        isPropertyTestMethodArguments[0] = functionNode;
+        try {
+            isPropertyTestMethod.invoke(typeCheck, isPropertyTestMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///region SYMBOLIC EXECUTION: EXPLICITLY THROWN UNCHECKED EXCEPTIONS for method isPropertyTest(com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#isPropertyTest(com.google.javascript.rhino.Node)}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#getParent()}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#getType()}
+ * @utbot.invokes {@link com.google.javascript.jscomp.NodeUtil#getConditionExpression(com.google.javascript.rhino.Node)}
+ * @utbot.activatesSwitch {@code switch(parent.getType()) case: default}
+ * @utbot.throwsException {@link java.lang.IllegalArgumentException} in: return NodeUtil.getConditionExpression(parent) == getProp;
+ *  */
+    @Test(expected = IllegalArgumentException.class)
+    public void testIsPropertyTest_ThrowIllegalArgumentException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        FunctionNode parent = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        parent.setType(115);
+        Object first = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        setField(parent, "com.google.javascript.rhino.Node", "first", first);
+        setField(node, "com.google.javascript.rhino.Node", "parent", parent);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method isPropertyTestMethod = typeCheckClazz.getDeclaredMethod("isPropertyTest", nodeType);
+        isPropertyTestMethod.setAccessible(true);
+        java.lang.Object[] isPropertyTestMethodArguments = new java.lang.Object[1];
+        isPropertyTestMethodArguments[0] = node;
+        try {
+            isPropertyTestMethod.invoke(typeCheck, isPropertyTestMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///region OTHER: SUCCESSFUL EXECUTIONS for method isPropertyTest(com.google.javascript.rhino.Node)
+    
+    @Test
+    public void testIsPropertyTest1() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        Object parent = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        (((Node) parent)).setType(26);
+        Object parent1 = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        (((Node) parent1)).setType(100);
+        setField(parent, "com.google.javascript.rhino.Node", "parent", parent1);
+        setField(node, "com.google.javascript.rhino.Node", "parent", parent);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method isPropertyTestMethod = typeCheckClazz.getDeclaredMethod("isPropertyTest", nodeType);
+        isPropertyTestMethod.setAccessible(true);
+        java.lang.Object[] isPropertyTestMethodArguments = new java.lang.Object[1];
+        isPropertyTestMethodArguments[0] = node;
+        boolean actual = ((Boolean) isPropertyTestMethod.invoke(typeCheck, isPropertyTestMethodArguments));
+        
+        assertFalse(actual);
+    }
+    
+    @Test
+    public void testIsPropertyTest2() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Compiler compiler = ((Compiler) createInstance("com.google.javascript.jscomp.Compiler"));
+        CompilerOptions options = ((CompilerOptions) createInstance("com.google.javascript.jscomp.CompilerOptions"));
+        compiler.options = options;
+        ClosureCodingConvention defaultCodingConvention = ((ClosureCodingConvention) createInstance("com.google.javascript.jscomp.ClosureCodingConvention"));
+        LinkedHashSet propertyTestFunctions = new LinkedHashSet();
+        setField(defaultCodingConvention, "com.google.javascript.jscomp.ClosureCodingConvention", "propertyTestFunctions", propertyTestFunctions);
+        setField(compiler, "com.google.javascript.jscomp.Compiler", "defaultCodingConvention", defaultCodingConvention);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "compiler", compiler);
+        Object stringNode = createInstance("com.google.javascript.rhino.Node$StringNode");
+        Object parent = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        (((Node) parent)).setType(37);
+        FunctionNode first = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        setField(parent, "com.google.javascript.rhino.Node", "first", first);
+        setField(stringNode, "com.google.javascript.rhino.Node", "parent", parent);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class stringNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method isPropertyTestMethod = typeCheckClazz.getDeclaredMethod("isPropertyTest", stringNodeType);
+        isPropertyTestMethod.setAccessible(true);
+        java.lang.Object[] isPropertyTestMethodArguments = new java.lang.Object[1];
+        isPropertyTestMethodArguments[0] = stringNode;
+        boolean actual = ((Boolean) isPropertyTestMethod.invoke(typeCheck, isPropertyTestMethodArguments));
+        
+        assertFalse(actual);
+    }
+    
+    @Test
+    public void testIsPropertyTest3() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Compiler compiler = ((Compiler) createInstance("com.google.javascript.jscomp.Compiler"));
+        CompilerOptions options = ((CompilerOptions) createInstance("com.google.javascript.jscomp.CompilerOptions"));
+        compiler.options = options;
+        GoogleCodingConvention defaultCodingConvention = ((GoogleCodingConvention) createInstance("com.google.javascript.jscomp.GoogleCodingConvention"));
+        LinkedHashSet propertyTestFunctions = new LinkedHashSet();
+        setField(defaultCodingConvention, "com.google.javascript.jscomp.ClosureCodingConvention", "propertyTestFunctions", propertyTestFunctions);
+        setField(compiler, "com.google.javascript.jscomp.Compiler", "defaultCodingConvention", defaultCodingConvention);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "compiler", compiler);
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        FunctionNode parent = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        parent.setType(37);
+        Node first = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        first.setType(42);
+        setField(parent, "com.google.javascript.rhino.Node", "first", first);
+        setField(functionNode, "com.google.javascript.rhino.Node", "parent", parent);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method isPropertyTestMethod = typeCheckClazz.getDeclaredMethod("isPropertyTest", functionNodeType);
+        isPropertyTestMethod.setAccessible(true);
+        java.lang.Object[] isPropertyTestMethodArguments = new java.lang.Object[1];
+        isPropertyTestMethodArguments[0] = functionNode;
+        boolean actual = ((Boolean) isPropertyTestMethod.invoke(typeCheck, isPropertyTestMethodArguments));
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region OTHER: ERROR SUITE for method isPropertyTest(com.google.javascript.rhino.Node)
+    
+    @Test
+    public void testIsPropertyTest4() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Compiler compiler = ((Compiler) createInstance("com.google.javascript.jscomp.Compiler"));
+        CompilerOptions options = ((CompilerOptions) createInstance("com.google.javascript.jscomp.CompilerOptions"));
+        ClosureCodingConvention codingConvention = ((ClosureCodingConvention) createInstance("com.google.javascript.jscomp.ClosureCodingConvention"));
+        Class compilerOptionsClazz = Class.forName("com.google.javascript.jscomp.CompilerOptions");
+        Class codingConventionType = Class.forName("com.google.javascript.jscomp.CodingConvention");
+        Method setCodingConventionMethod = compilerOptionsClazz.getDeclaredMethod("setCodingConvention", codingConventionType);
+        setCodingConventionMethod.setAccessible(true);
+        java.lang.Object[] setCodingConventionMethodArguments = new java.lang.Object[1];
+        setCodingConventionMethodArguments[0] = codingConvention;
+        setCodingConventionMethod.invoke(options, setCodingConventionMethodArguments);
+        compiler.options = options;
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "compiler", compiler);
+        Object numberNode = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        ScriptOrFnNode parent = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        parent.setType(37);
+        Object first = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        setField(parent, "com.google.javascript.rhino.Node", "first", first);
+        setField(numberNode, "com.google.javascript.rhino.Node", "parent", parent);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.isPropertyTest] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.ClosureCodingConvention.isPropertyTestFunction(ClosureCodingConvention.java:302)
+            com.google.javascript.jscomp.TypeCheck.isPropertyTest(TypeCheck.java:1295) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class numberNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method isPropertyTestMethod = typeCheckClazz.getDeclaredMethod("isPropertyTest", numberNodeType);
+        isPropertyTestMethod.setAccessible(true);
+        java.lang.Object[] isPropertyTestMethodArguments = new java.lang.Object[1];
+        isPropertyTestMethodArguments[0] = numberNode;
+        try {
+            isPropertyTestMethod.invoke(typeCheck, isPropertyTestMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testIsPropertyTest5() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Compiler compiler = ((Compiler) createInstance("com.google.javascript.jscomp.Compiler"));
+        CompilerOptions options = ((CompilerOptions) createInstance("com.google.javascript.jscomp.CompilerOptions"));
+        compiler.options = options;
+        ClosureCodingConvention defaultCodingConvention = ((ClosureCodingConvention) createInstance("com.google.javascript.jscomp.ClosureCodingConvention"));
+        setField(compiler, "com.google.javascript.jscomp.Compiler", "defaultCodingConvention", defaultCodingConvention);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "compiler", compiler);
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        Object parent = createInstance("com.google.javascript.rhino.Node$StringNode");
+        (((Node) parent)).setType(37);
+        Node first = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        first.setType(33);
+        setField(parent, "com.google.javascript.rhino.Node", "first", first);
+        setField(node, "com.google.javascript.rhino.Node", "parent", parent);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.isPropertyTest] produces [java.lang.NullPointerException]
+            com.google.javascript.rhino.Node.getQualifiedName(Node.java:1730)
+            com.google.javascript.jscomp.ClosureCodingConvention.isPropertyTestFunction(ClosureCodingConvention.java:303)
+            com.google.javascript.jscomp.TypeCheck.isPropertyTest(TypeCheck.java:1295) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method isPropertyTestMethod = typeCheckClazz.getDeclaredMethod("isPropertyTest", nodeType);
+        isPropertyTestMethod.setAccessible(true);
+        java.lang.Object[] isPropertyTestMethodArguments = new java.lang.Object[1];
+        isPropertyTestMethodArguments[0] = node;
+        try {
+            isPropertyTestMethod.invoke(typeCheck, isPropertyTestMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///region OTHER: EXPLICITLY THROWN UNCHECKED EXCEPTIONS for method isPropertyTest(com.google.javascript.rhino.Node)
+    
+    @Test(expected = UnsupportedOperationException.class)
+    public void testIsPropertyTest6() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Compiler compiler = ((Compiler) createInstance("com.google.javascript.jscomp.Compiler"));
+        CompilerOptions options = ((CompilerOptions) createInstance("com.google.javascript.jscomp.CompilerOptions"));
+        ClosureCodingConvention codingConvention = ((ClosureCodingConvention) createInstance("com.google.javascript.jscomp.ClosureCodingConvention"));
+        Class compilerOptionsClazz = Class.forName("com.google.javascript.jscomp.CompilerOptions");
+        Class codingConventionType = Class.forName("com.google.javascript.jscomp.CodingConvention");
+        Method setCodingConventionMethod = compilerOptionsClazz.getDeclaredMethod("setCodingConvention", codingConventionType);
+        setCodingConventionMethod.setAccessible(true);
+        java.lang.Object[] setCodingConventionMethodArguments = new java.lang.Object[1];
+        setCodingConventionMethodArguments[0] = codingConvention;
+        setCodingConventionMethod.invoke(options, setCodingConventionMethodArguments);
+        compiler.options = options;
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "compiler", compiler);
+        Object numberNode = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        ScriptOrFnNode parent = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        parent.setType(37);
+        Object first = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        (((Node) first)).setType(38);
+        setField(parent, "com.google.javascript.rhino.Node", "first", first);
+        setField(numberNode, "com.google.javascript.rhino.Node", "parent", parent);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class numberNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method isPropertyTestMethod = typeCheckClazz.getDeclaredMethod("isPropertyTest", numberNodeType);
+        isPropertyTestMethod.setAccessible(true);
+        java.lang.Object[] isPropertyTestMethodArguments = new java.lang.Object[1];
+        isPropertyTestMethodArguments[0] = numberNode;
+        try {
+            isPropertyTestMethod.invoke(typeCheck, isPropertyTestMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test(expected = UnsupportedOperationException.class)
+    public void testIsPropertyTest7() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Compiler compiler = ((Compiler) createInstance("com.google.javascript.jscomp.Compiler"));
+        CompilerOptions options = ((CompilerOptions) createInstance("com.google.javascript.jscomp.CompilerOptions"));
+        compiler.options = options;
+        ClosureCodingConvention defaultCodingConvention = ((ClosureCodingConvention) createInstance("com.google.javascript.jscomp.ClosureCodingConvention"));
+        setField(compiler, "com.google.javascript.jscomp.Compiler", "defaultCodingConvention", defaultCodingConvention);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "compiler", compiler);
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        Object parent = createInstance("com.google.javascript.rhino.Node$StringNode");
+        (((Node) parent)).setType(37);
+        Node first = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        first.setType(38);
+        setField(parent, "com.google.javascript.rhino.Node", "first", first);
+        setField(node, "com.google.javascript.rhino.Node", "parent", parent);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method isPropertyTestMethod = typeCheckClazz.getDeclaredMethod("isPropertyTest", nodeType);
+        isPropertyTestMethod.setAccessible(true);
+        java.lang.Object[] isPropertyTestMethodArguments = new java.lang.Object[1];
+        isPropertyTestMethodArguments[0] = node;
+        try {
+            isPropertyTestMethod.invoke(typeCheck, isPropertyTestMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///region OTHER: TIMEOUTS for method isPropertyTest(com.google.javascript.rhino.Node)
+    
+    @Test(timeout = 1000L)
+    public void testIsPropertyTest8() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode parent = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        parent.setType(115);
+        Object first = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        setField(first, "com.google.javascript.rhino.Node", "next", first);
+        setField(parent, "com.google.javascript.rhino.Node", "first", first);
+        setField(node, "com.google.javascript.rhino.Node", "parent", parent);
+        
+        /* This execution may take longer than the 1000 ms timeout
+         and therefore fail due to exceeding the timeout. */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method isPropertyTestMethod = typeCheckClazz.getDeclaredMethod("isPropertyTest", nodeType);
+        isPropertyTestMethod.setAccessible(true);
+        java.lang.Object[] isPropertyTestMethodArguments = new java.lang.Object[1];
+        isPropertyTestMethodArguments[0] = node;
+        try {
+            isPropertyTestMethod.invoke(typeCheck, isPropertyTestMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.visitVar
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method visitVar(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitVar(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#hasOneChild()}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#getJSDocInfo()}
+ * @utbot.throwsException {@link java.lang.ClassCastException} in: n.getJSDocInfo()
+ *  */
+    @Test
+    public void testVisitVar_ThrowClassCastException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        Node first = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        setField(node, "com.google.javascript.rhino.Node", "last", first);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        byte[] objectValue = {};
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "objectValue", objectValue);
+        setField(node, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitVar] produces [java.lang.ClassCastException: class [B cannot be cast to class com.google.javascript.rhino.JSDocInfo ([B is in module java.base of loader 'bootstrap'; com.google.javascript.rhino.JSDocInfo is in unnamed module of loader org.utbot.instrumentation.process.HandlerClassesLoader @3067726d)]
+            com.google.javascript.rhino.Node.getJSDocInfo(Node.java:1961)
+            com.google.javascript.jscomp.TypeCheck.visitVar(TypeCheck.java:1343) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitVarMethod = typeCheckClazz.getDeclaredMethod("visitVar", nodeTraversalType, nodeType);
+        visitVarMethod.setAccessible(true);
+        java.lang.Object[] visitVarMethodArguments = new java.lang.Object[2];
+        visitVarMethodArguments[0] = ((Object) null);
+        visitVarMethodArguments[1] = node;
+        try {
+            visitVarMethod.invoke(typeCheck, visitVarMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitVar(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: n.hasOneChild()
+ *  */
+    @Test
+    public void testVisitVar_ThrowNullPointerException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitVar] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitVar(TypeCheck.java:1343) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitVarMethod = typeCheckClazz.getDeclaredMethod("visitVar", nodeTraversalType, nodeType);
+        visitVarMethod.setAccessible(true);
+        java.lang.Object[] visitVarMethodArguments = new java.lang.Object[2];
+        visitVarMethodArguments[0] = ((Object) null);
+        visitVarMethodArguments[1] = ((Object) null);
+        try {
+            visitVarMethod.invoke(typeCheck, visitVarMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///region OTHER: SUCCESSFUL EXECUTIONS for method visitVar(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node)
+    
+    @Test
+    public void testVisitVar1() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitVarMethod = typeCheckClazz.getDeclaredMethod("visitVar", nodeTraversalType, scriptOrFnNodeType);
+        visitVarMethod.setAccessible(true);
+        java.lang.Object[] visitVarMethodArguments = new java.lang.Object[2];
+        visitVarMethodArguments[0] = nodeTraversal;
+        visitVarMethodArguments[1] = scriptOrFnNode;
+        visitVarMethod.invoke(typeCheck, visitVarMethodArguments);
+    }
+    ///endregion
+    
+    ///region OTHER: ERROR SUITE for method visitVar(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node)
+    
+    @Test
+    public void testVisitVar2() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        Node first = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "first", first);
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "last", first);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        JSDocInfo objectValue = ((JSDocInfo) createInstance("com.google.javascript.rhino.JSDocInfo"));
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "objectValue", objectValue);
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitVar] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.NodeTraversal.getScope(NodeTraversal.java:556)
+            com.google.javascript.jscomp.TypeCheck.visitVar(TypeCheck.java:1347) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitVarMethod = typeCheckClazz.getDeclaredMethod("visitVar", nodeTraversalType, scriptOrFnNodeType);
+        visitVarMethod.setAccessible(true);
+        java.lang.Object[] visitVarMethodArguments = new java.lang.Object[2];
+        visitVarMethodArguments[0] = nodeTraversal;
+        visitVarMethodArguments[1] = scriptOrFnNode;
+        try {
+            visitVarMethod.invoke(typeCheck, visitVarMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitVar3() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        Object first = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitVar] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.NodeTraversal.getScope(NodeTraversal.java:556)
+            com.google.javascript.jscomp.TypeCheck.visitVar(TypeCheck.java:1347) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitVarMethod = typeCheckClazz.getDeclaredMethod("visitVar", nodeTraversalType, scriptOrFnNodeType);
+        visitVarMethod.setAccessible(true);
+        java.lang.Object[] visitVarMethodArguments = new java.lang.Object[2];
+        visitVarMethodArguments[0] = nodeTraversal;
+        visitVarMethodArguments[1] = scriptOrFnNode;
+        try {
+            visitVarMethod.invoke(typeCheck, visitVarMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitVar4() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        Node first = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "first", first);
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "last", first);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitVar] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitVar(TypeCheck.java:1347) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitVarMethod = typeCheckClazz.getDeclaredMethod("visitVar", nodeTraversalType, scriptOrFnNodeType);
+        visitVarMethod.setAccessible(true);
+        java.lang.Object[] visitVarMethodArguments = new java.lang.Object[2];
+        visitVarMethodArguments[0] = ((Object) null);
+        visitVarMethodArguments[1] = scriptOrFnNode;
+        try {
+            visitVarMethod.invoke(typeCheck, visitVarMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitVar5() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        Object first = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "first", first);
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "last", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitVar] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitVar(TypeCheck.java:1347) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitVarMethod = typeCheckClazz.getDeclaredMethod("visitVar", nodeTraversalType, scriptOrFnNodeType);
+        visitVarMethod.setAccessible(true);
+        java.lang.Object[] visitVarMethodArguments = new java.lang.Object[2];
+        visitVarMethodArguments[0] = ((Object) null);
+        visitVarMethodArguments[1] = scriptOrFnNode;
+        try {
+            visitVarMethod.invoke(typeCheck, visitVarMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.visitNew
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method visitNew(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitNew(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.ArrayIndexOutOfBoundsException} in: FunctionType type = getFunctionType(constructor);
+ *  */
+    @Test
+    public void testVisitNew_ThrowArrayIndexOutOfBoundsException_1() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        FunctionNode first = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        VoidType jsType = ((VoidType) createInstance("com.google.javascript.rhino.jstype.VoidType"));
+        JSTypeRegistry registry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = {null};
+        setField(registry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(jsType, "com.google.javascript.rhino.jstype.JSType", "registry", registry);
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitNew] produces [java.lang.ArrayIndexOutOfBoundsException: Index 43 out of bounds for length 1]
+            com.google.javascript.rhino.jstype.JSTypeRegistry.getNativeType(JSTypeRegistry.java:813)
+            com.google.javascript.rhino.jstype.VoidType.restrictByNotNullOrUndefined(VoidType.java:59)
+            com.google.javascript.jscomp.TypeCheck.getFunctionType(TypeCheck.java:1722)
+            com.google.javascript.jscomp.TypeCheck.visitNew(TypeCheck.java:1379) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitNewMethod = typeCheckClazz.getDeclaredMethod("visitNew", nodeTraversalType, scriptOrFnNodeType);
+        visitNewMethod.setAccessible(true);
+        java.lang.Object[] visitNewMethodArguments = new java.lang.Object[2];
+        visitNewMethodArguments[0] = ((Object) null);
+        visitNewMethodArguments[1] = scriptOrFnNode;
+        try {
+            visitNewMethod.invoke(typeCheck, visitNewMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitNew(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.ArrayIndexOutOfBoundsException} in: FunctionType type = getFunctionType(constructor);
+ *  */
+    @Test
+    public void testVisitNew_ThrowArrayIndexOutOfBoundsException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = {};
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitNew] produces [java.lang.ArrayIndexOutOfBoundsException: Index 35 out of bounds for length 0]
+            com.google.javascript.rhino.jstype.JSTypeRegistry.getNativeType(JSTypeRegistry.java:813)
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1711)
+            com.google.javascript.jscomp.TypeCheck.getFunctionType(TypeCheck.java:1722)
+            com.google.javascript.jscomp.TypeCheck.visitNew(TypeCheck.java:1379) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitNewMethod = typeCheckClazz.getDeclaredMethod("visitNew", nodeTraversalType, nodeType);
+        visitNewMethod.setAccessible(true);
+        java.lang.Object[] visitNewMethodArguments = new java.lang.Object[2];
+        visitNewMethodArguments[0] = ((Object) null);
+        visitNewMethodArguments[1] = node;
+        try {
+            visitNewMethod.invoke(typeCheck, visitNewMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitNew(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: Node constructor = n.getFirstChild();
+ *  */
+    @Test
+    public void testVisitNew_ThrowNullPointerException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitNew] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitNew(TypeCheck.java:1378) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitNewMethod = typeCheckClazz.getDeclaredMethod("visitNew", nodeTraversalType, nodeType);
+        visitNewMethod.setAccessible(true);
+        java.lang.Object[] visitNewMethodArguments = new java.lang.Object[2];
+        visitNewMethodArguments[0] = ((Object) null);
+        visitNewMethodArguments[1] = ((Object) null);
+        try {
+            visitNewMethod.invoke(typeCheck, visitNewMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitNew(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: FunctionType type = getFunctionType(constructor);
+ *  */
+    @Test
+    public void testVisitNew_ThrowNullPointerException_1() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = new Node(0);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitNew] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1705)
+            com.google.javascript.jscomp.TypeCheck.getFunctionType(TypeCheck.java:1722)
+            com.google.javascript.jscomp.TypeCheck.visitNew(TypeCheck.java:1379) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitNewMethod = typeCheckClazz.getDeclaredMethod("visitNew", nodeTraversalType, nodeType);
+        visitNewMethod.setAccessible(true);
+        java.lang.Object[] visitNewMethodArguments = new java.lang.Object[2];
+        visitNewMethodArguments[0] = ((Object) null);
+        visitNewMethodArguments[1] = node;
+        try {
+            visitNewMethod.invoke(typeCheck, visitNewMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitNew(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: FunctionType type = getFunctionType(constructor);
+ *  */
+    @Test
+    public void testVisitNew_ThrowNullPointerException_2() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = new com.google.javascript.rhino.jstype.JSType[37];
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        FunctionNode first = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        setField(functionNode, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitNew] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getFunctionType(TypeCheck.java:1722)
+            com.google.javascript.jscomp.TypeCheck.visitNew(TypeCheck.java:1379) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitNewMethod = typeCheckClazz.getDeclaredMethod("visitNew", nodeTraversalType, functionNodeType);
+        visitNewMethod.setAccessible(true);
+        java.lang.Object[] visitNewMethodArguments = new java.lang.Object[2];
+        visitNewMethodArguments[0] = ((Object) null);
+        visitNewMethodArguments[1] = functionNode;
+        try {
+            visitNewMethod.invoke(typeCheck, visitNewMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitNew(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: FunctionType type = getFunctionType(constructor);
+ *  */
+    @Test
+    public void testVisitNew_ThrowNullPointerException_3() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitNew] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1711)
+            com.google.javascript.jscomp.TypeCheck.getFunctionType(TypeCheck.java:1722)
+            com.google.javascript.jscomp.TypeCheck.visitNew(TypeCheck.java:1379) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitNewMethod = typeCheckClazz.getDeclaredMethod("visitNew", nodeTraversalType, scriptOrFnNodeType);
+        visitNewMethod.setAccessible(true);
+        java.lang.Object[] visitNewMethodArguments = new java.lang.Object[2];
+        visitNewMethodArguments[0] = ((Object) null);
+        visitNewMethodArguments[1] = scriptOrFnNode;
+        try {
+            visitNewMethod.invoke(typeCheck, visitNewMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///region OTHER: ERROR SUITE for method visitNew(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node)
+    
+    @Test
+    public void testVisitNew1() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        Object first = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        BooleanType jsType = ((BooleanType) createInstance("com.google.javascript.rhino.jstype.BooleanType"));
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(functionNode, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitNew] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.NodeTraversal.report(NodeTraversal.java:610)
+            com.google.javascript.jscomp.TypeCheck.report(TypeCheck.java:404)
+            com.google.javascript.jscomp.TypeCheck.visitNew(TypeCheck.java:1395) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitNewMethod = typeCheckClazz.getDeclaredMethod("visitNew", nodeTraversalType, functionNodeType);
+        visitNewMethod.setAccessible(true);
+        java.lang.Object[] visitNewMethodArguments = new java.lang.Object[2];
+        visitNewMethodArguments[0] = nodeTraversal;
+        visitNewMethodArguments[1] = functionNode;
+        try {
+            visitNewMethod.invoke(typeCheck, visitNewMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitNew2() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = new com.google.javascript.rhino.jstype.JSType[36];
+        UnionType unionType = ((UnionType) createInstance("com.google.javascript.rhino.jstype.UnionType"));
+        nativeTypes[35] = ((JSType) unionType);
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        Object numberNode = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        Object first = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        setField(numberNode, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitNew] produces [java.lang.NullPointerException]
+            com.google.javascript.rhino.jstype.UnionType.restrictByNotNullOrUndefined(UnionType.java:219)
+            com.google.javascript.jscomp.TypeCheck.getFunctionType(TypeCheck.java:1722)
+            com.google.javascript.jscomp.TypeCheck.visitNew(TypeCheck.java:1379) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class numberNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitNewMethod = typeCheckClazz.getDeclaredMethod("visitNew", nodeTraversalType, numberNodeType);
+        visitNewMethod.setAccessible(true);
+        java.lang.Object[] visitNewMethodArguments = new java.lang.Object[2];
+        visitNewMethodArguments[0] = ((Object) null);
+        visitNewMethodArguments[1] = numberNode;
+        try {
+            visitNewMethod.invoke(typeCheck, visitNewMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    @Test
+    public void testVisitNew3() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        Object numberNode = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        Object first = createInstance("com.google.javascript.rhino.Node$NumberNode");
+        UnionType jsType = ((UnionType) createInstance("com.google.javascript.rhino.jstype.UnionType"));
+        ArrayList alternates = new ArrayList();
+        setField(jsType, "com.google.javascript.rhino.jstype.UnionType", "alternates", alternates);
+        setField(first, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(numberNode, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitNew] produces [java.lang.NullPointerException]
+            com.google.javascript.rhino.jstype.UnionTypeBuilder.reduceAlternatesWithoutUnion(UnionTypeBuilder.java:181)
+            com.google.javascript.rhino.jstype.UnionTypeBuilder.build(UnionTypeBuilder.java:193)
+            com.google.javascript.rhino.jstype.UnionType.restrictByNotNullOrUndefined(UnionType.java:222)
+            com.google.javascript.jscomp.TypeCheck.getFunctionType(TypeCheck.java:1722)
+            com.google.javascript.jscomp.TypeCheck.visitNew(TypeCheck.java:1379) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class numberNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitNewMethod = typeCheckClazz.getDeclaredMethod("visitNew", nodeTraversalType, numberNodeType);
+        visitNewMethod.setAccessible(true);
+        java.lang.Object[] visitNewMethodArguments = new java.lang.Object[2];
+        visitNewMethodArguments[0] = nodeTraversal;
+        visitNewMethodArguments[1] = numberNode;
+        try {
+            visitNewMethod.invoke(typeCheck, visitNewMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.visitReturn
+    
+    ///region SYMBOLIC EXECUTION: SUCCESSFUL EXECUTIONS for method visitReturn(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitReturn(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.returnsFrom {@code return;}
+ *  */
+    @Test
+    public void testVisitReturn_Return() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        ArrayDeque scopes = new ArrayDeque();
+        setField(nodeTraversal, "com.google.javascript.jscomp.NodeTraversal", "scopes", scopes);
+        LinkedList scopeRoots = new LinkedList();
+        setField(nodeTraversal, "com.google.javascript.jscomp.NodeTraversal", "scopeRoots", scopeRoots);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitReturnMethod = typeCheckClazz.getDeclaredMethod("visitReturn", nodeTraversalType, nodeType);
+        visitReturnMethod.setAccessible(true);
+        java.lang.Object[] visitReturnMethodArguments = new java.lang.Object[2];
+        visitReturnMethodArguments[0] = nodeTraversal;
+        visitReturnMethodArguments[1] = ((Object) null);
+        visitReturnMethod.invoke(typeCheck, visitReturnMethodArguments);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitReturn(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.returnsFrom {@code return;}
+ *  */
+    @Test
+    public void testVisitReturn_Return_1() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        NodeTraversal nodeTraversal = ((NodeTraversal) createInstance("com.google.javascript.jscomp.NodeTraversal"));
+        LinkedList scopes = new LinkedList();
+        scopes.add(null);
+        scopes.add(null);
+        scopes.add(null);
+        setField(nodeTraversal, "com.google.javascript.jscomp.NodeTraversal", "scopes", scopes);
+        LinkedList scopeRoots = new LinkedList();
+        scopeRoots.add(null);
+        scopeRoots.add(null);
+        scopeRoots.add(null);
+        setField(nodeTraversal, "com.google.javascript.jscomp.NodeTraversal", "scopeRoots", scopeRoots);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitReturnMethod = typeCheckClazz.getDeclaredMethod("visitReturn", nodeTraversalType, nodeType);
+        visitReturnMethod.setAccessible(true);
+        java.lang.Object[] visitReturnMethodArguments = new java.lang.Object[2];
+        visitReturnMethodArguments[0] = nodeTraversal;
+        visitReturnMethodArguments[1] = ((Object) null);
+        visitReturnMethod.invoke(typeCheck, visitReturnMethodArguments);
+    }
+    ///endregion
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method visitReturn(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitReturn(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.invokes {@link com.google.javascript.jscomp.NodeTraversal#getEnclosingFunction()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: Node function = t.getEnclosingFunction();
+ *  */
+    @Test
+    public void testVisitReturn_ThrowNullPointerException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitReturn] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitReturn(TypeCheck.java:1533) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitReturnMethod = typeCheckClazz.getDeclaredMethod("visitReturn", nodeTraversalType, nodeType);
+        visitReturnMethod.setAccessible(true);
+        java.lang.Object[] visitReturnMethodArguments = new java.lang.Object[2];
+        visitReturnMethodArguments[0] = ((Object) null);
+        visitReturnMethodArguments[1] = ((Object) null);
+        try {
+            visitReturnMethod.invoke(typeCheck, visitReturnMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.getFunctionType
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method getFunctionType(com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#getFunctionType(com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.ArrayIndexOutOfBoundsException} 
+ *  */
+    @Test
+    public void testGetFunctionType_ThrowArrayIndexOutOfBoundsException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = {};
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.getFunctionType] produces [java.lang.ArrayIndexOutOfBoundsException: Index 35 out of bounds for length 0]
+            com.google.javascript.rhino.jstype.JSTypeRegistry.getNativeType(JSTypeRegistry.java:813)
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1711)
+            com.google.javascript.jscomp.TypeCheck.getFunctionType(TypeCheck.java:1722) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method getFunctionTypeMethod = typeCheckClazz.getDeclaredMethod("getFunctionType", functionNodeType);
+        getFunctionTypeMethod.setAccessible(true);
+        java.lang.Object[] getFunctionTypeMethodArguments = new java.lang.Object[1];
+        getFunctionTypeMethodArguments[0] = functionNode;
+        try {
+            getFunctionTypeMethod.invoke(typeCheck, getFunctionTypeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#getFunctionType(com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: JSType type = getJSType(n).restrictByNotNullOrUndefined();
+ *  */
+    @Test
+    public void testGetFunctionType_ThrowNullPointerException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.getFunctionType] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1705)
+            com.google.javascript.jscomp.TypeCheck.getFunctionType(TypeCheck.java:1722) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method getFunctionTypeMethod = typeCheckClazz.getDeclaredMethod("getFunctionType", nodeType);
+        getFunctionTypeMethod.setAccessible(true);
+        java.lang.Object[] getFunctionTypeMethodArguments = new java.lang.Object[1];
+        getFunctionTypeMethodArguments[0] = ((Object) null);
+        try {
+            getFunctionTypeMethod.invoke(typeCheck, getFunctionTypeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#getFunctionType(com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: JSType type = getJSType(n).restrictByNotNullOrUndefined();
+ *  */
+    @Test
+    public void testGetFunctionType_ThrowNullPointerException_1() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = new Node(0);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.getFunctionType] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1711)
+            com.google.javascript.jscomp.TypeCheck.getFunctionType(TypeCheck.java:1722) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method getFunctionTypeMethod = typeCheckClazz.getDeclaredMethod("getFunctionType", nodeType);
+        getFunctionTypeMethod.setAccessible(true);
+        java.lang.Object[] getFunctionTypeMethodArguments = new java.lang.Object[1];
+        getFunctionTypeMethodArguments[0] = node;
+        try {
+            getFunctionTypeMethod.invoke(typeCheck, getFunctionTypeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#getFunctionType(com.google.javascript.rhino.Node)}
+ * @utbot.invokes {@link com.google.javascript.rhino.jstype.JSType#restrictByNotNullOrUndefined()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: JSType type = getJSType(n).restrictByNotNullOrUndefined();
+ *  */
+    @Test
+    public void testGetFunctionType_ThrowNullPointerException_2() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = new com.google.javascript.rhino.jstype.JSType[37];
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.getFunctionType] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getFunctionType(TypeCheck.java:1722) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method getFunctionTypeMethod = typeCheckClazz.getDeclaredMethod("getFunctionType", scriptOrFnNodeType);
+        getFunctionTypeMethod.setAccessible(true);
+        java.lang.Object[] getFunctionTypeMethodArguments = new java.lang.Object[1];
+        getFunctionTypeMethodArguments[0] = scriptOrFnNode;
+        try {
+            getFunctionTypeMethod.invoke(typeCheck, getFunctionTypeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.visitFunction
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method visitFunction(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitFunction(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.ClassCastException} in: JSDocInfo info = n.getJSDocInfo();
+ *  */
+    @Test
+    public void testVisitFunction_ThrowClassCastException_2() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        byte[] objectValue = {};
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "objectValue", objectValue);
+        setField(node, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitFunction] produces [java.lang.ClassCastException: class [B cannot be cast to class com.google.javascript.rhino.JSDocInfo ([B is in module java.base of loader 'bootstrap'; com.google.javascript.rhino.JSDocInfo is in unnamed module of loader org.utbot.instrumentation.process.HandlerClassesLoader @3067726d)]
+            com.google.javascript.rhino.Node.getJSDocInfo(Node.java:1961)
+            com.google.javascript.jscomp.TypeCheck.visitFunction(TypeCheck.java:1409) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitFunctionMethod = typeCheckClazz.getDeclaredMethod("visitFunction", nodeTraversalType, nodeType);
+        visitFunctionMethod.setAccessible(true);
+        java.lang.Object[] visitFunctionMethodArguments = new java.lang.Object[2];
+        visitFunctionMethodArguments[0] = ((Object) null);
+        visitFunctionMethodArguments[1] = node;
+        try {
+            visitFunctionMethod.invoke(typeCheck, visitFunctionMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitFunction(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.ClassCastException} in: FunctionType functionType = (FunctionType) n.getJSType();
+ *  */
+    @Test
+    public void testVisitFunction_ThrowClassCastException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        TemplateType jsType = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(functionNode, "com.google.javascript.rhino.Node", "jsType", jsType);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitFunction] produces [java.lang.ClassCastException: class com.google.javascript.rhino.jstype.TemplateType cannot be cast to class com.google.javascript.rhino.jstype.FunctionType (com.google.javascript.rhino.jstype.TemplateType and com.google.javascript.rhino.jstype.FunctionType are in unnamed module of loader org.utbot.instrumentation.process.HandlerClassesLoader @3067726d)]
+            com.google.javascript.jscomp.TypeCheck.visitFunction(TypeCheck.java:1411) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitFunctionMethod = typeCheckClazz.getDeclaredMethod("visitFunction", nodeTraversalType, functionNodeType);
+        visitFunctionMethod.setAccessible(true);
+        java.lang.Object[] visitFunctionMethodArguments = new java.lang.Object[2];
+        visitFunctionMethodArguments[0] = ((Object) null);
+        visitFunctionMethodArguments[1] = functionNode;
+        try {
+            visitFunctionMethod.invoke(typeCheck, visitFunctionMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitFunction(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.ClassCastException} in: FunctionType functionType = (FunctionType) n.getJSType();
+ *  */
+    @Test
+    public void testVisitFunction_ThrowClassCastException_1() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        TemplateType jsType = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "jsType", jsType);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitFunction] produces [java.lang.ClassCastException: class com.google.javascript.rhino.jstype.TemplateType cannot be cast to class com.google.javascript.rhino.jstype.FunctionType (com.google.javascript.rhino.jstype.TemplateType and com.google.javascript.rhino.jstype.FunctionType are in unnamed module of loader org.utbot.instrumentation.process.HandlerClassesLoader @3067726d)]
+            com.google.javascript.jscomp.TypeCheck.visitFunction(TypeCheck.java:1411) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitFunctionMethod = typeCheckClazz.getDeclaredMethod("visitFunction", nodeTraversalType, scriptOrFnNodeType);
+        visitFunctionMethod.setAccessible(true);
+        java.lang.Object[] visitFunctionMethodArguments = new java.lang.Object[2];
+        visitFunctionMethodArguments[0] = ((Object) null);
+        visitFunctionMethodArguments[1] = scriptOrFnNode;
+        try {
+            visitFunctionMethod.invoke(typeCheck, visitFunctionMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitFunction(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.ClassCastException} in: FunctionType functionType = (FunctionType) n.getJSType();
+ *  */
+    @Test
+    public void testVisitFunction_ThrowClassCastException_3() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        TemplateType jsType = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "jsType", jsType);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitFunction] produces [java.lang.ClassCastException: class com.google.javascript.rhino.jstype.TemplateType cannot be cast to class com.google.javascript.rhino.jstype.FunctionType (com.google.javascript.rhino.jstype.TemplateType and com.google.javascript.rhino.jstype.FunctionType are in unnamed module of loader org.utbot.instrumentation.process.HandlerClassesLoader @3067726d)]
+            com.google.javascript.jscomp.TypeCheck.visitFunction(TypeCheck.java:1411) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitFunctionMethod = typeCheckClazz.getDeclaredMethod("visitFunction", nodeTraversalType, scriptOrFnNodeType);
+        visitFunctionMethod.setAccessible(true);
+        java.lang.Object[] visitFunctionMethodArguments = new java.lang.Object[2];
+        visitFunctionMethodArguments[0] = ((Object) null);
+        visitFunctionMethodArguments[1] = scriptOrFnNode;
+        try {
+            visitFunctionMethod.invoke(typeCheck, visitFunctionMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitFunction(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#getJSDocInfo()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: JSDocInfo info = n.getJSDocInfo();
+ *  */
+    @Test
+    public void testVisitFunction_ThrowNullPointerException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitFunction] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitFunction(TypeCheck.java:1409) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitFunctionMethod = typeCheckClazz.getDeclaredMethod("visitFunction", nodeTraversalType, nodeType);
+        visitFunctionMethod.setAccessible(true);
+        java.lang.Object[] visitFunctionMethodArguments = new java.lang.Object[2];
+        visitFunctionMethodArguments[0] = ((Object) null);
+        visitFunctionMethodArguments[1] = ((Object) null);
+        try {
+            visitFunctionMethod.invoke(typeCheck, visitFunctionMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitFunction(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: String functionPrivateName = n.getFirstChild().getString();
+ *  */
+    @Test
+    public void testVisitFunction_ThrowNullPointerException_1() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = new Node(0);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitFunction] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitFunction(TypeCheck.java:1412) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitFunctionMethod = typeCheckClazz.getDeclaredMethod("visitFunction", nodeTraversalType, nodeType);
+        visitFunctionMethod.setAccessible(true);
+        java.lang.Object[] visitFunctionMethodArguments = new java.lang.Object[2];
+        visitFunctionMethodArguments[0] = ((Object) null);
+        visitFunctionMethodArguments[1] = node;
+        try {
+            visitFunctionMethod.invoke(typeCheck, visitFunctionMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitFunction(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} when: functionType.isInterface() || functionType.isConstructor()
+ *  */
+    @Test
+    public void testVisitFunction_ThrowNullPointerException_2() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        Object first = createInstance("com.google.javascript.rhino.Node$StringNode");
+        String str = "";
+        setField(first, "com.google.javascript.rhino.Node$StringNode", "str", str);
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitFunction] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitFunction(TypeCheck.java:1413) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitFunctionMethod = typeCheckClazz.getDeclaredMethod("visitFunction", nodeTraversalType, nodeType);
+        visitFunctionMethod.setAccessible(true);
+        java.lang.Object[] visitFunctionMethodArguments = new java.lang.Object[2];
+        visitFunctionMethodArguments[0] = ((Object) null);
+        visitFunctionMethodArguments[1] = node;
+        try {
+            visitFunctionMethod.invoke(typeCheck, visitFunctionMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitFunction(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.executesCondition {@code (functionType.isInterface() || functionType.isConstructor()): True}
+ * @utbot.executesCondition {@code (if (functionType.isInterface() || functionType.isConstructor()) {
+ *     FunctionType baseConstructor = functionType.getPrototype().getImplicitPrototype().getConstructor();
+ *     if (baseConstructor != null && baseConstructor != getNativeType(OBJECT_FUNCTION_TYPE) && (baseConstructor.isConstructor() && functionType.isInterface() || baseConstructor.isInterface() && functionType.isConstructor())) {
+ *         compiler.report(t.makeError(n, CONFLICTING_EXTENDED_TYPE, functionPrivateName));
+ *     }
+ *     for (JSType baseInterface : functionType.getImplementedInterfaces()) {
+ *         boolean badImplementedType = false;
+ *         ObjectType baseInterfaceObj = ObjectType.cast(baseInterface);
+ *         if (baseInterfaceObj != null) {
+ *             FunctionType interfaceConstructor = baseInterfaceObj.getConstructor();
+ *             if (interfaceConstructor != null && !interfaceConstructor.isInterface()) {
+ *                 badImplementedType = true;
+ *             }
+ *         } else {
+ *             badImplementedType = true;
+ *         }
+ *         if (badImplementedType) {
+ *             report(t, n, BAD_IMPLEMENTED_TYPE, functionPrivateName);
+ *         }
+ *     }
+ *     if (functionType.isConstructor()) {
+ *         validator.expectAllInterfaceProperties(t, n, functionType);
+ *     }
+ * }): False}
+ * @utbot.throwsException {@link java.lang.NullPointerException} 
+ *  */
+    @Test
+    public void testVisitFunction_ThrowNullPointerException_3() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        Object first = createInstance("com.google.javascript.rhino.Node$StringNode");
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        NoType jsType = ((NoType) createInstance("com.google.javascript.rhino.jstype.NoType"));
+        Class kindClazz = Class.forName("com.google.javascript.rhino.jstype.FunctionType$Kind");
+        Object kind = getEnumConstantByName(kindClazz, "INTERFACE");
+        setField(jsType, "com.google.javascript.rhino.jstype.FunctionType", "kind", kind);
+        setField(node, "com.google.javascript.rhino.Node", "jsType", jsType);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitFunction] produces [java.lang.NullPointerException]
+            com.google.javascript.rhino.jstype.PrototypeObjectType.<init>(PrototypeObjectType.java:118)
+            com.google.javascript.rhino.jstype.FunctionPrototypeType.<init>(FunctionPrototypeType.java:55)
+            com.google.javascript.rhino.jstype.FunctionPrototypeType.<init>(FunctionPrototypeType.java:62)
+            com.google.javascript.rhino.jstype.FunctionType.getPrototype(FunctionType.java:261)
+            com.google.javascript.jscomp.TypeCheck.visitFunction(TypeCheck.java:1415) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitFunctionMethod = typeCheckClazz.getDeclaredMethod("visitFunction", nodeTraversalType, nodeType);
+        visitFunctionMethod.setAccessible(true);
+        java.lang.Object[] visitFunctionMethodArguments = new java.lang.Object[2];
+        visitFunctionMethodArguments[0] = ((Object) null);
+        visitFunctionMethodArguments[1] = node;
+        try {
+            visitFunctionMethod.invoke(typeCheck, visitFunctionMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitFunction(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.executesCondition {@code (functionType.isInterface() || functionType.isConstructor()): True}
+ * @utbot.executesCondition {@code (if (functionType.isInterface() || functionType.isConstructor()) {
+ *     FunctionType baseConstructor = functionType.getPrototype().getImplicitPrototype().getConstructor();
+ *     if (baseConstructor != null && baseConstructor != getNativeType(OBJECT_FUNCTION_TYPE) && (baseConstructor.isConstructor() && functionType.isInterface() || baseConstructor.isInterface() && functionType.isConstructor())) {
+ *         compiler.report(t.makeError(n, CONFLICTING_EXTENDED_TYPE, functionPrivateName));
+ *     }
+ *     for (JSType baseInterface : functionType.getImplementedInterfaces()) {
+ *         boolean badImplementedType = false;
+ *         ObjectType baseInterfaceObj = ObjectType.cast(baseInterface);
+ *         if (baseInterfaceObj != null) {
+ *             FunctionType interfaceConstructor = baseInterfaceObj.getConstructor();
+ *             if (interfaceConstructor != null && !interfaceConstructor.isInterface()) {
+ *                 badImplementedType = true;
+ *             }
+ *         } else {
+ *             badImplementedType = true;
+ *         }
+ *         if (badImplementedType) {
+ *             report(t, n, BAD_IMPLEMENTED_TYPE, functionPrivateName);
+ *         }
+ *     }
+ *     if (functionType.isConstructor()) {
+ *         validator.expectAllInterfaceProperties(t, n, functionType);
+ *     }
+ * }): True}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: getPrototype
+ *  */
+    @Test
+    public void testVisitFunction_ThrowNullPointerException_4() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        Object first = createInstance("com.google.javascript.rhino.Node$StringNode");
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        NoType jsType = ((NoType) createInstance("com.google.javascript.rhino.jstype.NoType"));
+        FunctionPrototypeType prototype = ((FunctionPrototypeType) createInstance("com.google.javascript.rhino.jstype.FunctionPrototypeType"));
+        setField(jsType, "com.google.javascript.rhino.jstype.FunctionType", "prototype", prototype);
+        Class kindClazz = Class.forName("com.google.javascript.rhino.jstype.FunctionType$Kind");
+        Object kind = getEnumConstantByName(kindClazz, "CONSTRUCTOR");
+        setField(jsType, "com.google.javascript.rhino.jstype.FunctionType", "kind", kind);
+        setField(node, "com.google.javascript.rhino.Node", "jsType", jsType);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitFunction] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitFunction(TypeCheck.java:1415) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitFunctionMethod = typeCheckClazz.getDeclaredMethod("visitFunction", nodeTraversalType, nodeType);
+        visitFunctionMethod.setAccessible(true);
+        java.lang.Object[] visitFunctionMethodArguments = new java.lang.Object[2];
+        visitFunctionMethodArguments[0] = ((Object) null);
+        visitFunctionMethodArguments[1] = node;
+        try {
+            visitFunctionMethod.invoke(typeCheck, visitFunctionMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitFunction(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.executesCondition {@code (functionType.isInterface() || functionType.isConstructor()): False}
+ * @utbot.executesCondition {@code (baseConstructor != null): False}
+ * @utbot.invokes {@link com.google.javascript.rhino.jstype.ObjectType#getConstructor()}
+ * @utbot.invokes {@link com.google.javascript.rhino.jstype.FunctionType#getImplementedInterfaces()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: for(JSType baseInterface: functionType.getImplementedInterfaces())
+ *  */
+    @Test
+    public void testVisitFunction_ThrowNullPointerException_5() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        Object first = createInstance("com.google.javascript.rhino.Node$StringNode");
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        NoType jsType = ((NoType) createInstance("com.google.javascript.rhino.jstype.NoType"));
+        FunctionPrototypeType prototype = ((FunctionPrototypeType) createInstance("com.google.javascript.rhino.jstype.FunctionPrototypeType"));
+        NoObjectType implicitPrototypeFallback = ((NoObjectType) createInstance("com.google.javascript.rhino.jstype.NoObjectType"));
+        setField(prototype, "com.google.javascript.rhino.jstype.PrototypeObjectType", "implicitPrototypeFallback", implicitPrototypeFallback);
+        setField(jsType, "com.google.javascript.rhino.jstype.FunctionType", "prototype", prototype);
+        Class kindClazz = Class.forName("com.google.javascript.rhino.jstype.FunctionType$Kind");
+        Object kind = getEnumConstantByName(kindClazz, "INTERFACE");
+        setField(jsType, "com.google.javascript.rhino.jstype.FunctionType", "kind", kind);
+        setField(node, "com.google.javascript.rhino.Node", "jsType", jsType);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitFunction] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitFunction(TypeCheck.java:1424) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitFunctionMethod = typeCheckClazz.getDeclaredMethod("visitFunction", nodeTraversalType, nodeType);
+        visitFunctionMethod.setAccessible(true);
+        java.lang.Object[] visitFunctionMethodArguments = new java.lang.Object[2];
+        visitFunctionMethodArguments[0] = ((Object) null);
+        visitFunctionMethodArguments[1] = node;
+        try {
+            visitFunctionMethod.invoke(typeCheck, visitFunctionMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///region SYMBOLIC EXECUTION: EXPLICITLY THROWN UNCHECKED EXCEPTIONS for method visitFunction(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitFunction(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.IllegalStateException} in: String functionPrivateName = n.getFirstChild().getString();
+ *  */
+    @Test(expected = IllegalStateException.class)
+    public void testVisitFunction_ThrowIllegalStateException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        first.setType(40);
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        setField(node, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitFunctionMethod = typeCheckClazz.getDeclaredMethod("visitFunction", nodeTraversalType, nodeType);
+        visitFunctionMethod.setAccessible(true);
+        java.lang.Object[] visitFunctionMethodArguments = new java.lang.Object[2];
+        visitFunctionMethodArguments[0] = ((Object) null);
+        visitFunctionMethodArguments[1] = node;
+        try {
+            visitFunctionMethod.invoke(typeCheck, visitFunctionMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitFunction(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.UnsupportedOperationException} in: String functionPrivateName = n.getFirstChild().getString();
+ *  */
+    @Test(expected = UnsupportedOperationException.class)
+    public void testVisitFunction_ThrowUnsupportedOperationException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        setField(node, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitFunctionMethod = typeCheckClazz.getDeclaredMethod("visitFunction", nodeTraversalType, nodeType);
+        visitFunctionMethod.setAccessible(true);
+        java.lang.Object[] visitFunctionMethodArguments = new java.lang.Object[2];
+        visitFunctionMethodArguments[0] = ((Object) null);
+        visitFunctionMethodArguments[1] = node;
+        try {
+            visitFunctionMethod.invoke(typeCheck, visitFunctionMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.visitGetProp
+    
+    ///region SYMBOLIC EXECUTION: SUCCESSFUL EXECUTIONS for method visitGetProp(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node, com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitGetProp(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.executesCondition {@code (n.getJSType() != null): True}
+ * @utbot.executesCondition {@code (parent.getType() == Token.ASSIGN): True}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#getJSType()}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#getType()}
+ * @utbot.returnsFrom {@code return;}
+ *  */
+    @Test
+    public void testVisitGetProp_ParentGetTypeEqualsTokenASSIGN() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        TemplateType jsType = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(node, "com.google.javascript.rhino.Node", "jsType", jsType);
+        Node node1 = new Node(86);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitGetPropMethod = typeCheckClazz.getDeclaredMethod("visitGetProp", nodeTraversalType, nodeType, nodeType);
+        visitGetPropMethod.setAccessible(true);
+        java.lang.Object[] visitGetPropMethodArguments = new java.lang.Object[3];
+        visitGetPropMethodArguments[0] = ((Object) null);
+        visitGetPropMethodArguments[1] = node;
+        visitGetPropMethodArguments[2] = node1;
+        visitGetPropMethod.invoke(typeCheck, visitGetPropMethodArguments);
+    }
+    ///endregion
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method visitGetProp(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node, com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitGetProp(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.executesCondition {@code (n.getJSType() != null): False}
+ * @utbot.throwsException {@link java.lang.ArrayIndexOutOfBoundsException} in: JSType childType = getJSType(objNode);
+ *  */
+    @Test
+    public void testVisitGetProp_ThrowArrayIndexOutOfBoundsException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = {};
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        Node first = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        setField(functionNode, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitGetProp] produces [java.lang.ArrayIndexOutOfBoundsException: Index 35 out of bounds for length 0]
+            com.google.javascript.rhino.jstype.JSTypeRegistry.getNativeType(JSTypeRegistry.java:813)
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1711)
+            com.google.javascript.jscomp.TypeCheck.visitGetProp(TypeCheck.java:1243) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitGetPropMethod = typeCheckClazz.getDeclaredMethod("visitGetProp", nodeTraversalType, functionNodeType, functionNodeType);
+        visitGetPropMethod.setAccessible(true);
+        java.lang.Object[] visitGetPropMethodArguments = new java.lang.Object[3];
+        visitGetPropMethodArguments[0] = ((Object) null);
+        visitGetPropMethodArguments[1] = functionNode;
+        visitGetPropMethodArguments[2] = ((Object) null);
+        try {
+            visitGetPropMethod.invoke(typeCheck, visitGetPropMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitGetProp(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#getJSType()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} when: n.getJSType() != null && parent.getType() == Token.ASSIGN
+ *  */
+    @Test
+    public void testVisitGetProp_ThrowNullPointerException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitGetProp] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitGetProp(TypeCheck.java:1233) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitGetPropMethod = typeCheckClazz.getDeclaredMethod("visitGetProp", nodeTraversalType, nodeType, nodeType);
+        visitGetPropMethod.setAccessible(true);
+        java.lang.Object[] visitGetPropMethodArguments = new java.lang.Object[3];
+        visitGetPropMethodArguments[0] = ((Object) null);
+        visitGetPropMethodArguments[1] = ((Object) null);
+        visitGetPropMethodArguments[2] = ((Object) null);
+        try {
+            visitGetPropMethod.invoke(typeCheck, visitGetPropMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitGetProp(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.executesCondition {@code (n.getJSType() != null): True}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#getType()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} when: n.getJSType() != null && parent.getType() == Token.ASSIGN
+ *  */
+    @Test
+    public void testVisitGetProp_ThrowNullPointerException_1() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        NoObjectType jsType = ((NoObjectType) createInstance("com.google.javascript.rhino.jstype.NoObjectType"));
+        setField(node, "com.google.javascript.rhino.Node", "jsType", jsType);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitGetProp] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitGetProp(TypeCheck.java:1233) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitGetPropMethod = typeCheckClazz.getDeclaredMethod("visitGetProp", nodeTraversalType, nodeType, nodeType);
+        visitGetPropMethod.setAccessible(true);
+        java.lang.Object[] visitGetPropMethodArguments = new java.lang.Object[3];
+        visitGetPropMethodArguments[0] = ((Object) null);
+        visitGetPropMethodArguments[1] = node;
+        visitGetPropMethodArguments[2] = ((Object) null);
+        try {
+            visitGetPropMethod.invoke(typeCheck, visitGetPropMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitGetProp(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.executesCondition {@code (n.getJSType() != null): False}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: JSType childType = getJSType(objNode);
+ *  */
+    @Test
+    public void testVisitGetProp_ThrowNullPointerException_2() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = new Node(0);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitGetProp] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1705)
+            com.google.javascript.jscomp.TypeCheck.visitGetProp(TypeCheck.java:1243) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitGetPropMethod = typeCheckClazz.getDeclaredMethod("visitGetProp", nodeTraversalType, nodeType, nodeType);
+        visitGetPropMethod.setAccessible(true);
+        java.lang.Object[] visitGetPropMethodArguments = new java.lang.Object[3];
+        visitGetPropMethodArguments[0] = ((Object) null);
+        visitGetPropMethodArguments[1] = node;
+        visitGetPropMethodArguments[2] = ((Object) null);
+        try {
+            visitGetPropMethod.invoke(typeCheck, visitGetPropMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitGetProp(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.executesCondition {@code (n.getJSType() != null): True}
+ * @utbot.executesCondition {@code (parent.getType() == Token.ASSIGN): False}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#getType()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: JSType childType = getJSType(objNode);
+ *  */
+    @Test
+    public void testVisitGetProp_ThrowNullPointerException_3() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        NoObjectType jsType = ((NoObjectType) createInstance("com.google.javascript.rhino.jstype.NoObjectType"));
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "jsType", jsType);
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        functionNode.setType(-255);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitGetProp] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1705)
+            com.google.javascript.jscomp.TypeCheck.visitGetProp(TypeCheck.java:1243) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitGetPropMethod = typeCheckClazz.getDeclaredMethod("visitGetProp", nodeTraversalType, scriptOrFnNodeType, scriptOrFnNodeType);
+        visitGetPropMethod.setAccessible(true);
+        java.lang.Object[] visitGetPropMethodArguments = new java.lang.Object[3];
+        visitGetPropMethodArguments[0] = ((Object) null);
+        visitGetPropMethodArguments[1] = scriptOrFnNode;
+        visitGetPropMethodArguments[2] = functionNode;
+        try {
+            visitGetPropMethod.invoke(typeCheck, visitGetPropMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitGetProp(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.Node)}
+ * @utbot.executesCondition {@code (n.getJSType() != null): False}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: JSType childType = getJSType(objNode);
+ *  */
+    @Test
+    public void testVisitGetProp_ThrowNullPointerException_4() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        Node first = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        setField(scriptOrFnNode, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitGetProp] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1711)
+            com.google.javascript.jscomp.TypeCheck.visitGetProp(TypeCheck.java:1243) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitGetPropMethod = typeCheckClazz.getDeclaredMethod("visitGetProp", nodeTraversalType, scriptOrFnNodeType, scriptOrFnNodeType);
+        visitGetPropMethod.setAccessible(true);
+        java.lang.Object[] visitGetPropMethodArguments = new java.lang.Object[3];
+        visitGetPropMethodArguments[0] = ((Object) null);
+        visitGetPropMethodArguments[1] = scriptOrFnNode;
+        visitGetPropMethodArguments[2] = ((Object) null);
+        try {
+            visitGetPropMethod.invoke(typeCheck, visitGetPropMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.isReference
+    
+    ///region SYMBOLIC EXECUTION: SUCCESSFUL EXECUTIONS for method isReference(com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#isReference(com.google.javascript.rhino.Node)}
+ * @utbot.activatesSwitch {@code switch(n.getType()) case: default}
+ * @utbot.returnsFrom {@code return false;}
+ *  */
+    @Test
+    public void testIsReference_ReturnFalse() throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException  {
+        Node node = new Node(-255);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method isReferenceMethod = typeCheckClazz.getDeclaredMethod("isReference", nodeType);
+        isReferenceMethod.setAccessible(true);
+        java.lang.Object[] isReferenceMethodArguments = new java.lang.Object[1];
+        isReferenceMethodArguments[0] = node;
+        boolean actual = ((Boolean) isReferenceMethod.invoke(null, isReferenceMethodArguments));
+        
+        assertFalse(actual);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#isReference(com.google.javascript.rhino.Node)}
+ * @utbot.activatesSwitch {@code switch(n.getType()) case: default}
+ * @utbot.returnsFrom {@code return true;}
+ *  */
+    @Test
+    public void testIsReference_ReturnTrue() throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException  {
+        Node node = new Node(35);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method isReferenceMethod = typeCheckClazz.getDeclaredMethod("isReference", nodeType);
+        isReferenceMethod.setAccessible(true);
+        java.lang.Object[] isReferenceMethodArguments = new java.lang.Object[1];
+        isReferenceMethodArguments[0] = node;
+        boolean actual = ((Boolean) isReferenceMethod.invoke(null, isReferenceMethodArguments));
+        
+        assertTrue(actual);
+    }
+    ///endregion
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method isReference(com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#isReference(com.google.javascript.rhino.Node)}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#getType()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: switch(n.getType())
+ *  */
+    @Test
+    public void testIsReference_ThrowNullPointerException() throws Throwable  {
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.isReference] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.isReference(TypeCheck.java:1688) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method isReferenceMethod = typeCheckClazz.getDeclaredMethod("isReference", nodeType);
+        isReferenceMethod.setAccessible(true);
+        java.lang.Object[] isReferenceMethodArguments = new java.lang.Object[1];
+        isReferenceMethodArguments[0] = ((Object) null);
+        try {
+            isReferenceMethod.invoke(null, isReferenceMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.visitGetElem
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method visitGetElem(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitGetElem(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.ArrayIndexOutOfBoundsException} in: validator.expectIndexMatch(t, n, getJSType(left), getJSType(right));
+ *  */
+    @Test
+    public void testVisitGetElem_ThrowArrayIndexOutOfBoundsException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        TypeValidator validator = ((TypeValidator) createInstance("com.google.javascript.jscomp.TypeValidator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "validator", validator);
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = {};
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitGetElem] produces [java.lang.ArrayIndexOutOfBoundsException: Index 35 out of bounds for length 0]
+            com.google.javascript.rhino.jstype.JSTypeRegistry.getNativeType(JSTypeRegistry.java:813)
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1711)
+            com.google.javascript.jscomp.TypeCheck.visitGetElem(TypeCheck.java:1328) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitGetElemMethod = typeCheckClazz.getDeclaredMethod("visitGetElem", nodeTraversalType, nodeType);
+        visitGetElemMethod.setAccessible(true);
+        java.lang.Object[] visitGetElemMethodArguments = new java.lang.Object[2];
+        visitGetElemMethodArguments[0] = ((Object) null);
+        visitGetElemMethodArguments[1] = node;
+        try {
+            visitGetElemMethod.invoke(typeCheck, visitGetElemMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitGetElem(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#getFirstChild()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: Node left = n.getFirstChild();
+ *  */
+    @Test
+    public void testVisitGetElem_ThrowNullPointerException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitGetElem] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitGetElem(TypeCheck.java:1326) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitGetElemMethod = typeCheckClazz.getDeclaredMethod("visitGetElem", nodeTraversalType, nodeType);
+        visitGetElemMethod.setAccessible(true);
+        java.lang.Object[] visitGetElemMethodArguments = new java.lang.Object[2];
+        visitGetElemMethodArguments[0] = ((Object) null);
+        visitGetElemMethodArguments[1] = ((Object) null);
+        try {
+            visitGetElemMethod.invoke(typeCheck, visitGetElemMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitGetElem(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: validator.expectIndexMatch(t, n, getJSType(left), getJSType(right));
+ *  */
+    @Test
+    public void testVisitGetElem_ThrowNullPointerException_1() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = new Node(0);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitGetElem] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1705)
+            com.google.javascript.jscomp.TypeCheck.visitGetElem(TypeCheck.java:1328) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitGetElemMethod = typeCheckClazz.getDeclaredMethod("visitGetElem", nodeTraversalType, nodeType);
+        visitGetElemMethod.setAccessible(true);
+        java.lang.Object[] visitGetElemMethodArguments = new java.lang.Object[2];
+        visitGetElemMethodArguments[0] = ((Object) null);
+        visitGetElemMethodArguments[1] = node;
+        try {
+            visitGetElemMethod.invoke(typeCheck, visitGetElemMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitGetElem(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: validator.expectIndexMatch(t, n, getJSType(left), getJSType(right));
+ *  */
+    @Test
+    public void testVisitGetElem_ThrowNullPointerException_2() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        TypeValidator validator = ((TypeValidator) createInstance("com.google.javascript.jscomp.TypeValidator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "validator", validator);
+        FunctionNode functionNode = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        FunctionNode first = ((FunctionNode) createInstance("com.google.javascript.rhino.FunctionNode"));
+        setField(functionNode, "com.google.javascript.rhino.Node", "first", first);
+        Node last = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        setField(functionNode, "com.google.javascript.rhino.Node", "last", last);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitGetElem] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1711)
+            com.google.javascript.jscomp.TypeCheck.visitGetElem(TypeCheck.java:1328) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class functionNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitGetElemMethod = typeCheckClazz.getDeclaredMethod("visitGetElem", nodeTraversalType, functionNodeType);
+        visitGetElemMethod.setAccessible(true);
+        java.lang.Object[] visitGetElemMethodArguments = new java.lang.Object[2];
+        visitGetElemMethodArguments[0] = ((Object) null);
+        visitGetElemMethodArguments[1] = functionNode;
+        try {
+            visitGetElemMethod.invoke(typeCheck, visitGetElemMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitGetElem(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: validator.expectIndexMatch(t, n, getJSType(left), getJSType(right));
+ *  */
+    @Test
+    public void testVisitGetElem_ThrowNullPointerException_3() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        TypeValidator validator = ((TypeValidator) createInstance("com.google.javascript.jscomp.TypeValidator"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "validator", validator);
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = new com.google.javascript.rhino.jstype.JSType[37];
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitGetElem] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getJSType(TypeCheck.java:1705)
+            com.google.javascript.jscomp.TypeCheck.visitGetElem(TypeCheck.java:1328) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitGetElemMethod = typeCheckClazz.getDeclaredMethod("visitGetElem", nodeTraversalType, nodeType);
+        visitGetElemMethod.setAccessible(true);
+        java.lang.Object[] visitGetElemMethodArguments = new java.lang.Object[2];
+        visitGetElemMethodArguments[0] = ((Object) null);
+        visitGetElemMethodArguments[1] = node;
+        try {
+            visitGetElemMethod.invoke(typeCheck, visitGetElemMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#visitGetElem(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: validator.expectIndexMatch(t, n, getJSType(left), getJSType(right));
+ *  */
+    @Test
+    public void testVisitGetElem_ThrowNullPointerException_4() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = new com.google.javascript.rhino.jstype.JSType[37];
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        ScriptOrFnNode first = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        setField(node, "com.google.javascript.rhino.Node", "first", first);
+        ScriptOrFnNode last = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        TemplateType jsType = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(last, "com.google.javascript.rhino.Node", "jsType", jsType);
+        setField(node, "com.google.javascript.rhino.Node", "last", last);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.visitGetElem] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.visitGetElem(TypeCheck.java:1328) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method visitGetElemMethod = typeCheckClazz.getDeclaredMethod("visitGetElem", nodeTraversalType, nodeType);
+        visitGetElemMethod.setAccessible(true);
+        java.lang.Object[] visitGetElemMethodArguments = new java.lang.Object[2];
+        visitGetElemMethodArguments[0] = ((Object) null);
+        visitGetElemMethodArguments[1] = node;
+        try {
+            visitGetElemMethod.invoke(typeCheck, visitGetElemMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.ensureTyped
+    
+    ///region SYMBOLIC EXECUTION: SUCCESSFUL EXECUTIONS #0 for method ensureTyped(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node, com.google.javascript.rhino.jstype.JSType)
+    /// 
+    /// Common steps:
+    /// <pre>
+    /// Tests execute conditions:
+    ///     {@code (info != null): False}
+    /// </pre>
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#ensureTyped(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType)}
+ * @utbot.executesCondition {@code (Preconditions.checkState(n.getType() != Token.FUNCTION || type instanceof FunctionType || type.isUnknownType());): True}
+ * @utbot.executesCondition {@code (Preconditions.checkState(n.getType() != Token.FUNCTION || type instanceof FunctionType || type.isUnknownType());): False}
+ * @utbot.executesCondition {@code (n.getJSType() == null): True}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#setJSType(com.google.javascript.rhino.jstype.JSType)}
+ *  */
+    @Test
+    public void testEnsureTyped_NGetJSTypeEqualsNull() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = new Node(105);
+        NoType noType = ((NoType) createInstance("com.google.javascript.rhino.jstype.NoType"));
+        
+        JSType initialNodeJsType = ((JSType) getFieldValue(node, "com.google.javascript.rhino.Node", "jsType"));
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class noTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method ensureTypedMethod = typeCheckClazz.getDeclaredMethod("ensureTyped", nodeTraversalType, nodeType, noTypeType);
+        ensureTypedMethod.setAccessible(true);
+        java.lang.Object[] ensureTypedMethodArguments = new java.lang.Object[3];
+        ensureTypedMethodArguments[0] = ((Object) null);
+        ensureTypedMethodArguments[1] = node;
+        ensureTypedMethodArguments[2] = noType;
+        ensureTypedMethod.invoke(typeCheck, ensureTypedMethodArguments);
+        
+        JSType finalNodeJsType = ((JSType) getFieldValue(node, "com.google.javascript.rhino.Node", "jsType"));
+        
+        assertFalse(initialNodeJsType == finalNodeJsType);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#ensureTyped(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType)}
+ * @utbot.executesCondition {@code (Preconditions.checkState(n.getType() != Token.FUNCTION || type instanceof FunctionType || type.isUnknownType());): True}
+ * @utbot.executesCondition {@code (Preconditions.checkState(n.getType() != Token.FUNCTION || type instanceof FunctionType || type.isUnknownType());): False}
+ * @utbot.executesCondition {@code (n.getJSType() == null): False}
+ *  */
+    @Test
+    public void testEnsureTyped_NGetJSTypeNotEqualsNull() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        node.setType(105);
+        TemplateType jsType = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(node, "com.google.javascript.rhino.Node", "jsType", jsType);
+        NoType noType = ((NoType) createInstance("com.google.javascript.rhino.jstype.NoType"));
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class noTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method ensureTypedMethod = typeCheckClazz.getDeclaredMethod("ensureTyped", nodeTraversalType, nodeType, noTypeType);
+        ensureTypedMethod.setAccessible(true);
+        java.lang.Object[] ensureTypedMethodArguments = new java.lang.Object[3];
+        ensureTypedMethodArguments[0] = ((Object) null);
+        ensureTypedMethodArguments[1] = node;
+        ensureTypedMethodArguments[2] = noType;
+        ensureTypedMethod.invoke(typeCheck, ensureTypedMethodArguments);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#ensureTyped(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType)}
+ * @utbot.executesCondition {@code (Preconditions.checkState(n.getType() != Token.FUNCTION || type instanceof FunctionType || type.isUnknownType());): True}
+ * @utbot.executesCondition {@code (Preconditions.checkState(n.getType() != Token.FUNCTION || type instanceof FunctionType || type.isUnknownType());): True}
+ * @utbot.executesCondition {@code (type.isUnknownType()): True}
+ * @utbot.executesCondition {@code (n.getJSType() == null): False}
+ * @utbot.invokes {@link com.google.javascript.rhino.jstype.JSType#isUnknownType()}
+ *  */
+    @Test
+    public void testEnsureTyped_TypeIsUnknownType() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        node.setType(105);
+        TemplateType jsType = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(node, "com.google.javascript.rhino.Node", "jsType", jsType);
+        Object unresolvedTypeExpression = createInstance("com.google.javascript.rhino.jstype.UnresolvedTypeExpression");
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class unresolvedTypeExpressionType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method ensureTypedMethod = typeCheckClazz.getDeclaredMethod("ensureTyped", nodeTraversalType, nodeType, unresolvedTypeExpressionType);
+        ensureTypedMethod.setAccessible(true);
+        java.lang.Object[] ensureTypedMethodArguments = new java.lang.Object[3];
+        ensureTypedMethodArguments[0] = ((Object) null);
+        ensureTypedMethodArguments[1] = node;
+        ensureTypedMethodArguments[2] = unresolvedTypeExpression;
+        ensureTypedMethod.invoke(typeCheck, ensureTypedMethodArguments);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#ensureTyped(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType)}
+ * @utbot.executesCondition {@code (Preconditions.checkState(n.getType() != Token.FUNCTION || type instanceof FunctionType || type.isUnknownType());): False}
+ * @utbot.executesCondition {@code (n.getJSType() == null): False}
+ *  */
+    @Test
+    public void testEnsureTyped_PreconditionsCheckState() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        node.setType(1);
+        TemplateType jsType = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(node, "com.google.javascript.rhino.Node", "jsType", jsType);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method ensureTypedMethod = typeCheckClazz.getDeclaredMethod("ensureTyped", nodeTraversalType, nodeType, jSTypeType);
+        ensureTypedMethod.setAccessible(true);
+        java.lang.Object[] ensureTypedMethodArguments = new java.lang.Object[3];
+        ensureTypedMethodArguments[0] = ((Object) null);
+        ensureTypedMethodArguments[1] = node;
+        ensureTypedMethodArguments[2] = ((Object) null);
+        ensureTypedMethod.invoke(typeCheck, ensureTypedMethodArguments);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#ensureTyped(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType)}
+ * @utbot.executesCondition {@code (Preconditions.checkState(n.getType() != Token.FUNCTION || type instanceof FunctionType || type.isUnknownType());): True}
+ * @utbot.executesCondition {@code (Preconditions.checkState(n.getType() != Token.FUNCTION || type instanceof FunctionType || type.isUnknownType());): False}
+ * @utbot.executesCondition {@code (n.getJSType() == null): False}
+ *  */
+    @Test
+    public void testEnsureTyped_NGetJSTypeNotEqualsNull_1() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        node.setType(105);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        setField(node, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        TemplateType jsType = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(node, "com.google.javascript.rhino.Node", "jsType", jsType);
+        NoType noType = ((NoType) createInstance("com.google.javascript.rhino.jstype.NoType"));
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class noTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method ensureTypedMethod = typeCheckClazz.getDeclaredMethod("ensureTyped", nodeTraversalType, nodeType, noTypeType);
+        ensureTypedMethod.setAccessible(true);
+        java.lang.Object[] ensureTypedMethodArguments = new java.lang.Object[3];
+        ensureTypedMethodArguments[0] = ((Object) null);
+        ensureTypedMethodArguments[1] = node;
+        ensureTypedMethodArguments[2] = noType;
+        ensureTypedMethod.invoke(typeCheck, ensureTypedMethodArguments);
+    }
+    ///endregion
+    
+    ///region SYMBOLIC EXECUTION: SUCCESSFUL EXECUTIONS #1 for method ensureTyped(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node, com.google.javascript.rhino.jstype.JSType)
+    /// 
+    /// Common steps:
+    /// <pre>
+    /// Tests execute conditions:
+    ///     {@code (info != null): True}
+    /// invoke:
+    ///     {@link com.google.javascript.rhino.JSDocInfo#hasType()} once
+    /// execute conditions:
+    ///     {@code (info.hasType()): False}
+    /// invoke:
+    ///     {@link com.google.javascript.rhino.JSDocInfo#isImplicitCast()} once
+    /// execute conditions:
+    ///     {@code (n.getJSType() == null): False}
+    /// </pre>
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#ensureTyped(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType)}
+ * @utbot.executesCondition {@code (Preconditions.checkState(n.getType() != Token.FUNCTION || type instanceof FunctionType || type.isUnknownType());): True}
+ * @utbot.executesCondition {@code (Preconditions.checkState(n.getType() != Token.FUNCTION || type instanceof FunctionType || type.isUnknownType());): False}
+ * @utbot.executesCondition {@code (info.isImplicitCast()): False}
+ *  */
+    @Test
+    public void testEnsureTyped_NotInfoIsImplicitCast() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        node.setType(105);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        JSDocInfo objectValue = ((JSDocInfo) createInstance("com.google.javascript.rhino.JSDocInfo"));
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "objectValue", objectValue);
+        setField(node, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        TemplateType jsType = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(node, "com.google.javascript.rhino.Node", "jsType", jsType);
+        NoType noType = ((NoType) createInstance("com.google.javascript.rhino.jstype.NoType"));
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class noTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method ensureTypedMethod = typeCheckClazz.getDeclaredMethod("ensureTyped", nodeTraversalType, nodeType, noTypeType);
+        ensureTypedMethod.setAccessible(true);
+        java.lang.Object[] ensureTypedMethodArguments = new java.lang.Object[3];
+        ensureTypedMethodArguments[0] = ((Object) null);
+        ensureTypedMethodArguments[1] = node;
+        ensureTypedMethodArguments[2] = noType;
+        ensureTypedMethod.invoke(typeCheck, ensureTypedMethodArguments);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#ensureTyped(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType)}
+ * @utbot.executesCondition {@code (Preconditions.checkState(n.getType() != Token.FUNCTION || type instanceof FunctionType || type.isUnknownType());): False}
+ * @utbot.executesCondition {@code (info.isImplicitCast()): True}
+ * @utbot.executesCondition {@code (!inExterns): False}
+ *  */
+    @Test
+    public void testEnsureTyped_InExterns() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "inExterns", true);
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        node.setType(128);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        JSDocInfo objectValue = ((JSDocInfo) createInstance("com.google.javascript.rhino.JSDocInfo"));
+        setField(objectValue, "com.google.javascript.rhino.JSDocInfo", "bitset", 8192);
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "objectValue", objectValue);
+        setField(node, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        TemplateType jsType = ((TemplateType) createInstance("com.google.javascript.rhino.jstype.TemplateType"));
+        setField(node, "com.google.javascript.rhino.Node", "jsType", jsType);
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method ensureTypedMethod = typeCheckClazz.getDeclaredMethod("ensureTyped", nodeTraversalType, nodeType, jSTypeType);
+        ensureTypedMethod.setAccessible(true);
+        java.lang.Object[] ensureTypedMethodArguments = new java.lang.Object[3];
+        ensureTypedMethodArguments[0] = ((Object) null);
+        ensureTypedMethodArguments[1] = node;
+        ensureTypedMethodArguments[2] = ((Object) null);
+        ensureTypedMethod.invoke(typeCheck, ensureTypedMethodArguments);
+    }
+    ///endregion
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method ensureTyped(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node, com.google.javascript.rhino.jstype.JSType)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#ensureTyped(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType)}
+ * @utbot.executesCondition {@code (Preconditions.checkState(n.getType() != Token.FUNCTION || type instanceof FunctionType || type.isUnknownType());): True}
+ * @utbot.executesCondition {@code (Preconditions.checkState(n.getType() != Token.FUNCTION || type instanceof FunctionType || type.isUnknownType());): False}
+ * @utbot.throwsException {@link java.lang.ClassCastException} in: JSDocInfo info = n.getJSDocInfo();
+ *  */
+    @Test
+    public void testEnsureTyped_ThrowClassCastException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        node.setType(105);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        Object next = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(next, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        int[] objectValue = {};
+        setField(next, "com.google.javascript.rhino.Node$PropListItem", "objectValue", objectValue);
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "next", next);
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "type", -255);
+        setField(node, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        NoType noType = ((NoType) createInstance("com.google.javascript.rhino.jstype.NoType"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.ensureTyped] produces [java.lang.ClassCastException: class [I cannot be cast to class com.google.javascript.rhino.JSDocInfo ([I is in module java.base of loader 'bootstrap'; com.google.javascript.rhino.JSDocInfo is in unnamed module of loader org.utbot.instrumentation.process.HandlerClassesLoader @3067726d)]
+            com.google.javascript.rhino.Node.getJSDocInfo(Node.java:1961)
+            com.google.javascript.jscomp.TypeCheck.ensureTyped(TypeCheck.java:1773) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class noTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method ensureTypedMethod = typeCheckClazz.getDeclaredMethod("ensureTyped", nodeTraversalType, nodeType, noTypeType);
+        ensureTypedMethod.setAccessible(true);
+        java.lang.Object[] ensureTypedMethodArguments = new java.lang.Object[3];
+        ensureTypedMethodArguments[0] = ((Object) null);
+        ensureTypedMethodArguments[1] = node;
+        ensureTypedMethodArguments[2] = noType;
+        try {
+            ensureTypedMethod.invoke(typeCheck, ensureTypedMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#ensureTyped(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType)}
+ * @utbot.invokes {@link com.google.javascript.rhino.Node#getType()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: Preconditions.checkState(n.getType() != Token.FUNCTION || type instanceof FunctionType || type.isUnknownType());
+ *  */
+    @Test
+    public void testEnsureTyped_ThrowNullPointerException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.ensureTyped] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.ensureTyped(TypeCheck.java:1770) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method ensureTypedMethod = typeCheckClazz.getDeclaredMethod("ensureTyped", nodeTraversalType, nodeType, jSTypeType);
+        ensureTypedMethod.setAccessible(true);
+        java.lang.Object[] ensureTypedMethodArguments = new java.lang.Object[3];
+        ensureTypedMethodArguments[0] = ((Object) null);
+        ensureTypedMethodArguments[1] = ((Object) null);
+        ensureTypedMethodArguments[2] = ((Object) null);
+        try {
+            ensureTypedMethod.invoke(typeCheck, ensureTypedMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#ensureTyped(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType)}
+ * @utbot.executesCondition {@code (Preconditions.checkState(n.getType() != Token.FUNCTION || type instanceof FunctionType || type.isUnknownType());): True}
+ * @utbot.executesCondition {@code (Preconditions.checkState(n.getType() != Token.FUNCTION || type instanceof FunctionType || type.isUnknownType());): True}
+ * @utbot.invokes {@link com.google.javascript.rhino.jstype.JSType#isUnknownType()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: type.isUnknownType()
+ *  */
+    @Test
+    public void testEnsureTyped_ThrowNullPointerException_1() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = new Node(105);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.ensureTyped] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.ensureTyped(TypeCheck.java:1772) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class jSTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method ensureTypedMethod = typeCheckClazz.getDeclaredMethod("ensureTyped", nodeTraversalType, nodeType, jSTypeType);
+        ensureTypedMethod.setAccessible(true);
+        java.lang.Object[] ensureTypedMethodArguments = new java.lang.Object[3];
+        ensureTypedMethodArguments[0] = ((Object) null);
+        ensureTypedMethodArguments[1] = node;
+        ensureTypedMethodArguments[2] = ((Object) null);
+        try {
+            ensureTypedMethod.invoke(typeCheck, ensureTypedMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#ensureTyped(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSType)}
+ * @utbot.executesCondition {@code (Preconditions.checkState(n.getType() != Token.FUNCTION || type instanceof FunctionType || type.isUnknownType());): True}
+ * @utbot.executesCondition {@code (Preconditions.checkState(n.getType() != Token.FUNCTION || type instanceof FunctionType || type.isUnknownType());): False}
+ * @utbot.executesCondition {@code (info != null): True}
+ * @utbot.executesCondition {@code (info.hasType()): True}
+ * @utbot.invokes {@link com.google.javascript.rhino.JSDocInfo#hasType()}
+ * @utbot.invokes {@link com.google.javascript.rhino.JSDocInfo#getType()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: JSType infoType = info.getType().evaluate(t.getScope(), typeRegistry);
+ *  */
+    @Test
+    public void testEnsureTyped_ThrowNullPointerException_2() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        Node node = ((Node) createInstance("com.google.javascript.rhino.Node"));
+        node.setType(105);
+        Object propListHead = createInstance("com.google.javascript.rhino.Node$PropListItem");
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "type", 29);
+        JSDocInfo objectValue = ((JSDocInfo) createInstance("com.google.javascript.rhino.JSDocInfo"));
+        setField(objectValue, "com.google.javascript.rhino.JSDocInfo", "bitset", 536870912);
+        setField(propListHead, "com.google.javascript.rhino.Node$PropListItem", "objectValue", objectValue);
+        setField(node, "com.google.javascript.rhino.Node", "propListHead", propListHead);
+        NoType noType = ((NoType) createInstance("com.google.javascript.rhino.jstype.NoType"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.ensureTyped] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.ensureTyped(TypeCheck.java:1776) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class noTypeType = Class.forName("com.google.javascript.rhino.jstype.JSType");
+        Method ensureTypedMethod = typeCheckClazz.getDeclaredMethod("ensureTyped", nodeTraversalType, nodeType, noTypeType);
+        ensureTypedMethod.setAccessible(true);
+        java.lang.Object[] ensureTypedMethodArguments = new java.lang.Object[3];
+        ensureTypedMethodArguments[0] = ((Object) null);
+        ensureTypedMethodArguments[1] = node;
+        ensureTypedMethodArguments[2] = noType;
+        try {
+            ensureTypedMethod.invoke(typeCheck, ensureTypedMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.ensureTyped
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method ensureTyped(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node, com.google.javascript.rhino.jstype.JSTypeNative)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#ensureTyped(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSTypeNative)}
+ * @utbot.throwsException {@link java.lang.ArrayIndexOutOfBoundsException} in: ensureTyped(t, n, getNativeType(type));
+ *  */
+    @Test
+    public void testEnsureTyped_ThrowArrayIndexOutOfBoundsException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = {};
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        JSTypeNative jSTypeNative = JSTypeNative.ARRAY_TYPE;
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.ensureTyped] produces [java.lang.ArrayIndexOutOfBoundsException: Index 0 out of bounds for length 0]
+            com.google.javascript.rhino.jstype.JSTypeRegistry.getNativeType(JSTypeRegistry.java:813)
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.ensureTyped(TypeCheck.java:1747) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class jSTypeNativeType = Class.forName("com.google.javascript.rhino.jstype.JSTypeNative");
+        Method ensureTypedMethod = typeCheckClazz.getDeclaredMethod("ensureTyped", nodeTraversalType, nodeType, jSTypeNativeType);
+        ensureTypedMethod.setAccessible(true);
+        java.lang.Object[] ensureTypedMethodArguments = new java.lang.Object[3];
+        ensureTypedMethodArguments[0] = ((Object) null);
+        ensureTypedMethodArguments[1] = ((Object) null);
+        ensureTypedMethodArguments[2] = jSTypeNative;
+        try {
+            ensureTypedMethod.invoke(typeCheck, ensureTypedMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#ensureTyped(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSTypeNative)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: ensureTyped(t, n, getNativeType(type));
+ *  */
+    @Test
+    public void testEnsureTyped_ThrowNullPointerException_21() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = {null};
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        ScriptOrFnNode scriptOrFnNode = ((ScriptOrFnNode) createInstance("com.google.javascript.rhino.ScriptOrFnNode"));
+        scriptOrFnNode.setType(105);
+        JSTypeNative jSTypeNative = JSTypeNative.ARRAY_TYPE;
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.ensureTyped] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.ensureTyped(TypeCheck.java:1772)
+            com.google.javascript.jscomp.TypeCheck.ensureTyped(TypeCheck.java:1747) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class scriptOrFnNodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class jSTypeNativeType = Class.forName("com.google.javascript.rhino.jstype.JSTypeNative");
+        Method ensureTypedMethod = typeCheckClazz.getDeclaredMethod("ensureTyped", nodeTraversalType, scriptOrFnNodeType, jSTypeNativeType);
+        ensureTypedMethod.setAccessible(true);
+        java.lang.Object[] ensureTypedMethodArguments = new java.lang.Object[3];
+        ensureTypedMethodArguments[0] = ((Object) null);
+        ensureTypedMethodArguments[1] = scriptOrFnNode;
+        ensureTypedMethodArguments[2] = jSTypeNative;
+        try {
+            ensureTypedMethod.invoke(typeCheck, ensureTypedMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#ensureTyped(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSTypeNative)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: ensureTyped(t, n, getNativeType(type));
+ *  */
+    @Test
+    public void testEnsureTyped_ThrowNullPointerException_11() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = {null};
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        JSTypeNative jSTypeNative = JSTypeNative.ARRAY_TYPE;
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.ensureTyped] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.ensureTyped(TypeCheck.java:1770)
+            com.google.javascript.jscomp.TypeCheck.ensureTyped(TypeCheck.java:1747) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class jSTypeNativeType = Class.forName("com.google.javascript.rhino.jstype.JSTypeNative");
+        Method ensureTypedMethod = typeCheckClazz.getDeclaredMethod("ensureTyped", nodeTraversalType, nodeType, jSTypeNativeType);
+        ensureTypedMethod.setAccessible(true);
+        java.lang.Object[] ensureTypedMethodArguments = new java.lang.Object[3];
+        ensureTypedMethodArguments[0] = ((Object) null);
+        ensureTypedMethodArguments[1] = ((Object) null);
+        ensureTypedMethodArguments[2] = jSTypeNative;
+        try {
+            ensureTypedMethod.invoke(typeCheck, ensureTypedMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#ensureTyped(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node,com.google.javascript.rhino.jstype.JSTypeNative)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: ensureTyped(t, n, getNativeType(type));
+ *  */
+    @Test
+    public void testEnsureTyped_ThrowNullPointerException1() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.ensureTyped] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.ensureTyped(TypeCheck.java:1747) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Class jSTypeNativeType = Class.forName("com.google.javascript.rhino.jstype.JSTypeNative");
+        Method ensureTypedMethod = typeCheckClazz.getDeclaredMethod("ensureTyped", nodeTraversalType, nodeType, jSTypeNativeType);
+        ensureTypedMethod.setAccessible(true);
+        java.lang.Object[] ensureTypedMethodArguments = new java.lang.Object[3];
+        ensureTypedMethodArguments[0] = ((Object) null);
+        ensureTypedMethodArguments[1] = ((Object) null);
+        ensureTypedMethodArguments[2] = ((Object) null);
+        try {
+            ensureTypedMethod.invoke(typeCheck, ensureTypedMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.ensureTyped
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method ensureTyped(com.google.javascript.jscomp.NodeTraversal, com.google.javascript.rhino.Node)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#ensureTyped(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.ArrayIndexOutOfBoundsException} in: ensureTyped(t, n, getNativeType(UNKNOWN_TYPE));
+ *  */
+    @Test
+    public void testEnsureTyped_ThrowArrayIndexOutOfBoundsException1() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = {};
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.ensureTyped] produces [java.lang.ArrayIndexOutOfBoundsException: Index 35 out of bounds for length 0]
+            com.google.javascript.rhino.jstype.JSTypeRegistry.getNativeType(JSTypeRegistry.java:813)
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.ensureTyped(TypeCheck.java:1743) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method ensureTypedMethod = typeCheckClazz.getDeclaredMethod("ensureTyped", nodeTraversalType, nodeType);
+        ensureTypedMethod.setAccessible(true);
+        java.lang.Object[] ensureTypedMethodArguments = new java.lang.Object[2];
+        ensureTypedMethodArguments[0] = ((Object) null);
+        ensureTypedMethodArguments[1] = ((Object) null);
+        try {
+            ensureTypedMethod.invoke(typeCheck, ensureTypedMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#ensureTyped(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: ensureTyped(t, n, getNativeType(UNKNOWN_TYPE));
+ *  */
+    @Test
+    public void testEnsureTyped_ThrowNullPointerException2() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.ensureTyped] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808)
+            com.google.javascript.jscomp.TypeCheck.ensureTyped(TypeCheck.java:1743) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method ensureTypedMethod = typeCheckClazz.getDeclaredMethod("ensureTyped", nodeTraversalType, nodeType);
+        ensureTypedMethod.setAccessible(true);
+        java.lang.Object[] ensureTypedMethodArguments = new java.lang.Object[2];
+        ensureTypedMethodArguments[0] = ((Object) null);
+        ensureTypedMethodArguments[1] = ((Object) null);
+        try {
+            ensureTypedMethod.invoke(typeCheck, ensureTypedMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#ensureTyped(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: ensureTyped(t, n, getNativeType(UNKNOWN_TYPE));
+ *  */
+    @Test
+    public void testEnsureTyped_ThrowNullPointerException_12() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = new com.google.javascript.rhino.jstype.JSType[36];
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.ensureTyped] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.ensureTyped(TypeCheck.java:1770)
+            com.google.javascript.jscomp.TypeCheck.ensureTyped(TypeCheck.java:1743) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method ensureTypedMethod = typeCheckClazz.getDeclaredMethod("ensureTyped", nodeTraversalType, nodeType);
+        ensureTypedMethod.setAccessible(true);
+        java.lang.Object[] ensureTypedMethodArguments = new java.lang.Object[2];
+        ensureTypedMethodArguments[0] = ((Object) null);
+        ensureTypedMethodArguments[1] = ((Object) null);
+        try {
+            ensureTypedMethod.invoke(typeCheck, ensureTypedMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#ensureTyped(com.google.javascript.jscomp.NodeTraversal,com.google.javascript.rhino.Node)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: ensureTyped(t, n, getNativeType(UNKNOWN_TYPE));
+ *  */
+    @Test
+    public void testEnsureTyped_ThrowNullPointerException_22() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = new com.google.javascript.rhino.jstype.JSType[36];
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        Node node = new Node(105);
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.ensureTyped] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.ensureTyped(TypeCheck.java:1772)
+            com.google.javascript.jscomp.TypeCheck.ensureTyped(TypeCheck.java:1743) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class nodeTraversalType = Class.forName("com.google.javascript.jscomp.NodeTraversal");
+        Class nodeType = Class.forName("com.google.javascript.rhino.Node");
+        Method ensureTypedMethod = typeCheckClazz.getDeclaredMethod("ensureTyped", nodeTraversalType, nodeType);
+        ensureTypedMethod.setAccessible(true);
+        java.lang.Object[] ensureTypedMethodArguments = new java.lang.Object[2];
+        ensureTypedMethodArguments[0] = ((Object) null);
+        ensureTypedMethodArguments[1] = node;
+        try {
+            ensureTypedMethod.invoke(typeCheck, ensureTypedMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.getNativeType
+    
+    ///region SYMBOLIC EXECUTION: SUCCESSFUL EXECUTIONS for method getNativeType(com.google.javascript.rhino.jstype.JSTypeNative)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#getNativeType(com.google.javascript.rhino.jstype.JSTypeNative)}
+ * @utbot.invokes {@link com.google.javascript.rhino.jstype.JSTypeRegistry#getNativeType(com.google.javascript.rhino.jstype.JSTypeNative)}
+ * @utbot.returnsFrom {@code return typeRegistry.getNativeType(typeId);}
+ *  */
+    @Test
+    public void testGetNativeType_JSTypeRegistryGetNativeType() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = {null};
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        JSTypeNative jSTypeNative = JSTypeNative.ARRAY_TYPE;
+        
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class jSTypeNativeType = Class.forName("com.google.javascript.rhino.jstype.JSTypeNative");
+        Method getNativeTypeMethod = typeCheckClazz.getDeclaredMethod("getNativeType", jSTypeNativeType);
+        getNativeTypeMethod.setAccessible(true);
+        java.lang.Object[] getNativeTypeMethodArguments = new java.lang.Object[1];
+        getNativeTypeMethodArguments[0] = jSTypeNative;
+        JSType actual = ((JSType) getNativeTypeMethod.invoke(typeCheck, getNativeTypeMethodArguments));
+        
+        assertNull(actual);
+        
+        JSTypeRegistry typeCheckTypeRegistry = ((JSTypeRegistry) getFieldValue(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] typeCheckTypeRegistryTypeRegistryNativeTypes = ((com.google.javascript.rhino.jstype.JSType[]) getFieldValue(typeCheckTypeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes"));
+        JSType finalTypeCheckTypeRegistryNativeTypes0 = ((JSType) get(typeCheckTypeRegistryTypeRegistryNativeTypes, 0));
+        
+        assertNull(finalTypeCheckTypeRegistryNativeTypes0);
+    }
+    ///endregion
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method getNativeType(com.google.javascript.rhino.jstype.JSTypeNative)
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#getNativeType(com.google.javascript.rhino.jstype.JSTypeNative)}
+ * @utbot.invokes {@link com.google.javascript.rhino.jstype.JSTypeRegistry#getNativeType(com.google.javascript.rhino.jstype.JSTypeNative)}
+ * @utbot.throwsException {@link java.lang.ArrayIndexOutOfBoundsException} in: return typeRegistry.getNativeType(typeId);
+ *  */
+    @Test
+    public void testGetNativeType_ThrowArrayIndexOutOfBoundsException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        JSTypeRegistry typeRegistry = ((JSTypeRegistry) createInstance("com.google.javascript.rhino.jstype.JSTypeRegistry"));
+        com.google.javascript.rhino.jstype.JSType[] nativeTypes = {};
+        setField(typeRegistry, "com.google.javascript.rhino.jstype.JSTypeRegistry", "nativeTypes", nativeTypes);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typeRegistry", typeRegistry);
+        JSTypeNative jSTypeNative = JSTypeNative.ARRAY_TYPE;
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.getNativeType] produces [java.lang.ArrayIndexOutOfBoundsException: Index 0 out of bounds for length 0]
+            com.google.javascript.rhino.jstype.JSTypeRegistry.getNativeType(JSTypeRegistry.java:813)
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class jSTypeNativeType = Class.forName("com.google.javascript.rhino.jstype.JSTypeNative");
+        Method getNativeTypeMethod = typeCheckClazz.getDeclaredMethod("getNativeType", jSTypeNativeType);
+        getNativeTypeMethod.setAccessible(true);
+        java.lang.Object[] getNativeTypeMethodArguments = new java.lang.Object[1];
+        getNativeTypeMethodArguments[0] = jSTypeNative;
+        try {
+            getNativeTypeMethod.invoke(typeCheck, getNativeTypeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#getNativeType(com.google.javascript.rhino.jstype.JSTypeNative)}
+ * @utbot.invokes {@link com.google.javascript.rhino.jstype.JSTypeRegistry#getNativeType(com.google.javascript.rhino.jstype.JSTypeNative)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: return typeRegistry.getNativeType(typeId);
+ *  */
+    @Test
+    public void testGetNativeType_ThrowNullPointerException() throws Throwable  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        
+        /* This test fails because method [com.google.javascript.jscomp.TypeCheck.getNativeType] produces [java.lang.NullPointerException]
+            com.google.javascript.jscomp.TypeCheck.getNativeType(TypeCheck.java:1808) */
+        Class typeCheckClazz = Class.forName("com.google.javascript.jscomp.TypeCheck");
+        Class jSTypeNativeType = Class.forName("com.google.javascript.rhino.jstype.JSTypeNative");
+        Method getNativeTypeMethod = typeCheckClazz.getDeclaredMethod("getNativeType", jSTypeNativeType);
+        getNativeTypeMethod.setAccessible(true);
+        java.lang.Object[] getNativeTypeMethodArguments = new java.lang.Object[1];
+        getNativeTypeMethodArguments[0] = ((Object) null);
+        try {
+            getNativeTypeMethod.invoke(typeCheck, getNativeTypeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.google.javascript.jscomp.TypeCheck.getTypedPercent
+    
+    ///region SYMBOLIC EXECUTION: SUCCESSFUL EXECUTIONS for method getTypedPercent()
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#getTypedPercent()}
+ * @utbot.executesCondition {@code (total == 0): True}
+ * @utbot.returnsFrom {@code return 0.0;}
+ *  */
+    @Test
+    public void testGetTypedPercent_TotalEqualsZero() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typedCount", -1);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "nullCount", 2);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "unknownCount", -1);
+        
+        double actual = typeCheck.getTypedPercent();
+        
+        org.junit.Assert.assertEquals(0.0, actual, 1.0E-6);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link TypeCheck}
+ * @utbot.methodUnderTest {@link com.google.javascript.jscomp.TypeCheck#getTypedPercent()}
+ * @utbot.executesCondition {@code (total == 0): False}
+ * @utbot.returnsFrom {@code return (100.0 * typedCount) / total;}
+ *  */
+    @Test
+    public void testGetTypedPercent_TotalNotEqualsZero() throws Exception  {
+        TypeCheck typeCheck = ((TypeCheck) createInstance("com.google.javascript.jscomp.TypeCheck"));
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "typedCount", -36);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "nullCount", -37);
+        setField(typeCheck, "com.google.javascript.jscomp.TypeCheck", "unknownCount", -1);
+        
+        double actual = typeCheck.getTypedPercent();
+        
+        org.junit.Assert.assertEquals(48.648648648648646, actual, 1.0E-6);
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Util methods
+    
+    private static Object createInstance(String className) throws Exception {
+        Class<?> clazz = Class.forName(className);
+        return Class.forName("sun.misc.Unsafe").getDeclaredMethod("allocateInstance", Class.class)
+            .invoke(getUnsafeInstance(), clazz);
+    }
+    
+        private static void setField(Object object, String fieldClassName, String fieldName, Object fieldValue) throws ClassNotFoundException, NoSuchFieldException, NoSuchMethodException, IllegalAccessException, java.lang.reflect.InvocationTargetException {
+        Class<?> clazz = Class.forName(fieldClassName);
+        java.lang.reflect.Field field = clazz.getDeclaredField(fieldName);
+    
+        java.lang.reflect.Field modifiersField;
+        
+                java.lang.reflect.Method methodForGetDeclaredFields913077295426600 = java.lang.Class.class.getDeclaredMethod("getDeclaredFields0", boolean.class);
+                methodForGetDeclaredFields913077295426600.setAccessible(true);
+                java.lang.reflect.Field[] allFieldsFromFieldClass913077295432300 = (java.lang.reflect.Field[]) methodForGetDeclaredFields913077295426600.invoke(java.lang.reflect.Field.class, false);
+                modifiersField = java.util.Arrays.stream(allFieldsFromFieldClass913077295432300).filter(field1 -> field1.getName().equals("modifiers")).findFirst().get();
+    
+        modifiersField.setAccessible(true);
+        modifiersField.setInt(field, field.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
+    
+        field.setAccessible(true);
+        field.set(object, fieldValue);
+    }
+    
+    private static Object getFieldValue(Object obj, String fieldClassName, String fieldName) throws ClassNotFoundException, NoSuchMethodException, java.lang.reflect.InvocationTargetException, IllegalAccessException, NoSuchFieldException {
+        Class<?> clazz = Class.forName(fieldClassName);
+        java.lang.reflect.Field field = clazz.getDeclaredField(fieldName);
+        
+        field.setAccessible(true);
+        
+        java.lang.reflect.Field modifiersField;
+        
+            java.lang.reflect.Method methodForGetDeclaredFields913077295892700 = java.lang.Class.class.getDeclaredMethod("getDeclaredFields0", boolean.class);
+            methodForGetDeclaredFields913077295892700.setAccessible(true);
+            java.lang.reflect.Field[] allFieldsFromFieldClass913077295894500 = (java.lang.reflect.Field[]) methodForGetDeclaredFields913077295892700.invoke(java.lang.reflect.Field.class, false);
+            modifiersField = java.util.Arrays.stream(allFieldsFromFieldClass913077295894500).filter(field1 -> field1.getName().equals("modifiers")).findFirst().get();
+    
+        modifiersField.setAccessible(true);
+        modifiersField.setInt(field, field.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
+        
+        return field.get(obj);
+    }
+    
+    private static Object getEnumConstantByName(Class<?> enumClass, String name) throws IllegalAccessException {
+        java.lang.reflect.Field[] fields = enumClass.getDeclaredFields();
+        for (java.lang.reflect.Field field : fields) {
+            String fieldName = field.getName();
+            if (field.isEnumConstant() && fieldName.equals(name)) {
+                field.setAccessible(true);
+                
+                return field.get(null);
+            }
+        }
+        
+        return null;
+    }
+    
+    private static Object getUnsafeInstance() throws ClassNotFoundException, NoSuchFieldException, IllegalAccessException {
+        java.lang.reflect.Field f = Class.forName("sun.misc.Unsafe").getDeclaredField("theUnsafe");
+        f.setAccessible(true);
+        return f.get(null);
+    }
+    ///endregion
+}
+

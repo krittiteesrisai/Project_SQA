@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.FunctionTypeBuilder",
+  "generated_tests": 161,
+  "generation_seconds": 140.065145,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

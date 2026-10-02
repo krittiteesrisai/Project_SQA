@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.lang3.text.translate.LookupTranslator",
+  "generated_tests": 27,
+  "generation_seconds": 50.607656,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

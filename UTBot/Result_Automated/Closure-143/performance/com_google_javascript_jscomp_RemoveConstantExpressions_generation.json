@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.RemoveConstantExpressions",
+  "generated_tests": 8,
+  "generation_seconds": 134.465606,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

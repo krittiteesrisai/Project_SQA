@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.csv.CSVPrinter",
+  "generated_tests": 182,
+  "generation_seconds": 139.209231,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

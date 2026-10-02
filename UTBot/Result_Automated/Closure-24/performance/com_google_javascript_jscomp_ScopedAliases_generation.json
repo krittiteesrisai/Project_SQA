@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.ScopedAliases",
+  "generated_tests": 12,
+  "generation_seconds": 131.3464,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.math3.optimization.fitting.HarmonicFitter",
+  "generated_tests": 8,
+  "generation_seconds": 140.045483,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

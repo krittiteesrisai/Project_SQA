@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.csv.CSVFormat",
+  "generated_tests": 825,
+  "generation_seconds": 139.283938,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.FunctionInjector",
+  "generated_tests": 140,
+  "generation_seconds": 162.692954,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.ReferenceCollectingCallback",
+  "generated_tests": 60,
+  "generation_seconds": 135.33024,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

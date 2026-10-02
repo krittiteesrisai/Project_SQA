@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.compress.archivers.tar.TarArchiveInputStream",
+  "generated_tests": 126,
+  "generation_seconds": 131.494115,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

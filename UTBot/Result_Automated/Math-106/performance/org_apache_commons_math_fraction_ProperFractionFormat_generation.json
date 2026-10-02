@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.math.fraction.ProperFractionFormat",
+  "generated_tests": 40,
+  "generation_seconds": 128.171238,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

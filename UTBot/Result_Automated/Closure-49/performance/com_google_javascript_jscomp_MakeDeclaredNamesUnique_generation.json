@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.MakeDeclaredNamesUnique",
+  "generated_tests": 84,
+  "generation_seconds": 138.450075,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

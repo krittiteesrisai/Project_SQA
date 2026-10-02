@@ -1,0 +1,7 @@
+{
+  "class": "com.fasterxml.jackson.databind.deser.ValueInstantiator",
+  "generated_tests": 130,
+  "generation_seconds": 151.215001,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

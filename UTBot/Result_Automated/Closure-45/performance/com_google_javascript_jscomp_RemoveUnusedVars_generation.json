@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.RemoveUnusedVars",
+  "generated_tests": 108,
+  "generation_seconds": 145.403175,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

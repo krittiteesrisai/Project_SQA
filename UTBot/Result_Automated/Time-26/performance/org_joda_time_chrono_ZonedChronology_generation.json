@@ -1,0 +1,7 @@
+{
+  "class": "org.joda.time.chrono.ZonedChronology",
+  "generated_tests": 252,
+  "generation_seconds": 161.305507,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

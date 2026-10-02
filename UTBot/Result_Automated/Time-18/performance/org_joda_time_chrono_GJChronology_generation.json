@@ -1,0 +1,7 @@
+{
+  "class": "org.joda.time.chrono.GJChronology",
+  "generated_tests": 235,
+  "generation_seconds": 184.243603,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.compress.compressors.bzip2.BZip2CompressorInputStream",
+  "generated_tests": 365,
+  "generation_seconds": 154.347934,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

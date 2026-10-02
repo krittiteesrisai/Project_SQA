@@ -1,0 +1,7 @@
+{
+  "class": "com.fasterxml.jackson.dataformat.xml.ser.ToXmlGenerator",
+  "generated_tests": 0,
+  "generation_seconds": 300.045829,
+  "generation_exit_code": 124,
+  "generation_timeout_ms": 120000
+}

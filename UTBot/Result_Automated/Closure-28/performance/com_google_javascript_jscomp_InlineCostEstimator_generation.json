@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.InlineCostEstimator",
+  "generated_tests": 217,
+  "generation_seconds": 101.629793,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

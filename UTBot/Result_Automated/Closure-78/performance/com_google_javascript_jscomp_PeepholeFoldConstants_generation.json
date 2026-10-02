@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.PeepholeFoldConstants",
+  "generated_tests": 441,
+  "generation_seconds": 169.726014,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.math3.distribution.UniformRealDistribution",
+  "generated_tests": 68,
+  "generation_seconds": 18.91959,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

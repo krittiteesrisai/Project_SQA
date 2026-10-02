@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.CheckGlobalThis",
+  "generated_tests": 63,
+  "generation_seconds": 27.778911,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

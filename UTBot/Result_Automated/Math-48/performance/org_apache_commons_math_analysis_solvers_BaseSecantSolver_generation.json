@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.math.analysis.solvers.BaseSecantSolver",
+  "generated_tests": 37,
+  "generation_seconds": 128.852244,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

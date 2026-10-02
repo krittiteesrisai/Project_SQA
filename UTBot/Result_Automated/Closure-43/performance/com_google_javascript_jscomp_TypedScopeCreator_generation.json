@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.TypedScopeCreator",
+  "generated_tests": 47,
+  "generation_seconds": 153.242427,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

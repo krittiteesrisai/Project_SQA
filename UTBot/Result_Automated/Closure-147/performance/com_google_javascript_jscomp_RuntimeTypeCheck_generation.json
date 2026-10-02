@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.RuntimeTypeCheck",
+  "generated_tests": 0,
+  "generation_seconds": 300.023649,
+  "generation_exit_code": 124,
+  "generation_timeout_ms": 120000
+}

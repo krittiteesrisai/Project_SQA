@@ -1,0 +1,7 @@
+{
+  "class": "com.fasterxml.jackson.databind.deser.std.UntypedObjectDeserializer",
+  "generated_tests": 150,
+  "generation_seconds": 144.164477,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

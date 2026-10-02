@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.CollapseProperties",
+  "generated_tests": 180,
+  "generation_seconds": 147.204248,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

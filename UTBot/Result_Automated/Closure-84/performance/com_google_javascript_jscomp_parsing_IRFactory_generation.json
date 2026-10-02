@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.parsing.IRFactory",
+  "generated_tests": 373,
+  "generation_seconds": 145.674452,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

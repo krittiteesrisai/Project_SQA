@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.TypeValidator",
+  "generated_tests": 109,
+  "generation_seconds": 185.444373,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

@@ -1,0 +1,7 @@
+{
+  "class": "com.fasterxml.jackson.databind.node.TreeTraversingParser",
+  "generated_tests": 243,
+  "generation_seconds": 129.454898,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.PrepareAst",
+  "generated_tests": 93,
+  "generation_seconds": 133.634166,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

@@ -1,0 +1,7 @@
+{
+  "class": "com.fasterxml.jackson.databind.ser.std.StdSerializer",
+  "generated_tests": 52,
+  "generation_seconds": 134.635523,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

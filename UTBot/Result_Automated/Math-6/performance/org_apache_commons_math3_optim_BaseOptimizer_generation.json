@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.math3.optim.BaseOptimizer",
+  "generated_tests": 110,
+  "generation_seconds": 132.311395,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

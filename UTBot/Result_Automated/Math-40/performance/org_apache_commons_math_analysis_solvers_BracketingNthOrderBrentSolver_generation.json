@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.math.analysis.solvers.BracketingNthOrderBrentSolver",
+  "generated_tests": 65,
+  "generation_seconds": 121.084432,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

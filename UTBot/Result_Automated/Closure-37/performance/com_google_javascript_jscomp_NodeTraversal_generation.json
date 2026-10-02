@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.NodeTraversal",
+  "generated_tests": 212,
+  "generation_seconds": 147.116366,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

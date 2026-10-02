@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.Normalize",
+  "generated_tests": 142,
+  "generation_seconds": 135.455096,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.math.analysis.solvers.BrentSolver",
+  "generated_tests": 33,
+  "generation_seconds": 128.75015,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

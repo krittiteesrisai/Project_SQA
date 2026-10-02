@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.math3.optimization.univariate.BrentOptimizer",
+  "generated_tests": 10,
+  "generation_seconds": 127.856122,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

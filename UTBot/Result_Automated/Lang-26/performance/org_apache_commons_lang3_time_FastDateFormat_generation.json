@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.lang3.time.FastDateFormat",
+  "generated_tests": 103,
+  "generation_seconds": 159.373541,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

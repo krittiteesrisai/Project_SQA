@@ -1,0 +1,7 @@
+{
+  "class": "org.joda.time.field.UnsupportedDurationField",
+  "generated_tests": 49,
+  "generation_seconds": 72.376367,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

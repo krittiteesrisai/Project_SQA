@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.CommandLineRunner",
+  "generated_tests": 50,
+  "generation_seconds": 132.235021,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.compress.archivers.dump.DumpArchiveInputStream",
+  "generated_tests": 100,
+  "generation_seconds": 148.680655,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

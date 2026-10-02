@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.MaybeReachingVariableUse",
+  "generated_tests": 82,
+  "generation_seconds": 138.692448,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

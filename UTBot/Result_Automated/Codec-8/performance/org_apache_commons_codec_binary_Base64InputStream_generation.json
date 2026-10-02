@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.codec.binary.Base64InputStream",
+  "generated_tests": 19,
+  "generation_seconds": 11.431622,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.math.optimization.general.AbstractLeastSquaresOptimizer",
+  "generated_tests": 68,
+  "generation_seconds": 126.169483,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

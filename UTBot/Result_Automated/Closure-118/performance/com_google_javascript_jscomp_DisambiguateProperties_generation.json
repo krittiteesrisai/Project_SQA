@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.DisambiguateProperties",
+  "generated_tests": 36,
+  "generation_seconds": 138.971348,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

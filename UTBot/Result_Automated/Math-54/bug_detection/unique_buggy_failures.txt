@@ -1,0 +1,5 @@
+org.apache.commons.math.dfp.org_apache_commons_math_dfp_DfpTest::testToDouble13
+org.apache.commons.math.dfp.org_apache_commons_math_dfp_DfpTest::testToDouble14
+org.apache.commons.math.dfp.org_apache_commons_math_dfp_DfpTest::testToDouble15
+org.apache.commons.math.dfp.org_apache_commons_math_dfp_DfpTest::testToDouble18
+org.apache.commons.math.dfp.org_apache_commons_math_dfp_DfpTest::testToDouble19

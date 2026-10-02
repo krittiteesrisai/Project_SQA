@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.FlowSensitiveInlineVariables",
+  "generated_tests": 25,
+  "generation_seconds": 134.490152,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

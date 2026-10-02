@@ -1,0 +1,2 @@
+org.apache.commons.codec.binary.org_apache_commons_codec_binary_Base64Test::testEncode_ThrowArrayIndexOutOfBoundsException_17
+org.apache.commons.codec.binary.org_apache_commons_codec_binary_Base64Test::testEncode_ThrowNullPointerException_5

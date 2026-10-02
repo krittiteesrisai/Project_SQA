@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.math3.random.BitsStreamGenerator",
+  "generated_tests": 370,
+  "generation_seconds": 185.803443,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

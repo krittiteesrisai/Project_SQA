@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.CheckAccessControls",
+  "generated_tests": 172,
+  "generation_seconds": 155.740806,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

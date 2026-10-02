@@ -1,0 +1,7 @@
+{
+  "class": "com.fasterxml.jackson.core.filter.FilteringParserDelegate",
+  "generated_tests": 509,
+  "generation_seconds": 182.921473,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

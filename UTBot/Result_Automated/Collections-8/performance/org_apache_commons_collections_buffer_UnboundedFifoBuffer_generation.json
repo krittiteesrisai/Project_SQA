@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.collections.buffer.UnboundedFifoBuffer",
+  "generated_tests": 49,
+  "generation_seconds": 139.58723,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.type.ChainableReverseAbstractInterpreter",
+  "generated_tests": 153,
+  "generation_seconds": 144.90123,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

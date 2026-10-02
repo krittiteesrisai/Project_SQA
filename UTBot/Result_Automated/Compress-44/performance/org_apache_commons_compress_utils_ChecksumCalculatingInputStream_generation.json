@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.compress.utils.ChecksumCalculatingInputStream",
+  "generated_tests": 91,
+  "generation_seconds": 135.723681,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

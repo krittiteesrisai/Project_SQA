@@ -1,5 +1,6 @@
 *.jar filter=lfs diff=lfs merge=lfs -text
-
 # Patch files must use LF line endings
 *.patch text eol=lf
 *.diff text eol=lf
+UTBot/Result_Automated/Lang-20/generated_tests/org_apache_commons_lang3_StringUtilsTest.java filter=lfs diff=lfs merge=lfs -text
+UTBot/Result_Automated/Time-7/generated_tests/org_joda_time_format_DateTimeFormatterTest.java filter=lfs diff=lfs merge=lfs -text

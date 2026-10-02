@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.codec.binary.Base64",
+  "generated_tests": 200,
+  "generation_seconds": 121.137084,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

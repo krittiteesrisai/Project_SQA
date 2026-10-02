@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.CrossModuleMethodMotion",
+  "generated_tests": 22,
+  "generation_seconds": 129.801153,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

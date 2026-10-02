@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.MinimizeExitPoints",
+  "generated_tests": 127,
+  "generation_seconds": 148.507328,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

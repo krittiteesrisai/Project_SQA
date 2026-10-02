@@ -1,0 +1,7 @@
+{
+  "class": "com.fasterxml.jackson.databind.deser.BasicDeserializerFactory",
+  "generated_tests": 0,
+  "generation_seconds": 300.03124,
+  "generation_exit_code": 124,
+  "generation_timeout_ms": 120000
+}

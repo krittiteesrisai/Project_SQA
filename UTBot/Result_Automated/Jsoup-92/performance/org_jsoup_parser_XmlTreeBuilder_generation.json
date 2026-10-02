@@ -1,0 +1,7 @@
+{
+  "class": "org.jsoup.parser.XmlTreeBuilder",
+  "generated_tests": 64,
+  "generation_seconds": 74.951295,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

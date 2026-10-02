@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.CheckSideEffects",
+  "generated_tests": 63,
+  "generation_seconds": 136.521401,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

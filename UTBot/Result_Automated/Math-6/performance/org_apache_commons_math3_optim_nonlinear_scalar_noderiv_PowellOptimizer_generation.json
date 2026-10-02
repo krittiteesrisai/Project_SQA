@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.math3.optim.nonlinear.scalar.noderiv.PowellOptimizer",
+  "generated_tests": 23,
+  "generation_seconds": 130.044448,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

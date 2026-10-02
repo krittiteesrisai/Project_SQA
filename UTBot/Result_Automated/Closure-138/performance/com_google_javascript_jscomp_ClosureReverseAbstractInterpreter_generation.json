@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.ClosureReverseAbstractInterpreter",
+  "generated_tests": 47,
+  "generation_seconds": 148.293102,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

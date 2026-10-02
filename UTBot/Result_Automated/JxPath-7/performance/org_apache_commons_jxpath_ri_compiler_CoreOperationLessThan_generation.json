@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.jxpath.ri.compiler.CoreOperationLessThan",
+  "generated_tests": 3,
+  "generation_seconds": 136.816386,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

@@ -1,0 +1,7 @@
+{
+  "class": "org.mockito.internal.configuration.injection.filter.FinalMockCandidateFilter",
+  "generated_tests": 3,
+  "generation_seconds": 143.902037,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

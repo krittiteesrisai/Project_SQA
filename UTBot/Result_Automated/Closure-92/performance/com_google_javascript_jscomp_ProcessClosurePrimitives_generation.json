@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.ProcessClosurePrimitives",
+  "generated_tests": 191,
+  "generation_seconds": 138.238847,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

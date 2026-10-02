@@ -1,0 +1,7 @@
+{
+  "class": "com.fasterxml.jackson.databind.jsontype.impl.ClassNameIdResolver",
+  "generated_tests": 31,
+  "generation_seconds": 141.656756,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

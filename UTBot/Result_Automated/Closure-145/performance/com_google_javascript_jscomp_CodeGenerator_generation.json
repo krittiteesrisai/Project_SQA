@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.CodeGenerator",
+  "generated_tests": 392,
+  "generation_seconds": 205.346402,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

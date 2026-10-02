@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.lang3.text.translate.NumericEntityUnescaper",
+  "generated_tests": 12,
+  "generation_seconds": 14.825206,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.InlineVariables",
+  "generated_tests": 9,
+  "generation_seconds": 58.115852,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

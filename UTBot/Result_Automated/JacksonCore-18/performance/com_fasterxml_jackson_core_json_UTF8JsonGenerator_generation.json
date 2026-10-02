@@ -1,0 +1,7 @@
+{
+  "class": "com.fasterxml.jackson.core.json.UTF8JsonGenerator",
+  "generated_tests": 868,
+  "generation_seconds": 154.382723,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

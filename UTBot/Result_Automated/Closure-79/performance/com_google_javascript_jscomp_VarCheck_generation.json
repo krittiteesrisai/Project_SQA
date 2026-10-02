@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.VarCheck",
+  "generated_tests": 45,
+  "generation_seconds": 136.614431,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

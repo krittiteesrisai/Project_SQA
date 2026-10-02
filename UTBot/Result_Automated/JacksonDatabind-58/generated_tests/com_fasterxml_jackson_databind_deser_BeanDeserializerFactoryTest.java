@@ -1,0 +1,2277 @@
+package com.fasterxml.jackson.databind.deser;
+
+import org.junit.Test;
+import com.fasterxml.jackson.databind.cfg.DeserializerFactoryConfig;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.deser.DefaultDeserializationContext.Impl;
+import com.fasterxml.jackson.databind.DeserializationConfig;
+import com.fasterxml.jackson.databind.ext.CoreXMLDeserializers;
+import com.fasterxml.jackson.databind.type.ReferenceType;
+import com.fasterxml.jackson.databind.module.SimpleDeserializers;
+import java.util.HashMap;
+import com.fasterxml.jackson.databind.type.ClassKey;
+import com.fasterxml.jackson.databind.deser.std.FromStringDeserializer.Std;
+import com.fasterxml.jackson.databind.deser.std.FromStringDeserializer;
+import com.fasterxml.jackson.databind.cfg.BaseSettings;
+import com.fasterxml.jackson.databind.type.TypeFactory;
+import com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder;
+import com.fasterxml.jackson.databind.introspect.AnnotatedMethod;
+import java.lang.reflect.Method;
+import com.fasterxml.jackson.databind.AbstractTypeResolver;
+import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.module.SimpleAbstractTypeResolver;
+import java.util.LinkedHashMap;
+import com.fasterxml.jackson.databind.BeanDescription;
+import java.util.Map;
+import java.util.List;
+import java.util.HashSet;
+import com.fasterxml.jackson.databind.deser.impl.ObjectIdReader;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder.Value;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import com.fasterxml.jackson.databind.introspect.BasicBeanDescription;
+import java.util.ArrayList;
+import com.fasterxml.jackson.databind.util.SimpleBeanPropertyDefinition;
+import com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector;
+import com.fasterxml.jackson.databind.SerializationConfig;
+import com.fasterxml.jackson.databind.introspect.AnnotatedClass;
+import com.fasterxml.jackson.databind.introspect.AnnotatedMethodMap;
+import com.fasterxml.jackson.databind.introspect.NopAnnotationIntrospector;
+import com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair;
+import com.fasterxml.jackson.databind.type.ArrayType;
+import com.fasterxml.jackson.databind.module.SimpleValueInstantiators;
+import com.fasterxml.jackson.databind.type.CollectionType;
+import com.fasterxml.jackson.databind.type.MapType;
+import com.fasterxml.jackson.databind.introspect.ObjectIdInfo;
+import com.fasterxml.jackson.databind.deser.std.JsonLocationInstantiator;
+import com.fasterxml.jackson.databind.PropertyName;
+import java.util.LinkedHashSet;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.util.Objects;
+import java.util.Set;
+import java.util.Arrays;
+import java.lang.reflect.Array;
+import java.util.Iterator;
+import java.util.stream.BaseStream;
+
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+public final class com_fasterxml_jackson_databind_deser_BeanDeserializerFactoryTest {
+    ///region Test suites for executable com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.withConfig
+    
+    ///region SYMBOLIC EXECUTION: SUCCESSFUL EXECUTIONS for method withConfig(com.fasterxml.jackson.databind.cfg.DeserializerFactoryConfig)
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#withConfig(com.fasterxml.jackson.databind.cfg.DeserializerFactoryConfig)}
+ * @utbot.executesCondition {@code (_factoryConfig == config): False}
+ * @utbot.executesCondition {@code (getClass()): False}
+ * @utbot.returnsFrom {@code return new BeanDeserializerFactory(config);}
+ *  */
+    @Test
+    public void testWithConfig_NotGetClass() throws Exception  {
+        DeserializerFactoryConfig deserializerFactoryConfig = ((DeserializerFactoryConfig) createInstance("com.fasterxml.jackson.databind.cfg.DeserializerFactoryConfig"));
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(deserializerFactoryConfig);
+        
+        BeanDeserializerFactory actual = ((BeanDeserializerFactory) beanDeserializerFactory.withConfig(null));
+        
+        BeanDeserializerFactory expected = new BeanDeserializerFactory(null);
+        
+        DeserializerFactoryConfig actual_factoryConfig = actual._factoryConfig;
+        assertNull(actual_factoryConfig);
+        
+    }
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#withConfig(com.fasterxml.jackson.databind.cfg.DeserializerFactoryConfig)}
+ * @utbot.executesCondition {@code (_factoryConfig == config): True}
+ * @utbot.returnsFrom {@code return this;}
+ *  */
+    @Test
+    public void testWithConfig__factoryConfigEqualsConfig() {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        
+        BeanDeserializerFactory actual = ((BeanDeserializerFactory) beanDeserializerFactory.withConfig(null));
+        
+        DeserializerFactoryConfig actual_factoryConfig = actual._factoryConfig;
+        assertNull(actual_factoryConfig);
+        
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.createBeanDeserializer
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method createBeanDeserializer(com.fasterxml.jackson.databind.DeserializationContext, com.fasterxml.jackson.databind.JavaType, com.fasterxml.jackson.databind.BeanDescription)
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#createBeanDeserializer(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.JavaType,com.fasterxml.jackson.databind.BeanDescription)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: final DeserializationConfig config = ctxt.getConfig();
+ *  */
+    @Test
+    public void testCreateBeanDeserializer_ThrowNullPointerException() throws JsonMappingException  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.createBeanDeserializer] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.createBeanDeserializer(BeanDeserializerFactory.java:101) */
+        beanDeserializerFactory.createBeanDeserializer(null, null, null);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#createBeanDeserializer(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.JavaType,com.fasterxml.jackson.databind.BeanDescription)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} when: type.isThrowable()
+ *  */
+    @Test
+    public void testCreateBeanDeserializer_ThrowNullPointerException_1() throws Exception  {
+        DeserializerFactoryConfig deserializerFactoryConfig = ((DeserializerFactoryConfig) createInstance("com.fasterxml.jackson.databind.cfg.DeserializerFactoryConfig"));
+        com.fasterxml.jackson.databind.deser.Deserializers[] _additionalDeserializers = {};
+        setField(deserializerFactoryConfig, "com.fasterxml.jackson.databind.cfg.DeserializerFactoryConfig", "_additionalDeserializers", _additionalDeserializers);
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(deserializerFactoryConfig);
+        DefaultDeserializationContext.Impl impl = ((DefaultDeserializationContext.Impl) createInstance("com.fasterxml.jackson.databind.deser.DefaultDeserializationContext$Impl"));
+        DeserializationConfig _config = ((DeserializationConfig) createInstance("com.fasterxml.jackson.databind.DeserializationConfig"));
+        setField(impl, "com.fasterxml.jackson.databind.DeserializationContext", "_config", _config);
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.createBeanDeserializer] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.createBeanDeserializer(BeanDeserializerFactory.java:111) */
+        beanDeserializerFactory.createBeanDeserializer(impl, null, null);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#createBeanDeserializer(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.JavaType,com.fasterxml.jackson.databind.BeanDescription)}
+ * @utbot.returnsFrom {@code return custom;}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: return custom;
+ *  */
+    @Test
+    public void testCreateBeanDeserializer_ThrowNullPointerException_2() throws Exception  {
+        DeserializerFactoryConfig deserializerFactoryConfig = ((DeserializerFactoryConfig) createInstance("com.fasterxml.jackson.databind.cfg.DeserializerFactoryConfig"));
+        com.fasterxml.jackson.databind.deser.Deserializers[] _additionalDeserializers = new com.fasterxml.jackson.databind.deser.Deserializers[1];
+        CoreXMLDeserializers coreXMLDeserializers = ((CoreXMLDeserializers) createInstance("com.fasterxml.jackson.databind.ext.CoreXMLDeserializers"));
+        _additionalDeserializers[0] = ((Deserializers) coreXMLDeserializers);
+        setField(deserializerFactoryConfig, "com.fasterxml.jackson.databind.cfg.DeserializerFactoryConfig", "_additionalDeserializers", _additionalDeserializers);
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(deserializerFactoryConfig);
+        DefaultDeserializationContext.Impl impl = ((DefaultDeserializationContext.Impl) createInstance("com.fasterxml.jackson.databind.deser.DefaultDeserializationContext$Impl"));
+        DeserializationConfig _config = ((DeserializationConfig) createInstance("com.fasterxml.jackson.databind.DeserializationConfig"));
+        setField(impl, "com.fasterxml.jackson.databind.DeserializationContext", "_config", _config);
+        ReferenceType referenceType = ((ReferenceType) createInstance("com.fasterxml.jackson.databind.type.ReferenceType"));
+        Class _class = Object.class;
+        setField(referenceType, "com.fasterxml.jackson.databind.JavaType", "_class", _class);
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.createBeanDeserializer] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.cfg.DeserializerFactoryConfig.hasAbstractTypeResolvers(DeserializerFactoryConfig.java:184)
+            com.fasterxml.jackson.databind.deser.BasicDeserializerFactory.findDefaultDeserializer(BasicDeserializerFactory.java:1546)
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.findStdDeserializer(BeanDeserializerFactory.java:168)
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.createBeanDeserializer(BeanDeserializerFactory.java:133) */
+        beanDeserializerFactory.createBeanDeserializer(impl, referenceType, null);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#createBeanDeserializer(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.JavaType,com.fasterxml.jackson.databind.BeanDescription)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} when: type.isThrowable()
+ *  */
+    @Test
+    public void testCreateBeanDeserializer_ThrowNullPointerException_3() throws Exception  {
+        DeserializerFactoryConfig deserializerFactoryConfig = ((DeserializerFactoryConfig) createInstance("com.fasterxml.jackson.databind.cfg.DeserializerFactoryConfig"));
+        com.fasterxml.jackson.databind.deser.Deserializers[] _additionalDeserializers = new com.fasterxml.jackson.databind.deser.Deserializers[1];
+        SimpleDeserializers simpleDeserializers = ((SimpleDeserializers) createInstance("com.fasterxml.jackson.databind.module.SimpleDeserializers"));
+        _additionalDeserializers[0] = ((Deserializers) simpleDeserializers);
+        setField(deserializerFactoryConfig, "com.fasterxml.jackson.databind.cfg.DeserializerFactoryConfig", "_additionalDeserializers", _additionalDeserializers);
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(deserializerFactoryConfig);
+        DefaultDeserializationContext.Impl impl = ((DefaultDeserializationContext.Impl) createInstance("com.fasterxml.jackson.databind.deser.DefaultDeserializationContext$Impl"));
+        DeserializationConfig _config = ((DeserializationConfig) createInstance("com.fasterxml.jackson.databind.DeserializationConfig"));
+        setField(impl, "com.fasterxml.jackson.databind.DeserializationContext", "_config", _config);
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.createBeanDeserializer] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.createBeanDeserializer(BeanDeserializerFactory.java:111) */
+        beanDeserializerFactory.createBeanDeserializer(impl, null, null);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#createBeanDeserializer(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.JavaType,com.fasterxml.jackson.databind.BeanDescription)}
+ * @utbot.returnsFrom {@code return custom;}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: return custom;
+ *  */
+    @Test
+    public void testCreateBeanDeserializer_ThrowNullPointerException_4() throws Exception  {
+        DeserializerFactoryConfig deserializerFactoryConfig = ((DeserializerFactoryConfig) createInstance("com.fasterxml.jackson.databind.cfg.DeserializerFactoryConfig"));
+        com.fasterxml.jackson.databind.deser.Deserializers[] _additionalDeserializers = new com.fasterxml.jackson.databind.deser.Deserializers[1];
+        SimpleDeserializers simpleDeserializers = ((SimpleDeserializers) createInstance("com.fasterxml.jackson.databind.module.SimpleDeserializers"));
+        HashMap _classMappings = new HashMap();
+        ClassKey classKey = ((ClassKey) createInstance("com.fasterxml.jackson.databind.type.ClassKey"));
+        Class _class = Object.class;
+        setField(classKey, "com.fasterxml.jackson.databind.type.ClassKey", "_class", _class);
+        FromStringDeserializer.Std std = ((FromStringDeserializer.Std) createInstance("com.fasterxml.jackson.databind.deser.std.FromStringDeserializer$Std"));
+        _classMappings.put(classKey, std);
+        setField(simpleDeserializers, "com.fasterxml.jackson.databind.module.SimpleDeserializers", "_classMappings", _classMappings);
+        _additionalDeserializers[0] = ((Deserializers) simpleDeserializers);
+        setField(deserializerFactoryConfig, "com.fasterxml.jackson.databind.cfg.DeserializerFactoryConfig", "_additionalDeserializers", _additionalDeserializers);
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(deserializerFactoryConfig);
+        DefaultDeserializationContext.Impl impl = ((DefaultDeserializationContext.Impl) createInstance("com.fasterxml.jackson.databind.deser.DefaultDeserializationContext$Impl"));
+        DeserializationConfig _config = ((DeserializationConfig) createInstance("com.fasterxml.jackson.databind.DeserializationConfig"));
+        setField(impl, "com.fasterxml.jackson.databind.DeserializationContext", "_config", _config);
+        ReferenceType referenceType = ((ReferenceType) createInstance("com.fasterxml.jackson.databind.type.ReferenceType"));
+        setField(referenceType, "com.fasterxml.jackson.databind.JavaType", "_class", _class);
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.createBeanDeserializer] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.cfg.DeserializerFactoryConfig.hasAbstractTypeResolvers(DeserializerFactoryConfig.java:184)
+            com.fasterxml.jackson.databind.deser.BasicDeserializerFactory.findDefaultDeserializer(BasicDeserializerFactory.java:1546)
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.findStdDeserializer(BeanDeserializerFactory.java:168)
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.createBeanDeserializer(BeanDeserializerFactory.java:133) */
+        beanDeserializerFactory.createBeanDeserializer(impl, referenceType, null);
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.createBuilderBasedDeserializer
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method createBuilderBasedDeserializer(com.fasterxml.jackson.databind.DeserializationContext, com.fasterxml.jackson.databind.JavaType, com.fasterxml.jackson.databind.BeanDescription, java.lang.Class)
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#createBuilderBasedDeserializer(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.JavaType,com.fasterxml.jackson.databind.BeanDescription,java.lang.Class)}
+ * @utbot.invokes {@link com.fasterxml.jackson.databind.DeserializationContext#constructType(java.lang.Class)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: JavaType builderType = ctxt.constructType(builderClass);
+ *  */
+    @Test
+    public void testCreateBuilderBasedDeserializer_ThrowNullPointerException() throws JsonMappingException  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.createBuilderBasedDeserializer] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.createBuilderBasedDeserializer(BeanDeserializerFactory.java:153) */
+        beanDeserializerFactory.createBuilderBasedDeserializer(null, null, null, null);
+    }
+    ///endregion
+    
+    ///region OTHER: EXPLICITLY THROWN UNCHECKED EXCEPTIONS for method createBuilderBasedDeserializer(com.fasterxml.jackson.databind.DeserializationContext, com.fasterxml.jackson.databind.JavaType, com.fasterxml.jackson.databind.BeanDescription, java.lang.Class)
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreateBuilderBasedDeserializer1() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        DefaultDeserializationContext.Impl impl = ((DefaultDeserializationContext.Impl) createInstance("com.fasterxml.jackson.databind.deser.DefaultDeserializationContext$Impl"));
+        DeserializationConfig _config = ((DeserializationConfig) createInstance("com.fasterxml.jackson.databind.DeserializationConfig"));
+        BaseSettings _base = ((BaseSettings) createInstance("com.fasterxml.jackson.databind.cfg.BaseSettings"));
+        TypeFactory _typeFactory = ((TypeFactory) createInstance("com.fasterxml.jackson.databind.type.TypeFactory"));
+        setField(_base, "com.fasterxml.jackson.databind.cfg.BaseSettings", "_typeFactory", _typeFactory);
+        setField(_config, "com.fasterxml.jackson.databind.cfg.MapperConfig", "_base", _base);
+        setField(impl, "com.fasterxml.jackson.databind.DeserializationContext", "_config", _config);
+        
+        beanDeserializerFactory.createBuilderBasedDeserializer(impl, null, null, null);
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.findStdDeserializer
+    
+    ///region FUZZER: ERROR SUITE for method findStdDeserializer(com.fasterxml.jackson.databind.DeserializationContext, com.fasterxml.jackson.databind.JavaType, com.fasterxml.jackson.databind.BeanDescription)
+    
+    /**
+     * @utbot.classUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory}
+     * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#findStdDeserializer(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.JavaType,com.fasterxml.jackson.databind.BeanDescription)}
+     */
+    @Test
+    public void testFindStdDeserializerThrowsNPE() throws JsonMappingException  {
+        DeserializerFactoryConfig deserializerFactoryConfig = new DeserializerFactoryConfig();
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(deserializerFactoryConfig);
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.findStdDeserializer] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BasicDeserializerFactory.findDefaultDeserializer(BasicDeserializerFactory.java:1539)
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.findStdDeserializer(BeanDeserializerFactory.java:168) */
+        beanDeserializerFactory.findStdDeserializer(null, null, null);
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.buildBuilderBasedDeserializer
+    
+    ///region FUZZER: ERROR SUITE for method buildBuilderBasedDeserializer(com.fasterxml.jackson.databind.DeserializationContext, com.fasterxml.jackson.databind.JavaType, com.fasterxml.jackson.databind.BeanDescription)
+    
+    /**
+     * @utbot.classUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory}
+     * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#buildBuilderBasedDeserializer(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.JavaType,com.fasterxml.jackson.databind.BeanDescription)}
+     */
+    @Test
+    public void testBuildBuilderBasedDeserializerThrowsNPE() throws JsonMappingException  {
+        DeserializerFactoryConfig deserializerFactoryConfig = new DeserializerFactoryConfig();
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(deserializerFactoryConfig);
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.buildBuilderBasedDeserializer] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BasicDeserializerFactory.findValueInstantiator(BasicDeserializerFactory.java:237)
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.buildBuilderBasedDeserializer(BeanDeserializerFactory.java:275) */
+        beanDeserializerFactory.buildBuilderBasedDeserializer(null, null, null);
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.constructSettableProperty
+    
+    ///region Errors report for constructSettableProperty
+    
+    public void testConstructSettableProperty_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field clazz is not declared in class java.lang.reflect.Method
+        
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.materializeAbstractType
+    
+    ///region SYMBOLIC EXECUTION: SUCCESSFUL EXECUTIONS for method materializeAbstractType(com.fasterxml.jackson.databind.DeserializationContext, com.fasterxml.jackson.databind.JavaType, com.fasterxml.jackson.databind.BeanDescription)
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#materializeAbstractType(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.JavaType,com.fasterxml.jackson.databind.BeanDescription)}
+ * @utbot.returnsFrom {@code return null;}
+ *  */
+    @Test
+    public void testMaterializeAbstractType_ReturnNull() throws Exception  {
+        DeserializerFactoryConfig deserializerFactoryConfig = ((DeserializerFactoryConfig) createInstance("com.fasterxml.jackson.databind.cfg.DeserializerFactoryConfig"));
+        com.fasterxml.jackson.databind.AbstractTypeResolver[] _abstractTypeResolvers = {};
+        setField(deserializerFactoryConfig, "com.fasterxml.jackson.databind.cfg.DeserializerFactoryConfig", "_abstractTypeResolvers", _abstractTypeResolvers);
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(deserializerFactoryConfig);
+        
+        JavaType actual = beanDeserializerFactory.materializeAbstractType(null, null, null);
+        
+        assertNull(actual);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#materializeAbstractType(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.JavaType,com.fasterxml.jackson.databind.BeanDescription)}
+ * @utbot.iterates iterate the loop {@code for(AbstractTypeResolver r: _factoryConfig.abstractTypeResolvers())} once
+ * @utbot.returnsFrom {@code return null;}
+ *  */
+    @Test
+    public void testMaterializeAbstractType_ConcreteEqualsNull() throws Exception  {
+        DeserializerFactoryConfig deserializerFactoryConfig = ((DeserializerFactoryConfig) createInstance("com.fasterxml.jackson.databind.cfg.DeserializerFactoryConfig"));
+        com.fasterxml.jackson.databind.AbstractTypeResolver[] _abstractTypeResolvers = new com.fasterxml.jackson.databind.AbstractTypeResolver[1];
+        SimpleAbstractTypeResolver simpleAbstractTypeResolver = ((SimpleAbstractTypeResolver) createInstance("com.fasterxml.jackson.databind.module.SimpleAbstractTypeResolver"));
+        _abstractTypeResolvers[0] = ((AbstractTypeResolver) simpleAbstractTypeResolver);
+        setField(deserializerFactoryConfig, "com.fasterxml.jackson.databind.cfg.DeserializerFactoryConfig", "_abstractTypeResolvers", _abstractTypeResolvers);
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(deserializerFactoryConfig);
+        DefaultDeserializationContext.Impl impl = ((DefaultDeserializationContext.Impl) createInstance("com.fasterxml.jackson.databind.deser.DefaultDeserializationContext$Impl"));
+        DeserializationConfig _config = ((DeserializationConfig) createInstance("com.fasterxml.jackson.databind.DeserializationConfig"));
+        setField(impl, "com.fasterxml.jackson.databind.DeserializationContext", "_config", _config);
+        
+        JavaType actual = beanDeserializerFactory.materializeAbstractType(impl, null, null);
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method materializeAbstractType(com.fasterxml.jackson.databind.DeserializationContext, com.fasterxml.jackson.databind.JavaType, com.fasterxml.jackson.databind.BeanDescription)
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#materializeAbstractType(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.JavaType,com.fasterxml.jackson.databind.BeanDescription)}
+ * @utbot.invokes {@link com.fasterxml.jackson.databind.cfg.DeserializerFactoryConfig#abstractTypeResolvers()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: for(AbstractTypeResolver r: _factoryConfig.abstractTypeResolvers())
+ *  */
+    @Test
+    public void testMaterializeAbstractType_ThrowNullPointerException() throws JsonMappingException  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.materializeAbstractType] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.materializeAbstractType(BeanDeserializerFactory.java:185) */
+        beanDeserializerFactory.materializeAbstractType(null, null, null);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#materializeAbstractType(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.JavaType,com.fasterxml.jackson.databind.BeanDescription)}
+ * @utbot.iterates iterate the loop {@code for(AbstractTypeResolver r: _factoryConfig.abstractTypeResolvers())} once
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: JavaType concrete = r.resolveAbstractType(ctxt.getConfig(), beanDesc);
+ *  */
+    @Test
+    public void testMaterializeAbstractType_ThrowNullPointerException_1() throws Exception  {
+        DeserializerFactoryConfig deserializerFactoryConfig = ((DeserializerFactoryConfig) createInstance("com.fasterxml.jackson.databind.cfg.DeserializerFactoryConfig"));
+        com.fasterxml.jackson.databind.AbstractTypeResolver[] _abstractTypeResolvers = {null};
+        setField(deserializerFactoryConfig, "com.fasterxml.jackson.databind.cfg.DeserializerFactoryConfig", "_abstractTypeResolvers", _abstractTypeResolvers);
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(deserializerFactoryConfig);
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.materializeAbstractType] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.materializeAbstractType(BeanDeserializerFactory.java:186) */
+        beanDeserializerFactory.materializeAbstractType(null, null, null);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#materializeAbstractType(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.JavaType,com.fasterxml.jackson.databind.BeanDescription)}
+ * @utbot.iterates iterate the loop {@code for(AbstractTypeResolver r: _factoryConfig.abstractTypeResolvers())} once
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: JavaType concrete = r.resolveAbstractType(ctxt.getConfig(), beanDesc);
+ *  */
+    @Test
+    public void testMaterializeAbstractType_ThrowNullPointerException_2() throws Exception  {
+        DeserializerFactoryConfig deserializerFactoryConfig = ((DeserializerFactoryConfig) createInstance("com.fasterxml.jackson.databind.cfg.DeserializerFactoryConfig"));
+        com.fasterxml.jackson.databind.AbstractTypeResolver[] _abstractTypeResolvers = {null};
+        setField(deserializerFactoryConfig, "com.fasterxml.jackson.databind.cfg.DeserializerFactoryConfig", "_abstractTypeResolvers", _abstractTypeResolvers);
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(deserializerFactoryConfig);
+        DefaultDeserializationContext.Impl impl = ((DefaultDeserializationContext.Impl) createInstance("com.fasterxml.jackson.databind.deser.DefaultDeserializationContext$Impl"));
+        DeserializationConfig _config = ((DeserializationConfig) createInstance("com.fasterxml.jackson.databind.DeserializationConfig"));
+        setField(impl, "com.fasterxml.jackson.databind.DeserializationContext", "_config", _config);
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.materializeAbstractType] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.materializeAbstractType(BeanDeserializerFactory.java:186) */
+        beanDeserializerFactory.materializeAbstractType(impl, null, null);
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.constructBeanDeserializerBuilder
+    
+    ///region SYMBOLIC EXECUTION: SUCCESSFUL EXECUTIONS for method constructBeanDeserializerBuilder(com.fasterxml.jackson.databind.DeserializationContext, com.fasterxml.jackson.databind.BeanDescription)
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#constructBeanDeserializerBuilder(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.BeanDescription)}
+ * @utbot.invokes {@link com.fasterxml.jackson.databind.DeserializationContext#getConfig()}
+ * @utbot.returnsFrom {@code return new BeanDeserializerBuilder(beanDesc, ctxt.getConfig());}
+ *  */
+    @Test
+    public void testConstructBeanDeserializerBuilder_DeserializationContextGetConfig() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        DefaultDeserializationContext.Impl impl = ((DefaultDeserializationContext.Impl) createInstance("com.fasterxml.jackson.databind.deser.DefaultDeserializationContext$Impl"));
+        DeserializationConfig _config = ((DeserializationConfig) createInstance("com.fasterxml.jackson.databind.DeserializationConfig"));
+        setField(_config, "com.fasterxml.jackson.databind.cfg.MapperConfig", "_mapperFeatures", 65536);
+        setField(impl, "com.fasterxml.jackson.databind.DeserializationContext", "_config", _config);
+        
+        BeanDeserializerBuilder actual = beanDeserializerFactory.constructBeanDeserializerBuilder(impl, null);
+        
+        BeanDeserializerBuilder expected = ((BeanDeserializerBuilder) createInstance("com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder"));
+        setField(expected, "com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder", "_caseInsensitivePropertyComparison", true);
+        LinkedHashMap _properties = new LinkedHashMap();
+        setField(expected, "com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder", "_properties", _properties);
+        
+        BeanDescription actual_beanDesc = actual._beanDesc;
+        assertNull(actual_beanDesc);
+        
+        boolean actual_defaultViewInclusion = actual._defaultViewInclusion;
+        assertFalse(actual_defaultViewInclusion);
+        
+        boolean actual_caseInsensitivePropertyComparison = actual._caseInsensitivePropertyComparison;
+        assertTrue(actual_caseInsensitivePropertyComparison);
+        
+        Map expected_properties = expected._properties;
+        Map actual_properties = actual._properties;
+        assertTrue(deepEquals(expected_properties, actual_properties));
+        
+        List actual_injectables = actual._injectables;
+        assertNull(actual_injectables);
+        
+        HashMap actual_backRefProperties = actual._backRefProperties;
+        assertNull(actual_backRefProperties);
+        
+        HashSet actual_ignorableProps = actual._ignorableProps;
+        assertNull(actual_ignorableProps);
+        
+        ValueInstantiator actual_valueInstantiator = actual._valueInstantiator;
+        assertNull(actual_valueInstantiator);
+        
+        ObjectIdReader actual_objectIdReader = actual._objectIdReader;
+        assertNull(actual_objectIdReader);
+        
+        SettableAnyProperty actual_anySetter = actual._anySetter;
+        assertNull(actual_anySetter);
+        
+        boolean actual_ignoreAllUnknown = actual._ignoreAllUnknown;
+        assertFalse(actual_ignoreAllUnknown);
+        
+        AnnotatedMethod actual_buildMethod = actual._buildMethod;
+        assertNull(actual_buildMethod);
+        
+        JsonPOJOBuilder.Value actual_builderConfig = actual._builderConfig;
+        assertNull(actual_builderConfig);
+        
+    }
+    ///endregion
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method constructBeanDeserializerBuilder(com.fasterxml.jackson.databind.DeserializationContext, com.fasterxml.jackson.databind.BeanDescription)
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#constructBeanDeserializerBuilder(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.BeanDescription)}
+ * @utbot.invokes {@link com.fasterxml.jackson.databind.DeserializationContext#getConfig()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: return new BeanDeserializerBuilder(beanDesc, ctxt.getConfig());
+ *  */
+    @Test
+    public void testConstructBeanDeserializerBuilder_ThrowNullPointerException() {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.constructBeanDeserializerBuilder] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.constructBeanDeserializerBuilder(BeanDeserializerFactory.java:433) */
+        beanDeserializerFactory.constructBeanDeserializerBuilder(null, null);
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.addReferenceProperties
+    
+    ///region SYMBOLIC EXECUTION: SUCCESSFUL EXECUTIONS for method addReferenceProperties(com.fasterxml.jackson.databind.DeserializationContext, com.fasterxml.jackson.databind.BeanDescription, com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder)
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#addReferenceProperties(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.BeanDescription,com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder)}
+ * @utbot.invokes {@link com.fasterxml.jackson.databind.BeanDescription#findBackReferenceProperties()}
+ *  */
+    @Test
+    public void testAddReferenceProperties_BeanDescriptionFindBackReferenceProperties() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        BasicBeanDescription basicBeanDescription = ((BasicBeanDescription) createInstance("com.fasterxml.jackson.databind.introspect.BasicBeanDescription"));
+        ArrayList _properties = new ArrayList();
+        setField(basicBeanDescription, "com.fasterxml.jackson.databind.introspect.BasicBeanDescription", "_properties", _properties);
+        
+        beanDeserializerFactory.addReferenceProperties(null, basicBeanDescription, null);
+    }
+    ///endregion
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method addReferenceProperties(com.fasterxml.jackson.databind.DeserializationContext, com.fasterxml.jackson.databind.BeanDescription, com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder)
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#addReferenceProperties(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.BeanDescription,com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder)}
+ * @utbot.invokes {@link com.fasterxml.jackson.databind.BeanDescription#findBackReferenceProperties()}
+ * @utbot.throwsException {@link java.lang.ClassCastException} in: Map<String, AnnotatedMember> refs = beanDesc.findBackReferenceProperties();
+ *  */
+    @Test
+    public void testAddReferenceProperties_ThrowClassCastException() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        BasicBeanDescription basicBeanDescription = ((BasicBeanDescription) createInstance("com.fasterxml.jackson.databind.introspect.BasicBeanDescription"));
+        ArrayList _properties = new ArrayList();
+        POJOPropertyBuilder pOJOPropertyBuilder = ((POJOPropertyBuilder) createInstance("com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder"));
+        Object _ctorParameters = createInstance("com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder$Linked");
+        byte[] value = {};
+        setField(_ctorParameters, "com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder$Linked", "value", value);
+        setField(pOJOPropertyBuilder, "com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder", "_ctorParameters", _ctorParameters);
+        _properties.add(pOJOPropertyBuilder);
+        _properties.add(null);
+        _properties.add(null);
+        _properties.add(null);
+        _properties.add(null);
+        _properties.add(null);
+        _properties.add(null);
+        _properties.add(null);
+        _properties.add(null);
+        _properties.add(null);
+        setField(basicBeanDescription, "com.fasterxml.jackson.databind.introspect.BasicBeanDescription", "_properties", _properties);
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.addReferenceProperties] produces [java.lang.ClassCastException: class [B cannot be cast to class com.fasterxml.jackson.databind.introspect.AnnotatedParameter ([B is in module java.base of loader 'bootstrap'; com.fasterxml.jackson.databind.introspect.AnnotatedParameter is in unnamed module of loader org.utbot.instrumentation.process.HandlerClassesLoader @17b165cc)]
+            com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder.getConstructorParameter(POJOPropertyBuilder.java:372)
+            com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder.getMutator(POJOPropertyBuilder.java:401)
+            com.fasterxml.jackson.databind.introspect.BasicBeanDescription.findBackReferenceProperties(BasicBeanDescription.java:424)
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.addReferenceProperties(BeanDeserializerFactory.java:616) */
+        beanDeserializerFactory.addReferenceProperties(null, basicBeanDescription, null);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#addReferenceProperties(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.BeanDescription,com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: Map<String, AnnotatedMember> refs = beanDesc.findBackReferenceProperties();
+ *  */
+    @Test
+    public void testAddReferenceProperties_ThrowNullPointerException() throws JsonMappingException  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.addReferenceProperties] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.addReferenceProperties(BeanDeserializerFactory.java:616) */
+        beanDeserializerFactory.addReferenceProperties(null, null, null);
+    }
+    ///endregion
+    
+    ///region Errors report for addReferenceProperties
+    
+    public void testAddReferenceProperties_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field parameterTypes is not declared in class java.lang.reflect.Method
+        
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.isPotentialBeanType
+    
+    ///region SYMBOLIC EXECUTION: SUCCESSFUL EXECUTIONS for method isPotentialBeanType(java.lang.Class)
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#isPotentialBeanType(java.lang.Class)}
+ *  */
+    @Test
+    public void testIsPotentialBeanType() {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        Class class1 = Object.class;
+        
+        boolean actual = beanDeserializerFactory.isPotentialBeanType(class1);
+        
+        assertTrue(actual);
+        
+        Class finalClass1 = class1;
+        
+    }
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#isPotentialBeanType(java.lang.Class)}
+ *  */
+    @Test
+    public void testIsPotentialBeanType_1() {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        Class class1 = Object.class;
+        
+        boolean actual = beanDeserializerFactory.isPotentialBeanType(class1);
+        
+        assertTrue(actual);
+        
+        Class finalClass1 = class1;
+        
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.buildThrowableDeserializer
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method buildThrowableDeserializer(com.fasterxml.jackson.databind.DeserializationContext, com.fasterxml.jackson.databind.JavaType, com.fasterxml.jackson.databind.BeanDescription)
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#buildThrowableDeserializer(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.JavaType,com.fasterxml.jackson.databind.BeanDescription)}
+ * @utbot.invokes {@link com.fasterxml.jackson.databind.DeserializationContext#getConfig()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: final DeserializationConfig config = ctxt.getConfig();
+ *  */
+    @Test
+    public void testBuildThrowableDeserializer_ThrowNullPointerException() throws JsonMappingException  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.buildThrowableDeserializer] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.buildThrowableDeserializer(BeanDeserializerFactory.java:359) */
+        beanDeserializerFactory.buildThrowableDeserializer(null, null, null);
+    }
+    ///endregion
+    
+    ///region OTHER: ERROR SUITE for method buildThrowableDeserializer(com.fasterxml.jackson.databind.DeserializationContext, com.fasterxml.jackson.databind.JavaType, com.fasterxml.jackson.databind.BeanDescription)
+    
+    @Test(expected = StackOverflowError.class)
+    public void testBuildThrowableDeserializer1() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        DefaultDeserializationContext.Impl impl = ((DefaultDeserializationContext.Impl) createInstance("com.fasterxml.jackson.databind.deser.DefaultDeserializationContext$Impl"));
+        DeserializationConfig _config = ((DeserializationConfig) createInstance("com.fasterxml.jackson.databind.DeserializationConfig"));
+        setField(_config, "com.fasterxml.jackson.databind.cfg.MapperConfig", "_mapperFeatures", 65537);
+        BaseSettings _base = ((BaseSettings) createInstance("com.fasterxml.jackson.databind.cfg.BaseSettings"));
+        AnnotationIntrospectorPair _annotationIntrospector = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        NopAnnotationIntrospector _primary = ((NopAnnotationIntrospector) createInstance("com.fasterxml.jackson.databind.introspect.NopAnnotationIntrospector$1"));
+        setField(_annotationIntrospector, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary);
+        setField(_annotationIntrospector, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_secondary", _annotationIntrospector);
+        setField(_base, "com.fasterxml.jackson.databind.cfg.BaseSettings", "_annotationIntrospector", _annotationIntrospector);
+        setField(_config, "com.fasterxml.jackson.databind.cfg.MapperConfig", "_base", _base);
+        setField(impl, "com.fasterxml.jackson.databind.DeserializationContext", "_config", _config);
+        BasicBeanDescription basicBeanDescription = ((BasicBeanDescription) createInstance("com.fasterxml.jackson.databind.introspect.BasicBeanDescription"));
+        
+        beanDeserializerFactory.buildThrowableDeserializer(impl, null, basicBeanDescription);
+    }
+    
+    @Test(expected = StackOverflowError.class)
+    public void testBuildThrowableDeserializer2() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        DefaultDeserializationContext.Impl impl = ((DefaultDeserializationContext.Impl) createInstance("com.fasterxml.jackson.databind.deser.DefaultDeserializationContext$Impl"));
+        DeserializationConfig _config = ((DeserializationConfig) createInstance("com.fasterxml.jackson.databind.DeserializationConfig"));
+        setField(_config, "com.fasterxml.jackson.databind.cfg.MapperConfig", "_mapperFeatures", 81921);
+        BaseSettings _base = ((BaseSettings) createInstance("com.fasterxml.jackson.databind.cfg.BaseSettings"));
+        AnnotationIntrospectorPair _annotationIntrospector = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        NopAnnotationIntrospector _primary = ((NopAnnotationIntrospector) createInstance("com.fasterxml.jackson.databind.introspect.NopAnnotationIntrospector$1"));
+        setField(_annotationIntrospector, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary);
+        AnnotationIntrospectorPair _secondary = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        NopAnnotationIntrospector _primary1 = ((NopAnnotationIntrospector) createInstance("com.fasterxml.jackson.databind.introspect.NopAnnotationIntrospector$1"));
+        setField(_secondary, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary1);
+        AnnotationIntrospectorPair _secondary1 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary2 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        setField(_primary2, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary2);
+        setField(_secondary1, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary2);
+        setField(_secondary, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_secondary", _secondary1);
+        setField(_annotationIntrospector, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_secondary", _secondary);
+        setField(_base, "com.fasterxml.jackson.databind.cfg.BaseSettings", "_annotationIntrospector", _annotationIntrospector);
+        setField(_config, "com.fasterxml.jackson.databind.cfg.MapperConfig", "_base", _base);
+        setField(impl, "com.fasterxml.jackson.databind.DeserializationContext", "_config", _config);
+        ArrayType arrayType = ((ArrayType) createInstance("com.fasterxml.jackson.databind.type.ArrayType"));
+        BasicBeanDescription basicBeanDescription = ((BasicBeanDescription) createInstance("com.fasterxml.jackson.databind.introspect.BasicBeanDescription"));
+        AnnotatedClass _classInfo = ((AnnotatedClass) createInstance("com.fasterxml.jackson.databind.introspect.AnnotatedClass"));
+        setField(basicBeanDescription, "com.fasterxml.jackson.databind.introspect.BasicBeanDescription", "_classInfo", _classInfo);
+        
+        beanDeserializerFactory.buildThrowableDeserializer(impl, arrayType, basicBeanDescription);
+    }
+    
+    @Test(expected = StackOverflowError.class)
+    public void testBuildThrowableDeserializer3() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        DefaultDeserializationContext.Impl impl = ((DefaultDeserializationContext.Impl) createInstance("com.fasterxml.jackson.databind.deser.DefaultDeserializationContext$Impl"));
+        DeserializationConfig _config = ((DeserializationConfig) createInstance("com.fasterxml.jackson.databind.DeserializationConfig"));
+        setField(_config, "com.fasterxml.jackson.databind.cfg.MapperConfig", "_mapperFeatures", 65537);
+        BaseSettings _base = ((BaseSettings) createInstance("com.fasterxml.jackson.databind.cfg.BaseSettings"));
+        AnnotationIntrospectorPair _annotationIntrospector = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        NopAnnotationIntrospector _primary = ((NopAnnotationIntrospector) createInstance("com.fasterxml.jackson.databind.introspect.NopAnnotationIntrospector$1"));
+        setField(_annotationIntrospector, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary);
+        AnnotationIntrospectorPair _secondary = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary1 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary2 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary3 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        setField(_primary3, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary1);
+        setField(_primary2, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary3);
+        setField(_primary1, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary2);
+        setField(_secondary, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary1);
+        setField(_annotationIntrospector, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_secondary", _secondary);
+        setField(_base, "com.fasterxml.jackson.databind.cfg.BaseSettings", "_annotationIntrospector", _annotationIntrospector);
+        setField(_config, "com.fasterxml.jackson.databind.cfg.MapperConfig", "_base", _base);
+        setField(impl, "com.fasterxml.jackson.databind.DeserializationContext", "_config", _config);
+        BasicBeanDescription basicBeanDescription = ((BasicBeanDescription) createInstance("com.fasterxml.jackson.databind.introspect.BasicBeanDescription"));
+        
+        beanDeserializerFactory.buildThrowableDeserializer(impl, null, basicBeanDescription);
+    }
+    
+    @Test(expected = StackOverflowError.class)
+    public void testBuildThrowableDeserializer4() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        DefaultDeserializationContext.Impl impl = ((DefaultDeserializationContext.Impl) createInstance("com.fasterxml.jackson.databind.deser.DefaultDeserializationContext$Impl"));
+        DeserializationConfig _config = ((DeserializationConfig) createInstance("com.fasterxml.jackson.databind.DeserializationConfig"));
+        setField(_config, "com.fasterxml.jackson.databind.cfg.MapperConfig", "_mapperFeatures", 16385);
+        BaseSettings _base = ((BaseSettings) createInstance("com.fasterxml.jackson.databind.cfg.BaseSettings"));
+        AnnotationIntrospectorPair _annotationIntrospector = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary1 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary2 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary3 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary4 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary5 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary6 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        NopAnnotationIntrospector _primary7 = ((NopAnnotationIntrospector) createInstance("com.fasterxml.jackson.databind.introspect.NopAnnotationIntrospector$1"));
+        setField(_primary6, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary7);
+        setField(_primary6, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_secondary", _primary5);
+        setField(_primary5, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary6);
+        setField(_primary4, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary5);
+        setField(_primary3, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary4);
+        setField(_primary2, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary3);
+        setField(_primary1, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary2);
+        setField(_primary, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary1);
+        setField(_annotationIntrospector, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary);
+        setField(_base, "com.fasterxml.jackson.databind.cfg.BaseSettings", "_annotationIntrospector", _annotationIntrospector);
+        setField(_config, "com.fasterxml.jackson.databind.cfg.MapperConfig", "_base", _base);
+        setField(impl, "com.fasterxml.jackson.databind.DeserializationContext", "_config", _config);
+        ArrayType arrayType = ((ArrayType) createInstance("com.fasterxml.jackson.databind.type.ArrayType"));
+        BasicBeanDescription basicBeanDescription = ((BasicBeanDescription) createInstance("com.fasterxml.jackson.databind.introspect.BasicBeanDescription"));
+        AnnotatedClass _classInfo = ((AnnotatedClass) createInstance("com.fasterxml.jackson.databind.introspect.AnnotatedClass"));
+        setField(basicBeanDescription, "com.fasterxml.jackson.databind.introspect.BasicBeanDescription", "_classInfo", _classInfo);
+        
+        beanDeserializerFactory.buildThrowableDeserializer(impl, arrayType, basicBeanDescription);
+    }
+    
+    @Test(expected = StackOverflowError.class)
+    public void testBuildThrowableDeserializer5() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        DefaultDeserializationContext.Impl impl = ((DefaultDeserializationContext.Impl) createInstance("com.fasterxml.jackson.databind.deser.DefaultDeserializationContext$Impl"));
+        DeserializationConfig _config = ((DeserializationConfig) createInstance("com.fasterxml.jackson.databind.DeserializationConfig"));
+        setField(_config, "com.fasterxml.jackson.databind.cfg.MapperConfig", "_mapperFeatures", 65537);
+        BaseSettings _base = ((BaseSettings) createInstance("com.fasterxml.jackson.databind.cfg.BaseSettings"));
+        AnnotationIntrospectorPair _annotationIntrospector = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary1 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary2 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary3 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary4 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary5 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary6 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary7 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        NopAnnotationIntrospector _primary8 = ((NopAnnotationIntrospector) createInstance("com.fasterxml.jackson.databind.introspect.NopAnnotationIntrospector$1"));
+        setField(_primary7, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary8);
+        setField(_primary7, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_secondary", _primary6);
+        setField(_primary6, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary7);
+        setField(_primary5, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary6);
+        setField(_primary4, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary5);
+        setField(_primary3, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary4);
+        setField(_primary2, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary3);
+        setField(_primary1, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary2);
+        setField(_primary, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary1);
+        setField(_annotationIntrospector, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary);
+        setField(_base, "com.fasterxml.jackson.databind.cfg.BaseSettings", "_annotationIntrospector", _annotationIntrospector);
+        setField(_config, "com.fasterxml.jackson.databind.cfg.MapperConfig", "_base", _base);
+        setField(impl, "com.fasterxml.jackson.databind.DeserializationContext", "_config", _config);
+        BasicBeanDescription basicBeanDescription = ((BasicBeanDescription) createInstance("com.fasterxml.jackson.databind.introspect.BasicBeanDescription"));
+        
+        beanDeserializerFactory.buildThrowableDeserializer(impl, null, basicBeanDescription);
+    }
+    
+    @Test
+    public void testBuildThrowableDeserializer6() throws Exception  {
+        NopAnnotationIntrospector prevInstance = NopAnnotationIntrospector.instance;
+        try {
+            NopAnnotationIntrospector instance = ((NopAnnotationIntrospector) createInstance("com.fasterxml.jackson.databind.introspect.NopAnnotationIntrospector$1"));
+            Class nopAnnotationIntrospectorClazz = Class.forName("com.fasterxml.jackson.databind.introspect.NopAnnotationIntrospector");
+            setStaticField(nopAnnotationIntrospectorClazz, "instance", instance);
+            BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+            DefaultDeserializationContext.Impl impl = ((DefaultDeserializationContext.Impl) createInstance("com.fasterxml.jackson.databind.deser.DefaultDeserializationContext$Impl"));
+            DeserializationConfig _config = ((DeserializationConfig) createInstance("com.fasterxml.jackson.databind.DeserializationConfig"));
+            setField(_config, "com.fasterxml.jackson.databind.cfg.MapperConfig", "_mapperFeatures", 16384);
+            setField(impl, "com.fasterxml.jackson.databind.DeserializationContext", "_config", _config);
+            BasicBeanDescription basicBeanDescription = ((BasicBeanDescription) createInstance("com.fasterxml.jackson.databind.introspect.BasicBeanDescription"));
+            
+            /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.buildThrowableDeserializer] produces [java.lang.NullPointerException]
+                com.fasterxml.jackson.databind.BeanDescription.getBeanClass(BeanDescription.java:58)
+                com.fasterxml.jackson.databind.deser.BasicDeserializerFactory._findStdValueInstantiator(BasicDeserializerFactory.java:282)
+                com.fasterxml.jackson.databind.deser.BasicDeserializerFactory.findValueInstantiator(BasicDeserializerFactory.java:250)
+                com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.buildThrowableDeserializer(BeanDeserializerFactory.java:362) */
+            beanDeserializerFactory.buildThrowableDeserializer(impl, null, basicBeanDescription);
+        } finally {
+            setStaticField(NopAnnotationIntrospector.class, "instance", prevInstance);
+        }
+    }
+    
+    @Test
+    public void testBuildThrowableDeserializer7() throws Exception  {
+        NopAnnotationIntrospector prevInstance = NopAnnotationIntrospector.instance;
+        try {
+            NopAnnotationIntrospector instance = ((NopAnnotationIntrospector) createInstance("com.fasterxml.jackson.databind.introspect.NopAnnotationIntrospector$1"));
+            Class nopAnnotationIntrospectorClazz = Class.forName("com.fasterxml.jackson.databind.introspect.NopAnnotationIntrospector");
+            setStaticField(nopAnnotationIntrospectorClazz, "instance", instance);
+            BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+            DefaultDeserializationContext.Impl impl = ((DefaultDeserializationContext.Impl) createInstance("com.fasterxml.jackson.databind.deser.DefaultDeserializationContext$Impl"));
+            DeserializationConfig _config = ((DeserializationConfig) createInstance("com.fasterxml.jackson.databind.DeserializationConfig"));
+            setField(impl, "com.fasterxml.jackson.databind.DeserializationContext", "_config", _config);
+            BasicBeanDescription basicBeanDescription = ((BasicBeanDescription) createInstance("com.fasterxml.jackson.databind.introspect.BasicBeanDescription"));
+            
+            /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.buildThrowableDeserializer] produces [java.lang.NullPointerException]
+                com.fasterxml.jackson.databind.BeanDescription.getBeanClass(BeanDescription.java:58)
+                com.fasterxml.jackson.databind.deser.BasicDeserializerFactory._findStdValueInstantiator(BasicDeserializerFactory.java:282)
+                com.fasterxml.jackson.databind.deser.BasicDeserializerFactory.findValueInstantiator(BasicDeserializerFactory.java:250)
+                com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.buildThrowableDeserializer(BeanDeserializerFactory.java:362) */
+            beanDeserializerFactory.buildThrowableDeserializer(impl, null, basicBeanDescription);
+        } finally {
+            setStaticField(NopAnnotationIntrospector.class, "instance", prevInstance);
+        }
+    }
+    
+    @Test
+    public void testBuildThrowableDeserializer8() throws Exception  {
+        NopAnnotationIntrospector prevInstance = NopAnnotationIntrospector.instance;
+        try {
+            NopAnnotationIntrospector instance = ((NopAnnotationIntrospector) createInstance("com.fasterxml.jackson.databind.introspect.NopAnnotationIntrospector$1"));
+            Class nopAnnotationIntrospectorClazz = Class.forName("com.fasterxml.jackson.databind.introspect.NopAnnotationIntrospector");
+            setStaticField(nopAnnotationIntrospectorClazz, "instance", instance);
+            DeserializerFactoryConfig deserializerFactoryConfig = ((DeserializerFactoryConfig) createInstance("com.fasterxml.jackson.databind.cfg.DeserializerFactoryConfig"));
+            com.fasterxml.jackson.databind.deser.ValueInstantiators[] _valueInstantiators = new com.fasterxml.jackson.databind.deser.ValueInstantiators[9];
+            SimpleValueInstantiators simpleValueInstantiators = ((SimpleValueInstantiators) createInstance("com.fasterxml.jackson.databind.module.SimpleValueInstantiators"));
+            _valueInstantiators[0] = ((ValueInstantiators) simpleValueInstantiators);
+            SimpleValueInstantiators simpleValueInstantiators1 = ((SimpleValueInstantiators) createInstance("com.fasterxml.jackson.databind.module.SimpleValueInstantiators"));
+            _valueInstantiators[1] = ((ValueInstantiators) simpleValueInstantiators1);
+            _valueInstantiators[2] = ((ValueInstantiators) simpleValueInstantiators1);
+            _valueInstantiators[3] = ((ValueInstantiators) simpleValueInstantiators1);
+            _valueInstantiators[4] = ((ValueInstantiators) simpleValueInstantiators1);
+            _valueInstantiators[5] = ((ValueInstantiators) simpleValueInstantiators1);
+            _valueInstantiators[6] = ((ValueInstantiators) simpleValueInstantiators1);
+            _valueInstantiators[7] = ((ValueInstantiators) simpleValueInstantiators1);
+            _valueInstantiators[8] = ((ValueInstantiators) simpleValueInstantiators1);
+            setField(deserializerFactoryConfig, "com.fasterxml.jackson.databind.cfg.DeserializerFactoryConfig", "_valueInstantiators", _valueInstantiators);
+            BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(deserializerFactoryConfig);
+            DefaultDeserializationContext.Impl impl = ((DefaultDeserializationContext.Impl) createInstance("com.fasterxml.jackson.databind.deser.DefaultDeserializationContext$Impl"));
+            DeserializationConfig _config = ((DeserializationConfig) createInstance("com.fasterxml.jackson.databind.DeserializationConfig"));
+            setField(_config, "com.fasterxml.jackson.databind.cfg.MapperConfig", "_mapperFeatures", 81920);
+            setField(impl, "com.fasterxml.jackson.databind.DeserializationContext", "_config", _config);
+            BasicBeanDescription basicBeanDescription = ((BasicBeanDescription) createInstance("com.fasterxml.jackson.databind.introspect.BasicBeanDescription"));
+            CollectionType _type = ((CollectionType) createInstance("com.fasterxml.jackson.databind.type.CollectionType"));
+            Class _class = Object.class;
+            setField(_type, "com.fasterxml.jackson.databind.JavaType", "_class", _class);
+            setField(basicBeanDescription, "com.fasterxml.jackson.databind.BeanDescription", "_type", _type);
+            
+            /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.buildThrowableDeserializer] produces [java.lang.NullPointerException]
+                com.fasterxml.jackson.databind.cfg.MapperConfig.getDefaultVisibilityChecker(MapperConfig.java:249)
+                com.fasterxml.jackson.databind.DeserializationConfig.getDefaultVisibilityChecker(DeserializationConfig.java:773)
+                com.fasterxml.jackson.databind.deser.BasicDeserializerFactory._constructDefaultValueInstantiator(BasicDeserializerFactory.java:301)
+                com.fasterxml.jackson.databind.deser.BasicDeserializerFactory.findValueInstantiator(BasicDeserializerFactory.java:252)
+                com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.buildThrowableDeserializer(BeanDeserializerFactory.java:362) */
+            beanDeserializerFactory.buildThrowableDeserializer(impl, null, basicBeanDescription);
+        } finally {
+            setStaticField(NopAnnotationIntrospector.class, "instance", prevInstance);
+        }
+    }
+    
+    @Test
+    public void testBuildThrowableDeserializer9() throws Exception  {
+        NopAnnotationIntrospector prevInstance = NopAnnotationIntrospector.instance;
+        try {
+            NopAnnotationIntrospector instance = ((NopAnnotationIntrospector) createInstance("com.fasterxml.jackson.databind.introspect.NopAnnotationIntrospector$1"));
+            Class nopAnnotationIntrospectorClazz = Class.forName("com.fasterxml.jackson.databind.introspect.NopAnnotationIntrospector");
+            setStaticField(nopAnnotationIntrospectorClazz, "instance", instance);
+            DeserializerFactoryConfig deserializerFactoryConfig = ((DeserializerFactoryConfig) createInstance("com.fasterxml.jackson.databind.cfg.DeserializerFactoryConfig"));
+            com.fasterxml.jackson.databind.deser.ValueInstantiators[] _valueInstantiators = {};
+            setField(deserializerFactoryConfig, "com.fasterxml.jackson.databind.cfg.DeserializerFactoryConfig", "_valueInstantiators", _valueInstantiators);
+            BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(deserializerFactoryConfig);
+            DefaultDeserializationContext.Impl impl = ((DefaultDeserializationContext.Impl) createInstance("com.fasterxml.jackson.databind.deser.DefaultDeserializationContext$Impl"));
+            DeserializationConfig _config = ((DeserializationConfig) createInstance("com.fasterxml.jackson.databind.DeserializationConfig"));
+            setField(_config, "com.fasterxml.jackson.databind.cfg.MapperConfig", "_mapperFeatures", 81920);
+            BaseSettings _base = ((BaseSettings) createInstance("com.fasterxml.jackson.databind.cfg.BaseSettings"));
+            TypeFactory _typeFactory = ((TypeFactory) createInstance("com.fasterxml.jackson.databind.type.TypeFactory"));
+            setField(_base, "com.fasterxml.jackson.databind.cfg.BaseSettings", "_typeFactory", _typeFactory);
+            setField(_config, "com.fasterxml.jackson.databind.cfg.MapperConfig", "_base", _base);
+            setField(impl, "com.fasterxml.jackson.databind.DeserializationContext", "_config", _config);
+            BasicBeanDescription basicBeanDescription = ((BasicBeanDescription) createInstance("com.fasterxml.jackson.databind.introspect.BasicBeanDescription"));
+            MapType _type = ((MapType) createInstance("com.fasterxml.jackson.databind.type.MapType"));
+            Class _class = Object.class;
+            setField(_type, "com.fasterxml.jackson.databind.JavaType", "_class", _class);
+            setField(basicBeanDescription, "com.fasterxml.jackson.databind.BeanDescription", "_type", _type);
+            
+            /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.buildThrowableDeserializer] produces [java.lang.NullPointerException]
+                com.fasterxml.jackson.databind.DeserializationConfig.getDefaultVisibilityChecker(DeserializationConfig.java:775)
+                com.fasterxml.jackson.databind.deser.BasicDeserializerFactory._constructDefaultValueInstantiator(BasicDeserializerFactory.java:301)
+                com.fasterxml.jackson.databind.deser.BasicDeserializerFactory.findValueInstantiator(BasicDeserializerFactory.java:252)
+                com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.buildThrowableDeserializer(BeanDeserializerFactory.java:362) */
+            beanDeserializerFactory.buildThrowableDeserializer(impl, null, basicBeanDescription);
+        } finally {
+            setStaticField(NopAnnotationIntrospector.class, "instance", prevInstance);
+        }
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.buildBeanDeserializer
+    
+    ///region FUZZER: ERROR SUITE for method buildBeanDeserializer(com.fasterxml.jackson.databind.DeserializationContext, com.fasterxml.jackson.databind.JavaType, com.fasterxml.jackson.databind.BeanDescription)
+    
+    /**
+     * @utbot.classUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory}
+     * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#buildBeanDeserializer(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.JavaType,com.fasterxml.jackson.databind.BeanDescription)}
+     */
+    @Test
+    public void testBuildBeanDeserializerThrowsNPE() throws JsonMappingException  {
+        DeserializerFactoryConfig deserializerFactoryConfig = new DeserializerFactoryConfig();
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(deserializerFactoryConfig);
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.buildBeanDeserializer] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BasicDeserializerFactory.findValueInstantiator(BasicDeserializerFactory.java:237)
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.buildBeanDeserializer(BeanDeserializerFactory.java:221) */
+        beanDeserializerFactory.buildBeanDeserializer(null, null, null);
+    }
+    ///endregion
+    
+    ///region OTHER: ERROR SUITE for method buildBeanDeserializer(com.fasterxml.jackson.databind.DeserializationContext, com.fasterxml.jackson.databind.JavaType, com.fasterxml.jackson.databind.BeanDescription)
+    
+    @Test(expected = StackOverflowError.class)
+    public void testBuildBeanDeserializer1() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        DefaultDeserializationContext.Impl impl = ((DefaultDeserializationContext.Impl) createInstance("com.fasterxml.jackson.databind.deser.DefaultDeserializationContext$Impl"));
+        DeserializationConfig _config = ((DeserializationConfig) createInstance("com.fasterxml.jackson.databind.DeserializationConfig"));
+        setField(_config, "com.fasterxml.jackson.databind.cfg.MapperConfig", "_mapperFeatures", 1);
+        BaseSettings _base = ((BaseSettings) createInstance("com.fasterxml.jackson.databind.cfg.BaseSettings"));
+        AnnotationIntrospectorPair _annotationIntrospector = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        NopAnnotationIntrospector _primary = ((NopAnnotationIntrospector) createInstance("com.fasterxml.jackson.databind.introspect.NopAnnotationIntrospector$1"));
+        setField(_annotationIntrospector, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary);
+        AnnotationIntrospectorPair _secondary = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary1 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary2 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary3 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary4 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary5 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        setField(_primary5, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _annotationIntrospector);
+        setField(_primary4, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary5);
+        setField(_primary3, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary4);
+        setField(_primary2, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary3);
+        setField(_primary1, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary2);
+        setField(_secondary, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary1);
+        setField(_annotationIntrospector, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_secondary", _secondary);
+        setField(_base, "com.fasterxml.jackson.databind.cfg.BaseSettings", "_annotationIntrospector", _annotationIntrospector);
+        setField(_config, "com.fasterxml.jackson.databind.cfg.MapperConfig", "_base", _base);
+        setField(impl, "com.fasterxml.jackson.databind.DeserializationContext", "_config", _config);
+        BasicBeanDescription basicBeanDescription = ((BasicBeanDescription) createInstance("com.fasterxml.jackson.databind.introspect.BasicBeanDescription"));
+        AnnotatedClass _classInfo = ((AnnotatedClass) createInstance("com.fasterxml.jackson.databind.introspect.AnnotatedClass"));
+        setField(basicBeanDescription, "com.fasterxml.jackson.databind.introspect.BasicBeanDescription", "_classInfo", _classInfo);
+        
+        beanDeserializerFactory.buildBeanDeserializer(impl, null, basicBeanDescription);
+    }
+    
+    @Test(expected = StackOverflowError.class)
+    public void testBuildBeanDeserializer2() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        DefaultDeserializationContext.Impl impl = ((DefaultDeserializationContext.Impl) createInstance("com.fasterxml.jackson.databind.deser.DefaultDeserializationContext$Impl"));
+        DeserializationConfig _config = ((DeserializationConfig) createInstance("com.fasterxml.jackson.databind.DeserializationConfig"));
+        setField(_config, "com.fasterxml.jackson.databind.cfg.MapperConfig", "_mapperFeatures", 1);
+        BaseSettings _base = ((BaseSettings) createInstance("com.fasterxml.jackson.databind.cfg.BaseSettings"));
+        AnnotationIntrospectorPair _annotationIntrospector = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary1 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        NopAnnotationIntrospector _primary2 = ((NopAnnotationIntrospector) createInstance("com.fasterxml.jackson.databind.introspect.NopAnnotationIntrospector$1"));
+        setField(_primary1, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary2);
+        AnnotationIntrospectorPair _secondary = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary3 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary4 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary5 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        setField(_primary5, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _annotationIntrospector);
+        setField(_primary4, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary5);
+        setField(_primary3, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary4);
+        setField(_secondary, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary3);
+        setField(_primary1, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_secondary", _secondary);
+        setField(_primary, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary1);
+        setField(_annotationIntrospector, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary);
+        setField(_base, "com.fasterxml.jackson.databind.cfg.BaseSettings", "_annotationIntrospector", _annotationIntrospector);
+        setField(_config, "com.fasterxml.jackson.databind.cfg.MapperConfig", "_base", _base);
+        setField(impl, "com.fasterxml.jackson.databind.DeserializationContext", "_config", _config);
+        BasicBeanDescription basicBeanDescription = ((BasicBeanDescription) createInstance("com.fasterxml.jackson.databind.introspect.BasicBeanDescription"));
+        
+        beanDeserializerFactory.buildBeanDeserializer(impl, null, basicBeanDescription);
+    }
+    
+    @Test(expected = StackOverflowError.class)
+    public void testBuildBeanDeserializer3() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        DefaultDeserializationContext.Impl impl = ((DefaultDeserializationContext.Impl) createInstance("com.fasterxml.jackson.databind.deser.DefaultDeserializationContext$Impl"));
+        DeserializationConfig _config = ((DeserializationConfig) createInstance("com.fasterxml.jackson.databind.DeserializationConfig"));
+        setField(_config, "com.fasterxml.jackson.databind.cfg.MapperConfig", "_mapperFeatures", 1);
+        BaseSettings _base = ((BaseSettings) createInstance("com.fasterxml.jackson.databind.cfg.BaseSettings"));
+        AnnotationIntrospectorPair _annotationIntrospector = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary1 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary2 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary3 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary4 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary5 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary6 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary7 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary8 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary9 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary10 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary11 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        NopAnnotationIntrospector _primary12 = ((NopAnnotationIntrospector) createInstance("com.fasterxml.jackson.databind.introspect.NopAnnotationIntrospector$1"));
+        setField(_primary11, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary12);
+        setField(_primary11, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_secondary", _primary11);
+        setField(_primary10, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary11);
+        setField(_primary9, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary10);
+        setField(_primary8, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary9);
+        setField(_primary7, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary8);
+        setField(_primary6, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary7);
+        setField(_primary5, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary6);
+        setField(_primary4, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary5);
+        setField(_primary3, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary4);
+        setField(_primary2, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary3);
+        setField(_primary1, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary2);
+        setField(_primary, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary1);
+        setField(_annotationIntrospector, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary);
+        setField(_base, "com.fasterxml.jackson.databind.cfg.BaseSettings", "_annotationIntrospector", _annotationIntrospector);
+        setField(_config, "com.fasterxml.jackson.databind.cfg.MapperConfig", "_base", _base);
+        setField(impl, "com.fasterxml.jackson.databind.DeserializationContext", "_config", _config);
+        BasicBeanDescription basicBeanDescription = ((BasicBeanDescription) createInstance("com.fasterxml.jackson.databind.introspect.BasicBeanDescription"));
+        
+        beanDeserializerFactory.buildBeanDeserializer(impl, null, basicBeanDescription);
+    }
+    
+    @Test
+    public void testBuildBeanDeserializer4() throws Exception  {
+        NopAnnotationIntrospector prevInstance = NopAnnotationIntrospector.instance;
+        try {
+            NopAnnotationIntrospector instance = ((NopAnnotationIntrospector) createInstance("com.fasterxml.jackson.databind.introspect.NopAnnotationIntrospector$1"));
+            Class nopAnnotationIntrospectorClazz = Class.forName("com.fasterxml.jackson.databind.introspect.NopAnnotationIntrospector");
+            setStaticField(nopAnnotationIntrospectorClazz, "instance", instance);
+            BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+            DefaultDeserializationContext.Impl impl = ((DefaultDeserializationContext.Impl) createInstance("com.fasterxml.jackson.databind.deser.DefaultDeserializationContext$Impl"));
+            DeserializationConfig _config = ((DeserializationConfig) createInstance("com.fasterxml.jackson.databind.DeserializationConfig"));
+            setField(_config, "com.fasterxml.jackson.databind.cfg.MapperConfig", "_mapperFeatures", 768);
+            setField(impl, "com.fasterxml.jackson.databind.DeserializationContext", "_config", _config);
+            ReferenceType referenceType = ((ReferenceType) createInstance("com.fasterxml.jackson.databind.type.ReferenceType"));
+            BasicBeanDescription basicBeanDescription = ((BasicBeanDescription) createInstance("com.fasterxml.jackson.databind.introspect.BasicBeanDescription"));
+            ReferenceType _type = ((ReferenceType) createInstance("com.fasterxml.jackson.databind.type.ReferenceType"));
+            setField(basicBeanDescription, "com.fasterxml.jackson.databind.BeanDescription", "_type", _type);
+            
+            /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.buildBeanDeserializer] produces [java.lang.NullPointerException]
+                com.fasterxml.jackson.databind.cfg.MapperConfig.getDefaultVisibilityChecker(MapperConfig.java:249)
+                com.fasterxml.jackson.databind.DeserializationConfig.getDefaultVisibilityChecker(DeserializationConfig.java:773)
+                com.fasterxml.jackson.databind.deser.BasicDeserializerFactory._constructDefaultValueInstantiator(BasicDeserializerFactory.java:301)
+                com.fasterxml.jackson.databind.deser.BasicDeserializerFactory.findValueInstantiator(BasicDeserializerFactory.java:252)
+                com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.buildBeanDeserializer(BeanDeserializerFactory.java:221) */
+            beanDeserializerFactory.buildBeanDeserializer(impl, referenceType, basicBeanDescription);
+        } finally {
+            setStaticField(NopAnnotationIntrospector.class, "instance", prevInstance);
+        }
+    }
+    
+    @Test
+    public void testBuildBeanDeserializer5() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        DefaultDeserializationContext.Impl impl = ((DefaultDeserializationContext.Impl) createInstance("com.fasterxml.jackson.databind.deser.DefaultDeserializationContext$Impl"));
+        DeserializationConfig _config = ((DeserializationConfig) createInstance("com.fasterxml.jackson.databind.DeserializationConfig"));
+        setField(_config, "com.fasterxml.jackson.databind.cfg.MapperConfig", "_mapperFeatures", 1);
+        BaseSettings _base = ((BaseSettings) createInstance("com.fasterxml.jackson.databind.cfg.BaseSettings"));
+        AnnotationIntrospectorPair _annotationIntrospector = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        NopAnnotationIntrospector _primary = ((NopAnnotationIntrospector) createInstance("com.fasterxml.jackson.databind.introspect.NopAnnotationIntrospector$1"));
+        setField(_annotationIntrospector, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary);
+        AnnotationIntrospectorPair _secondary = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary1 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary2 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary3 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary4 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary5 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary6 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        AnnotationIntrospectorPair _primary7 = ((AnnotationIntrospectorPair) createInstance("com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair"));
+        setField(_primary7, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary);
+        setField(_primary7, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_secondary", _primary);
+        setField(_primary6, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary7);
+        setField(_primary6, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_secondary", _primary7);
+        setField(_primary5, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary6);
+        setField(_primary4, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary5);
+        setField(_primary3, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary4);
+        setField(_primary2, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary3);
+        setField(_primary1, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary2);
+        setField(_secondary, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_primary", _primary1);
+        setField(_annotationIntrospector, "com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair", "_secondary", _secondary);
+        setField(_base, "com.fasterxml.jackson.databind.cfg.BaseSettings", "_annotationIntrospector", _annotationIntrospector);
+        setField(_config, "com.fasterxml.jackson.databind.cfg.MapperConfig", "_base", _base);
+        setField(impl, "com.fasterxml.jackson.databind.DeserializationContext", "_config", _config);
+        BasicBeanDescription basicBeanDescription = ((BasicBeanDescription) createInstance("com.fasterxml.jackson.databind.introspect.BasicBeanDescription"));
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.buildBeanDeserializer] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair.findValueInstantiator(AnnotationIntrospectorPair.java:642)
+            com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair.findValueInstantiator(AnnotationIntrospectorPair.java:641)
+            com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair.findValueInstantiator(AnnotationIntrospectorPair.java:641)
+            com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair.findValueInstantiator(AnnotationIntrospectorPair.java:641)
+            com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair.findValueInstantiator(AnnotationIntrospectorPair.java:641)
+            com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair.findValueInstantiator(AnnotationIntrospectorPair.java:641)
+            com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair.findValueInstantiator(AnnotationIntrospectorPair.java:642)
+            com.fasterxml.jackson.databind.deser.BasicDeserializerFactory.findValueInstantiator(BasicDeserializerFactory.java:242)
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.buildBeanDeserializer(BeanDeserializerFactory.java:221) */
+        beanDeserializerFactory.buildBeanDeserializer(impl, null, basicBeanDescription);
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.constructSetterlessProperty
+    
+    ///region Errors report for constructSetterlessProperty
+    
+    public void testConstructSetterlessProperty_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field clazz is not declared in class java.lang.reflect.Method
+        
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.addObjectIdReader
+    
+    ///region SYMBOLIC EXECUTION: SUCCESSFUL EXECUTIONS for method addObjectIdReader(com.fasterxml.jackson.databind.DeserializationContext, com.fasterxml.jackson.databind.BeanDescription, com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder)
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#addObjectIdReader(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.BeanDescription,com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder)}
+ * @utbot.executesCondition {@code (objectIdInfo == null): True}
+ * @utbot.invokes {@link com.fasterxml.jackson.databind.BeanDescription#getObjectIdInfo()}
+ * @utbot.returnsFrom {@code return;}
+ *  */
+    @Test
+    public void testAddObjectIdReader_ObjectIdInfoEqualsNull() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        BasicBeanDescription basicBeanDescription = ((BasicBeanDescription) createInstance("com.fasterxml.jackson.databind.introspect.BasicBeanDescription"));
+        
+        beanDeserializerFactory.addObjectIdReader(null, basicBeanDescription, null);
+    }
+    ///endregion
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method addObjectIdReader(com.fasterxml.jackson.databind.DeserializationContext, com.fasterxml.jackson.databind.BeanDescription, com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder)
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#addObjectIdReader(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.BeanDescription,com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder)}
+ * @utbot.invokes {@link com.fasterxml.jackson.databind.BeanDescription#getObjectIdInfo()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: ObjectIdInfo objectIdInfo = beanDesc.getObjectIdInfo();
+ *  */
+    @Test
+    public void testAddObjectIdReader_ThrowNullPointerException() throws JsonMappingException  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.addObjectIdReader] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.addObjectIdReader(BeanDeserializerFactory.java:321) */
+        beanDeserializerFactory.addObjectIdReader(null, null, null);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#addObjectIdReader(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.BeanDescription,com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder)}
+ * @utbot.executesCondition {@code (objectIdInfo == null): False}
+ * @utbot.invokes {@link com.fasterxml.jackson.databind.BeanDescription#getObjectIdInfo()}
+ * @utbot.invokes {@link com.fasterxml.jackson.databind.introspect.ObjectIdInfo#getGeneratorType()}
+ * @utbot.invokes {@link com.fasterxml.jackson.databind.BeanDescription#getClassInfo()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: ObjectIdResolver resolver = ctxt.objectIdResolverInstance(beanDesc.getClassInfo(), objectIdInfo);
+ *  */
+    @Test
+    public void testAddObjectIdReader_ThrowNullPointerException_1() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        BasicBeanDescription basicBeanDescription = ((BasicBeanDescription) createInstance("com.fasterxml.jackson.databind.introspect.BasicBeanDescription"));
+        ObjectIdInfo _objectIdInfo = ((ObjectIdInfo) createInstance("com.fasterxml.jackson.databind.introspect.ObjectIdInfo"));
+        setField(basicBeanDescription, "com.fasterxml.jackson.databind.introspect.BasicBeanDescription", "_objectIdInfo", _objectIdInfo);
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.addObjectIdReader] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.addObjectIdReader(BeanDeserializerFactory.java:330) */
+        beanDeserializerFactory.addObjectIdReader(null, basicBeanDescription, null);
+    }
+    ///endregion
+    
+    ///region OTHER: ERROR SUITE for method addObjectIdReader(com.fasterxml.jackson.databind.DeserializationContext, com.fasterxml.jackson.databind.BeanDescription, com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder)
+    
+    @Test
+    public void testAddObjectIdReader1() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        DefaultDeserializationContext.Impl impl = ((DefaultDeserializationContext.Impl) createInstance("com.fasterxml.jackson.databind.deser.DefaultDeserializationContext$Impl"));
+        DeserializationConfig _config = ((DeserializationConfig) createInstance("com.fasterxml.jackson.databind.DeserializationConfig"));
+        BaseSettings _base = ((BaseSettings) createInstance("com.fasterxml.jackson.databind.cfg.BaseSettings"));
+        setField(_config, "com.fasterxml.jackson.databind.cfg.MapperConfig", "_base", _base);
+        setField(impl, "com.fasterxml.jackson.databind.DeserializationContext", "_config", _config);
+        BasicBeanDescription basicBeanDescription = ((BasicBeanDescription) createInstance("com.fasterxml.jackson.databind.introspect.BasicBeanDescription"));
+        AnnotatedClass _classInfo = ((AnnotatedClass) createInstance("com.fasterxml.jackson.databind.introspect.AnnotatedClass"));
+        setField(basicBeanDescription, "com.fasterxml.jackson.databind.introspect.BasicBeanDescription", "_classInfo", _classInfo);
+        ObjectIdInfo _objectIdInfo = ((ObjectIdInfo) createInstance("com.fasterxml.jackson.databind.introspect.ObjectIdInfo"));
+        Class _generator = Object.class;
+        setField(_objectIdInfo, "com.fasterxml.jackson.databind.introspect.ObjectIdInfo", "_generator", _generator);
+        setField(_objectIdInfo, "com.fasterxml.jackson.databind.introspect.ObjectIdInfo", "_resolver", _generator);
+        setField(basicBeanDescription, "com.fasterxml.jackson.databind.introspect.BasicBeanDescription", "_objectIdInfo", _objectIdInfo);
+        BeanDeserializerBuilder beanDeserializerBuilder = ((BeanDeserializerBuilder) createInstance("com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder"));
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.addObjectIdReader] produces [java.lang.ClassCastException: class java.lang.Object cannot be cast to class com.fasterxml.jackson.annotation.ObjectIdResolver (java.lang.Object is in module java.base of loader 'bootstrap'; com.fasterxml.jackson.annotation.ObjectIdResolver is in unnamed module of loader org.utbot.instrumentation.process.HandlerClassesLoader @17b165cc)]
+            com.fasterxml.jackson.databind.DatabindContext.objectIdResolverInstance(DatabindContext.java:183)
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.addObjectIdReader(BeanDeserializerFactory.java:330) */
+        beanDeserializerFactory.addObjectIdReader(impl, basicBeanDescription, beanDeserializerBuilder);
+    }
+    
+    @Test
+    public void testAddObjectIdReader2() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        DefaultDeserializationContext.Impl impl = ((DefaultDeserializationContext.Impl) createInstance("com.fasterxml.jackson.databind.deser.DefaultDeserializationContext$Impl"));
+        DeserializationConfig _config = ((DeserializationConfig) createInstance("com.fasterxml.jackson.databind.DeserializationConfig"));
+        setField(_config, "com.fasterxml.jackson.databind.cfg.MapperConfig", "_mapperFeatures", 256);
+        BaseSettings _base = ((BaseSettings) createInstance("com.fasterxml.jackson.databind.cfg.BaseSettings"));
+        setField(_config, "com.fasterxml.jackson.databind.cfg.MapperConfig", "_base", _base);
+        setField(impl, "com.fasterxml.jackson.databind.DeserializationContext", "_config", _config);
+        BasicBeanDescription basicBeanDescription = ((BasicBeanDescription) createInstance("com.fasterxml.jackson.databind.introspect.BasicBeanDescription"));
+        AnnotatedClass _classInfo = ((AnnotatedClass) createInstance("com.fasterxml.jackson.databind.introspect.AnnotatedClass"));
+        setField(basicBeanDescription, "com.fasterxml.jackson.databind.introspect.BasicBeanDescription", "_classInfo", _classInfo);
+        ObjectIdInfo _objectIdInfo = ((ObjectIdInfo) createInstance("com.fasterxml.jackson.databind.introspect.ObjectIdInfo"));
+        Class _resolver = Object.class;
+        setField(_objectIdInfo, "com.fasterxml.jackson.databind.introspect.ObjectIdInfo", "_resolver", _resolver);
+        setField(basicBeanDescription, "com.fasterxml.jackson.databind.introspect.BasicBeanDescription", "_objectIdInfo", _objectIdInfo);
+        BeanDeserializerBuilder beanDeserializerBuilder = ((BeanDeserializerBuilder) createInstance("com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder"));
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.addObjectIdReader] produces [java.lang.ClassCastException: class java.lang.Object cannot be cast to class com.fasterxml.jackson.annotation.ObjectIdResolver (java.lang.Object is in module java.base of loader 'bootstrap'; com.fasterxml.jackson.annotation.ObjectIdResolver is in unnamed module of loader org.utbot.instrumentation.process.HandlerClassesLoader @17b165cc)]
+            com.fasterxml.jackson.databind.DatabindContext.objectIdResolverInstance(DatabindContext.java:183)
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.addObjectIdReader(BeanDeserializerFactory.java:330) */
+        beanDeserializerFactory.addObjectIdReader(impl, basicBeanDescription, beanDeserializerBuilder);
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.addBeanProps
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method addBeanProps(com.fasterxml.jackson.databind.DeserializationContext, com.fasterxml.jackson.databind.BeanDescription, com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder)
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#addBeanProps(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.BeanDescription,com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder)}
+ * @utbot.invokes {@link com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder#getValueInstantiator()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: builder.getValueInstantiator().getFromObjectArguments(ctxt.getConfig())
+ *  */
+    @Test
+    public void testAddBeanProps_ThrowNullPointerException() throws JsonMappingException  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.addBeanProps] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.addBeanProps(BeanDeserializerFactory.java:448) */
+        beanDeserializerFactory.addBeanProps(null, null, null);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#addBeanProps(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.BeanDescription,com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: builder.getValueInstantiator().getFromObjectArguments(ctxt.getConfig())
+ *  */
+    @Test
+    public void testAddBeanProps_ThrowNullPointerException_1() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        BeanDeserializerBuilder beanDeserializerBuilder = ((BeanDeserializerBuilder) createInstance("com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder"));
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.addBeanProps] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.addBeanProps(BeanDeserializerFactory.java:448) */
+        beanDeserializerFactory.addBeanProps(null, null, beanDeserializerBuilder);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#addBeanProps(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.BeanDescription,com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder)}
+ * @utbot.invokes {@link com.fasterxml.jackson.databind.DeserializationContext#getConfig()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: builder.getValueInstantiator().getFromObjectArguments(ctxt.getConfig())
+ *  */
+    @Test
+    public void testAddBeanProps_ThrowNullPointerException_2() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        DefaultDeserializationContext.Impl impl = ((DefaultDeserializationContext.Impl) createInstance("com.fasterxml.jackson.databind.deser.DefaultDeserializationContext$Impl"));
+        BeanDeserializerBuilder beanDeserializerBuilder = ((BeanDeserializerBuilder) createInstance("com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder"));
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.addBeanProps] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.addBeanProps(BeanDeserializerFactory.java:448) */
+        beanDeserializerFactory.addBeanProps(impl, null, beanDeserializerBuilder);
+    }
+    ///endregion
+    
+    ///region OTHER: ERROR SUITE for method addBeanProps(com.fasterxml.jackson.databind.DeserializationContext, com.fasterxml.jackson.databind.BeanDescription, com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder)
+    
+    @Test
+    public void testAddBeanProps1() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        DefaultDeserializationContext.Impl impl = ((DefaultDeserializationContext.Impl) createInstance("com.fasterxml.jackson.databind.deser.DefaultDeserializationContext$Impl"));
+        DeserializationConfig _config = ((DeserializationConfig) createInstance("com.fasterxml.jackson.databind.DeserializationConfig"));
+        BaseSettings _base = ((BaseSettings) createInstance("com.fasterxml.jackson.databind.cfg.BaseSettings"));
+        TypeFactory _typeFactory = ((TypeFactory) createInstance("com.fasterxml.jackson.databind.type.TypeFactory"));
+        setField(_base, "com.fasterxml.jackson.databind.cfg.BaseSettings", "_typeFactory", _typeFactory);
+        setField(_config, "com.fasterxml.jackson.databind.cfg.MapperConfig", "_base", _base);
+        setField(impl, "com.fasterxml.jackson.databind.DeserializationContext", "_config", _config);
+        BeanDeserializerBuilder beanDeserializerBuilder = ((BeanDeserializerBuilder) createInstance("com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder"));
+        JsonLocationInstantiator _valueInstantiator = ((JsonLocationInstantiator) createInstance("com.fasterxml.jackson.databind.deser.std.JsonLocationInstantiator"));
+        setField(beanDeserializerBuilder, "com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder", "_valueInstantiator", _valueInstantiator);
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.addBeanProps] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.addBeanProps(BeanDeserializerFactory.java:449) */
+        beanDeserializerFactory.addBeanProps(impl, null, beanDeserializerBuilder);
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.filterBeanProps
+    
+    ///region SYMBOLIC EXECUTION: SUCCESSFUL EXECUTIONS for method filterBeanProps(com.fasterxml.jackson.databind.DeserializationContext, com.fasterxml.jackson.databind.BeanDescription, com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder, java.util.List, java.util.Set)
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#filterBeanProps(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.BeanDescription,com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder,java.util.List,java.util.Set)}
+ * @utbot.invokes {@link java.util.List#size()}
+ * @utbot.invokes {@link java.lang.Math#max(int,int)}
+ * @utbot.invokes {@link java.util.List#iterator()}
+ * @utbot.returnsFrom {@code return result;}
+ *  */
+    @Test
+    public void testFilterBeanProps_ListIterator() throws JsonMappingException  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        ArrayList arrayList = new ArrayList();
+        
+        ArrayList actual = ((ArrayList) beanDeserializerFactory.filterBeanProps(null, null, null, arrayList, null));
+        
+        ArrayList expected = new ArrayList();
+        
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method filterBeanProps(com.fasterxml.jackson.databind.DeserializationContext, com.fasterxml.jackson.databind.BeanDescription, com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder, java.util.List, java.util.Set)
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#filterBeanProps(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.BeanDescription,com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder,java.util.List,java.util.Set)}
+ * @utbot.throwsException {@link java.lang.ClassCastException} in: rawPropertyType = property.getSetter().getRawParameterType(0);
+ *  */
+    @Test
+    public void testFilterBeanProps_ThrowClassCastException_1() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        ArrayList arrayList = new ArrayList();
+        POJOPropertyBuilder pOJOPropertyBuilder = ((POJOPropertyBuilder) createInstance("com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder"));
+        PropertyName _name = ((PropertyName) createInstance("com.fasterxml.jackson.databind.PropertyName"));
+        setField(pOJOPropertyBuilder, "com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder", "_name", _name);
+        Object _setters = createInstance("com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder$Linked");
+        int[] value = {};
+        setField(_setters, "com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder$Linked", "value", value);
+        setField(_setters, "com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder$Linked", "next", _setters);
+        setField(pOJOPropertyBuilder, "com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder", "_setters", _setters);
+        arrayList.add(pOJOPropertyBuilder);
+        arrayList.add(null);
+        arrayList.add(null);
+        arrayList.add(null);
+        LinkedHashSet linkedHashSet = new LinkedHashSet();
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.filterBeanProps] produces [java.lang.ClassCastException: class [I cannot be cast to class com.fasterxml.jackson.databind.introspect.AnnotatedMethod ([I is in module java.base of loader 'bootstrap'; com.fasterxml.jackson.databind.introspect.AnnotatedMethod is in unnamed module of loader org.utbot.instrumentation.process.HandlerClassesLoader @17b165cc)]
+            com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder.getSetter(POJOPropertyBuilder.java:277)
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.filterBeanProps(BeanDeserializerFactory.java:589) */
+        beanDeserializerFactory.filterBeanProps(null, null, null, arrayList, linkedHashSet);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#filterBeanProps(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.BeanDescription,com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder,java.util.List,java.util.Set)}
+ * @utbot.throwsException {@link java.lang.ClassCastException} in: rawPropertyType = property.getSetter().getRawParameterType(0);
+ *  */
+    @Test
+    public void testFilterBeanProps_ThrowClassCastException() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        ArrayList arrayList = new ArrayList();
+        POJOPropertyBuilder pOJOPropertyBuilder = ((POJOPropertyBuilder) createInstance("com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder"));
+        PropertyName _name = ((PropertyName) createInstance("com.fasterxml.jackson.databind.PropertyName"));
+        String _simpleName = "";
+        setField(_name, "com.fasterxml.jackson.databind.PropertyName", "_simpleName", _simpleName);
+        setField(pOJOPropertyBuilder, "com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder", "_name", _name);
+        Object _setters = createInstance("com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder$Linked");
+        int[] value = {};
+        setField(_setters, "com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder$Linked", "value", value);
+        setField(pOJOPropertyBuilder, "com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder", "_setters", _setters);
+        arrayList.add(pOJOPropertyBuilder);
+        arrayList.add(null);
+        arrayList.add(null);
+        arrayList.add(null);
+        LinkedHashSet linkedHashSet = new LinkedHashSet();
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.filterBeanProps] produces [java.lang.ClassCastException: class [I cannot be cast to class com.fasterxml.jackson.databind.introspect.AnnotatedMethod ([I is in module java.base of loader 'bootstrap'; com.fasterxml.jackson.databind.introspect.AnnotatedMethod is in unnamed module of loader org.utbot.instrumentation.process.HandlerClassesLoader @17b165cc)]
+            com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder.getSetter(POJOPropertyBuilder.java:272)
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.filterBeanProps(BeanDeserializerFactory.java:589) */
+        beanDeserializerFactory.filterBeanProps(null, null, null, arrayList, linkedHashSet);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#filterBeanProps(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.BeanDescription,com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder,java.util.List,java.util.Set)}
+ * @utbot.throwsException {@link java.lang.ClassCastException} in: rawPropertyType = property.getField().getRawType();
+ *  */
+    @Test
+    public void testFilterBeanProps_ThrowClassCastException_3() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        ArrayList arrayList = new ArrayList();
+        POJOPropertyBuilder pOJOPropertyBuilder = ((POJOPropertyBuilder) createInstance("com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder"));
+        PropertyName _name = ((PropertyName) createInstance("com.fasterxml.jackson.databind.PropertyName"));
+        setField(pOJOPropertyBuilder, "com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder", "_name", _name);
+        Object _fields = createInstance("com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder$Linked");
+        int[] value = {};
+        setField(_fields, "com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder$Linked", "value", value);
+        setField(pOJOPropertyBuilder, "com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder", "_fields", _fields);
+        arrayList.add(pOJOPropertyBuilder);
+        arrayList.add(null);
+        arrayList.add(null);
+        arrayList.add(null);
+        LinkedHashSet linkedHashSet = new LinkedHashSet();
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.filterBeanProps] produces [java.lang.ClassCastException: class [I cannot be cast to class com.fasterxml.jackson.databind.introspect.AnnotatedField ([I is in module java.base of loader 'bootstrap'; com.fasterxml.jackson.databind.introspect.AnnotatedField is in unnamed module of loader org.utbot.instrumentation.process.HandlerClassesLoader @17b165cc)]
+            com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder.getField(POJOPropertyBuilder.java:335)
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.filterBeanProps(BeanDeserializerFactory.java:591) */
+        beanDeserializerFactory.filterBeanProps(null, null, null, arrayList, linkedHashSet);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#filterBeanProps(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.BeanDescription,com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder,java.util.List,java.util.Set)}
+ * @utbot.throwsException {@link java.lang.ClassCastException} in: rawPropertyType = property.getField().getRawType();
+ *  */
+    @Test
+    public void testFilterBeanProps_ThrowClassCastException_2() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        ArrayList arrayList = new ArrayList();
+        POJOPropertyBuilder pOJOPropertyBuilder = ((POJOPropertyBuilder) createInstance("com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder"));
+        PropertyName _name = ((PropertyName) createInstance("com.fasterxml.jackson.databind.PropertyName"));
+        setField(pOJOPropertyBuilder, "com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder", "_name", _name);
+        Object _fields = createInstance("com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder$Linked");
+        Object next = createInstance("com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder$Linked");
+        short[] value = {};
+        setField(next, "com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder$Linked", "value", value);
+        setField(_fields, "com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder$Linked", "next", next);
+        setField(pOJOPropertyBuilder, "com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder", "_fields", _fields);
+        arrayList.add(pOJOPropertyBuilder);
+        arrayList.add(null);
+        arrayList.add(null);
+        arrayList.add(null);
+        LinkedHashSet linkedHashSet = new LinkedHashSet();
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.filterBeanProps] produces [java.lang.ClassCastException: class [S cannot be cast to class com.fasterxml.jackson.databind.introspect.AnnotatedField ([S is in module java.base of loader 'bootstrap'; com.fasterxml.jackson.databind.introspect.AnnotatedField is in unnamed module of loader org.utbot.instrumentation.process.HandlerClassesLoader @17b165cc)]
+            com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder.getField(POJOPropertyBuilder.java:338)
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.filterBeanProps(BeanDeserializerFactory.java:591) */
+        beanDeserializerFactory.filterBeanProps(null, null, null, arrayList, linkedHashSet);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#filterBeanProps(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.BeanDescription,com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder,java.util.List,java.util.Set)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: Math.max(4, propDefsIn.size())
+ *  */
+    @Test
+    public void testFilterBeanProps_ThrowNullPointerException_1() throws JsonMappingException  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.filterBeanProps] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.filterBeanProps(BeanDeserializerFactory.java:578) */
+        beanDeserializerFactory.filterBeanProps(null, null, null, null, null);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#filterBeanProps(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.BeanDescription,com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder,java.util.List,java.util.Set)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: String name = property.getName();
+ *  */
+    @Test
+    public void testFilterBeanProps_ThrowNullPointerException() throws JsonMappingException  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(null);
+        arrayList.add(null);
+        arrayList.add(null);
+        arrayList.add(null);
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.filterBeanProps] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.filterBeanProps(BeanDeserializerFactory.java:582) */
+        beanDeserializerFactory.filterBeanProps(null, null, null, arrayList, null);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#filterBeanProps(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.BeanDescription,com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder,java.util.List,java.util.Set)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} when: ignored.contains(name)
+ *  */
+    @Test
+    public void testFilterBeanProps_ThrowNullPointerException_7() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        ArrayList arrayList = new ArrayList();
+        SimpleBeanPropertyDefinition simpleBeanPropertyDefinition = ((SimpleBeanPropertyDefinition) createInstance("com.fasterxml.jackson.databind.util.SimpleBeanPropertyDefinition"));
+        PropertyName _fullName = ((PropertyName) createInstance("com.fasterxml.jackson.databind.PropertyName"));
+        String _simpleName = "";
+        setField(_fullName, "com.fasterxml.jackson.databind.PropertyName", "_simpleName", _simpleName);
+        setField(simpleBeanPropertyDefinition, "com.fasterxml.jackson.databind.util.SimpleBeanPropertyDefinition", "_fullName", _fullName);
+        arrayList.add(simpleBeanPropertyDefinition);
+        arrayList.add(null);
+        arrayList.add(null);
+        arrayList.add(null);
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.filterBeanProps] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.filterBeanProps(BeanDeserializerFactory.java:583) */
+        beanDeserializerFactory.filterBeanProps(null, null, null, arrayList, null);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#filterBeanProps(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.BeanDescription,com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder,java.util.List,java.util.Set)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} when: ignored.contains(name)
+ *  */
+    @Test
+    public void testFilterBeanProps_ThrowNullPointerException_2() throws JsonMappingException  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        ArrayList arrayList = new ArrayList();
+        POJOPropertyBuilder pOJOPropertyBuilder = new POJOPropertyBuilder(null, null, false, null);
+        arrayList.add(pOJOPropertyBuilder);
+        arrayList.add(null);
+        arrayList.add(null);
+        arrayList.add(null);
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.filterBeanProps] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.filterBeanProps(BeanDeserializerFactory.java:583) */
+        beanDeserializerFactory.filterBeanProps(null, null, null, arrayList, null);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#filterBeanProps(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.BeanDescription,com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder,java.util.List,java.util.Set)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} when: ignored.contains(name)
+ *  */
+    @Test
+    public void testFilterBeanProps_ThrowNullPointerException_3() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        ArrayList arrayList = new ArrayList();
+        PropertyName propertyName = ((PropertyName) createInstance("com.fasterxml.jackson.databind.PropertyName"));
+        String _simpleName = "";
+        setField(propertyName, "com.fasterxml.jackson.databind.PropertyName", "_simpleName", _simpleName);
+        POJOPropertyBuilder pOJOPropertyBuilder = new POJOPropertyBuilder(null, null, false, propertyName);
+        arrayList.add(pOJOPropertyBuilder);
+        arrayList.add(null);
+        arrayList.add(null);
+        arrayList.add(null);
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.filterBeanProps] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.filterBeanProps(BeanDeserializerFactory.java:583) */
+        beanDeserializerFactory.filterBeanProps(null, null, null, arrayList, null);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#filterBeanProps(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.BeanDescription,com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder,java.util.List,java.util.Set)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: rawPropertyType = property.getSetter().getRawParameterType(0);
+ *  */
+    @Test
+    public void testFilterBeanProps_ThrowNullPointerException_4() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        ArrayList arrayList = new ArrayList();
+        POJOPropertyBuilder pOJOPropertyBuilder = ((POJOPropertyBuilder) createInstance("com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder"));
+        PropertyName _name = ((PropertyName) createInstance("com.fasterxml.jackson.databind.PropertyName"));
+        String _simpleName = "";
+        setField(_name, "com.fasterxml.jackson.databind.PropertyName", "_simpleName", _simpleName);
+        setField(pOJOPropertyBuilder, "com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder", "_name", _name);
+        Object _setters = createInstance("com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder$Linked");
+        setField(pOJOPropertyBuilder, "com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder", "_setters", _setters);
+        arrayList.add(pOJOPropertyBuilder);
+        arrayList.add(null);
+        arrayList.add(null);
+        arrayList.add(null);
+        LinkedHashSet linkedHashSet = new LinkedHashSet();
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.filterBeanProps] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.filterBeanProps(BeanDeserializerFactory.java:589) */
+        beanDeserializerFactory.filterBeanProps(null, null, null, arrayList, linkedHashSet);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#filterBeanProps(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.BeanDescription,com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder,java.util.List,java.util.Set)}
+ * @utbot.executesCondition {@code (rawPropertyType != null): True}
+ * @utbot.invokes {@link com.fasterxml.jackson.databind.introspect.AnnotatedMethod#getRawParameterType(int)}
+ * @utbot.invokes {@link com.fasterxml.jackson.databind.DeserializationContext#getConfig()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: (isIgnorableType(ctxt.getConfig(), beanDesc, rawPropertyType, ignoredTypes))
+ *  */
+    @Test
+    public void testFilterBeanProps_ThrowNullPointerException_6() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        ArrayList arrayList = new ArrayList();
+        POJOPropertyBuilder pOJOPropertyBuilder = ((POJOPropertyBuilder) createInstance("com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder"));
+        PropertyName _name = ((PropertyName) createInstance("com.fasterxml.jackson.databind.PropertyName"));
+        String _simpleName = "";
+        setField(_name, "com.fasterxml.jackson.databind.PropertyName", "_simpleName", _simpleName);
+        setField(pOJOPropertyBuilder, "com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder", "_name", _name);
+        Object _setters = createInstance("com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder$Linked");
+        AnnotatedMethod value = ((AnnotatedMethod) createInstance("com.fasterxml.jackson.databind.introspect.AnnotatedMethod"));
+        java.lang.Class[] _paramClasses = new java.lang.Class[1];
+        Class class1 = Object.class;
+        _paramClasses[0] = class1;
+        setField(value, "com.fasterxml.jackson.databind.introspect.AnnotatedMethod", "_paramClasses", _paramClasses);
+        setField(_setters, "com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder$Linked", "value", value);
+        setField(pOJOPropertyBuilder, "com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder", "_setters", _setters);
+        arrayList.add(pOJOPropertyBuilder);
+        arrayList.add(null);
+        arrayList.add(null);
+        arrayList.add(null);
+        LinkedHashSet linkedHashSet = new LinkedHashSet();
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.filterBeanProps] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.filterBeanProps(BeanDeserializerFactory.java:596) */
+        beanDeserializerFactory.filterBeanProps(null, null, null, arrayList, linkedHashSet);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#filterBeanProps(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.BeanDescription,com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder,java.util.List,java.util.Set)}
+ * @utbot.invokes {@link com.fasterxml.jackson.databind.introspect.AnnotatedField#getRawType()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: rawPropertyType = property.getField().getRawType();
+ *  */
+    @Test
+    public void testFilterBeanProps_ThrowNullPointerException_5() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        ArrayList arrayList = new ArrayList();
+        POJOPropertyBuilder pOJOPropertyBuilder = ((POJOPropertyBuilder) createInstance("com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder"));
+        PropertyName _name = ((PropertyName) createInstance("com.fasterxml.jackson.databind.PropertyName"));
+        setField(pOJOPropertyBuilder, "com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder", "_name", _name);
+        Object _fields = createInstance("com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder$Linked");
+        setField(pOJOPropertyBuilder, "com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder", "_fields", _fields);
+        arrayList.add(pOJOPropertyBuilder);
+        arrayList.add(null);
+        arrayList.add(null);
+        arrayList.add(null);
+        LinkedHashSet linkedHashSet = new LinkedHashSet();
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.filterBeanProps] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.filterBeanProps(BeanDeserializerFactory.java:591) */
+        beanDeserializerFactory.filterBeanProps(null, null, null, arrayList, linkedHashSet);
+    }
+    ///endregion
+    
+    ///region OTHER: SUCCESSFUL EXECUTIONS for method filterBeanProps(com.fasterxml.jackson.databind.DeserializationContext, com.fasterxml.jackson.databind.BeanDescription, com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder, java.util.List, java.util.Set)
+    
+    @Test
+    public void testFilterBeanProps1() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        BasicBeanDescription basicBeanDescription = ((BasicBeanDescription) createInstance("com.fasterxml.jackson.databind.introspect.BasicBeanDescription"));
+        ArrayList arrayList = new ArrayList();
+        POJOPropertyBuilder pOJOPropertyBuilder = new POJOPropertyBuilder(null, null, false, null);
+        arrayList.add(pOJOPropertyBuilder);
+        LinkedHashSet linkedHashSet = new LinkedHashSet();
+        linkedHashSet.add(null);
+        String string = "";
+        linkedHashSet.add(string);
+        linkedHashSet.add(null);
+        
+        ArrayList actual = ((ArrayList) beanDeserializerFactory.filterBeanProps(null, basicBeanDescription, null, arrayList, linkedHashSet));
+        
+        ArrayList expected = new ArrayList();
+        
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region OTHER: ERROR SUITE for method filterBeanProps(com.fasterxml.jackson.databind.DeserializationContext, com.fasterxml.jackson.databind.BeanDescription, com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder, java.util.List, java.util.Set)
+    
+    @Test
+    public void testFilterBeanProps2() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        DefaultDeserializationContext.Impl impl = ((DefaultDeserializationContext.Impl) createInstance("com.fasterxml.jackson.databind.deser.DefaultDeserializationContext$Impl"));
+        ArrayList arrayList = new ArrayList();
+        POJOPropertyBuilder pOJOPropertyBuilder = ((POJOPropertyBuilder) createInstance("com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder"));
+        PropertyName _name = ((PropertyName) createInstance("com.fasterxml.jackson.databind.PropertyName"));
+        String _simpleName = "";
+        setField(_name, "com.fasterxml.jackson.databind.PropertyName", "_simpleName", _simpleName);
+        setField(pOJOPropertyBuilder, "com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder", "_name", _name);
+        Object _setters = createInstance("com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder$Linked");
+        AnnotatedMethod value = ((AnnotatedMethod) createInstance("com.fasterxml.jackson.databind.introspect.AnnotatedMethod"));
+        java.lang.Class[] _paramClasses = new java.lang.Class[9];
+        Class class1 = Object.class;
+        _paramClasses[0] = class1;
+        setField(value, "com.fasterxml.jackson.databind.introspect.AnnotatedMethod", "_paramClasses", _paramClasses);
+        setField(_setters, "com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder$Linked", "value", value);
+        setField(pOJOPropertyBuilder, "com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder", "_setters", _setters);
+        arrayList.add(pOJOPropertyBuilder);
+        LinkedHashSet linkedHashSet = new LinkedHashSet();
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.filterBeanProps] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.isIgnorableType(BeanDeserializerFactory.java:826)
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.filterBeanProps(BeanDeserializerFactory.java:596) */
+        beanDeserializerFactory.filterBeanProps(impl, null, null, arrayList, linkedHashSet);
+    }
+    
+    @Test
+    public void testFilterBeanProps3() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        ArrayList arrayList = new ArrayList();
+        PropertyName propertyName = ((PropertyName) createInstance("com.fasterxml.jackson.databind.PropertyName"));
+        POJOPropertyBuilder pOJOPropertyBuilder = new POJOPropertyBuilder(null, null, false, propertyName);
+        arrayList.add(pOJOPropertyBuilder);
+        arrayList.add(null);
+        LinkedHashSet linkedHashSet = new LinkedHashSet();
+        linkedHashSet.add(null);
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.filterBeanProps] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.filterBeanProps(BeanDeserializerFactory.java:582) */
+        beanDeserializerFactory.filterBeanProps(null, null, null, arrayList, linkedHashSet);
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.addInjectables
+    
+    ///region SYMBOLIC EXECUTION: SUCCESSFUL EXECUTIONS for method addInjectables(com.fasterxml.jackson.databind.DeserializationContext, com.fasterxml.jackson.databind.BeanDescription, com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder)
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#addInjectables(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.BeanDescription,com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder)}
+ * @utbot.executesCondition {@code (raw != null): False}
+ * @utbot.invokes {@link com.fasterxml.jackson.databind.BeanDescription#findInjectables()}
+ *  */
+    @Test
+    public void testAddInjectables_RawEqualsNull() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        BasicBeanDescription basicBeanDescription = ((BasicBeanDescription) createInstance("com.fasterxml.jackson.databind.introspect.BasicBeanDescription"));
+        POJOPropertiesCollector _propCollector = ((POJOPropertiesCollector) createInstance("com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector"));
+        setField(_propCollector, "com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector", "_collected", true);
+        setField(basicBeanDescription, "com.fasterxml.jackson.databind.introspect.BasicBeanDescription", "_propCollector", _propCollector);
+        
+        beanDeserializerFactory.addInjectables(null, basicBeanDescription, null);
+    }
+    ///endregion
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method addInjectables(com.fasterxml.jackson.databind.DeserializationContext, com.fasterxml.jackson.databind.BeanDescription, com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder)
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#addInjectables(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.BeanDescription,com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder)}
+ * @utbot.invokes {@link com.fasterxml.jackson.databind.BeanDescription#findInjectables()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: Map<Object, AnnotatedMember> raw = beanDesc.findInjectables();
+ *  */
+    @Test
+    public void testAddInjectables_ThrowNullPointerException() throws JsonMappingException  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.addInjectables] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.addInjectables(BeanDeserializerFactory.java:643) */
+        beanDeserializerFactory.addInjectables(null, null, null);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#addInjectables(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.BeanDescription,com.fasterxml.jackson.databind.deser.BeanDeserializerBuilder)}
+ * @utbot.invokes {@link com.fasterxml.jackson.databind.BeanDescription#findInjectables()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} 
+ *  */
+    @Test
+    public void testAddInjectables_ThrowNullPointerException_1() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        BasicBeanDescription basicBeanDescription = ((BasicBeanDescription) createInstance("com.fasterxml.jackson.databind.introspect.BasicBeanDescription"));
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.addInjectables] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.addInjectables(BeanDeserializerFactory.java:645) */
+        beanDeserializerFactory.addInjectables(null, basicBeanDescription, null);
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.constructAnySetter
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method constructAnySetter(com.fasterxml.jackson.databind.DeserializationContext, com.fasterxml.jackson.databind.BeanDescription, com.fasterxml.jackson.databind.introspect.AnnotatedMethod)
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#constructAnySetter(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.BeanDescription,com.fasterxml.jackson.databind.introspect.AnnotatedMethod)}
+ * @utbot.invokes {@link com.fasterxml.jackson.databind.DeserializationContext#canOverrideAccessModifiers()}
+ * @utbot.throwsException {@link java.lang.NullPointerException} when: ctxt.canOverrideAccessModifiers()
+ *  */
+    @Test
+    public void testConstructAnySetter_ThrowNullPointerException() throws JsonMappingException  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.constructAnySetter] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.constructAnySetter(BeanDeserializerFactory.java:668) */
+        beanDeserializerFactory.constructAnySetter(null, null, null);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#constructAnySetter(com.fasterxml.jackson.databind.DeserializationContext,com.fasterxml.jackson.databind.BeanDescription,com.fasterxml.jackson.databind.introspect.AnnotatedMethod)}
+ * @utbot.executesCondition {@code (ctxt.canOverrideAccessModifiers()): False}
+ * @utbot.invokes {@link com.fasterxml.jackson.databind.DeserializationContext#canOverrideAccessModifiers()}
+ * @utbot.invokes {@link com.fasterxml.jackson.databind.introspect.AnnotatedMethod#getParameterType(int)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: JavaType type = setter.getParameterType(1);
+ *  */
+    @Test
+    public void testConstructAnySetter_ThrowNullPointerException_1() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        DefaultDeserializationContext.Impl impl = ((DefaultDeserializationContext.Impl) createInstance("com.fasterxml.jackson.databind.deser.DefaultDeserializationContext$Impl"));
+        DeserializationConfig _config = ((DeserializationConfig) createInstance("com.fasterxml.jackson.databind.DeserializationConfig"));
+        setField(impl, "com.fasterxml.jackson.databind.DeserializationContext", "_config", _config);
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.constructAnySetter] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.constructAnySetter(BeanDeserializerFactory.java:672) */
+        beanDeserializerFactory.constructAnySetter(impl, null, null);
+    }
+    ///endregion
+    
+    ///region Errors report for constructAnySetter
+    
+    public void testConstructAnySetter_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field parameterTypes is not declared in class java.lang.reflect.Method
+        
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Test suites for executable com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.isIgnorableType
+    
+    ///region SYMBOLIC EXECUTION: ERROR SUITE for method isIgnorableType(com.fasterxml.jackson.databind.DeserializationConfig, com.fasterxml.jackson.databind.BeanDescription, java.lang.Class, java.util.Map)
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#isIgnorableType(com.fasterxml.jackson.databind.DeserializationConfig,com.fasterxml.jackson.databind.BeanDescription,java.lang.Class,java.util.Map)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: Boolean status = ignoredTypes.get(type);
+ *  */
+    @Test
+    public void testIsIgnorableType_ThrowNullPointerException() {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.isIgnorableType] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.isIgnorableType(BeanDeserializerFactory.java:822) */
+        beanDeserializerFactory.isIgnorableType(null, null, null, null);
+    }
+    
+    /**
+    @utbot.classUnderTest {@link BeanDeserializerFactory}
+ * @utbot.methodUnderTest {@link com.fasterxml.jackson.databind.deser.BeanDeserializerFactory#isIgnorableType(com.fasterxml.jackson.databind.DeserializationConfig,com.fasterxml.jackson.databind.BeanDescription,java.lang.Class,java.util.Map)}
+ * @utbot.executesCondition {@code (status != null): False}
+ * @utbot.invokes {@link java.util.Map#get(java.lang.Object)}
+ * @utbot.invokes {@link com.fasterxml.jackson.databind.DeserializationConfig#introspectClassAnnotations(java.lang.Class)}
+ * @utbot.throwsException {@link java.lang.NullPointerException} in: BeanDescription desc = config.introspectClassAnnotations(type);
+ *  */
+    @Test
+    public void testIsIgnorableType_ThrowNullPointerException_1() {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.isIgnorableType] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.isIgnorableType(BeanDeserializerFactory.java:826) */
+        beanDeserializerFactory.isIgnorableType(null, null, null, linkedHashMap);
+    }
+    ///endregion
+    
+    ///region OTHER: SUCCESSFUL EXECUTIONS for method isIgnorableType(com.fasterxml.jackson.databind.DeserializationConfig, com.fasterxml.jackson.databind.BeanDescription, java.lang.Class, java.util.Map)
+    
+    @Test
+    public void testIsIgnorableType1() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        BasicBeanDescription basicBeanDescription = ((BasicBeanDescription) createInstance("com.fasterxml.jackson.databind.introspect.BasicBeanDescription"));
+        Class class1 = Object.class;
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        Boolean boolean1 = false;
+        linkedHashMap.put(class1, boolean1);
+        
+        boolean actual = beanDeserializerFactory.isIgnorableType(null, basicBeanDescription, class1, linkedHashMap);
+        
+        assertFalse(actual);
+        
+        Class finalClass1 = class1;
+        
+    }
+    ///endregion
+    
+    ///region OTHER: ERROR SUITE for method isIgnorableType(com.fasterxml.jackson.databind.DeserializationConfig, com.fasterxml.jackson.databind.BeanDescription, java.lang.Class, java.util.Map)
+    
+    @Test
+    public void testIsIgnorableType2() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        DeserializationConfig deserializationConfig = ((DeserializationConfig) createInstance("com.fasterxml.jackson.databind.DeserializationConfig"));
+        BaseSettings _base = ((BaseSettings) createInstance("com.fasterxml.jackson.databind.cfg.BaseSettings"));
+        TypeFactory _typeFactory = ((TypeFactory) createInstance("com.fasterxml.jackson.databind.type.TypeFactory"));
+        setField(_base, "com.fasterxml.jackson.databind.cfg.BaseSettings", "_typeFactory", _typeFactory);
+        setField(deserializationConfig, "com.fasterxml.jackson.databind.cfg.MapperConfig", "_base", _base);
+        Class class1 = Object.class;
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.isIgnorableType] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.DeserializationConfig.introspectClassAnnotations(DeserializationConfig.java:757)
+            com.fasterxml.jackson.databind.cfg.MapperConfig.introspectClassAnnotations(MapperConfig.java:321)
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.isIgnorableType(BeanDeserializerFactory.java:826) */
+        beanDeserializerFactory.isIgnorableType(deserializationConfig, null, class1, linkedHashMap);
+    }
+    
+    @Test
+    public void testIsIgnorableType3() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        DeserializationConfig deserializationConfig = ((DeserializationConfig) createInstance("com.fasterxml.jackson.databind.DeserializationConfig"));
+        BasicBeanDescription basicBeanDescription = ((BasicBeanDescription) createInstance("com.fasterxml.jackson.databind.introspect.BasicBeanDescription"));
+        Class class1 = Object.class;
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        Boolean boolean1 = false;
+        linkedHashMap.put(null, boolean1);
+        
+        /* This test fails because method [com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.isIgnorableType] produces [java.lang.NullPointerException]
+            com.fasterxml.jackson.databind.cfg.MapperConfig.getTypeFactory(MapperConfig.java:279)
+            com.fasterxml.jackson.databind.cfg.MapperConfig.constructType(MapperConfig.java:291)
+            com.fasterxml.jackson.databind.cfg.MapperConfig.introspectClassAnnotations(MapperConfig.java:321)
+            com.fasterxml.jackson.databind.deser.BeanDeserializerFactory.isIgnorableType(BeanDeserializerFactory.java:826) */
+        beanDeserializerFactory.isIgnorableType(deserializationConfig, basicBeanDescription, class1, linkedHashMap);
+    }
+    ///endregion
+    
+    ///region OTHER: EXPLICITLY THROWN UNCHECKED EXCEPTIONS for method isIgnorableType(com.fasterxml.jackson.databind.DeserializationConfig, com.fasterxml.jackson.databind.BeanDescription, java.lang.Class, java.util.Map)
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testIsIgnorableType4() throws Exception  {
+        BeanDeserializerFactory beanDeserializerFactory = new BeanDeserializerFactory(null);
+        DeserializationConfig deserializationConfig = ((DeserializationConfig) createInstance("com.fasterxml.jackson.databind.DeserializationConfig"));
+        BaseSettings _base = ((BaseSettings) createInstance("com.fasterxml.jackson.databind.cfg.BaseSettings"));
+        TypeFactory _typeFactory = ((TypeFactory) createInstance("com.fasterxml.jackson.databind.type.TypeFactory"));
+        setField(_base, "com.fasterxml.jackson.databind.cfg.BaseSettings", "_typeFactory", _typeFactory);
+        setField(deserializationConfig, "com.fasterxml.jackson.databind.cfg.MapperConfig", "_base", _base);
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        
+        beanDeserializerFactory.isIgnorableType(deserializationConfig, null, null, linkedHashMap);
+    }
+    ///endregion
+    
+    ///endregion
+    
+    ///region Util methods
+    
+    private static Object createInstance(String className) throws Exception {
+        Class<?> clazz = Class.forName(className);
+        return Class.forName("sun.misc.Unsafe").getDeclaredMethod("allocateInstance", Class.class)
+            .invoke(getUnsafeInstance(), clazz);
+    }
+    
+        private static void setField(Object object, String fieldClassName, String fieldName, Object fieldValue) throws ClassNotFoundException, NoSuchFieldException, NoSuchMethodException, IllegalAccessException, java.lang.reflect.InvocationTargetException {
+        Class<?> clazz = Class.forName(fieldClassName);
+        java.lang.reflect.Field field = clazz.getDeclaredField(fieldName);
+    
+        java.lang.reflect.Field modifiersField;
+        
+                java.lang.reflect.Method methodForGetDeclaredFields1078194574042500 = java.lang.Class.class.getDeclaredMethod("getDeclaredFields0", boolean.class);
+                methodForGetDeclaredFields1078194574042500.setAccessible(true);
+                java.lang.reflect.Field[] allFieldsFromFieldClass1078194574049100 = (java.lang.reflect.Field[]) methodForGetDeclaredFields1078194574042500.invoke(java.lang.reflect.Field.class, false);
+                modifiersField = java.util.Arrays.stream(allFieldsFromFieldClass1078194574049100).filter(field1 -> field1.getName().equals("modifiers")).findFirst().get();
+    
+        modifiersField.setAccessible(true);
+        modifiersField.setInt(field, field.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
+    
+        field.setAccessible(true);
+        field.set(object, fieldValue);
+    }
+    
+    static class FieldsPair {
+        final Object o1;
+        final Object o2;
+    
+        public FieldsPair(Object o1, Object o2) {
+            this.o1 = o1;
+            this.o2 = o2;
+        }
+    
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            FieldsPair that = (FieldsPair) o;
+            return java.util.Objects.equals(o1, that.o1) && java.util.Objects.equals(o2, that.o2);
+        }
+    
+        @Override
+        public int hashCode() {
+            return java.util.Objects.hash(o1, o2);
+        }
+    }
+    
+    private static boolean deepEquals(Object o1, Object o2) {
+        return deepEquals(o1, o2, new java.util.HashSet<>());
+    }
+    
+    private static boolean deepEquals(Object o1, Object o2, java.util.Set<FieldsPair> visited) {
+        visited.add(new FieldsPair(o1, o2));
+    
+        if (o1 == o2) {
+            return true;
+        }
+    
+        if (o1 == null || o2 == null) {
+            return false;
+        }
+    
+        if (o1 instanceof Iterable) {
+            if (!(o2 instanceof Iterable)) {
+                return false;
+            }
+    
+            return iterablesDeepEquals((Iterable<?>) o1, (Iterable<?>) o2, visited);
+        }
+        
+        if (o2 instanceof Iterable) {
+            return false;
+        }
+        
+        if (o1 instanceof java.util.stream.BaseStream) {
+            if (!(o2 instanceof java.util.stream.BaseStream)) {
+                return false;
+            }
+    
+            return streamsDeepEquals((java.util.stream.BaseStream<?, ?>) o1, (java.util.stream.BaseStream<?, ?>) o2, visited);
+        }
+    
+        if (o2 instanceof java.util.stream.BaseStream) {
+            return false;
+        }
+    
+        if (o1 instanceof java.util.Map) {
+            if (!(o2 instanceof java.util.Map)) {
+                return false;
+            }
+    
+            return mapsDeepEquals((java.util.Map<?, ?>) o1, (java.util.Map<?, ?>) o2, visited);
+        }
+        
+        if (o2 instanceof java.util.Map) {
+            return false;
+        }
+    
+        Class<?> firstClass = o1.getClass();
+        if (firstClass.isArray()) {
+            if (!o2.getClass().isArray()) {
+                return false;
+            }
+    
+            // Primitive arrays should not appear here
+            return arraysDeepEquals(o1, o2, visited);
+        }
+    
+        // common classes
+    
+        // check if class has custom equals method (including wrappers and strings)
+        // It is very important to check it here but not earlier because iterables and maps also have custom equals 
+        // based on elements equals 
+        if (hasCustomEquals(firstClass)) {
+            return o1.equals(o2);
+        }
+    
+        // common classes without custom equals, use comparison by fields
+        final java.util.List<java.lang.reflect.Field> fields = new java.util.ArrayList<>();
+        while (firstClass != Object.class) {
+            fields.addAll(java.util.Arrays.asList(firstClass.getDeclaredFields()));
+            // Interface should not appear here
+            firstClass = firstClass.getSuperclass();
+        }
+    
+        for (java.lang.reflect.Field field : fields) {
+            field.setAccessible(true);
+            try {
+                final Object field1 = field.get(o1);
+                final Object field2 = field.get(o2);
+                if (!visited.contains(new FieldsPair(field1, field2)) && !deepEquals(field1, field2, visited)) {
+                    return false;
+                }
+            } catch (IllegalArgumentException e) {
+                return false;
+            } catch (IllegalAccessException e) {
+                // should never occur because field was set accessible
+                return false;
+            }
+        }
+    
+        return true;
+    }
+    
+    private static boolean arraysDeepEquals(Object arr1, Object arr2, java.util.Set<FieldsPair> visited) {
+        final int length = java.lang.reflect.Array.getLength(arr1);
+        if (length != java.lang.reflect.Array.getLength(arr2)) {
+            return false;
+        }
+    
+        for (int i = 0; i < length; i++) {
+            if (!deepEquals(java.lang.reflect.Array.get(arr1, i), java.lang.reflect.Array.get(arr2, i), visited)) {
+                return false;
+            }
+        }
+    
+        return true;
+    }
+    
+    private static boolean iterablesDeepEquals(Iterable<?> i1, Iterable<?> i2, java.util.Set<FieldsPair> visited) {
+        final java.util.Iterator<?> firstIterator = i1.iterator();
+        final java.util.Iterator<?> secondIterator = i2.iterator();
+        while (firstIterator.hasNext() && secondIterator.hasNext()) {
+            if (!deepEquals(firstIterator.next(), secondIterator.next(), visited)) {
+                return false;
+            }
+        }
+    
+        if (firstIterator.hasNext()) {
+            return false;
+        }
+    
+        return !secondIterator.hasNext();
+    }
+    
+    private static boolean streamsDeepEquals(
+        java.util.stream.BaseStream<?, ?> s1, 
+        java.util.stream.BaseStream<?, ?> s2, 
+        java.util.Set<FieldsPair> visited
+    ) {
+        final java.util.Iterator<?> firstIterator = s1.iterator();
+        final java.util.Iterator<?> secondIterator = s2.iterator();
+        while (firstIterator.hasNext() && secondIterator.hasNext()) {
+            if (!deepEquals(firstIterator.next(), secondIterator.next(), visited)) {
+                return false;
+            }
+        }
+    
+        if (firstIterator.hasNext()) {
+            return false;
+        }
+    
+        return !secondIterator.hasNext();
+    }
+    
+    private static boolean mapsDeepEquals(
+        java.util.Map<?, ?> m1, 
+        java.util.Map<?, ?> m2, 
+        java.util.Set<FieldsPair> visited
+    ) {
+        final java.util.Iterator<? extends java.util.Map.Entry<?, ?>> firstIterator = m1.entrySet().iterator();
+        final java.util.Iterator<? extends java.util.Map.Entry<?, ?>> secondIterator = m2.entrySet().iterator();
+        while (firstIterator.hasNext() && secondIterator.hasNext()) {
+            final java.util.Map.Entry<?, ?> firstEntry = firstIterator.next();
+            final java.util.Map.Entry<?, ?> secondEntry = secondIterator.next();
+    
+            if (!deepEquals(firstEntry.getKey(), secondEntry.getKey(), visited)) {
+                return false;
+            }
+    
+            if (!deepEquals(firstEntry.getValue(), secondEntry.getValue(), visited)) {
+                return false;
+            }
+        }
+    
+        if (firstIterator.hasNext()) {
+            return false;
+        }
+    
+        return !secondIterator.hasNext();
+    }
+    
+    private static boolean hasCustomEquals(Class<?> clazz) {
+        while (!Object.class.equals(clazz)) {
+            try {
+                clazz.getDeclaredMethod("equals", Object.class);
+                return true;
+            } catch (Exception e) { 
+                // Interface should not appear here
+                clazz = clazz.getSuperclass();
+            }
+        }
+    
+        return false;
+    }
+    
+    private static void setStaticField(Class<?> clazz, String fieldName, Object fieldValue) throws NoSuchFieldException, IllegalAccessException {
+        java.lang.reflect.Field field;
+    
+        try {
+        do {
+            try {
+                field = clazz.getDeclaredField(fieldName);
+            } catch (Exception e) {
+                clazz = clazz.getSuperclass();
+                field = null;
+            }
+        } while (field == null);
+        
+        java.lang.reflect.Field modifiersField;
+        
+            java.lang.reflect.Method methodForGetDeclaredFields1078194577351799 = java.lang.Class.class.getDeclaredMethod("getDeclaredFields0", boolean.class);
+            methodForGetDeclaredFields1078194577351799.setAccessible(true);
+            java.lang.reflect.Field[] allFieldsFromFieldClass1078194577355400 = (java.lang.reflect.Field[]) methodForGetDeclaredFields1078194577351799.invoke(java.lang.reflect.Field.class, false);
+            modifiersField = java.util.Arrays.stream(allFieldsFromFieldClass1078194577355400).filter(field1 -> field1.getName().equals("modifiers")).findFirst().get();
+    
+        modifiersField.setAccessible(true);
+        modifiersField.setInt(field, field.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
+    
+        field.setAccessible(true);
+        field.set(null, fieldValue);
+        }
+        catch(java.lang.reflect.InvocationTargetException e){
+            e.printStackTrace();
+        }
+        catch(NoSuchMethodException e2) {
+            e2.printStackTrace();
+        }
+    }
+    
+    private static Object getUnsafeInstance() throws ClassNotFoundException, NoSuchFieldException, IllegalAccessException {
+        java.lang.reflect.Field f = Class.forName("sun.misc.Unsafe").getDeclaredField("theUnsafe");
+        f.setAccessible(true);
+        return f.get(null);
+    }
+    ///endregion
+}
+

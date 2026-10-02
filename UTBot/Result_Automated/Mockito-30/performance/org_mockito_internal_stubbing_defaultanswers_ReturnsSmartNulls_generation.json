@@ -1,0 +1,7 @@
+{
+  "class": "org.mockito.internal.stubbing.defaultanswers.ReturnsSmartNulls",
+  "generated_tests": 5,
+  "generation_seconds": 136.078565,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

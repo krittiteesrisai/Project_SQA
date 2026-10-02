@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.math.optimization.direct.BOBYQAOptimizer",
+  "generated_tests": 137,
+  "generation_seconds": 135.504283,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

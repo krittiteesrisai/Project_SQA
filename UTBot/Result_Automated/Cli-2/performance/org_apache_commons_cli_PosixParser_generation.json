@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.cli.PosixParser",
+  "generated_tests": 32,
+  "generation_seconds": 220.533365,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

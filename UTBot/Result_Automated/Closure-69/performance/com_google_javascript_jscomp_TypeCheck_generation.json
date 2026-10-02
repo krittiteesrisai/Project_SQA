@@ -1,0 +1,7 @@
+{
+  "class": "com.google.javascript.jscomp.TypeCheck",
+  "generated_tests": 359,
+  "generation_seconds": 145.453936,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

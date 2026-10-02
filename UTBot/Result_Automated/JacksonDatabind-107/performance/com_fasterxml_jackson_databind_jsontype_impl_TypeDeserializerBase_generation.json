@@ -1,0 +1,7 @@
+{
+  "class": "com.fasterxml.jackson.databind.jsontype.impl.TypeDeserializerBase",
+  "generated_tests": 146,
+  "generation_seconds": 132.394291,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.math.analysis.solvers.UnivariateRealSolverUtils",
+  "generated_tests": 8,
+  "generation_seconds": 128.079797,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}

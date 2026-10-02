@@ -1,0 +1,7 @@
+{
+  "class": "org.apache.commons.collections.functors.EqualPredicate",
+  "generated_tests": 11,
+  "generation_seconds": 15.337626,
+  "generation_exit_code": 0,
+  "generation_timeout_ms": 120000
+}
