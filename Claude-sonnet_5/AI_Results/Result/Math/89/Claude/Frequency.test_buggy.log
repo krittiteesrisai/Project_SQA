@@ -1,0 +1,9 @@
+Failing tests: 4
+  - org.apache.commons.math.stat.FrequencyTest::testGetPct_int_long_char_Overloads
+  - org.apache.commons.math.stat.FrequencyTest::testGetCount_int_long_char_Overloads
+  - org.apache.commons.math.stat.FrequencyTest::testGetCumFreq_int_long_char_Overloads
+  - org.apache.commons.math.stat.FrequencyTest::testGetCumPct_int_long_char_Overloads
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

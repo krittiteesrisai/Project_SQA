@@ -1,0 +1,16 @@
+Failing tests: 11
+  - com.fasterxml.jackson.databind.ser.std.DateTimeSerializerBaseTest::asTimestamp_nullUseTimestamp_customFormatNull_providerDisabled_returnsFalse
+  - com.fasterxml.jackson.databind.ser.std.DateTimeSerializerBaseTest::asTimestamp_nullUseTimestamp_customFormatNull_providerEnabled_returnsTrue
+  - com.fasterxml.jackson.databind.ser.std.DateTimeSerializerBaseTest::createContextual_asString_stdDateFormat_withLocaleAndTimeZone
+  - com.fasterxml.jackson.databind.ser.std.DateTimeSerializerBaseTest::createContextual_simpleDateFormat_noLocale_sameTimeZone_noChange
+  - com.fasterxml.jackson.databind.ser.std.DateTimeSerializerBaseTest::serializeAsString_customFormatNull_delegatesToProvider
+  - com.fasterxml.jackson.databind.ser.std.DateTimeSerializerBaseTest::serializeAsString_customFormatNotNull_reusedNull_clonesAndWrites
+  - com.fasterxml.jackson.databind.ser.std.DateTimeSerializerBaseTest::createContextual_simpleDateFormat_noLocale_changesTimeZone
+  - com.fasterxml.jackson.databind.ser.std.DateTimeSerializerBaseTest::createContextual_hasPattern_withLocaleAndTimeZone
+  - com.fasterxml.jackson.databind.ser.std.DateTimeSerializerBaseTest::createContextual_asString_stdDateFormat_noLocaleNoTimeZone
+  - com.fasterxml.jackson.databind.ser.std.DateTimeSerializerBaseTest::createContextual_dateFormatNotSimpleOrStd_reportsBadDefinitionAndThrows
+  - com.fasterxml.jackson.databind.ser.std.DateTimeSerializerBaseTest::createContextual_simpleDateFormat_withLocale_changesTimeZone
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

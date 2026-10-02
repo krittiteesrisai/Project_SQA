@@ -1,0 +1,9 @@
+Failing tests: 4
+  - com.google.javascript.jscomp.TypedScopeCreatorTest::testInterfaceWithoutInitializer_reportsIfaceInitializerError
+  - com.google.javascript.jscomp.TypedScopeCreatorTest::testObjectLiteral_declaresAnonymousType
+  - com.google.javascript.jscomp.TypedScopeCreatorTest::testConstructorWithoutInitializer_reportsCtorInitializerError
+  - com.google.javascript.jscomp.TypedScopeCreatorTest::testConstructorAlias_sharesFunctionType
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

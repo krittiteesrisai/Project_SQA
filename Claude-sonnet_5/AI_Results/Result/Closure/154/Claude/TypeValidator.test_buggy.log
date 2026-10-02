@@ -1,0 +1,16 @@
+Failing tests: 11
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectStringOrNumber_VoidMatchesNeither_Mismatch
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectIndexMatch_ObjectType_VoidIndex_Mismatch
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectIndexMatch_UnknownObjectType_VoidIndex_Mismatch
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectNotNullOrUndefined_VoidNonGetProp_Mismatch
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectString_VoidDoesNotMatch_Mismatch
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectIndexMatch_NeitherArrayNorObject_Mismatch
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectNotNullOrUndefined_NullNonGetProp_Mismatch
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectObject_VoidDoesNotMatchObjectContext_ReturnsFalseMismatch
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectIndexMatch_ArrayType_VoidIndex_Mismatch
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectNotNullOrUndefined_GetPropInGlobalScope_Mismatch
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectNumber_VoidDoesNotMatch_Mismatch
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

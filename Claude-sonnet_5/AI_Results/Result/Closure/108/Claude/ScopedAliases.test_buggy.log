@@ -1,0 +1,16 @@
+Failing tests: 11
+  - com.google.javascript.jscomp.ScopedAliasesTest::testProcess_multipleAliasesInOneVarStatement_bothDetachBranches
+  - com.google.javascript.jscomp.ScopedAliasesTest::testHotSwapScript_behavesLikeProcess
+  - com.google.javascript.jscomp.ScopedAliasesTest::testProcess_transitiveAliasChain_fromClassJavadocExample
+  - com.google.javascript.jscomp.ScopedAliasesTest::testProcess_notAloneInStatement_reportsUsedImproperly
+  - com.google.javascript.jscomp.ScopedAliasesTest::testProcess_simpleAlias_isInlinedAndScopeCollapsed
+  - com.google.javascript.jscomp.ScopedAliasesTest::testProcess_namedFunctionArgument_reportsBadParameters
+  - com.google.javascript.jscomp.ScopedAliasesTest::testProcess_aliasRedefined_reportsAliasRedefined
+  - com.google.javascript.jscomp.ScopedAliasesTest::testProcess_bodyReferencesThis_reportsReferencesThis
+  - com.google.javascript.jscomp.ScopedAliasesTest::testProcess_bodyUsesThrow_reportsUsesThrow
+  - com.google.javascript.jscomp.ScopedAliasesTest::testProcess_functionWithParams_reportsBadParameters
+  - com.google.javascript.jscomp.ScopedAliasesTest::testProcess_bodyUsesReturn_reportsUsesReturn
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

@@ -1,0 +1,7 @@
+Failing tests: 2
+  - org.apache.commons.lang3.ArrayUtilsTest::testAddObjectElement_ArrayNullElementNull
+  - org.apache.commons.lang3.ArrayUtilsTest::testAddGenericWithIndex_ArrayNullElementNull_IgnoresIndex
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

@@ -1,0 +1,9 @@
+Failing tests: 4
+  - com.google.javascript.jscomp.CollapsePropertiesTest::testStubForPropertySetOnlyInLocalScope
+  - com.google.javascript.jscomp.CollapsePropertiesTest::testAssignDeclarationCollapse
+  - com.google.javascript.jscomp.CollapsePropertiesTest::testAliasingNamespaceProducesWarning
+  - com.google.javascript.jscomp.CollapsePropertiesTest::testNamespaceRedefinitionProducesWarning
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

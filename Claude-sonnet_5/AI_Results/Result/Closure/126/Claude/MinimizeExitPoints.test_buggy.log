@@ -1,0 +1,9 @@
+Failing tests: 4
+  - com.google.javascript.jscomp.MinimizeExitPointsTest::testBlockScan_IfWithSingleStatementElse_WrappedIntoNewBlock
+  - com.google.javascript.jscomp.MinimizeExitPointsTest::testTryNode_WithFinally_BUG_FinallyExitsShouldNotBeMinimized
+  - com.google.javascript.jscomp.MinimizeExitPointsTest::testBlockScan_IfWithNullElse_SiblingMergedIntoNewElseBlock
+  - com.google.javascript.jscomp.MinimizeExitPointsTest::testBlockScan_IfWithExistingBlockElse_SiblingsAppendedToExistingBlock
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

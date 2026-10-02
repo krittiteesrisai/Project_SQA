@@ -1,0 +1,10 @@
+Failing tests: 5
+  - org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest::testSkipWithinEntry
+  - org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest::testLargeStoredEntryMultipleBufferRefills
+  - org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest::testSkipLargeAmountAcrossMultipleReads
+  - org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest::testTruncatedStoredEntryReadReturnsMinusOne
+  - org.apache.commons.compress.archivers.zip.ZipArchiveInputStreamTest::testStoredEntryRoundTrip
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

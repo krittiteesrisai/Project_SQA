@@ -1,0 +1,13 @@
+       Lines total: 688
+     Lines covered: 574
+  Conditions total: 473
+Conditions covered: 337
+     Line coverage: 83.4%
+Condition coverage: 71.2%
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (coverage.instrument).......................................... OK
+Running ant (run.gen.tests)................................................ OK
+Running ant (coverage.report).............................................. OK
+WARNING: Some tests failed (see /home/piyachayanin/SQA_2/AI_Testing/work/Gson_4b/failing_tests)!

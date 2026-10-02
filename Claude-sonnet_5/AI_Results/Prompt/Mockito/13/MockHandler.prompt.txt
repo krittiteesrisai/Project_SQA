@@ -1,0 +1,137 @@
+คุณคือ Java testing engineer ที่เชี่ยวชาญด้าน unit testing และ JUnit 4
+เป้าหมาย: เขียนชุดทดสอบ JUnit 4 สำหรับคลาสด้านล่าง เพื่อให้ได้ branch coverage สูงที่สุดเท่าที่เป็นไปได้
+และมีโอกาสดักจับข้อบกพร่อง (fault) ในโค้ดได้จริง
+ข้อกำหนด:
+1. ใช้เฉพาะ JUnit 4 และไลบรารีที่อยู่ใน classpath ต่อไปนี้: asm-all-5.0.4.jar, assertj-core-2.1.0.jar, cglib-and-asm-1.0.jar, cobertura-2.0.3.jar, fest-assert-1.3.jar, fest-util-1.1.4.jar, hamcrest-all-1.3.jar, hamcrest-core-1.1.jar, junit-4.12-hamcrest-1.3.jar, objenesis-2.1.jar, objenesis-2.2.jar, powermock-reflect-1.2.5.jar
+2. ตั้งชื่อคลาสทดสอบเป็น MockHandlerTest และ import คลาสเป้าหมายให้ถูกต้อง
+3. ครอบคลุมกรณี: ค่าขอบเขต (boundary), ค่า null/ว่าง, อินพุตผิดรูปแบบ,
+และเงื่อนไข if/else, loop ทุกสาขาเท่าที่วิเคราะห์ได้จากซอร์สที่ให้มา
+4. ห้ามเดา behavior ที่ไม่มีอยู่ในซอร์สโค้ด หากไม่แน่ใจให้เขียนคอมเมนต์กำกับ
+5. หลังโค้ดเทส ให้สรุปเป็นตารางสั้น ๆ ว่าแต่ละเมธอดเทสใด ครอบคลุม Branch/Condition ใด
+ซอร์สโค้ดคลาสเป้าหมาย (Defects4J: Mockito-13b):
+```java
+/*
+ * Copyright (c) 2007 Mockito contributors
+ * This program is made available under the terms of the MIT License.
+ */
+package org.mockito.internal;
+
+import java.util.List;
+
+import org.mockito.internal.creation.MockSettingsImpl;
+import org.mockito.internal.invocation.Invocation;
+import org.mockito.internal.invocation.InvocationMatcher;
+import org.mockito.internal.invocation.MatchersBinder;
+import org.mockito.internal.progress.MockingProgress;
+import org.mockito.internal.progress.ThreadSafeMockingProgress;
+import org.mockito.internal.stubbing.InvocationContainer;
+import org.mockito.internal.stubbing.InvocationContainerImpl;
+import org.mockito.internal.stubbing.OngoingStubbingImpl;
+import org.mockito.internal.stubbing.StubbedInvocationMatcher;
+import org.mockito.internal.stubbing.VoidMethodStubbableImpl;
+import org.mockito.internal.verification.MockAwareVerificationMode;
+import org.mockito.internal.verification.VerificationDataImpl;
+import org.mockito.stubbing.Answer;
+import org.mockito.stubbing.VoidMethodStubbable;
+import org.mockito.verification.VerificationMode;
+
+/**
+ * Invocation handler set on mock objects.
+ * 
+ * @param <T>
+ *            type of mock object to handle
+ */
+public class MockHandler<T> implements MockitoInvocationHandler, MockHandlerInterface<T> {
+
+    private static final long serialVersionUID = -2917871070982574165L;
+
+    InvocationContainerImpl invocationContainerImpl;
+    MatchersBinder matchersBinder = new MatchersBinder();
+    MockingProgress mockingProgress = new ThreadSafeMockingProgress();
+
+    private final MockSettingsImpl mockSettings;
+
+    public MockHandler(MockSettingsImpl mockSettings) {
+        this.mockSettings = mockSettings;
+        this.mockingProgress = new ThreadSafeMockingProgress();
+        this.matchersBinder = new MatchersBinder();
+        this.invocationContainerImpl = new InvocationContainerImpl(mockingProgress);
+    }
+
+    // for tests
+    MockHandler() {
+        this(new MockSettingsImpl());
+    }
+
+    public MockHandler(MockHandlerInterface<T> oldMockHandler) {
+        this(oldMockHandler.getMockSettings());
+    }
+
+    public Object handle(Invocation invocation) throws Throwable {
+        if (invocationContainerImpl.hasAnswersForStubbing()) {
+            // stubbing voids with stubVoid() or doAnswer() style
+            InvocationMatcher invocationMatcher = matchersBinder.bindMatchers(mockingProgress
+                            .getArgumentMatcherStorage(), invocation);
+            invocationContainerImpl.setMethodForStubbing(invocationMatcher);
+            return null;
+        }
+        VerificationMode verificationMode = mockingProgress.pullVerificationMode();
+
+        InvocationMatcher invocationMatcher = matchersBinder.bindMatchers(mockingProgress.getArgumentMatcherStorage(),
+                        invocation);
+
+        mockingProgress.validateState();
+
+        //if verificationMode is not null then someone is doing verify()        
+        if (verificationMode != null) {
+            //We need to check if verification was started on the correct mock 
+            // - see VerifyingWithAnExtraCallToADifferentMockTest (bug 138)
+            if (verificationMode instanceof MockAwareVerificationMode && ((MockAwareVerificationMode) verificationMode).getMock() == invocation.getMock()) {                
+                VerificationDataImpl data = new VerificationDataImpl(invocationContainerImpl, invocationMatcher);            
+                verificationMode.verify(data);
+                return null;
+                // this means there is an invocation on a different mock. Re-adding verification mode 
+                // - see VerifyingWithAnExtraCallToADifferentMockTest (bug 138)
+            }
+        }
+        
+        invocationContainerImpl.setInvocationForPotentialStubbing(invocationMatcher);
+        OngoingStubbingImpl<T> ongoingStubbing = new OngoingStubbingImpl<T>(invocationContainerImpl);
+        mockingProgress.reportOngoingStubbing(ongoingStubbing);
+
+        StubbedInvocationMatcher stubbedInvocation = invocationContainerImpl.findAnswerFor(invocation);
+
+        if (stubbedInvocation != null) {
+            stubbedInvocation.captureArgumentsFrom(invocation);
+            return stubbedInvocation.answer(invocation);
+        } else {
+            Object ret = mockSettings.getDefaultAnswer().answer(invocation);
+
+            // redo setting invocation for potential stubbing in case of partial
+            // mocks / spies.
+            // Without it, the real method inside 'when' might have delegated
+            // to other self method and overwrite the intended stubbed method
+            // with a different one. The reset is required to avoid runtime exception that validates return type with stubbed method signature.
+            invocationContainerImpl.resetInvocationForPotentialStubbing(invocationMatcher);
+            return ret;
+        }
+    }
+
+    public VoidMethodStubbable<T> voidMethodStubbable(T mock) {
+        return new VoidMethodStubbableImpl<T>(mock, invocationContainerImpl);
+    }
+
+    public MockSettingsImpl getMockSettings() {
+        return mockSettings;
+    }
+
+    @SuppressWarnings("unchecked")
+    public void setAnswersForStubbing(List<Answer> answers) {
+        invocationContainerImpl.setAnswersForStubbing(answers);
+    }
+
+    public InvocationContainer getInvocationContainer() {
+        return invocationContainerImpl;
+    }
+}
+```

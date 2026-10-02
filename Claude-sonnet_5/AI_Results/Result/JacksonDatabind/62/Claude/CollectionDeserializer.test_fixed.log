@@ -1,0 +1,11 @@
+Failing tests: 6
+  - com.fasterxml.jackson.databind.deser.std.CollectionDeserializerTest::testHandleNonArray_UnwrapSingleNull_FeatureEnabled_Success
+  - com.fasterxml.jackson.databind.deser.std.CollectionDeserializerTest::testDeserialize3Arg_Exception_WrapDisabled_RuntimeException_Rethrown
+  - com.fasterxml.jackson.databind.deser.std.CollectionDeserializerTest::testCreateContextual_DelegateTypeNull_ThrowsIllegalArgumentException
+  - com.fasterxml.jackson.databind.deser.std.CollectionDeserializerTest::testDeserialize3Arg_Exception_WrapDisabled_CheckedException_StillWrapped
+  - com.fasterxml.jackson.databind.deser.std.CollectionDeserializerTest::testHandleNonArray_CannotWrap_Throws
+  - com.fasterxml.jackson.databind.deser.std.CollectionDeserializerTest::testDeserialize3Arg_Exception_WrapEnabled_ThrowsJsonMappingException
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

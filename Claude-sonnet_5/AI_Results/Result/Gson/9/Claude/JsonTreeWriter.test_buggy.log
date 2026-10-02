@@ -1,0 +1,7 @@
+Failing tests: 2
+  - com.google.gson.internal.bind.JsonTreeWriterTest::testValueString_Null_DelegatesToNullValue
+  - com.google.gson.internal.bind.JsonTreeWriterTest::testPut_PendingName_NullValue_SerializeNullsFalse_NotAdded
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

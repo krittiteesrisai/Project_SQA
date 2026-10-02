@@ -1,0 +1,10 @@
+Failing tests: 5
+  - org.jsoup.parser.TokeniserStateTest::doctype_nameWithNullChar_replaced
+  - org.jsoup.parser.TokeniserStateTest::commentStartDash_consecutiveDashes_dataPreserved_FAULT_DETECTING
+  - org.jsoup.parser.TokeniserStateTest::afterAttributeValueQuoted_eof_smoke
+  - org.jsoup.parser.TokeniserStateTest::doctype_eofRightAfterKeyword_forceQuirks_smoke
+  - org.jsoup.parser.TokeniserStateTest::attributeValueDoubleQuoted_eofUnterminated
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

@@ -1,0 +1,7 @@
+Failing tests: 2
+  - org.apache.commons.codec.binary.Base64InputStreamTest::testRead_LargeInput_ForcesMultipleInternalBufferReads_Encode
+  - org.apache.commons.codec.binary.Base64InputStreamTest::testTwoArgConstructorEncodeTrue
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

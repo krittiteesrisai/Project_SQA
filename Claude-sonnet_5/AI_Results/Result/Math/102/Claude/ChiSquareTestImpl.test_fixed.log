@@ -1,0 +1,8 @@
+Failing tests: 3
+  - org.apache.commons.math.stat.inference.ChiSquareTestImplTest::testDataSetsComparison_UnequalCounts_NormalCase
+  - org.apache.commons.math.stat.inference.ChiSquareTestImplTest::testChiSquareTestDataSetsComparison_EqualCounts
+  - org.apache.commons.math.stat.inference.ChiSquareTestImplTest::testChiSquareTestDataSetsComparison_UnequalCounts
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

@@ -1,0 +1,7 @@
+Failing tests: 2
+  - org.apache.commons.lang3.text.translate.NumericEntityUnescaperTest::testSemicolonFoundFarAwayInLargerText_capturesExtraCharsAndFails
+  - org.apache.commons.lang3.text.translate.NumericEntityUnescaperTest::testNoCharAfterHash_throwsIndexOutOfBounds
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

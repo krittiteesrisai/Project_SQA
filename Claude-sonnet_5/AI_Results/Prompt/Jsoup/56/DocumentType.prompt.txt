@@ -1,0 +1,86 @@
+คุณคือ Java testing engineer ที่เชี่ยวชาญด้าน unit testing และ JUnit 4
+เป้าหมาย: เขียนชุดทดสอบ JUnit 4 สำหรับคลาสด้านล่าง เพื่อให้ได้ branch coverage สูงที่สุดเท่าที่เป็นไปได้
+และมีโอกาสดักจับข้อบกพร่อง (fault) ในโค้ดได้จริง
+ข้อกำหนด:
+1. ใช้เฉพาะ JUnit 4 และไลบรารีที่อยู่ใน classpath ต่อไปนี้: commons-lang-2.4.jar, gson-2.7.jar, hamcrest-core-1.3.jar, javax.servlet-api-3.1.0.jar, jetty-http-9.2.22.v20170606.jar, jetty-http-9.2.26.v20180806.jar, jetty-http-9.2.28.v20190418.jar, jetty-io-9.2.22.v20170606.jar, jetty-io-9.2.26.v20180806.jar, jetty-io-9.2.28.v20190418.jar, jetty-security-9.2.22.v20170606.jar, jetty-security-9.2.26.v20180806.jar, jetty-security-9.2.28.v20190418.jar, jetty-server-9.2.22.v20170606.jar, jetty-server-9.2.26.v20180806.jar, jetty-server-9.2.28.v20190418.jar, jetty-servlet-9.2.22.v20170606.jar, jetty-servlet-9.2.26.v20180806.jar, jetty-servlet-9.2.28.v20190418.jar, jetty-util-9.2.22.v20170606.jar, jetty-util-9.2.26.v20180806.jar, jetty-util-9.2.28.v20190418.jar, junit-4.12-hamcrest-1.3.jar, junit-4.12.jar, junit-4.5.jar
+2. ตั้งชื่อคลาสทดสอบเป็น DocumentTypeTest และ import คลาสเป้าหมายให้ถูกต้อง
+3. ครอบคลุมกรณี: ค่าขอบเขต (boundary), ค่า null/ว่าง, อินพุตผิดรูปแบบ,
+และเงื่อนไข if/else, loop ทุกสาขาเท่าที่วิเคราะห์ได้จากซอร์สที่ให้มา
+4. ห้ามเดา behavior ที่ไม่มีอยู่ในซอร์สโค้ด หากไม่แน่ใจให้เขียนคอมเมนต์กำกับ
+5. หลังโค้ดเทส ให้สรุปเป็นตารางสั้น ๆ ว่าแต่ละเมธอดเทสใด ครอบคลุม Branch/Condition ใด
+ซอร์สโค้ดคลาสเป้าหมาย (Defects4J: Jsoup-56b):
+```java
+package org.jsoup.nodes;
+
+import java.io.IOException;
+
+import org.jsoup.helper.StringUtil;
+import org.jsoup.nodes.Document.OutputSettings.*;
+
+/**
+ * A {@code <!DOCTYPE>} node.
+ */
+public class DocumentType extends Node {
+    public static final String PUBLIC_KEY = "PUBLIC";
+    public static final String SYSTEM_KEY = "SYSTEM";
+    private static final String NAME = "name";
+    private static final String PUBLIC_ID = "publicId";
+    private static final String SYSTEM_ID = "systemId";
+    // todo: quirk mode from publicId and systemId
+
+    /**
+     * Create a new doctype element.
+     * @param name the doctype's name
+     * @param publicId the doctype's public ID
+     * @param systemId the doctype's system ID
+     * @param baseUri the doctype's base URI
+     */
+    public DocumentType(String name, String publicId, String systemId, String baseUri) {
+        super(baseUri);
+
+        attr(NAME, name);
+        attr(PUBLIC_ID, publicId);
+        attr(SYSTEM_ID, systemId);
+    }
+
+    /**
+     * Create a new doctype element.
+     * @param name the doctype's name
+     * @param publicId the doctype's public ID
+     * @param systemId the doctype's system ID
+     * @param baseUri the doctype's base URI
+     */
+
+
+    @Override
+    public String nodeName() {
+        return "#doctype";
+    }
+
+    @Override
+    void outerHtmlHead(Appendable accum, int depth, Document.OutputSettings out) throws IOException {
+        if (out.syntax() == Syntax.html && !has(PUBLIC_ID) && !has(SYSTEM_ID)) {
+            // looks like a html5 doctype, go lowercase for aesthetics
+            accum.append("<!doctype");
+        } else {
+            accum.append("<!DOCTYPE");
+        }
+        if (has(NAME))
+            accum.append(" ").append(attr(NAME));
+        if (has(PUBLIC_ID))
+            accum.append(" PUBLIC \"").append(attr(PUBLIC_ID)).append('"');
+        if (has(SYSTEM_ID))
+            accum.append(" \"").append(attr(SYSTEM_ID)).append('"');
+        accum.append('>');
+    }
+
+    @Override
+    void outerHtmlTail(Appendable accum, int depth, Document.OutputSettings out) {
+    }
+
+    private boolean has(final String attribute) {
+        return !StringUtil.isBlank(attr(attribute));
+    }
+}
+
+```

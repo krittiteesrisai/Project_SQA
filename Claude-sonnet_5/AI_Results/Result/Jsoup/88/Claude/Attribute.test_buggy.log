@@ -1,0 +1,6 @@
+Failing tests: 1
+  - org.jsoup.nodes.AttributeTest::shouldCollapseAttribute_static_htmlSyntax_nonBooleanKey_nullValue_false
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

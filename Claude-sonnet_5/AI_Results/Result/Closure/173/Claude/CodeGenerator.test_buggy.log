@@ -1,0 +1,49 @@
+Failing tests: 44
+  - com.google.javascript.jscomp.CodeGeneratorTest::testObjectLiteralGetter
+  - com.google.javascript.jscomp.CodeGeneratorTest::testVarMultipleDeclarations
+  - com.google.javascript.jscomp.CodeGeneratorTest::testArrayLiteralTrailingHole
+  - com.google.javascript.jscomp.CodeGeneratorTest::testObjectLiteralSetter
+  - com.google.javascript.jscomp.CodeGeneratorTest::testVarSingleDeclaration
+  - com.google.javascript.jscomp.CodeGeneratorTest::testFunctionExpressionNeedsParensAsIIFE
+  - com.google.javascript.jscomp.CodeGeneratorTest::testBinaryNonAssociativeKeepsParens
+  - com.google.javascript.jscomp.CodeGeneratorTest::testArrayLiteralLeadingHole
+  - com.google.javascript.jscomp.CodeGeneratorTest::testWhileLoop
+  - com.google.javascript.jscomp.CodeGeneratorTest::testForIn
+  - com.google.javascript.jscomp.CodeGeneratorTest::testStringLiteralPrefersSingleQuoteWhenMoreDoubles
+  - com.google.javascript.jscomp.CodeGeneratorTest::testRegexpNoFlags
+  - com.google.javascript.jscomp.CodeGeneratorTest::testObjectLiteralQuotedNonIdentifierKey
+  - com.google.javascript.jscomp.CodeGeneratorTest::testGetPropEcmascript3KeywordUsesBracket
+  - com.google.javascript.jscomp.CodeGeneratorTest::testGeneralBinaryUnroll
+  - com.google.javascript.jscomp.CodeGeneratorTest::testGetElem
+  - com.google.javascript.jscomp.CodeGeneratorTest::testLiteralsNullThisTrueFalse
+  - com.google.javascript.jscomp.CodeGeneratorTest::testIfWithElse
+  - com.google.javascript.jscomp.CodeGeneratorTest::testNewWithArgs
+  - com.google.javascript.jscomp.CodeGeneratorTest::testCommaExpression
+  - com.google.javascript.jscomp.CodeGeneratorTest::testDoWhileLoop
+  - com.google.javascript.jscomp.CodeGeneratorTest::testUnaryOperators
+  - com.google.javascript.jscomp.CodeGeneratorTest::testNewForcesParensWhenCalleeContainsCall
+  - com.google.javascript.jscomp.CodeGeneratorTest::testDeleteProperty
+  - com.google.javascript.jscomp.CodeGeneratorTest::testGetPropNormal
+  - com.google.javascript.jscomp.CodeGeneratorTest::testHookTernary
+  - com.google.javascript.jscomp.CodeGeneratorTest::testGetPropRequiresParensForNumberBase
+  - com.google.javascript.jscomp.CodeGeneratorTest::testGetPropEcmascript5KeywordUsesDot
+  - com.google.javascript.jscomp.CodeGeneratorTest::testNegNonNumber
+  - com.google.javascript.jscomp.CodeGeneratorTest::testLabelStatement
+  - com.google.javascript.jscomp.CodeGeneratorTest::testStringLiteralEscapesNewline
+  - com.google.javascript.jscomp.CodeGeneratorTest::testStringLiteralEscapesScriptCloseTag
+  - com.google.javascript.jscomp.CodeGeneratorTest::testDebuggerStatement
+  - com.google.javascript.jscomp.CodeGeneratorTest::testIncDecPrefixPostfix
+  - com.google.javascript.jscomp.CodeGeneratorTest::testObjectLiteralNumericKey
+  - com.google.javascript.jscomp.CodeGeneratorTest::testStringLiteralPrefersDoubleQuoteWhenMoreSingles
+  - com.google.javascript.jscomp.CodeGeneratorTest::testIfWithoutElse
+  - com.google.javascript.jscomp.CodeGeneratorTest::testNegNumberLiteral
+  - com.google.javascript.jscomp.CodeGeneratorTest::testAssignmentRightAssociative
+  - com.google.javascript.jscomp.CodeGeneratorTest::testForClassic
+  - com.google.javascript.jscomp.CodeGeneratorTest::testBinaryAssociativeMergesParens
+  - com.google.javascript.jscomp.CodeGeneratorTest::testNewWithoutArgs
+  - com.google.javascript.jscomp.CodeGeneratorTest::testObjectLiteralIdentifierKey
+  - com.google.javascript.jscomp.CodeGeneratorTest::testRegexpWithFlags
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

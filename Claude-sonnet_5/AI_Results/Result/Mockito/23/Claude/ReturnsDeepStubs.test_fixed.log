@@ -1,0 +1,8 @@
+Failing tests: 3
+  - org.mockito.internal.stubbing.defaultanswers.ReturnsDeepStubsTest::testDeepStub_nestedCallsReturnNonNullMocksAndDefaultValues
+  - org.mockito.internal.stubbing.defaultanswers.ReturnsDeepStubsTest::testDeepStub_withExtraInterfacesBound_mockImplementsExtraInterfaces
+  - org.mockito.internal.stubbing.defaultanswers.ReturnsDeepStubsTest::testAnswer_returnsEmptyStringForFinalNonMockableReturnType
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

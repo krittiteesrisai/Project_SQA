@@ -1,0 +1,7 @@
+Failing tests: 2
+  - com.fasterxml.jackson.databind.ser.std.StdKeySerializersTest::testDefaultSerialize_TypeEnum_UsingToStringTrue_WritesToStringValue
+  - com.fasterxml.jackson.databind.ser.std.StdKeySerializersTest::testDefaultSerialize_TypeEnum_UsingToStringFalse_WritesNameValue
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

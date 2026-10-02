@@ -1,0 +1,339 @@
+คุณคือ Java testing engineer ที่เชี่ยวชาญด้าน unit testing และ JUnit 4
+เป้าหมาย: เขียนชุดทดสอบ JUnit 4 สำหรับคลาสด้านล่าง เพื่อให้ได้ branch coverage สูงที่สุดเท่าที่เป็นไปได้
+และมีโอกาสดักจับข้อบกพร่อง (fault) ในโค้ดได้จริง
+ข้อกำหนด:
+1. ใช้เฉพาะ JUnit 4 และไลบรารีที่อยู่ใน classpath ต่อไปนี้: antlr-2.7.7.jar, asm-3.3.1.jar, asm-4.2.jar, asm-analysis-3.2.jar, asm-commons-3.2.jar, asm-tree-3.2.jar, asm-util-3.2.jar, assertj-core-3.8.0.jar, assertj-core-3.9.1.jar, byte-buddy-1.7.5.jar, byte-buddy-1.9.3.jar, byte-buddy-agent-1.7.5.jar, byte-buddy-agent-1.9.3.jar, cglib-2.2.2.jar, cglib-3.1.jar, groovy-1.7.9.jar, groovy-2.4.0.jar, guava-18.0.jar, hamcrest-core-1.1.jar, hamcrest-core-1.3.jar, hibernate-cglib-repack-2.1_3.jar, jackson-annotations-2.10.0-20190519.085045-3.jar, jackson-annotations-2.2.0.jar, jackson-annotations-2.2.1.jar, jackson-annotations-2.3.0.jar, jackson-annotations-2.4.0-rc3.jar, jackson-annotations-2.4.0.jar, jackson-annotations-2.5.0.jar, jackson-annotations-2.6.0-rc1.jar, jackson-annotations-2.6.0-rc2.jar, jackson-annotations-2.6.0-rc3.jar, jackson-annotations-2.6.0.jar, jackson-annotations-2.7.0-rc2.jar, jackson-annotations-2.7.0.jar, jackson-annotations-2.8.0.jar, jackson-annotations-2.8.0.rc1.jar, jackson-annotations-2.9.0.jar, jackson-annotations-2.9.0.pr3.jar, jackson-annotations-3.0-20190323.173155-41.jar, jackson-annotations-3.0-20190519.085339-43.jar, jackson-core-2.10.0-20190518.180547-60.jar, jackson-core-2.2.0.jar, jackson-core-2.2.1.jar, jackson-core-2.3.0.jar, jackson-core-2.4.0-rc3.jar, jackson-core-2.4.0.jar, jackson-core-2.4.1.1.jar, jackson-core-2.4.2.jar, jackson-core-2.4.3.jar, jackson-core-2.4.5.jar, jackson-core-2.4.6.jar, jackson-core-2.5.0.jar, jackson-core-2.5.1.jar, jackson-core-2.5.3.jar, jackson-core-2.5.4.jar, jackson-core-2.5.5.jar, jackson-core-2.6.0-rc1.jar, jackson-core-2.6.0-rc2.jar, jackson-core-2.6.0-rc3.jar, jackson-core-2.6.0.jar, jackson-core-2.6.1.jar, jackson-core-2.6.2.jar, jackson-core-2.6.3.jar, jackson-core-2.6.4.jar, jackson-core-2.6.5.jar, jackson-core-2.6.6.jar, jackson-core-2.6.7.jar, jackson-core-2.7.0-rc2.jar, jackson-core-2.7.0.jar, jackson-core-2.7.1.jar, jackson-core-2.7.2.jar, jackson-core-2.7.4.jar, jackson-core-2.7.5.jar, jackson-core-2.7.6.jar, jackson-core-2.7.7.jar, jackson-core-2.7.8.jar, jackson-core-2.7.9.jar, jackson-core-2.8.0.jar, jackson-core-2.8.0.rc1.jar, jackson-core-2.8.0.rc2.jar, jackson-core-2.8.10.jar, jackson-core-2.8.3.jar, jackson-core-2.8.4.jar, jackson-core-2.8.5.jar, jackson-core-2.8.6.jar, jackson-core-2.8.7.jar, jackson-core-2.8.8-20170301.000803-1.jar, jackson-core-2.8.8.jar, jackson-core-2.8.9.jar, jackson-core-2.9.0.pr3.jar, jackson-core-2.9.6.jar, jackson-core-2.9.7.jar, jackson-core-2.9.8.jar, jackson-core-2.9.9.jar, jackson-core-3.0.0-20190516.032312-448.jar, javassist-3.19.0-GA.jar, javassist-3.20.0-GA.jar, javassist-3.21.0-GA.jar, javassist-3.22.0-CR2.jar, javassist-3.24.0-GA.jar, jimfs-1.1.jar, jsr-275-0.9.1.jar, jsr-275-0.9.2.jar, junit-4.10.jar, junit-4.11.jar, junit-4.12-hamcrest-1.3.jar, junit-4.12.jar, junit-4.8.2.jar, mockito-all-1.10.19.jar, mockito-core-1.10.19.jar, mockito-core-2.10.0.jar, mockito-core-2.23.0.jar, objenesis-2.1.jar, objenesis-2.6.jar, objenesis-3.0.1.jar, powermock-api-mockito-1.6.2.jar, powermock-api-mockito-1.6.3.jar, powermock-api-mockito-1.6.5.jar, powermock-api-mockito-1.7.3.jar, powermock-api-mockito-1.7.4.jar, powermock-api-mockito-common-1.6.5.jar, powermock-api-mockito-common-1.7.3.jar, powermock-api-mockito-common-1.7.4.jar, powermock-api-mockito2-2.0.0-beta.5.jar, powermock-api-mockito2-2.0.0.jar, powermock-api-support-1.6.2.jar, powermock-api-support-1.6.3.jar, powermock-api-support-1.6.5.jar, powermock-api-support-1.7.3.jar, powermock-api-support-1.7.4.jar, powermock-api-support-2.0.0-beta.5.jar, powermock-api-support-2.0.0.jar, powermock-core-1.6.2.jar, powermock-core-1.6.3.jar, powermock-core-1.6.5.jar, powermock-core-1.7.3.jar, powermock-core-1.7.4.jar, powermock-core-2.0.0-beta.5.jar, powermock-core-2.0.0.jar, powermock-module-junit4-1.6.2.jar, powermock-module-junit4-1.6.3.jar, powermock-module-junit4-1.6.5.jar, powermock-module-junit4-1.7.3.jar, powermock-module-junit4-1.7.4.jar, powermock-module-junit4-2.0.0-beta.5.jar, powermock-module-junit4-2.0.0.jar, powermock-module-junit4-common-1.6.2.jar, powermock-module-junit4-common-1.6.3.jar, powermock-module-junit4-common-1.6.5.jar, powermock-module-junit4-common-1.7.3.jar, powermock-module-junit4-common-1.7.4.jar, powermock-module-junit4-common-2.0.0-beta.5.jar, powermock-module-junit4-common-2.0.0.jar, powermock-reflect-1.6.2.jar, powermock-reflect-1.6.3.jar, powermock-reflect-1.6.5.jar, powermock-reflect-1.7.3.jar, powermock-reflect-1.7.4.jar, powermock-reflect-2.0.0-beta.5.jar, powermock-reflect-2.0.0.jar
+2. ตั้งชื่อคลาสทดสอบเป็น DefaultDeserializationContextTest และ import คลาสเป้าหมายให้ถูกต้อง
+3. ครอบคลุมกรณี: ค่าขอบเขต (boundary), ค่า null/ว่าง, อินพุตผิดรูปแบบ,
+และเงื่อนไข if/else, loop ทุกสาขาเท่าที่วิเคราะห์ได้จากซอร์สที่ให้มา
+4. ห้ามเดา behavior ที่ไม่มีอยู่ในซอร์สโค้ด หากไม่แน่ใจให้เขียนคอมเมนต์กำกับ
+5. หลังโค้ดเทส ให้สรุปเป็นตารางสั้น ๆ ว่าแต่ละเมธอดเทสใด ครอบคลุม Branch/Condition ใด
+ซอร์สโค้ดคลาสเป้าหมาย (Defects4J: JacksonDatabind-13b):
+```java
+package com.fasterxml.jackson.databind.deser;
+
+import java.util.*;
+import java.util.Map.Entry;
+
+import com.fasterxml.jackson.annotation.ObjectIdGenerator;
+import com.fasterxml.jackson.annotation.ObjectIdResolver;
+import com.fasterxml.jackson.annotation.ObjectIdGenerator.IdKey;
+import com.fasterxml.jackson.annotation.SimpleObjectIdResolver;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.cfg.HandlerInstantiator;
+import com.fasterxml.jackson.databind.deser.impl.ReadableObjectId;
+import com.fasterxml.jackson.databind.deser.impl.ReadableObjectId.Referring;
+import com.fasterxml.jackson.databind.introspect.Annotated;
+import com.fasterxml.jackson.databind.util.ClassUtil;
+
+/**
+ * Complete {@link DeserializationContext} implementation that adds
+ * extended API for {@link ObjectMapper} (and {@link ObjectReader})
+ * to call, as well as implements certain parts that base class
+ * has left abstract.
+ * The remaining abstract methods ({@link #createInstance}, {@link #with})
+ * are left so that custom implementations will properly implement them
+ * to return intended subtype.
+ */
+public abstract class DefaultDeserializationContext
+    extends DeserializationContext
+    implements java.io.Serializable // since 2.1
+{
+    private static final long serialVersionUID = 1L;
+
+    protected transient LinkedHashMap<ObjectIdGenerator.IdKey, ReadableObjectId> _objectIds;
+
+    private List<ObjectIdResolver> _objectIdResolvers;
+
+    /**
+     * Constructor that will pass specified deserializer factory and
+     * cache: cache may be null (in which case default implementation
+     * will be used), factory can not be null
+     */
+    protected DefaultDeserializationContext(DeserializerFactory df, DeserializerCache cache) {
+        super(df, cache);
+    }
+    
+    protected DefaultDeserializationContext(DefaultDeserializationContext src,
+            DeserializationConfig config, JsonParser jp, InjectableValues values) {
+        super(src, config, jp, values);
+    }
+
+    protected DefaultDeserializationContext(DefaultDeserializationContext src,
+            DeserializerFactory factory) {
+        super(src, factory);
+    }
+
+    /**
+     * @since 2.4.4
+     */
+    protected DefaultDeserializationContext(DefaultDeserializationContext src) {
+        super(src);
+    }
+    
+    /**
+     * Method needed to ensure that {@link ObjectMapper#copy} will work
+     * properly; specifically, that caches are cleared, but settings
+     * will otherwise remain identical; and that no sharing of state
+     * occurs.
+     * 
+     * @since 2.4.4
+     */
+    public DefaultDeserializationContext copy() {
+        throw new IllegalStateException("DefaultDeserializationContext sub-class not overriding copy()");
+    }
+
+    /*
+    /**********************************************************
+    /* Abstract methods impls, Object Id
+    /**********************************************************
+     */
+
+    @Override
+    public ReadableObjectId findObjectId(Object id, ObjectIdGenerator<?> gen, ObjectIdResolver resolverType)
+    {
+        /* 02-Apr-2015, tatu: As per [databind#742] should allow 'null', similar to how
+         *   missing id already works.
+         */
+
+        final ObjectIdGenerator.IdKey key = gen.key(id);
+
+        if (_objectIds == null) {
+            _objectIds = new LinkedHashMap<ObjectIdGenerator.IdKey,ReadableObjectId>();
+        } else {
+            ReadableObjectId entry = _objectIds.get(key);
+            if (entry != null) {
+                return entry;
+            }
+        }
+
+        // Not seen yet, must create entry and configure resolver.
+        ObjectIdResolver resolver = null;
+
+        if (_objectIdResolvers == null) {
+            _objectIdResolvers = new ArrayList<ObjectIdResolver>(8);
+        } else {
+            for (ObjectIdResolver res : _objectIdResolvers) {
+                if (res.canUseFor(resolverType)) {
+                    resolver = res;
+                    break;
+                }
+            }
+        }
+
+        if (resolver == null) {
+            resolver = resolverType.newForDeserialization(this);
+            // 19-Dec-2014, tatu: For final 2.5.0, remove temporary (2.4.x) work-around
+            //   needed to clear state between calls.
+            // !!! 18-Jun-2014, pgelinas: Temporary fix for [#490] until real
+            //    fix (for jackson-annotations, SimpleObjectIdResolver) can be added.
+            /*
+            if (resolverType.getClass() == SimpleObjectIdResolver.class) {
+                resolver = new SimpleObjectIdResolver();
+            }
+            */
+            _objectIdResolvers.add(resolver);
+        }
+
+        ReadableObjectId entry = new ReadableObjectId(key);
+        entry.setResolver(resolver);
+        _objectIds.put(key, entry);
+        return entry;
+    }
+    
+    @Deprecated // since 2.4
+    @Override
+    public ReadableObjectId findObjectId(Object id, ObjectIdGenerator<?> gen) {
+        return findObjectId(id, gen, new SimpleObjectIdResolver());
+    }
+
+    @Override
+    public void checkUnresolvedObjectId() throws UnresolvedForwardReference
+    {
+        if (_objectIds == null) {
+            return;
+        }
+        // 29-Dec-2014, tatu: As per [databind#299], may also just let unresolved refs be...
+        if (!isEnabled(DeserializationFeature.FAIL_ON_UNRESOLVED_OBJECT_IDS)) {
+            return;
+        }
+        UnresolvedForwardReference exception = null;
+        for (Entry<IdKey,ReadableObjectId> entry : _objectIds.entrySet()) {
+            ReadableObjectId roid = entry.getValue();
+            if (roid.hasReferringProperties()) {
+                if (exception == null) {
+                    exception = new UnresolvedForwardReference("Unresolved forward references for: ");
+                }
+                for (Iterator<Referring> iterator = roid.referringProperties(); iterator.hasNext(); ) {
+                    Referring referring = iterator.next();
+                    exception.addUnresolvedId(roid.getKey().key, referring.getBeanType(), referring.getLocation());
+                }
+            }
+        }
+        if (exception != null) {
+            throw exception;
+        }
+    }
+
+    /*
+    /**********************************************************
+    /* Abstract methods impls, other factory methods
+    /**********************************************************
+     */
+    
+    @SuppressWarnings("unchecked")
+    @Override
+    public JsonDeserializer<Object> deserializerInstance(Annotated ann, Object deserDef)
+        throws JsonMappingException
+    {
+        if (deserDef == null) {
+            return null;
+        }
+        JsonDeserializer<?> deser;
+        
+        if (deserDef instanceof JsonDeserializer) {
+            deser = (JsonDeserializer<?>) deserDef;
+        } else {
+            /* Alas, there's no way to force return type of "either class
+             * X or Y" -- need to throw an exception after the fact
+             */
+            if (!(deserDef instanceof Class)) {
+                throw new IllegalStateException("AnnotationIntrospector returned deserializer definition of type "+deserDef.getClass().getName()+"; expected type JsonDeserializer or Class<JsonDeserializer> instead");
+            }
+            Class<?> deserClass = (Class<?>)deserDef;
+            // there are some known "no class" markers to consider too:
+            if (deserClass == JsonDeserializer.None.class || ClassUtil.isBogusClass(deserClass)) {
+                return null;
+            }
+            if (!JsonDeserializer.class.isAssignableFrom(deserClass)) {
+                throw new IllegalStateException("AnnotationIntrospector returned Class "+deserClass.getName()+"; expected Class<JsonDeserializer>");
+            }
+            HandlerInstantiator hi = _config.getHandlerInstantiator();
+            deser = (hi == null) ? null : hi.deserializerInstance(_config, ann, deserClass);
+            if (deser == null) {
+                deser = (JsonDeserializer<?>) ClassUtil.createInstance(deserClass,
+                        _config.canOverrideAccessModifiers());
+            }
+        }
+        // First: need to resolve
+        if (deser instanceof ResolvableDeserializer) {
+            ((ResolvableDeserializer) deser).resolve(this);
+        }
+        return (JsonDeserializer<Object>) deser;
+    }
+
+    @Override
+    public final KeyDeserializer keyDeserializerInstance(Annotated ann, Object deserDef)
+        throws JsonMappingException
+    {
+        if (deserDef == null) {
+            return null;
+        }
+
+        KeyDeserializer deser;
+        
+        if (deserDef instanceof KeyDeserializer) {
+            deser = (KeyDeserializer) deserDef;
+        } else {
+            if (!(deserDef instanceof Class)) {
+                throw new IllegalStateException("AnnotationIntrospector returned key deserializer definition of type "
+                        +deserDef.getClass().getName()
+                        +"; expected type KeyDeserializer or Class<KeyDeserializer> instead");
+            }
+            Class<?> deserClass = (Class<?>)deserDef;
+            // there are some known "no class" markers to consider too:
+            if (deserClass == KeyDeserializer.None.class || ClassUtil.isBogusClass(deserClass)) {
+                return null;
+            }
+            if (!KeyDeserializer.class.isAssignableFrom(deserClass)) {
+                throw new IllegalStateException("AnnotationIntrospector returned Class "+deserClass.getName()
+                        +"; expected Class<KeyDeserializer>");
+            }
+            HandlerInstantiator hi = _config.getHandlerInstantiator();
+            deser = (hi == null) ? null : hi.keyDeserializerInstance(_config, ann, deserClass);
+            if (deser == null) {
+                deser = (KeyDeserializer) ClassUtil.createInstance(deserClass,
+                        _config.canOverrideAccessModifiers());
+            }
+        }
+        // First: need to resolve
+        if (deser instanceof ResolvableDeserializer) {
+            ((ResolvableDeserializer) deser).resolve(this);
+        }
+        return deser;
+    }
+
+    /*
+    /**********************************************************
+    /* Extended API
+    /**********************************************************
+     */
+
+    /**
+     * Fluent factory method used for constructing a blueprint instance
+     * with different factory
+     */
+    public abstract DefaultDeserializationContext with(DeserializerFactory factory);
+    
+    /**
+     * Method called to create actual usable per-deserialization
+     * context instance.
+     */
+    public abstract DefaultDeserializationContext createInstance(
+            DeserializationConfig config, JsonParser jp, InjectableValues values);
+    
+    /*
+    /**********************************************************
+    /* And then the concrete implementation class
+    /**********************************************************
+     */
+
+    /**
+     * Actual full concrete implementation
+     */
+    public final static class Impl extends DefaultDeserializationContext
+    {
+        private static final long serialVersionUID = 1L;
+
+        /**
+         * Default constructor for a blueprint object, which will use the standard
+         * {@link DeserializerCache}, given factory.
+         */
+        public Impl(DeserializerFactory df) {
+            super(df, null);
+        }
+
+        protected Impl(Impl src,
+                DeserializationConfig config, JsonParser jp, InjectableValues values) {
+            super(src, config, jp, values);
+        }
+
+        protected Impl(Impl src) { super(src); }
+        
+        protected Impl(Impl src, DeserializerFactory factory) {
+            super(src, factory);
+        }
+
+        @Override
+        public DefaultDeserializationContext copy() {
+            if (getClass() != Impl.class) {
+                return super.copy();
+            }
+           return new Impl(this);
+        }
+        
+        @Override
+        public DefaultDeserializationContext createInstance(DeserializationConfig config,
+                JsonParser jp, InjectableValues values) {
+            return new Impl(this, config, jp, values);
+        }
+
+        @Override
+        public DefaultDeserializationContext with(DeserializerFactory factory) {
+            return new Impl(this, factory);
+        }        
+    }
+}
+
+```

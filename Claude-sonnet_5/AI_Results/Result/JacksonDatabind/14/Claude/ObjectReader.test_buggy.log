@@ -1,0 +1,28 @@
+Failing tests: 23
+  - com.fasterxml.jackson.databind.ObjectReaderTest::testReadValue_JsonNode_withFormatDetection_throws
+  - com.fasterxml.jackson.databind.ObjectReaderTest::testReadValue_ByteArray_OffsetLength_withFormatDetection
+  - com.fasterxml.jackson.databind.ObjectReaderTest::testReadValue_URL_withFormatDetection
+  - com.fasterxml.jackson.databind.ObjectReaderTest::testReadValue_File_withFormatDetection
+  - com.fasterxml.jackson.databind.ObjectReaderTest::testReadValues_File_withFormatDetection
+  - com.fasterxml.jackson.databind.ObjectReaderTest::testReadTree_String_withFormatDetection_throws
+  - com.fasterxml.jackson.databind.ObjectReaderTest::testReadTree_Reader_withFormatDetection_throws
+  - com.fasterxml.jackson.databind.ObjectReaderTest::testReadValues_URL_withFormatDetection
+  - com.fasterxml.jackson.databind.ObjectReaderTest::testForType_withFormatDetection_propagatesType
+  - com.fasterxml.jackson.databind.ObjectReaderTest::testReadValues_String_withFormatDetection_throws
+  - com.fasterxml.jackson.databind.ObjectReaderTest::testReadValues_Reader_withFormatDetection_throws
+  - com.fasterxml.jackson.databind.ObjectReaderTest::testWithFormatDetection_dataFormatReaders
+  - com.fasterxml.jackson.databind.ObjectReaderTest::testWithJsonParserFeature
+  - com.fasterxml.jackson.databind.ObjectReaderTest::testReadTree_InputStream_withFormatDetection
+  - com.fasterxml.jackson.databind.ObjectReaderTest::testReadValue_ByteArray_withFormatDetection
+  - com.fasterxml.jackson.databind.ObjectReaderTest::testWithConfigChange_propagatesFormatDetection
+  - com.fasterxml.jackson.databind.ObjectReaderTest::testReadValue_String_withFormatDetection_throws
+  - com.fasterxml.jackson.databind.ObjectReaderTest::testReadValue_Reader_withFormatDetection_throws
+  - com.fasterxml.jackson.databind.ObjectReaderTest::testWithFeaturesArray_parser
+  - com.fasterxml.jackson.databind.ObjectReaderTest::testReadValue_InputStream_withFormatDetection
+  - com.fasterxml.jackson.databind.ObjectReaderTest::testWithValueToUpdate_null_throws
+  - com.fasterxml.jackson.databind.ObjectReaderTest::testReadValues_InputStream_withFormatDetection
+  - com.fasterxml.jackson.databind.ObjectReaderTest::testReadValues_ByteArray_OffsetLength_withFormatDetection
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

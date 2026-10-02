@@ -1,0 +1,460 @@
+# วิเคราะห์คลาสเป้าหมาย
+
+จาก source code ของ `CreatorProperty` พบ logic/branch หลักที่ต้องทดสอบ:
+
+1. `withValueDeserializer` — if `_valueDeserializer == deser` return `this` / else สร้าง instance ใหม่
+2. `fixAccess` — if `_fallbackSetter != null` เรียก fixAccess / else ไม่ทำอะไร
+3. `findInjectableValue` — if `_injectableValueId == null` → `reportBadDefinition` / else → `context.findInjectableValue(...)`
+4. `getAnnotation` — if `_annotated == null` → null / else delegate
+5. `_verifySetter` (private, เรียกจาก `set/setAndReturn/deserializeAndSet/deserializeSetAndReturn`) — if `_fallbackSetter == null` → `_reportMissingSetter(null,null)`
+6. `_reportMissingSetter` — if `ctxt != null` → `reportBadDefinition` / else → throw `InvalidDefinitionException`
+   - **หมายเหตุสำคัญ**: จาก source ปัจจุบัน `_verifySetter()` เรียก `_reportMissingSetter(null, null)` เสมอ ดังนั้น branch ที่ `ctxt != null` ใน `_reportMissingSetter` **ไม่สามารถ reachable ได้ผ่าน public API** (เป็น dead branch ในเวอร์ชันนี้) — จะไม่เขียนเทสสำหรับ branch นี้ตรง ๆ เพราะไม่มีทางเรียกผ่าน public interface ได้จริง (คอมเมนต์กำกับไว้ในโค้ด)
+7. `markAsIgnorable`/`isIgnorable`
+8. copy constructors ผ่าน `withName`, `withNullProvider`
+
+```java
+package com.fasterxml.jackson.databind.deser;
+
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+import static org.mockito.Matchers.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.DeserializationConfig;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.PropertyMetadata;
+import com.fasterxml.jackson.databind.PropertyName;
+import com.fasterxml.jackson.databind.exc.InvalidDefinitionException;
+import com.fasterxml.jackson.databind.introspect.AnnotatedParameter;
+import com.fasterxml.jackson.databind.type.TypeFactory;
+import com.fasterxml.jackson.databind.util.Annotations;
+
+/**
+ * JUnit4 test suite for {@link CreatorProperty} (Defects4J JacksonDatabind-111b).
+ *
+ * หมายเหตุสมมติฐาน (เนื่องจาก source ของ SettableBeanProperty / PropertyMetadata
+ * ไม่ได้ถูกให้มาโดยตรง):
+ *  - ใช้ {@code PropertyMetadata.STD_REQUIRED} ซึ่งเป็น static field สาธารณะที่มีมาตั้งแต่
+ *    jackson-databind 2.6+ (ไม่พบใน source ที่ให้มาโดยตรง แต่จำเป็นต้องใช้สร้าง instance)
+ *  - เมธอด {@code deserialize(JsonParser, DeserializationContext)} ที่ถูก inherit มาจาก
+ *    SettableBeanProperty ไม่ได้อยู่ใน source ที่ให้มา จึงใช้ Mockito.spy() เพื่อ stub
+ *    เมธอดนี้โดยตรง แทนการเดา internal logic ของมัน
+ */
+public class CreatorPropertyTest {
+
+    private Annotations mockAnnotations;
+    private AnnotatedParameter mockAnnotatedParam;
+    private JavaType stringType;
+
+    @Before
+    public void setUp() {
+        mockAnnotations = mock(Annotations.class);
+        mockAnnotatedParam = mock(AnnotatedParameter.class);
+        stringType = TypeFactory.defaultInstance().constructType(String.class);
+    }
+
+    /** Helper เพื่อสร้าง CreatorProperty พื้นฐาน */
+    private CreatorProperty createProperty(String name, Object injectableId,
+            AnnotatedParameter param, int index, PropertyMetadata metadata) {
+        PropertyName pname = new PropertyName(name);
+        return new CreatorProperty(pname, stringType, null, null,
+                mockAnnotations, param, index, injectableId, metadata);
+    }
+
+    private CreatorProperty createDefault() {
+        return createProperty("foo", null, mockAnnotatedParam, 0, PropertyMetadata.STD_REQUIRED);
+    }
+
+    // ---------------------------------------------------------------
+    // Constructor / basic getters
+    // ---------------------------------------------------------------
+
+    @Test
+    public void testConstructorAndBasicGetters() {
+        CreatorProperty prop = createProperty("fieldA", "injId", mockAnnotatedParam, 3,
+                PropertyMetadata.STD_REQUIRED);
+
+        assertEquals("fieldA", prop.getName());
+        assertEquals(3, prop.getCreatorIndex());
+        assertEquals("injId", prop.getInjectableValueId());
+        assertSame(mockAnnotatedParam, prop.getMember());
+        assertFalse(prop.isIgnorable()); // default false
+    }
+
+    @Test
+    public void testGetInjectableValueId_null() {
+        CreatorProperty prop = createDefault(); // injectableId = null
+        assertNull(prop.getInjectableValueId());
+    }
+
+    // ---------------------------------------------------------------
+    // withName()
+    // ---------------------------------------------------------------
+
+    @Test
+    public void testWithName_createsNewInstanceWithNewNamePreservingOtherFields() {
+        CreatorProperty original = createProperty("oldName", "inj1", mockAnnotatedParam, 5,
+                PropertyMetadata.STD_REQUIRED);
+        original.markAsIgnorable();
+
+        SettableBeanProperty renamed = original.withName(new PropertyName("newName"));
+
+        assertNotSame(original, renamed);
+        assertTrue(renamed instanceof CreatorProperty);
+        assertEquals("newName", renamed.getName());
+        assertEquals(5, ((CreatorProperty) renamed).getCreatorIndex());
+        assertEquals("inj1", renamed.getInjectableValueId());
+        assertTrue(((CreatorProperty) renamed).isIgnorable()); // _ignorable ต้อง copy มาด้วย
+        assertSame(mockAnnotatedParam, renamed.getMember());
+    }
+
+    // ---------------------------------------------------------------
+    // withValueDeserializer()
+    // ---------------------------------------------------------------
+
+    @Test
+    public void testWithValueDeserializer_sameInstance_returnsThis() {
+        CreatorProperty prop = createDefault();
+        // _valueDeserializer เริ่มต้นเป็น null -> ส่ง null เข้าไปต้อง "เท่ากัน" จึงได้ this คืน
+        SettableBeanProperty result = prop.withValueDeserializer(null);
+        assertSame(prop, result);
+    }
+
+    @Test
+    public void testWithValueDeserializer_differentInstance_returnsNewCreatorProperty() {
+        CreatorProperty prop = createDefault();
+        JsonDeserializer<?> deser = mock(JsonDeserializer.class);
+
+        SettableBeanProperty result = prop.withValueDeserializer(deser);
+
+        assertNotSame(prop, result);
+        assertTrue(result instanceof CreatorProperty);
+        // ตรวจสอบว่า field อื่น ๆ ถูก copy มาด้วย
+        assertEquals(prop.getCreatorIndex(), ((CreatorProperty) result).getCreatorIndex());
+        assertEquals(prop.getInjectableValueId(), result.getInjectableValueId());
+    }
+
+    // ---------------------------------------------------------------
+    // withNullProvider()
+    // ---------------------------------------------------------------
+
+    @Test
+    public void testWithNullProvider_returnsNewCreatorPropertyInstance() {
+        CreatorProperty prop = createDefault();
+        NullValueProvider nvp = mock(NullValueProvider.class);
+
+        SettableBeanProperty result = prop.withNullProvider(nvp);
+
+        assertNotSame(prop, result);
+        assertTrue(result instanceof CreatorProperty);
+    }
+
+    // ---------------------------------------------------------------
+    // fixAccess()
+    // ---------------------------------------------------------------
+
+    @Test
+    public void testFixAccess_withFallbackSetter_delegates() {
+        CreatorProperty prop = createDefault();
+        SettableBeanProperty fallback = mock(SettableBeanProperty.class);
+        prop.setFallbackSetter(fallback);
+
+        DeserializationConfig config = mock(DeserializationConfig.class);
+        prop.fixAccess(config);
+
+        verify(fallback, times(1)).fixAccess(config);
+    }
+
+    @Test
+    public void testFixAccess_withoutFallbackSetter_isNoOp() {
+        CreatorProperty prop = createDefault(); // _fallbackSetter == null
+        DeserializationConfig config = mock(DeserializationConfig.class);
+        // ไม่ควร throw exception ใด ๆ
+        prop.fixAccess(config);
+    }
+
+    // ---------------------------------------------------------------
+    // setFallbackSetter / markAsIgnorable / isIgnorable
+    // ---------------------------------------------------------------
+
+    @Test
+    public void testSetFallbackSetter() throws Exception {
+        CreatorProperty prop = createDefault();
+        SettableBeanProperty fallback = mock(SettableBeanProperty.class);
+        prop.setFallbackSetter(fallback);
+
+        // ตรวจสอบ indirect ผ่าน set()
+        Object instance = new Object();
+        Object value = "someValue";
+        prop.set(instance, value);
+        verify(fallback, times(1)).set(instance, value);
+    }
+
+    @Test
+    public void testMarkAsIgnorable_togglesIsIgnorable() {
+        CreatorProperty prop = createDefault();
+        assertFalse(prop.isIgnorable());
+        prop.markAsIgnorable();
+        assertTrue(prop.isIgnorable());
+    }
+
+    // ---------------------------------------------------------------
+    // findInjectableValue()
+    // ---------------------------------------------------------------
+
+    @Test(expected = RuntimeException.class)
+    public void testFindInjectableValue_nullInjectableId_reportsBadDefinition() throws Exception {
+        CreatorProperty prop = createDefault(); // injectableId == null
+        DeserializationContext ctx = mock(DeserializationContext.class);
+        Object beanInstance = new Object();
+
+        // simulate ว่า reportBadDefinition (ของจริง) จะ throw exception
+        when(ctx.reportBadDefinition(any(Class.class), anyString()))
+                .thenThrow(new RuntimeException("Simulated bad definition"));
+
+        prop.findInjectableValue(ctx, beanInstance);
+    }
+
+    @Test
+    public void testFindInjectableValue_withInjectableId_delegatesToContext() throws Exception {
+        CreatorProperty prop = createProperty("foo", "injectId", mockAnnotatedParam, 0,
+                PropertyMetadata.STD_REQUIRED);
+        DeserializationContext ctx = mock(DeserializationContext.class);
+        Object beanInstance = new Object();
+
+        when(ctx.findInjectableValue(eq("injectId"), eq(prop), eq(beanInstance)))
+                .thenReturn("resolvedValue");
+
+        Object result = prop.findInjectableValue(ctx, beanInstance);
+
+        assertEquals("resolvedValue", result);
+        verify(ctx, never()).reportBadDefinition(any(Class.class), anyString());
+    }
+
+    // ---------------------------------------------------------------
+    // inject()
+    // ---------------------------------------------------------------
+
+    @Test
+    public void testInject_findsValueAndCallsSetThroughFallback() throws Exception {
+        CreatorProperty prop = createProperty("foo", "injId", mockAnnotatedParam, 0,
+                PropertyMetadata.STD_REQUIRED);
+        SettableBeanProperty fallback = mock(SettableBeanProperty.class);
+        prop.setFallbackSetter(fallback);
+
+        DeserializationContext ctx = mock(DeserializationContext.class);
+        Object beanInstance = new Object();
+        when(ctx.findInjectableValue(eq("injId"), eq(prop), eq(beanInstance)))
+                .thenReturn("injectedVal");
+
+        prop.inject(ctx, beanInstance);
+
+        verify(fallback, times(1)).set(beanInstance, "injectedVal");
+    }
+
+    // ---------------------------------------------------------------
+    // getAnnotation()
+    // ---------------------------------------------------------------
+
+    @Test
+    public void testGetAnnotation_annotatedNull_returnsNull() {
+        CreatorProperty prop = createProperty("foo", null, null, 0, PropertyMetadata.STD_REQUIRED);
+        assertNull(prop.getAnnotation(Deprecated.class));
+    }
+
+    @Test
+    public void testGetAnnotation_delegatesToAnnotatedParameter() {
+        Deprecated ann = mock(Deprecated.class);
+        when(mockAnnotatedParam.getAnnotation(Deprecated.class)).thenReturn(ann);
+
+        CreatorProperty prop = createProperty("foo", null, mockAnnotatedParam, 0,
+                PropertyMetadata.STD_REQUIRED);
+
+        assertSame(ann, prop.getAnnotation(Deprecated.class));
+    }
+
+    // ---------------------------------------------------------------
+    // getMember() / getCreatorIndex()
+    // ---------------------------------------------------------------
+
+    @Test
+    public void testGetMember() {
+        CreatorProperty prop = createProperty("foo", null, mockAnnotatedParam, 7,
+                PropertyMetadata.STD_REQUIRED);
+        assertSame(mockAnnotatedParam, prop.getMember());
+        assertEquals(7, prop.getCreatorIndex());
+    }
+
+    // ---------------------------------------------------------------
+    // set() / setAndReturn() — with & without fallback setter
+    // ---------------------------------------------------------------
+
+    @Test
+    public void testSet_withFallbackSetter_delegates() throws Exception {
+        CreatorProperty prop = createDefault();
+        SettableBeanProperty fallback = mock(SettableBeanProperty.class);
+        prop.setFallbackSetter(fallback);
+
+        Object instance = new Object();
+        prop.set(instance, "val");
+
+        verify(fallback).set(instance, "val");
+    }
+
+    @Test(expected = InvalidDefinitionException.class)
+    public void testSet_withoutFallbackSetter_throwsInvalidDefinitionException() throws Exception {
+        CreatorProperty prop = createDefault(); // _fallbackSetter == null
+        prop.set(new Object(), "val");
+    }
+
+    @Test
+    public void testSetAndReturn_withFallbackSetter_delegatesAndReturnsValue() throws Exception {
+        CreatorProperty prop = createDefault();
+        SettableBeanProperty fallback = mock(SettableBeanProperty.class);
+        Object instance = new Object();
+        when(fallback.setAndReturn(instance, "val")).thenReturn("returnedVal");
+        prop.setFallbackSetter(fallback);
+
+        Object result = prop.setAndReturn(instance, "val");
+
+        assertEquals("returnedVal", result);
+        verify(fallback).setAndReturn(instance, "val");
+    }
+
+    @Test(expected = InvalidDefinitionException.class)
+    public void testSetAndReturn_withoutFallbackSetter_throwsInvalidDefinitionException() throws Exception {
+        CreatorProperty prop = createDefault();
+        prop.setAndReturn(new Object(), "val");
+    }
+
+    // ---------------------------------------------------------------
+    // deserializeAndSet() / deserializeSetAndReturn()
+    //   -- ใช้ spy เพื่อ stub deserialize() เนื่องจากเมธอดนี้ inherit มาจาก
+    //      SettableBeanProperty ซึ่งไม่ได้อยู่ใน source ที่ให้มา
+    // ---------------------------------------------------------------
+
+    @Test
+    public void testDeserializeAndSet_withFallbackSetter_callsSetWithDeserializedValue()
+            throws Exception {
+        CreatorProperty prop = createDefault();
+        SettableBeanProperty fallback = mock(SettableBeanProperty.class);
+        prop.setFallbackSetter(fallback);
+
+        CreatorProperty spyProp = spy(prop);
+        JsonParser parser = mock(JsonParser.class);
+        DeserializationContext ctx = mock(DeserializationContext.class);
+        Object instance = new Object();
+
+        doReturn("deserializedValue").when(spyProp).deserialize(parser, ctx);
+
+        spyProp.deserializeAndSet(parser, ctx, instance);
+
+        verify(fallback, times(1)).set(instance, "deserializedValue");
+    }
+
+    @Test(expected = InvalidDefinitionException.class)
+    public void testDeserializeAndSet_withoutFallbackSetter_throwsInvalidDefinitionException()
+            throws Exception {
+        CreatorProperty prop = createDefault(); // _fallbackSetter == null
+        CreatorProperty spyProp = spy(prop);
+        JsonParser parser = mock(JsonParser.class);
+        DeserializationContext ctx = mock(DeserializationContext.class);
+
+        // ไม่ควรไปถึง deserialize() เลย เพราะ _verifySetter() throw ก่อน
+        spyProp.deserializeAndSet(parser, ctx, new Object());
+    }
+
+    @Test
+    public void testDeserializeSetAndReturn_withFallbackSetter_returnsFallbackResult()
+            throws Exception {
+        CreatorProperty prop = createDefault();
+        SettableBeanProperty fallback = mock(SettableBeanProperty.class);
+        prop.setFallbackSetter(fallback);
+
+        CreatorProperty spyProp = spy(prop);
+        JsonParser parser = mock(JsonParser.class);
+        DeserializationContext ctx = mock(DeserializationContext.class);
+        Object instance = new Object();
+
+        doReturn("desVal").when(spyProp).deserialize(parser, ctx);
+        when(fallback.setAndReturn(instance, "desVal")).thenReturn("finalResult");
+
+        Object result = spyProp.deserializeSetAndReturn(parser, ctx, instance);
+
+        assertEquals("finalResult", result);
+        verify(fallback).setAndReturn(instance, "desVal");
+    }
+
+    @Test(expected = InvalidDefinitionException.class)
+    public void testDeserializeSetAndReturn_withoutFallbackSetter_throwsInvalidDefinitionException()
+            throws Exception {
+        CreatorProperty prop = createDefault();
+        CreatorProperty spyProp = spy(prop);
+        JsonParser parser = mock(JsonParser.class);
+        DeserializationContext ctx = mock(DeserializationContext.class);
+
+        spyProp.deserializeSetAndReturn(parser, ctx, new Object());
+    }
+
+    // ---------------------------------------------------------------
+    // toString()
+    // ---------------------------------------------------------------
+
+    @Test
+    public void testToString_containsNameAndInjectId() {
+        CreatorProperty prop = createProperty("myProp", "myInjId", mockAnnotatedParam, 0,
+                PropertyMetadata.STD_REQUIRED);
+
+        String result = prop.toString();
+
+        assertEquals("[creator property, name 'myProp'; inject id 'myInjId']", result);
+    }
+
+    @Test
+    public void testToString_withNullInjectId() {
+        CreatorProperty prop = createDefault(); // injectableId = null
+
+        String result = prop.toString();
+
+        assertEquals("[creator property, name 'foo'; inject id 'null']", result);
+    }
+}
+```
+
+## ตารางสรุปการครอบคลุม Branch/Condition
+
+| เมธอดทดสอบ | Branch/Condition ที่ครอบคลุม |
+|---|---|
+| `testConstructorAndBasicGetters` | Constructor หลัก, getName/getCreatorIndex/getInjectableValueId/getMember/isIgnorable (default false) |
+| `testGetInjectableValueId_null` | ค่า injectableValueId = null |
+| `testWithName_...` | copy-constructor `CreatorProperty(src, newName)`, การ copy field `_ignorable` |
+| `testWithValueDeserializer_sameInstance_returnsThis` | if (`_valueDeserializer == deser`) → return `this` |
+| `testWithValueDeserializer_differentInstance_returnsNewCreatorProperty` | else branch → สร้าง instance ใหม่ |
+| `testWithNullProvider_...` | `withNullProvider` → copy-constructor (deser,nva) |
+| `testFixAccess_withFallbackSetter_delegates` | if (`_fallbackSetter != null`) → เรียก fixAccess |
+| `testFixAccess_withoutFallbackSetter_isNoOp` | else branch (ไม่ทำอะไร) |
+| `testSetFallbackSetter` | setFallbackSetter + indirect ผ่าน set() |
+| `testMarkAsIgnorable_togglesIsIgnorable` | markAsIgnorable → isIgnorable true/false |
+| `testFindInjectableValue_nullInjectableId_reportsBadDefinition` | if (`_injectableValueId == null`) → reportBadDefinition |
+| `testFindInjectableValue_withInjectableId_delegatesToContext` | else branch → context.findInjectableValue |
+| `testInject_...` | `inject()` → findInjectableValue + set() ผ่าน fallback |
+| `testGetAnnotation_annotatedNull_returnsNull` | if (`_annotated == null`) → null |
+| `testGetAnnotation_delegatesToAnnotatedParameter` | else branch → delegate |
+| `testGetMember` | getMember()/getCreatorIndex() |
+| `testSet_withFallbackSetter_delegates` | `set()` → `_verifySetter` ผ่าน (fallback != null) |
+| `testSet_withoutFallbackSetter_throws...` | `_verifySetter` → `_reportMissingSetter(null,null)` → throw (ctxt==null branch) |
+| `testSetAndReturn_withFallbackSetter_...` | setAndReturn ผ่าน fallback |
+| `testSetAndReturn_withoutFallbackSetter_throws...` | setAndReturn → exception path |
+| `testDeserializeAndSet_withFallbackSetter_...` | deserializeAndSet ผ่าน fallback (ใช้ spy stub deserialize) |
+| `testDeserializeAndSet_withoutFallbackSetter_throws...` | deserializeAndSet → exception path ก่อนถึง deserialize() |
+| `testDeserializeSetAndReturn_withFallbackSetter_...` | deserializeSetAndReturn ผ่าน fallback |
+| `testDeserializeSetAndReturn_withoutFallbackSetter_throws...` | deserializeSetAndReturn → exception path |
+| `testToString_containsNameAndInjectId` | toString() ปกติ |
+| `testToString_withNullInjectId` | toString() กับ injectId null |
+
+**หมายเหตุ**: branch `ctxt != null` ภายใน `_reportMissingSetter` **ไม่ถูกทดสอบ** เพราะจาก source ปัจจุบัน `_verifySetter()` เรียก `_reportMissingSetter(null, null)` เสมอ ทำให้ branch นี้ unreachable ผ่าน public API (ไม่ขอเดา behavior เพิ่มตามข้อกำหนด)

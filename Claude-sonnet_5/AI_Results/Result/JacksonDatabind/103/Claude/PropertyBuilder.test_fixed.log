@@ -1,0 +1,8 @@
+Failing tests: 3
+  - com.fasterxml.jackson.databind.ser.PropertyBuilderTest::testGetPropertyDefaultValue_withDefaultBean_returnsMemberValue
+  - com.fasterxml.jackson.databind.ser.PropertyBuilderTest::testBuildWriter_invalidTypeOverride_exceptionPropagatesWithExpectedMessage
+  - com.fasterxml.jackson.databind.ser.PropertyBuilderTest::testFindSerializationType_unrelatedType_throwsIllegalArgumentException
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

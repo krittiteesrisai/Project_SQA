@@ -1,0 +1,26 @@
+Failing tests: 21
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testConstructor_Wildcard_ExcludesXmlnsPrefixedAttribute
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testConstructor_SpecificName_NoPrefix_Found
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testConstructor_NonElementNode_NoAttributes
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testConstructor_SpecificName_PrefixWithoutNamespace_FallbackNotFound
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testConstructor_SpecificName_WithDeclaredNamespace_ViaAttributeNodeNS
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testSetPosition_Negative_ReturnsFalse
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testConstructor_Wildcard_MultipleAttributes_IteratesAll
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testGetNodePointer_ExplicitPosition_SkipsClampBranch
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testConstructor_Wildcard_DifferentPrefix_BothNamespacesNull_StillMatches
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testSetPosition_WithinRange_ReturnsTrue
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testConstructor_Wildcard_NoAttributes_EmptyList
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testConstructor_Wildcard_SamePrefixMatchesWithoutNamespaceLookup
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testSetPosition_OutOfRangeHigh_ReturnsFalse
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testGetNodePointer_NoAttributes_ReturnsNull
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testConstructor_SpecificName_NoPrefix_NotFound
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testConstructor_SpecificName_PrefixWithoutNamespace_FallbackFound
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testConstructor_Wildcard_ExcludesPlainXmlnsAttribute
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testGetNodePointer_DefaultCall_IndexClampedToZero
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testConstructor_Wildcard_IncludesNormalAttribute
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testGetPosition_InitialValueIsZero
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testSetPosition_Zero_ReturnsFalse
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

@@ -1,0 +1,8 @@
+Failing tests: 3
+  - org.jfree.chart.plot.CategoryPlotTest::testRemoveDomainMarkerUnusedIndex_ShouldNotThrowNPE
+  - org.jfree.chart.plot.CategoryPlotTest::testRemoveDomainMarkerNotAdded_ShouldNotThrowNPE
+  - org.jfree.chart.plot.CategoryPlotTest::testRemoveRangeMarkerNotAdded_ShouldNotThrowNPE
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

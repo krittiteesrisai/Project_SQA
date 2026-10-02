@@ -1,0 +1,15 @@
+Failing tests: 10
+  - org.apache.commons.lang3.RandomStringUtilsTest::testRandom_LowSurrogate_CountNotZeroBranch
+  - org.apache.commons.lang3.RandomStringUtilsTest::testRandom_LowSurrogate_CountZeroBranch
+  - org.apache.commons.lang3.RandomStringUtilsTest::testRandom_NormalCharacter_NoSurrogateHandling
+  - org.apache.commons.lang3.RandomStringUtilsTest::testRandom_NullCharsArray_UsesCharCastDirectly
+  - org.apache.commons.lang3.RandomStringUtilsTest::testRandom_EmptyCharsString_ThrowsAIOOBE
+  - org.apache.commons.lang3.RandomStringUtilsTest::testRandom_HighSurrogate_CountZeroBranch
+  - org.apache.commons.lang3.RandomStringUtilsTest::testRandom_EmptyCharArray_ThrowsAIOOBE
+  - org.apache.commons.lang3.RandomStringUtilsTest::testRandom_PrivateHighSurrogate_Skipped
+  - org.apache.commons.lang3.RandomStringUtilsTest::testRandom_HighSurrogate_CountNotZeroBranch
+  - org.apache.commons.lang3.RandomStringUtilsTest::testRandom_ConditionFalse_RetryUntilLetterFound
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

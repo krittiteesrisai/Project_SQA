@@ -1,0 +1,316 @@
+# JUnit 4 Test Suite สำหรับ `PosixParser` (Cli-17b)
+
+## หมายเหตุก่อนเริ่ม (ข้อสังเกตจากการวิเคราะห์ซอร์สโค้ด)
+
+ในเมธอด `process(String value)` มีโค้ดดังนี้:
+
+```java
+if (currentOption != null && currentOption.hasArg())
+{
+    if (currentOption.hasArg())          // เงื่อนไขซ้ำกับ outer if
+    {
+        tokens.add(value);
+        currentOption = null;
+    }
+    else if (currentOption.hasArgs())    // <-- branch นี้ unreachable
+    {
+        tokens.add(value);
+    }
+}
+```
+
+เนื่องจาก outer `if` ตรวจ `currentOption.hasArg()` ไปแล้ว (ต้องเป็น `true` ถึงจะเข้ามาถึง inner if) ดังนั้น inner `if (currentOption.hasArg())` จะเป็น `true` เสมอ ทำให้ `else if (currentOption.hasArgs())` เป็น **dead code** ที่ไม่มีทางถูกเรียกใช้ได้จริงผ่าน public/protected API — จึงไม่สามารถเขียนเทสเพื่อ cover branch นี้ได้โดยไม่ต้องแฮ็ก reflection (ซึ่งจะเป็นการเดา/บังคับ behavior ที่ไม่เกิดขึ้นจริง) จึงขอไม่เขียนเทสสำหรับ branch นี้ ตามข้อกำหนดที่ 4
+
+---
+
+## ชุดทดสอบ
+
+```java
+package org.apache.commons.cli;
+
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+/**
+ * Unit tests for {@link PosixParser} (Defects4J: Cli-17b)
+ *
+ * หมายเหตุ: คลาสทดสอบถูกวางไว้ใน package เดียวกับ PosixParser
+ * เพื่อให้สามารถเรียก flatten(...) ซึ่งเป็น protected method ได้ตรง ๆ
+ */
+public class PosixParserTest
+{
+
+    // ---------------------------------------------------------------
+    // 1. token.startsWith("--")
+    // ---------------------------------------------------------------
+
+    @Test
+    public void testFlatten_DoubleDash_WithEquals()
+    {
+        PosixParser parser = new PosixParser();
+        Options options = new Options();
+
+        String[] result = parser.flatten(options, new String[] { "--foo=bar" }, true);
+
+        assertArrayEquals(new String[] { "--foo", "bar" }, result);
+    }
+
+    @Test
+    public void testFlatten_DoubleDash_WithoutEquals()
+    {
+        PosixParser parser = new PosixParser();
+        Options options = new Options();
+
+        String[] result = parser.flatten(options, new String[] { "--foo" }, true);
+
+        assertArrayEquals(new String[] { "--foo" }, result);
+    }
+
+    // ---------------------------------------------------------------
+    // 2. "-".equals(token)  -> processSingleHyphen
+    // ---------------------------------------------------------------
+
+    @Test
+    public void testFlatten_SingleHyphen()
+    {
+        PosixParser parser = new PosixParser();
+        Options options = new Options();
+
+        String[] result = parser.flatten(options, new String[] { "-" }, false);
+
+        assertArrayEquals(new String[] { "-" }, result);
+    }
+
+    // ---------------------------------------------------------------
+    // 3. token.startsWith("-") && tokenLength == 2  -> processOptionToken
+    // ---------------------------------------------------------------
+
+    @Test
+    public void testFlatten_ShortOption_Valid()
+    {
+        PosixParser parser = new PosixParser();
+        Options options = new Options();
+        options.addOption("a", false, "option a");
+
+        String[] result = parser.flatten(options, new String[] { "-a" }, false);
+
+        assertArrayEquals(new String[] { "-a" }, result);
+    }
+
+    @Test
+    public void testFlatten_ShortOption_Invalid_StopAtNonOptionTrue()
+    {
+        // options.hasOption(token) == false, stopAtNonOption == true
+        // -> eatTheRest = true, token ปัจจุบันไม่ถูกเพิ่ม แต่ argument ที่เหลือถูก gobble แบบ raw
+        PosixParser parser = new PosixParser();
+        Options options = new Options();
+        options.addOption("a", false, "option a"); // ไม่ได้ลงทะเบียน "z"
+
+        String[] result = parser.flatten(options,
+                new String[] { "-z", "foo", "bar" }, true);
+
+        assertArrayEquals(new String[] { "foo", "bar" }, result);
+    }
+
+    @Test
+    public void testFlatten_ShortOption_Invalid_StopAtNonOptionFalse()
+    {
+        // options.hasOption(token) == false, stopAtNonOption == false
+        // -> token ถูก ignore ทั้งหมด ไม่มีการเพิ่ม token ใด ๆ
+        PosixParser parser = new PosixParser();
+        Options options = new Options();
+        options.addOption("a", false, "option a");
+
+        String[] result = parser.flatten(options, new String[] { "-z" }, false);
+
+        assertArrayEquals(new String[] {}, result);
+    }
+
+    // ---------------------------------------------------------------
+    // 4. token.startsWith("-") && tokenLength != 2 && options.hasOption(token)
+    // ---------------------------------------------------------------
+
+    @Test
+    public void testFlatten_MultiCharToken_DirectOptionMatch()
+    {
+        PosixParser parser = new PosixParser();
+        Options options = new Options();
+        options.addOption("de", false, "multi-char option");
+
+        String[] result = parser.flatten(options, new String[] { "-de" }, false);
+
+        assertArrayEquals(new String[] { "-de" }, result);
+    }
+
+    // ---------------------------------------------------------------
+    // 5. burstToken(...) branches
+    // ---------------------------------------------------------------
+
+    @Test
+    public void testBurstToken_NoArgOption_ContinuesLoop()
+    {
+        // "a" ไม่มี arg, "b" มี arg และไม่มี remaining chars เหลือ (token.length()==i+1)
+        PosixParser parser = new PosixParser();
+        Options options = new Options();
+        options.addOption("a", false, "opt a");
+        options.addOption("b", true, "opt b");
+
+        String[] result = parser.flatten(options, new String[] { "-ab" }, false);
+
+        assertArrayEquals(new String[] { "-a", "-b" }, result);
+    }
+
+    @Test
+    public void testBurstToken_HasArg_WithRemainingChars_Break()
+    {
+        // "b" มี arg และมี remaining chars -> เพิ่ม substring แล้ว break loop
+        PosixParser parser = new PosixParser();
+        Options options = new Options();
+        options.addOption("b", true, "opt b");
+
+        String[] result = parser.flatten(options, new String[] { "-bXY" }, false);
+
+        assertArrayEquals(new String[] { "-b", "XY" }, result);
+    }
+
+    @Test
+    public void testBurstToken_InvalidChar_StopAtNonOptionTrue()
+    {
+        // "a" valid ไม่มี arg -> continue, "x" invalid + stopAtNonOption=true -> process(substring)
+        // เนื่องจาก currentOption(a) ไม่มี arg -> process() เข้า else branch: eatTheRest=true, add "--","x"
+        // แล้ว gobble ที่เหลือของ argument list แบบ raw
+        PosixParser parser = new PosixParser();
+        Options options = new Options();
+        options.addOption("a", false, "opt a"); // ไม่ลงทะเบียน "x"
+
+        String[] result = parser.flatten(options,
+                new String[] { "-ax", "foo", "bar" }, true);
+
+        assertArrayEquals(new String[] { "-a", "--", "x", "foo", "bar" }, result);
+    }
+
+    @Test
+    public void testBurstToken_InvalidChar_StopAtNonOptionFalse()
+    {
+        // "a" valid ไม่มี arg -> continue, "x" invalid + stopAtNonOption=false
+        // -> tokens.add(token ทั้งอัน) แล้ว break
+        PosixParser parser = new PosixParser();
+        Options options = new Options();
+        options.addOption("a", false, "opt a");
+
+        String[] result = parser.flatten(options, new String[] { "-ax" }, false);
+
+        assertArrayEquals(new String[] { "-a", "-ax" }, result);
+    }
+
+    // ---------------------------------------------------------------
+    // 6. non-option token branch: stopAtNonOption true/false -> process() / add directly
+    // ---------------------------------------------------------------
+
+    @Test
+    public void testProcess_CurrentOptionHasArg_StopAtNonOptionTrue()
+    {
+        // currentOption != null && currentOption.hasArg() == true
+        PosixParser parser = new PosixParser();
+        Options options = new Options();
+        options.addOption("b", true, "opt b");
+
+        String[] result = parser.flatten(options, new String[] { "-b", "value" }, true);
+
+        assertArrayEquals(new String[] { "-b", "value" }, result);
+    }
+
+    @Test
+    public void testProcess_CurrentOptionNull_StopAtNonOptionTrue()
+    {
+        // currentOption == null -> else branch ของ process(): eatTheRest=true, add "--", value
+        // แล้ว gobble ที่เหลือแบบ raw
+        PosixParser parser = new PosixParser();
+        Options options = new Options();
+
+        String[] result = parser.flatten(options,
+                new String[] { "value1", "value2" }, true);
+
+        assertArrayEquals(new String[] { "--", "value1", "value2" }, result);
+    }
+
+    @Test
+    public void testFlatten_NonOptionToken_StopAtNonOptionFalse()
+    {
+        // stopAtNonOption == false -> เพิ่ม token ตรง ๆ ไม่ผ่าน process()
+        PosixParser parser = new PosixParser();
+        Options options = new Options();
+
+        String[] result = parser.flatten(options,
+                new String[] { "value1", "value2" }, false);
+
+        assertArrayEquals(new String[] { "value1", "value2" }, result);
+    }
+
+    // ---------------------------------------------------------------
+    // 7. boundary / empty / null cases
+    // ---------------------------------------------------------------
+
+    @Test
+    public void testFlatten_EmptyArguments()
+    {
+        // while (iter.hasNext()) ไม่ถูกเข้าเลยแม้แต่ครั้งเดียว
+        PosixParser parser = new PosixParser();
+        Options options = new Options();
+
+        String[] result = parser.flatten(options, new String[] {}, true);
+
+        assertArrayEquals(new String[] {}, result);
+    }
+
+    @Test
+    public void testFlatten_EmptyStringToken()
+    {
+        // token == "" -> ไม่ผ่านทั้ง "--", "-" หรือ startsWith("-") -> เข้า else (non-option)
+        PosixParser parser = new PosixParser();
+        Options options = new Options();
+
+        String[] result = parser.flatten(options, new String[] { "" }, false);
+
+        assertArrayEquals(new String[] { "" }, result);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void testFlatten_NullArguments_ThrowsNPE()
+    {
+        // หมายเหตุ: อ้างอิงจาก Arrays.asList(null) ซึ่งจะโยน NullPointerException
+        // เมื่อมีการเรียก size()/iterator() (พฤติกรรมมาตรฐานของ JDK)
+        // ไม่ใช่การเดา behavior ของ PosixParser เอง แต่เป็นผลข้างเคียงจาก JDK API ที่ใช้ภายใน
+        PosixParser parser = new PosixParser();
+        Options options = new Options();
+
+        parser.flatten(options, null, false);
+    }
+}
+```
+
+---
+
+## ตารางสรุป Branch/Condition Coverage
+
+| เมธอดทดสอบ | Branch / Condition ที่ครอบคลุม |
+|---|---|
+| `testFlatten_DoubleDash_WithEquals` | `token.startsWith("--")` = true, `indexOf('=') != -1` = true |
+| `testFlatten_DoubleDash_WithoutEquals` | `token.startsWith("--")` = true, `indexOf('=') != -1` = false |
+| `testFlatten_SingleHyphen` | `"-".equals(token)` = true → `processSingleHyphen` |
+| `testFlatten_ShortOption_Valid` | `tokenLength == 2` = true, `processOptionToken`: `options.hasOption(token)` = true |
+| `testFlatten_ShortOption_Invalid_StopAtNonOptionTrue` | `processOptionToken`: `hasOption` = false, `stopAtNonOption` = true; `gobble`: `eatTheRest` = true (loop เก็บ token ที่เหลือ) |
+| `testFlatten_ShortOption_Invalid_StopAtNonOptionFalse` | `processOptionToken`: `hasOption` = false, `stopAtNonOption` = false (ignore) |
+| `testFlatten_MultiCharToken_DirectOptionMatch` | `tokenLength != 2`, `options.hasOption(token)` = true |
+| `testBurstToken_NoArgOption_ContinuesLoop` | `burstToken`: `hasOption(ch)` = true, `currentOption.hasArg()` = false → loop continue (ไม่ break) |
+| `testBurstToken_HasArg_WithRemainingChars_Break` | `burstToken`: `hasOption(ch)` = true, `hasArg() && length != i+1` = true → add substring + break |
+| `testBurstToken_InvalidChar_StopAtNonOptionTrue` | `burstToken` else-if: `stopAtNonOption` = true → `process()` (currentOption ไม่มี arg → else branch ของ process); `gobble`: eatTheRest true |
+| `testBurstToken_InvalidChar_StopAtNonOptionFalse` | `burstToken` else: `stopAtNonOption` = false → add token ทั้งอัน + break |
+| `testProcess_CurrentOptionHasArg_StopAtNonOptionTrue` | `process()`: `currentOption != null && hasArg()` = true → inner `hasArg()` = true branch |
+| `testProcess_CurrentOptionNull_StopAtNonOptionTrue` | `process()`: `currentOption == null` → else branch (`eatTheRest=true`, add `"--"`); `gobble` loop |
+| `testFlatten_NonOptionToken_StopAtNonOptionFalse` | non-dash token, `stopAtNonOption` = false → add token ตรง ๆ (ไม่เรียก `process`) |
+| `testFlatten_EmptyArguments` | `while (iter.hasNext())` = false ตั้งแต่แรก (0 iteration) |
+| `testFlatten_EmptyStringToken` | boundary: token ว่าง เข้า else (non-option) branch |
+| `testFlatten_NullArguments_ThrowsNPE` | null-input boundary case (NPE จาก `Arrays.asList(null)`) |
+
+**Branch ที่ไม่สามารถ cover ได้:** `process()` ส่วน `else if (currentOption.hasArgs())` เป็น dead code (unreachable) เนื่องจากเงื่อนไข outer `if` ซ้ำกับ inner `if` ทำให้ inner `if (currentOption.hasArg())` เป็นจริงเสมอ — ถือเป็น fault/ข้อบกพร่องเชิงโครงสร้างของโค้ดต้นฉบับ (Cli-17b) ตามที่ระบุในคอมเมนต์ต้นไฟล์เทส

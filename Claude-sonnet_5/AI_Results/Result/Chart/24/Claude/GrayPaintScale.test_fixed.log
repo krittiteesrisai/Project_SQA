@@ -1,0 +1,10 @@
+Failing tests: 2
+  - org.jfree.chart.renderer.GrayPaintScaleTest::testGetPaintBelowLowerBound_throwsDueToBug
+  - org.jfree.chart.renderer.GrayPaintScaleTest::testGetPaintAboveUpperBound_throwsDueToBug
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK
+Use of uninitialized value $lines[64] in pattern match (m//) at /home/piyachayanin/defects4j/framework/core/Utils.pm line 738.
+Use of uninitialized value $lines[64] in pattern match (m//) at /home/piyachayanin/defects4j/framework/core/Utils.pm line 738.
+Use of uninitialized value in pattern match (m//) at /home/piyachayanin/defects4j/framework/core/Utils.pm line 741.

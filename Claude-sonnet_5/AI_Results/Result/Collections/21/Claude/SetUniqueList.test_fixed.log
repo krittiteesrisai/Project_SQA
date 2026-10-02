@@ -1,0 +1,6 @@
+Failing tests: 1
+  - org.apache.commons.collections4.list.SetUniqueListTest::testSubList_ReturnsSetUniqueList
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

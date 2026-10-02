@@ -1,0 +1,8 @@
+Failing tests: 3
+  - com.fasterxml.jackson.core.io.IOContextTest::testReleaseBase64Buffer_differentEqualLength_throws
+  - com.fasterxml.jackson.core.io.IOContextTest::testReleaseNameCopyBuffer_differentEqualLength_throws
+  - com.fasterxml.jackson.core.io.IOContextTest::testReleaseConcatBuffer_differentEqualLength_throws
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

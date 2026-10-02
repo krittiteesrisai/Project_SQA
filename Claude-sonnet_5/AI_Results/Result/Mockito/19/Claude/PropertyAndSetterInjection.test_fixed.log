@@ -1,0 +1,10 @@
+Failing tests: 5
+  - org.mockito.internal.configuration.injection.PropertyAndSetterInjectionTest::shouldHandleAlreadyInitializedFieldReuseInstance
+  - org.mockito.internal.configuration.injection.PropertyAndSetterInjectionTest::shouldSkipFinalAndStaticFieldsDuringInjection
+  - org.mockito.internal.configuration.injection.PropertyAndSetterInjectionTest::shouldInjectBySetterWhenFieldNeedsInitializationAndSetterAvailable
+  - org.mockito.internal.configuration.injection.PropertyAndSetterInjectionTest::shouldInjectAcrossClassHierarchySuperTypesLast
+  - org.mockito.internal.configuration.injection.PropertyAndSetterInjectionTest::shouldInjectByFieldWhenNoSetterAvailable
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

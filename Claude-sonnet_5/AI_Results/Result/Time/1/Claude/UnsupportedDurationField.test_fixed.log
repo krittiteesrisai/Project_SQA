@@ -1,0 +1,6 @@
+Failing tests: 1
+  - org.joda.time.field.UnsupportedDurationFieldTest::testCompareTo_supportedField_returnsOne
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

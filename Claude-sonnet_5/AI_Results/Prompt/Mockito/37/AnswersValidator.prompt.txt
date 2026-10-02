@@ -1,0 +1,78 @@
+คุณคือ Java testing engineer ที่เชี่ยวชาญด้าน unit testing และ JUnit 4
+เป้าหมาย: เขียนชุดทดสอบ JUnit 4 สำหรับคลาสด้านล่าง เพื่อให้ได้ branch coverage สูงที่สุดเท่าที่เป็นไปได้
+และมีโอกาสดักจับข้อบกพร่อง (fault) ในโค้ดได้จริง
+ข้อกำหนด:
+1. ใช้เฉพาะ JUnit 4 และไลบรารีที่อยู่ใน classpath ต่อไปนี้: asm-all-5.0.4.jar, assertj-core-2.1.0.jar, cglib-and-asm-1.0.jar, cobertura-2.0.3.jar, fest-assert-1.3.jar, fest-util-1.1.4.jar, hamcrest-all-1.3.jar, hamcrest-core-1.1.jar, junit-4.12-hamcrest-1.3.jar, objenesis-2.1.jar, objenesis-2.2.jar, powermock-reflect-1.2.5.jar
+2. ตั้งชื่อคลาสทดสอบเป็น AnswersValidatorTest และ import คลาสเป้าหมายให้ถูกต้อง
+3. ครอบคลุมกรณี: ค่าขอบเขต (boundary), ค่า null/ว่าง, อินพุตผิดรูปแบบ,
+และเงื่อนไข if/else, loop ทุกสาขาเท่าที่วิเคราะห์ได้จากซอร์สที่ให้มา
+4. ห้ามเดา behavior ที่ไม่มีอยู่ในซอร์สโค้ด หากไม่แน่ใจให้เขียนคอมเมนต์กำกับ
+5. หลังโค้ดเทส ให้สรุปเป็นตารางสั้น ๆ ว่าแต่ละเมธอดเทสใด ครอบคลุม Branch/Condition ใด
+ซอร์สโค้ดคลาสเป้าหมาย (Defects4J: Mockito-37b):
+```java
+/*
+ * Copyright (c) 2007 Mockito contributors
+ * This program is made available under the terms of the MIT License.
+ */
+package org.mockito.internal.stubbing.answers;
+
+import org.mockito.exceptions.Reporter;
+import org.mockito.internal.invocation.Invocation;
+import org.mockito.stubbing.Answer;
+
+public class AnswersValidator {
+
+    private Reporter reporter = new Reporter();
+    
+    public void validate(Answer<?> answer, Invocation invocation) {
+        if (answer instanceof ThrowsException) {
+            validateException((ThrowsException) answer, invocation);
+        }
+        
+        if (answer instanceof Returns) {
+            validateReturnValue((Returns) answer, invocation);
+        }
+        
+        if (answer instanceof DoesNothing) {
+            validateDoNothing((DoesNothing) answer, invocation);
+        }
+        
+    }
+
+
+    private void validateDoNothing(DoesNothing answer, Invocation invocation) {
+        if (!invocation.isVoid()) {
+            reporter.onlyVoidMethodsCanBeSetToDoNothing();
+        }
+    }
+
+    private void validateReturnValue(Returns answer, Invocation invocation) {
+        if (invocation.isVoid()) {
+            reporter.cannotStubVoidMethodWithAReturnValue();
+        }
+        
+        if (answer.returnsNull() && invocation.returnsPrimitive()) {
+            reporter.wrongTypeOfReturnValue(invocation.printMethodReturnType(), "null", invocation.getMethodName());
+        } 
+
+        if (!answer.returnsNull() && !invocation.isValidReturnType(answer.getReturnType())) {
+            reporter.wrongTypeOfReturnValue(invocation.printMethodReturnType(), answer.printReturnType(), invocation.getMethodName());
+        }
+    }
+
+    private void validateException(ThrowsException answer, Invocation invocation) {
+        Throwable throwable = answer.getThrowable();
+        if (throwable == null) {
+            reporter.cannotStubWithNullThrowable();
+        }
+        
+        if (throwable instanceof RuntimeException || throwable instanceof Error) {
+            return;
+        }
+        
+        if (!invocation.isValidException(throwable)) {
+            reporter.checkedExceptionInvalid(throwable);
+        }
+    }
+}
+```

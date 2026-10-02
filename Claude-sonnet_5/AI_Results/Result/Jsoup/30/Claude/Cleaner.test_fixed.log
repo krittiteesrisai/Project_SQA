@@ -1,0 +1,10 @@
+Failing tests: 2
+  - org.jsoup.safety.CleanerTest::clean_emptyWhitelist_discardsAllTags
+  - org.jsoup.safety.CleanerTest::isValid_documentWithoutBody_throwsNPE
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK
+Use of uninitialized value $lines[42] in pattern match (m//) at /home/piyachayanin/defects4j/framework/core/Utils.pm line 738.
+Use of uninitialized value $lines[42] in pattern match (m//) at /home/piyachayanin/defects4j/framework/core/Utils.pm line 738.
+Use of uninitialized value in pattern match (m//) at /home/piyachayanin/defects4j/framework/core/Utils.pm line 741.

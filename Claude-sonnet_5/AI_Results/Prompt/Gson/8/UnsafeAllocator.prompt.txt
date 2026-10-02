@@ -1,0 +1,124 @@
+คุณคือ Java testing engineer ที่เชี่ยวชาญด้าน unit testing และ JUnit 4
+เป้าหมาย: เขียนชุดทดสอบ JUnit 4 สำหรับคลาสด้านล่าง เพื่อให้ได้ branch coverage สูงที่สุดเท่าที่เป็นไปได้
+และมีโอกาสดักจับข้อบกพร่อง (fault) ในโค้ดได้จริง
+ข้อกำหนด:
+1. ใช้เฉพาะ JUnit 4 และไลบรารีที่อยู่ใน classpath ต่อไปนี้: hamcrest-core-1.3.jar, jsr305-3.0.0.jar, junit-3.8.2.jar, junit-4.12-hamcrest-1.3.jar, junit-4.12.jar
+2. ตั้งชื่อคลาสทดสอบเป็น UnsafeAllocatorTest และ import คลาสเป้าหมายให้ถูกต้อง
+3. ครอบคลุมกรณี: ค่าขอบเขต (boundary), ค่า null/ว่าง, อินพุตผิดรูปแบบ,
+และเงื่อนไข if/else, loop ทุกสาขาเท่าที่วิเคราะห์ได้จากซอร์สที่ให้มา
+4. ห้ามเดา behavior ที่ไม่มีอยู่ในซอร์สโค้ด หากไม่แน่ใจให้เขียนคอมเมนต์กำกับ
+5. หลังโค้ดเทส ให้สรุปเป็นตารางสั้น ๆ ว่าแต่ละเมธอดเทสใด ครอบคลุม Branch/Condition ใด
+ซอร์สโค้ดคลาสเป้าหมาย (Defects4J: Gson-8b):
+```java
+/*
+ * Copyright (C) 2011 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.google.gson.internal;
+
+import java.io.ObjectInputStream;
+import java.io.ObjectStreamClass;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+/**
+ * Do sneaky things to allocate objects without invoking their constructors.
+ *
+ * @author Joel Leitch
+ * @author Jesse Wilson
+ */
+public abstract class UnsafeAllocator {
+  public abstract <T> T newInstance(Class<T> c) throws Exception;
+
+  public static UnsafeAllocator create() {
+    // try JVM
+    // public class Unsafe {
+    //   public Object allocateInstance(Class<?> type);
+    // }
+    try {
+      Class<?> unsafeClass = Class.forName("sun.misc.Unsafe");
+      Field f = unsafeClass.getDeclaredField("theUnsafe");
+      f.setAccessible(true);
+      final Object unsafe = f.get(null);
+      final Method allocateInstance = unsafeClass.getMethod("allocateInstance", Class.class);
+      return new UnsafeAllocator() {
+        @Override
+        @SuppressWarnings("unchecked")
+        public <T> T newInstance(Class<T> c) throws Exception {
+          return (T) allocateInstance.invoke(unsafe, c);
+        }
+      };
+    } catch (Exception ignored) {
+    }
+
+    // try dalvikvm, post-gingerbread
+    // public class ObjectStreamClass {
+    //   private static native int getConstructorId(Class<?> c);
+    //   private static native Object newInstance(Class<?> instantiationClass, int methodId);
+    // }
+    try {
+      Method getConstructorId = ObjectStreamClass.class
+          .getDeclaredMethod("getConstructorId", Class.class);
+      getConstructorId.setAccessible(true);
+      final int constructorId = (Integer) getConstructorId.invoke(null, Object.class);
+      final Method newInstance = ObjectStreamClass.class
+          .getDeclaredMethod("newInstance", Class.class, int.class);
+      newInstance.setAccessible(true);
+      return new UnsafeAllocator() {
+        @Override
+        @SuppressWarnings("unchecked")
+        public <T> T newInstance(Class<T> c) throws Exception {
+          return (T) newInstance.invoke(null, c, constructorId);
+        }
+      };
+    } catch (Exception ignored) {
+    }
+
+    // try dalvikvm, pre-gingerbread
+    // public class ObjectInputStream {
+    //   private static native Object newInstance(
+    //     Class<?> instantiationClass, Class<?> constructorClass);
+    // }
+    try {
+      final Method newInstance = ObjectInputStream.class
+          .getDeclaredMethod("newInstance", Class.class, Class.class);
+      newInstance.setAccessible(true);
+      return new UnsafeAllocator() {
+        @Override
+        @SuppressWarnings("unchecked")
+        public <T> T newInstance(Class<T> c) throws Exception {
+          return (T) newInstance.invoke(null, c, Object.class);
+        }
+      };
+    } catch (Exception ignored) {
+    }
+
+    // give up
+    return new UnsafeAllocator() {
+      @Override
+      public <T> T newInstance(Class<T> c) {
+        throw new UnsupportedOperationException("Cannot allocate " + c);
+      }
+    };
+  }
+
+  /**
+   * Check if the class can be instantiated by unsafe allocator. If the instance has interface or abstract modifiers
+   * throw an {@link java.lang.UnsupportedOperationException}
+   * @param c instance of the class to be checked
+   */
+}
+
+```

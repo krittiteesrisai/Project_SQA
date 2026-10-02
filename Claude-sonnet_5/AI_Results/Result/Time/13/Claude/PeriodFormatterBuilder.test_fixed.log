@@ -1,0 +1,8 @@
+Failing tests: 3
+  - org.joda.time.format.PeriodFormatterBuilderTest::testAppendSeparator_emptyBuilder_withUseAfterOnly
+  - org.joda.time.format.PeriodFormatterBuilderTest::testParseInto_prefixNotFound_notMustParse_returnsComplement
+  - org.joda.time.format.PeriodFormatterBuilderTest::testToFormatter_subsequentBuilderChanges_doNotAffectAlreadyBuiltFormatter
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

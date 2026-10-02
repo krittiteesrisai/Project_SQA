@@ -1,0 +1,73 @@
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ FAIL
+Executed command:  cd /home/piyachayanin/SQA_2/AI_Testing/work/Closure_36b && ant -f /home/piyachayanin/defects4j/framework/projects/defects4j.build.xml -Dd4j.home=/home/piyachayanin/defects4j -Dd4j.dir.projects=/home/piyachayanin/defects4j/framework/projects -Dbasedir=/home/piyachayanin/SQA_2/AI_Testing/work/Closure_36b -Dd4j.test.dir=/home/piyachayanin/SQA_2/AI_Testing/work/Closure_36b/.test_suite compile.gen.tests 2>&1
+Buildfile: /home/piyachayanin/defects4j/framework/projects/defects4j.build.xml
+
+rhino:
+
+properties:
+
+init:
+
+compile:
+
+compile-most:
+
+compile-jdk15:
+
+compile:
+
+properties:
+
+compile:
+
+xmlimplsrc-compile:
+     [echo] Calling /home/piyachayanin/SQA_2/AI_Testing/work/Closure_36b/lib/rhino/xmlimplsrc/build.xml
+
+compile:
+
+compile-all:
+
+compile:
+
+jar:
+
+rhino-jarjar:
+   [jarjar] Updating jar: /home/piyachayanin/SQA_2/AI_Testing/work/Closure_36b/build/lib/rhino.jar
+
+svnversion:
+
+compile:
+    [javac] /home/piyachayanin/SQA_2/AI_Testing/work/Closure_36b/build.xml:252: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+    [javac] /home/piyachayanin/SQA_2/AI_Testing/work/Closure_36b/build.xml:258: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+[propertyfile] Updating property file: /home/piyachayanin/SQA_2/AI_Testing/work/Closure_36b/build/classes/com/google/javascript/jscomp/parsing/ParserConfig.properties
+
+compile.gen.tests:
+     [echo] classes.dir: /home/piyachayanin/SQA_2/AI_Testing/work/Closure_36b/build/classes
+     [echo] build.home: /home/piyachayanin/SQA_2/AI_Testing/work/Closure_36b/build
+    [mkdir] Created dir: /home/piyachayanin/SQA_2/AI_Testing/work/Closure_36b/.classes_testgen
+    [javac] /home/piyachayanin/defects4j/framework/projects/defects4j.build.xml:268: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+    [javac] Compiling 1 source file to /home/piyachayanin/SQA_2/AI_Testing/work/Closure_36b/.classes_testgen
+    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6
+    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release
+    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release
+    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
+    [javac] /home/piyachayanin/SQA_2/AI_Testing/work/Closure_36b/.test_suite/com/google/javascript/jscomp/InlineVariablesTest.java:53: error: no suitable method found for init(List<SourceFile>,List<SourceFile>,CompilerOptions)
+    [javac]     compiler.init(externs, inputs, options);
+    [javac]             ^
+    [javac]     method Compiler.init(JSSourceFile[],JSSourceFile[],CompilerOptions) is not applicable
+    [javac]       (argument mismatch; List<SourceFile> cannot be converted to JSSourceFile[])
+    [javac]     method Compiler.init(List<JSSourceFile>,List<JSSourceFile>,CompilerOptions) is not applicable
+    [javac]       (argument mismatch; List<SourceFile> cannot be converted to List<JSSourceFile>)
+    [javac]     method Compiler.init(JSSourceFile[],JSModule[],CompilerOptions) is not applicable
+    [javac]       (argument mismatch; List<SourceFile> cannot be converted to JSSourceFile[])
+    [javac] 1 error
+    [javac] 4 warnings
+
+BUILD FAILED
+/home/piyachayanin/defects4j/framework/projects/defects4j.build.xml:268: Compile failed; see the compiler error output for details.
+
+Total time: 2 seconds
+Cannot compile extracted test suite! at /home/piyachayanin/defects4j/framework/bin/d4j/d4j-test line 126.
+Compilation failed in require at /home/piyachayanin/defects4j/framework/bin/defects4j line 195.

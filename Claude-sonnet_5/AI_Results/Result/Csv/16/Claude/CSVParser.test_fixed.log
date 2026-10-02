@@ -1,0 +1,7 @@
+Failing tests: 2
+  - org.apache.commons.csv.CSVParserTest::testHeader_IgnoreCase_True
+  - org.apache.commons.csv.CSVParserTest::testHeader_DuplicateEmptyNames_AllowMissingTrue_NoThrow
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

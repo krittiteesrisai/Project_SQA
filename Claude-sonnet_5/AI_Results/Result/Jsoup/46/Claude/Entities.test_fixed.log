@@ -1,0 +1,7 @@
+Failing tests: 2
+  - org.jsoup.nodes.EntitiesTest::testEscape_Nbsp_XhtmlMode_KeepsLiteralChar
+  - org.jsoup.nodes.EntitiesTest::testUnescape_StrictMode_RequiresSemicolon
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

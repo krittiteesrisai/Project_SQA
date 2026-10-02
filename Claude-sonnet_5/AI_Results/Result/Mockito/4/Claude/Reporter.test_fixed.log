@@ -1,0 +1,9 @@
+Failing tests: 4
+  - org.mockito.exceptions.ReporterTest::noMoreInteractionsWanted_throwsNoInteractionsWanted
+  - org.mockito.exceptions.ReporterTest::unfinishedStubbing_withNullLocation_throwsUnfinishedStubbingException
+  - org.mockito.exceptions.ReporterTest::noMoreInteractionsWantedInOrder_throwsVerificationInOrderFailure
+  - org.mockito.exceptions.ReporterTest::cannotInjectDependency_withoutCause_throwsNPE_dueToMissingNullCheck
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

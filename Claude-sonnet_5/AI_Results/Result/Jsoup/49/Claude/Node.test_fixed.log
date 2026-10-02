@@ -1,0 +1,8 @@
+Failing tests: 3
+  - org.jsoup.nodes.NodeTest::testEqualsIgnoresNodeName_PotentialFaultDetector
+  - org.jsoup.nodes.NodeTest::testUnwrapWithNoChildrenReturnsNull
+  - org.jsoup.nodes.NodeTest::testUnwrapReturnsFirstChild
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

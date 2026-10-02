@@ -1,0 +1,19 @@
+Failing tests: 14
+  - com.fasterxml.jackson.dataformat.xml.ser.ToXmlGeneratorTest::writeNumberDouble_unwrapped
+  - com.fasterxml.jackson.dataformat.xml.ser.ToXmlGeneratorTest::writeNull_asAttribute_noOutput
+  - com.fasterxml.jackson.dataformat.xml.ser.ToXmlGeneratorTest::fullDocument_integration
+  - com.fasterxml.jackson.dataformat.xml.ser.ToXmlGeneratorTest::writeString_asAttribute
+  - com.fasterxml.jackson.dataformat.xml.ser.ToXmlGeneratorTest::writeRawValueString_asAttribute
+  - com.fasterxml.jackson.dataformat.xml.ser.ToXmlGeneratorTest::close_autoCloseJsonContent_nestedContexts
+  - com.fasterxml.jackson.dataformat.xml.ser.ToXmlGeneratorTest::writeBinary_unwrapped
+  - com.fasterxml.jackson.dataformat.xml.ser.ToXmlGeneratorTest::writeStartArray_writeEndArray_matchedContext
+  - com.fasterxml.jackson.dataformat.xml.ser.ToXmlGeneratorTest::close_withoutAutoCloseJsonContent_skipsLoop
+  - com.fasterxml.jackson.dataformat.xml.ser.ToXmlGeneratorTest::writeString_unwrapped_resetsFlag
+  - com.fasterxml.jackson.dataformat.xml.ser.ToXmlGeneratorTest::writeNumberBigDecimal_plainTrue_asAttribute
+  - com.fasterxml.jackson.dataformat.xml.ser.ToXmlGeneratorTest::writeNumberLong_asAttribute
+  - com.fasterxml.jackson.dataformat.xml.ser.ToXmlGeneratorTest::writeBinary_asAttribute
+  - com.fasterxml.jackson.dataformat.xml.ser.ToXmlGeneratorTest::writeRaw_String_stax2Supported_noException
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

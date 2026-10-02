@@ -1,0 +1,167 @@
+คุณคือ Java testing engineer ที่เชี่ยวชาญด้าน unit testing และ JUnit 4
+เป้าหมาย: เขียนชุดทดสอบ JUnit 4 สำหรับคลาสด้านล่าง เพื่อให้ได้ branch coverage สูงที่สุดเท่าที่เป็นไปได้
+และมีโอกาสดักจับข้อบกพร่อง (fault) ในโค้ดได้จริง
+ข้อกำหนด:
+1. ใช้เฉพาะ JUnit 4 และไลบรารีที่อยู่ใน classpath ต่อไปนี้: antlr-2.7.7.jar, asm-3.3.1.jar, asm-4.2.jar, asm-analysis-3.2.jar, asm-commons-3.2.jar, asm-tree-3.2.jar, asm-util-3.2.jar, assertj-core-3.8.0.jar, assertj-core-3.9.1.jar, byte-buddy-1.7.5.jar, byte-buddy-1.9.3.jar, byte-buddy-agent-1.7.5.jar, byte-buddy-agent-1.9.3.jar, cglib-2.2.2.jar, cglib-3.1.jar, groovy-1.7.9.jar, groovy-2.4.0.jar, guava-18.0.jar, hamcrest-core-1.1.jar, hamcrest-core-1.3.jar, hibernate-cglib-repack-2.1_3.jar, jackson-annotations-2.10.0-20190519.085045-3.jar, jackson-annotations-2.2.0.jar, jackson-annotations-2.2.1.jar, jackson-annotations-2.3.0.jar, jackson-annotations-2.4.0-rc3.jar, jackson-annotations-2.4.0.jar, jackson-annotations-2.5.0.jar, jackson-annotations-2.6.0-rc1.jar, jackson-annotations-2.6.0-rc2.jar, jackson-annotations-2.6.0-rc3.jar, jackson-annotations-2.6.0.jar, jackson-annotations-2.7.0-rc2.jar, jackson-annotations-2.7.0.jar, jackson-annotations-2.8.0.jar, jackson-annotations-2.8.0.rc1.jar, jackson-annotations-2.9.0.jar, jackson-annotations-2.9.0.pr3.jar, jackson-annotations-3.0-20190323.173155-41.jar, jackson-annotations-3.0-20190519.085339-43.jar, jackson-core-2.10.0-20190518.180547-60.jar, jackson-core-2.2.0.jar, jackson-core-2.2.1.jar, jackson-core-2.3.0.jar, jackson-core-2.4.0-rc3.jar, jackson-core-2.4.0.jar, jackson-core-2.4.1.1.jar, jackson-core-2.4.2.jar, jackson-core-2.4.3.jar, jackson-core-2.4.5.jar, jackson-core-2.4.6.jar, jackson-core-2.5.0.jar, jackson-core-2.5.1.jar, jackson-core-2.5.3.jar, jackson-core-2.5.4.jar, jackson-core-2.5.5.jar, jackson-core-2.6.0-rc1.jar, jackson-core-2.6.0-rc2.jar, jackson-core-2.6.0-rc3.jar, jackson-core-2.6.0.jar, jackson-core-2.6.1.jar, jackson-core-2.6.2.jar, jackson-core-2.6.3.jar, jackson-core-2.6.4.jar, jackson-core-2.6.5.jar, jackson-core-2.6.6.jar, jackson-core-2.6.7.jar, jackson-core-2.7.0-rc2.jar, jackson-core-2.7.0.jar, jackson-core-2.7.1.jar, jackson-core-2.7.2.jar, jackson-core-2.7.4.jar, jackson-core-2.7.5.jar, jackson-core-2.7.6.jar, jackson-core-2.7.7.jar, jackson-core-2.7.8.jar, jackson-core-2.7.9.jar, jackson-core-2.8.0.jar, jackson-core-2.8.0.rc1.jar, jackson-core-2.8.0.rc2.jar, jackson-core-2.8.10.jar, jackson-core-2.8.3.jar, jackson-core-2.8.4.jar, jackson-core-2.8.5.jar, jackson-core-2.8.6.jar, jackson-core-2.8.7.jar, jackson-core-2.8.8-20170301.000803-1.jar, jackson-core-2.8.8.jar, jackson-core-2.8.9.jar, jackson-core-2.9.0.pr3.jar, jackson-core-2.9.6.jar, jackson-core-2.9.7.jar, jackson-core-2.9.8.jar, jackson-core-2.9.9.jar, jackson-core-3.0.0-20190516.032312-448.jar, javassist-3.19.0-GA.jar, javassist-3.20.0-GA.jar, javassist-3.21.0-GA.jar, javassist-3.22.0-CR2.jar, javassist-3.24.0-GA.jar, jimfs-1.1.jar, jsr-275-0.9.1.jar, jsr-275-0.9.2.jar, junit-4.10.jar, junit-4.11.jar, junit-4.12-hamcrest-1.3.jar, junit-4.12.jar, junit-4.8.2.jar, mockito-all-1.10.19.jar, mockito-core-1.10.19.jar, mockito-core-2.10.0.jar, mockito-core-2.23.0.jar, objenesis-2.1.jar, objenesis-2.6.jar, objenesis-3.0.1.jar, powermock-api-mockito-1.6.2.jar, powermock-api-mockito-1.6.3.jar, powermock-api-mockito-1.6.5.jar, powermock-api-mockito-1.7.3.jar, powermock-api-mockito-1.7.4.jar, powermock-api-mockito-common-1.6.5.jar, powermock-api-mockito-common-1.7.3.jar, powermock-api-mockito-common-1.7.4.jar, powermock-api-mockito2-2.0.0-beta.5.jar, powermock-api-mockito2-2.0.0.jar, powermock-api-support-1.6.2.jar, powermock-api-support-1.6.3.jar, powermock-api-support-1.6.5.jar, powermock-api-support-1.7.3.jar, powermock-api-support-1.7.4.jar, powermock-api-support-2.0.0-beta.5.jar, powermock-api-support-2.0.0.jar, powermock-core-1.6.2.jar, powermock-core-1.6.3.jar, powermock-core-1.6.5.jar, powermock-core-1.7.3.jar, powermock-core-1.7.4.jar, powermock-core-2.0.0-beta.5.jar, powermock-core-2.0.0.jar, powermock-module-junit4-1.6.2.jar, powermock-module-junit4-1.6.3.jar, powermock-module-junit4-1.6.5.jar, powermock-module-junit4-1.7.3.jar, powermock-module-junit4-1.7.4.jar, powermock-module-junit4-2.0.0-beta.5.jar, powermock-module-junit4-2.0.0.jar, powermock-module-junit4-common-1.6.2.jar, powermock-module-junit4-common-1.6.3.jar, powermock-module-junit4-common-1.6.5.jar, powermock-module-junit4-common-1.7.3.jar, powermock-module-junit4-common-1.7.4.jar, powermock-module-junit4-common-2.0.0-beta.5.jar, powermock-module-junit4-common-2.0.0.jar, powermock-reflect-1.6.2.jar, powermock-reflect-1.6.3.jar, powermock-reflect-1.6.5.jar, powermock-reflect-1.7.3.jar, powermock-reflect-1.7.4.jar, powermock-reflect-2.0.0-beta.5.jar, powermock-reflect-2.0.0.jar
+2. ตั้งชื่อคลาสทดสอบเป็น ClassNameIdResolverTest และ import คลาสเป้าหมายให้ถูกต้อง
+3. ครอบคลุมกรณี: ค่าขอบเขต (boundary), ค่า null/ว่าง, อินพุตผิดรูปแบบ,
+และเงื่อนไข if/else, loop ทุกสาขาเท่าที่วิเคราะห์ได้จากซอร์สที่ให้มา
+4. ห้ามเดา behavior ที่ไม่มีอยู่ในซอร์สโค้ด หากไม่แน่ใจให้เขียนคอมเมนต์กำกับ
+5. หลังโค้ดเทส ให้สรุปเป็นตารางสั้น ๆ ว่าแต่ละเมธอดเทสใด ครอบคลุม Branch/Condition ใด
+ซอร์สโค้ดคลาสเป้าหมาย (Defects4J: JacksonDatabind-88b):
+```java
+package com.fasterxml.jackson.databind.jsontype.impl;
+
+import java.io.IOException;
+import java.util.*;
+
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.type.TypeFactory;
+import com.fasterxml.jackson.databind.util.ClassUtil;
+
+/**
+ * {@link com.fasterxml.jackson.databind.jsontype.TypeIdResolver} implementation
+ * that converts between fully-qualified
+ * Java class names and (JSON) Strings.
+ */
+public class ClassNameIdResolver
+    extends TypeIdResolverBase
+{
+    public ClassNameIdResolver(JavaType baseType, TypeFactory typeFactory) {
+        super(baseType, typeFactory);
+    }
+
+    @Override
+    public JsonTypeInfo.Id getMechanism() { return JsonTypeInfo.Id.CLASS; }
+
+    public void registerSubtype(Class<?> type, String name) {
+        // not used with class name - based resolvers
+    }
+    
+    @Override
+    public String idFromValue(Object value) {
+        return _idFrom(value, value.getClass(), _typeFactory);
+    }
+
+    @Override
+    public String idFromValueAndType(Object value, Class<?> type) {
+        return _idFrom(value, type, _typeFactory);
+    }
+
+    @Override
+    public JavaType typeFromId(DatabindContext context, String id) throws IOException {
+        return _typeFromId(id, context);
+    }
+
+    protected JavaType _typeFromId(String id, DatabindContext ctxt) throws IOException
+    {
+        /* 30-Jan-2010, tatu: Most ids are basic class names; so let's first
+         *    check if any generics info is added; and only then ask factory
+         *    to do translation when necessary
+         */
+        TypeFactory tf = ctxt.getTypeFactory();
+        if (id.indexOf('<') > 0) {
+            // note: may want to try combining with specialization (esp for EnumMap)?
+            // 17-Aug-2017, tatu: As per [databind#1735] need to ensure assignment
+            //    compatibility -- needed later anyway, and not doing so may open
+            //    security issues.
+            JavaType t = tf.constructFromCanonical(id);
+                // Probably cleaner to have a method in `TypeFactory` but can't add in patch
+            return t;
+        }
+        Class<?> cls;
+        try {
+            cls =  tf.findClass(id);
+        } catch (ClassNotFoundException e) {
+            // 24-May-2016, tatu: Ok, this is pretty ugly, but we should always get
+            //   DeserializationContext, just playing it safe
+            if (ctxt instanceof DeserializationContext) {
+                DeserializationContext dctxt = (DeserializationContext) ctxt;
+                // First: we may have problem handlers that can deal with it?
+                return dctxt.handleUnknownTypeId(_baseType, id, this, "no such class found");
+            }
+            // ... meaning that we really should never get here.
+            return null;
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Invalid type id '"+id+"' (for id type 'Id.class'): "+e.getMessage(), e);
+        }
+        return tf.constructSpecializedType(_baseType, cls);
+    }
+    
+    /*
+    /**********************************************************
+    /* Internal methods
+    /**********************************************************
+     */
+    
+    protected final String _idFrom(Object value, Class<?> cls, TypeFactory typeFactory)
+    {
+        // Need to ensure that "enum subtypes" work too
+        if (Enum.class.isAssignableFrom(cls)) {
+            if (!cls.isEnum()) { // means that it's sub-class of base enum, so:
+                cls = cls.getSuperclass();
+            }
+        }
+        String str = cls.getName();
+        if (str.startsWith("java.util")) {
+            // 25-Jan-2009, tatu: There are some internal classes that we can not access as is.
+            //     We need better mechanism; for now this has to do...
+
+            // Enum sets and maps are problematic since we MUST know type of
+            // contained enums, to be able to deserialize.
+            // In addition, EnumSet is not a concrete type either
+            if (value instanceof EnumSet<?>) { // Regular- and JumboEnumSet...
+                Class<?> enumClass = ClassUtil.findEnumType((EnumSet<?>) value);
+                // not optimal: but EnumSet is not a customizable type so this is sort of ok
+               str = typeFactory.constructCollectionType(EnumSet.class, enumClass).toCanonical();
+            } else if (value instanceof EnumMap<?,?>) {
+                Class<?> enumClass = ClassUtil.findEnumType((EnumMap<?,?>) value);
+                Class<?> valueClass = Object.class;
+                // not optimal: but EnumMap is not a customizable type so this is sort of ok
+                str = typeFactory.constructMapType(EnumMap.class, enumClass, valueClass).toCanonical();
+            } else {
+                String end = str.substring(9);
+                if ((end.startsWith(".Arrays$") || end.startsWith(".Collections$"))
+                       && str.indexOf("List") >= 0) {
+                    /* 17-Feb-2010, tatus: Another such case: result of
+                     *    Arrays.asList() is named like so in Sun JDK...
+                     *   Let's just plain old ArrayList in its place
+                     * NOTE: chances are there are plenty of similar cases
+                     * for other wrappers... (immutable, singleton, synced etc)
+                     */
+                    str = "java.util.ArrayList";
+                }
+            }
+        } else if (str.indexOf('$') >= 0) {
+            /* Other special handling may be needed for inner classes, [JACKSON-584].
+             * The best way to handle would be to find 'hidden' constructor; pass parent
+             * value etc (which is actually done for non-anonymous static classes!),
+             * but that is just not possible due to various things. So, we will instead
+             * try to generalize type into something we will be more likely to be able
+             * construct.
+             */
+            Class<?> outer = ClassUtil.getOuterClass(cls);
+            if (outer != null) {
+                /* one more check: let's actually not worry if the declared
+                 * static type is non-static as well; if so, deserializer does
+                 * have a chance at figuring it all out.
+                 */
+                Class<?> staticType = _baseType.getRawClass();
+                if (ClassUtil.getOuterClass(staticType) == null) {
+                    // Is this always correct? Seems like it should be...
+                    cls = _baseType.getRawClass();
+                    str = cls.getName();
+                }
+            }
+        }
+        return str;
+    }
+
+    @Override
+    public String getDescForKnownTypeIds() {
+        return "class name used as type id";
+    }
+}
+
+```

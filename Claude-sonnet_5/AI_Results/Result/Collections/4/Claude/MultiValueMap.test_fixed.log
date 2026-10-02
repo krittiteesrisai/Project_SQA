@@ -1,0 +1,7 @@
+Failing tests: 2
+  - org.apache.commons.collections.map.MultiValueMapTest::testPut_NewKey_ReturnsNull_DueToImplQuirk
+  - org.apache.commons.collections.map.MultiValueMapTest::testPutAllKeyCollection_NewKey_ResultFalse_DueToImplQuirk
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

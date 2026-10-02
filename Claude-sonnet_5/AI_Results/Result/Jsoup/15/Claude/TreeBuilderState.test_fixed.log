@@ -1,0 +1,8 @@
+Failing tests: 3
+  - org.jsoup.parser.TreeBuilderStateTest::testInHeadNoscript_AnythingElse_Text
+  - org.jsoup.parser.TreeBuilderStateTest::testInBody_StartTagXmp_Rawtext
+  - org.jsoup.parser.TreeBuilderStateTest::testInBody_Character_NullIgnored
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

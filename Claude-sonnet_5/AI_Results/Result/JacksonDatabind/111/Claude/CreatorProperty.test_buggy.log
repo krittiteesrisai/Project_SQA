@@ -1,0 +1,31 @@
+Failing tests: 26
+  - com.fasterxml.jackson.databind.deser.CreatorPropertyTest::testWithNullProvider_returnsNewCreatorPropertyInstance
+  - com.fasterxml.jackson.databind.deser.CreatorPropertyTest::testFixAccess_withoutFallbackSetter_isNoOp
+  - com.fasterxml.jackson.databind.deser.CreatorPropertyTest::testFixAccess_withFallbackSetter_delegates
+  - com.fasterxml.jackson.databind.deser.CreatorPropertyTest::testDeserializeSetAndReturn_withoutFallbackSetter_throwsInvalidDefinitionException
+  - com.fasterxml.jackson.databind.deser.CreatorPropertyTest::testInject_findsValueAndCallsSetThroughFallback
+  - com.fasterxml.jackson.databind.deser.CreatorPropertyTest::testWithValueDeserializer_sameInstance_returnsThis
+  - com.fasterxml.jackson.databind.deser.CreatorPropertyTest::testDeserializeAndSet_withFallbackSetter_callsSetWithDeserializedValue
+  - com.fasterxml.jackson.databind.deser.CreatorPropertyTest::testToString_containsNameAndInjectId
+  - com.fasterxml.jackson.databind.deser.CreatorPropertyTest::testToString_withNullInjectId
+  - com.fasterxml.jackson.databind.deser.CreatorPropertyTest::testSetAndReturn_withoutFallbackSetter_throwsInvalidDefinitionException
+  - com.fasterxml.jackson.databind.deser.CreatorPropertyTest::testSet_withoutFallbackSetter_throwsInvalidDefinitionException
+  - com.fasterxml.jackson.databind.deser.CreatorPropertyTest::testSet_withFallbackSetter_delegates
+  - com.fasterxml.jackson.databind.deser.CreatorPropertyTest::testMarkAsIgnorable_togglesIsIgnorable
+  - com.fasterxml.jackson.databind.deser.CreatorPropertyTest::testFindInjectableValue_nullInjectableId_reportsBadDefinition
+  - com.fasterxml.jackson.databind.deser.CreatorPropertyTest::testDeserializeAndSet_withoutFallbackSetter_throwsInvalidDefinitionException
+  - com.fasterxml.jackson.databind.deser.CreatorPropertyTest::testConstructorAndBasicGetters
+  - com.fasterxml.jackson.databind.deser.CreatorPropertyTest::testSetFallbackSetter
+  - com.fasterxml.jackson.databind.deser.CreatorPropertyTest::testGetAnnotation_annotatedNull_returnsNull
+  - com.fasterxml.jackson.databind.deser.CreatorPropertyTest::testSetAndReturn_withFallbackSetter_delegatesAndReturnsValue
+  - com.fasterxml.jackson.databind.deser.CreatorPropertyTest::testWithValueDeserializer_differentInstance_returnsNewCreatorProperty
+  - com.fasterxml.jackson.databind.deser.CreatorPropertyTest::testGetInjectableValueId_null
+  - com.fasterxml.jackson.databind.deser.CreatorPropertyTest::testDeserializeSetAndReturn_withFallbackSetter_returnsFallbackResult
+  - com.fasterxml.jackson.databind.deser.CreatorPropertyTest::testGetMember
+  - com.fasterxml.jackson.databind.deser.CreatorPropertyTest::testFindInjectableValue_withInjectableId_delegatesToContext
+  - com.fasterxml.jackson.databind.deser.CreatorPropertyTest::testWithName_createsNewInstanceWithNewNamePreservingOtherFields
+  - com.fasterxml.jackson.databind.deser.CreatorPropertyTest::testGetAnnotation_delegatesToAnnotatedParameter
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

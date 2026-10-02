@@ -1,0 +1,305 @@
+คุณคือ Java testing engineer ที่เชี่ยวชาญด้าน unit testing และ JUnit 4
+เป้าหมาย: เขียนชุดทดสอบ JUnit 4 สำหรับคลาสด้านล่าง เพื่อให้ได้ branch coverage สูงที่สุดเท่าที่เป็นไปได้
+และมีโอกาสดักจับข้อบกพร่อง (fault) ในโค้ดได้จริง
+ข้อกำหนด:
+1. ใช้เฉพาะ JUnit 4 และไลบรารีที่อยู่ใน classpath ต่อไปนี้: antlr-2.7.7.jar, asm-3.3.1.jar, asm-4.2.jar, asm-analysis-3.2.jar, asm-commons-3.2.jar, asm-tree-3.2.jar, asm-util-3.2.jar, assertj-core-3.8.0.jar, assertj-core-3.9.1.jar, byte-buddy-1.7.5.jar, byte-buddy-1.9.3.jar, byte-buddy-agent-1.7.5.jar, byte-buddy-agent-1.9.3.jar, cglib-2.2.2.jar, cglib-3.1.jar, groovy-1.7.9.jar, groovy-2.4.0.jar, guava-18.0.jar, hamcrest-core-1.1.jar, hamcrest-core-1.3.jar, hibernate-cglib-repack-2.1_3.jar, jackson-annotations-2.10.0-20190519.085045-3.jar, jackson-annotations-2.2.0.jar, jackson-annotations-2.2.1.jar, jackson-annotations-2.3.0.jar, jackson-annotations-2.4.0-rc3.jar, jackson-annotations-2.4.0.jar, jackson-annotations-2.5.0.jar, jackson-annotations-2.6.0-rc1.jar, jackson-annotations-2.6.0-rc2.jar, jackson-annotations-2.6.0-rc3.jar, jackson-annotations-2.6.0.jar, jackson-annotations-2.7.0-rc2.jar, jackson-annotations-2.7.0.jar, jackson-annotations-2.8.0.jar, jackson-annotations-2.8.0.rc1.jar, jackson-annotations-2.9.0.jar, jackson-annotations-2.9.0.pr3.jar, jackson-annotations-3.0-20190323.173155-41.jar, jackson-annotations-3.0-20190519.085339-43.jar, jackson-core-2.10.0-20190518.180547-60.jar, jackson-core-2.2.0.jar, jackson-core-2.2.1.jar, jackson-core-2.3.0.jar, jackson-core-2.4.0-rc3.jar, jackson-core-2.4.0.jar, jackson-core-2.4.1.1.jar, jackson-core-2.4.2.jar, jackson-core-2.4.3.jar, jackson-core-2.4.5.jar, jackson-core-2.4.6.jar, jackson-core-2.5.0.jar, jackson-core-2.5.1.jar, jackson-core-2.5.3.jar, jackson-core-2.5.4.jar, jackson-core-2.5.5.jar, jackson-core-2.6.0-rc1.jar, jackson-core-2.6.0-rc2.jar, jackson-core-2.6.0-rc3.jar, jackson-core-2.6.0.jar, jackson-core-2.6.1.jar, jackson-core-2.6.2.jar, jackson-core-2.6.3.jar, jackson-core-2.6.4.jar, jackson-core-2.6.5.jar, jackson-core-2.6.6.jar, jackson-core-2.6.7.jar, jackson-core-2.7.0-rc2.jar, jackson-core-2.7.0.jar, jackson-core-2.7.1.jar, jackson-core-2.7.2.jar, jackson-core-2.7.4.jar, jackson-core-2.7.5.jar, jackson-core-2.7.6.jar, jackson-core-2.7.7.jar, jackson-core-2.7.8.jar, jackson-core-2.7.9.jar, jackson-core-2.8.0.jar, jackson-core-2.8.0.rc1.jar, jackson-core-2.8.0.rc2.jar, jackson-core-2.8.10.jar, jackson-core-2.8.3.jar, jackson-core-2.8.4.jar, jackson-core-2.8.5.jar, jackson-core-2.8.6.jar, jackson-core-2.8.7.jar, jackson-core-2.8.8-20170301.000803-1.jar, jackson-core-2.8.8.jar, jackson-core-2.8.9.jar, jackson-core-2.9.0.pr3.jar, jackson-core-2.9.6.jar, jackson-core-2.9.7.jar, jackson-core-2.9.8.jar, jackson-core-2.9.9.jar, jackson-core-3.0.0-20190516.032312-448.jar, javassist-3.19.0-GA.jar, javassist-3.20.0-GA.jar, javassist-3.21.0-GA.jar, javassist-3.22.0-CR2.jar, javassist-3.24.0-GA.jar, jimfs-1.1.jar, jsr-275-0.9.1.jar, jsr-275-0.9.2.jar, junit-4.10.jar, junit-4.11.jar, junit-4.12-hamcrest-1.3.jar, junit-4.12.jar, junit-4.8.2.jar, mockito-all-1.10.19.jar, mockito-core-1.10.19.jar, mockito-core-2.10.0.jar, mockito-core-2.23.0.jar, objenesis-2.1.jar, objenesis-2.6.jar, objenesis-3.0.1.jar, powermock-api-mockito-1.6.2.jar, powermock-api-mockito-1.6.3.jar, powermock-api-mockito-1.6.5.jar, powermock-api-mockito-1.7.3.jar, powermock-api-mockito-1.7.4.jar, powermock-api-mockito-common-1.6.5.jar, powermock-api-mockito-common-1.7.3.jar, powermock-api-mockito-common-1.7.4.jar, powermock-api-mockito2-2.0.0-beta.5.jar, powermock-api-mockito2-2.0.0.jar, powermock-api-support-1.6.2.jar, powermock-api-support-1.6.3.jar, powermock-api-support-1.6.5.jar, powermock-api-support-1.7.3.jar, powermock-api-support-1.7.4.jar, powermock-api-support-2.0.0-beta.5.jar, powermock-api-support-2.0.0.jar, powermock-core-1.6.2.jar, powermock-core-1.6.3.jar, powermock-core-1.6.5.jar, powermock-core-1.7.3.jar, powermock-core-1.7.4.jar, powermock-core-2.0.0-beta.5.jar, powermock-core-2.0.0.jar, powermock-module-junit4-1.6.2.jar, powermock-module-junit4-1.6.3.jar, powermock-module-junit4-1.6.5.jar, powermock-module-junit4-1.7.3.jar, powermock-module-junit4-1.7.4.jar, powermock-module-junit4-2.0.0-beta.5.jar, powermock-module-junit4-2.0.0.jar, powermock-module-junit4-common-1.6.2.jar, powermock-module-junit4-common-1.6.3.jar, powermock-module-junit4-common-1.6.5.jar, powermock-module-junit4-common-1.7.3.jar, powermock-module-junit4-common-1.7.4.jar, powermock-module-junit4-common-2.0.0-beta.5.jar, powermock-module-junit4-common-2.0.0.jar, powermock-reflect-1.6.2.jar, powermock-reflect-1.6.3.jar, powermock-reflect-1.6.5.jar, powermock-reflect-1.7.3.jar, powermock-reflect-1.7.4.jar, powermock-reflect-2.0.0-beta.5.jar, powermock-reflect-2.0.0.jar
+2. ตั้งชื่อคลาสทดสอบเป็น StdSerializerTest และ import คลาสเป้าหมายให้ถูกต้อง
+3. ครอบคลุมกรณี: ค่าขอบเขต (boundary), ค่า null/ว่าง, อินพุตผิดรูปแบบ,
+และเงื่อนไข if/else, loop ทุกสาขาเท่าที่วิเคราะห์ได้จากซอร์สที่ให้มา
+4. ห้ามเดา behavior ที่ไม่มีอยู่ในซอร์สโค้ด หากไม่แน่ใจให้เขียนคอมเมนต์กำกับ
+5. หลังโค้ดเทส ให้สรุปเป็นตารางสั้น ๆ ว่าแต่ละเมธอดเทสใด ครอบคลุม Branch/Condition ใด
+ซอร์สโค้ดคลาสเป้าหมาย (Defects4J: JacksonDatabind-15b):
+```java
+package com.fasterxml.jackson.databind.ser.std;
+
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Type;
+
+import com.fasterxml.jackson.core.*;
+import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.annotation.JacksonStdImpl;
+import com.fasterxml.jackson.databind.introspect.AnnotatedMember;
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatVisitable;
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatVisitorWrapper;
+import com.fasterxml.jackson.databind.jsonschema.SchemaAware;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.ser.FilterProvider;
+import com.fasterxml.jackson.databind.ser.PropertyFilter;
+import com.fasterxml.jackson.databind.util.ClassUtil;
+import com.fasterxml.jackson.databind.util.Converter;
+
+/**
+ * Base class used by all standard serializers, and can also
+ * be used for custom serializers (in fact, this is the recommended
+ * base class to use).
+ * Provides convenience methods for implementing {@link SchemaAware}
+ */
+public abstract class StdSerializer<T>
+    extends JsonSerializer<T>
+    implements JsonFormatVisitable, SchemaAware, java.io.Serializable
+{
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * Nominal type supported, usually declared type of
+     * property for which serializer is used.
+     */
+    protected final Class<T> _handledType;
+
+    /*
+    /**********************************************************
+    /* Life-cycle
+    /**********************************************************
+     */
+    
+    protected StdSerializer(Class<T> t) {
+        _handledType = t;
+    }
+
+    @SuppressWarnings("unchecked")
+    protected StdSerializer(JavaType type) {
+        _handledType = (Class<T>) type.getRawClass();
+    }
+    
+    /**
+     * Alternate constructor that is (alas!) needed to work
+     * around kinks of generic type handling
+     */
+    @SuppressWarnings("unchecked")
+    protected StdSerializer(Class<?> t, boolean dummy) {
+        _handledType = (Class<T>) t;
+    }
+    /*
+    /**********************************************************
+    /* Accessors
+    /**********************************************************
+     */
+    
+    @Override
+    public Class<T> handledType() { return _handledType; }
+
+    /*
+    /**********************************************************
+    /* Serialization
+    /**********************************************************
+     */
+    
+    @Override
+    public abstract void serialize(T value, JsonGenerator jgen, SerializerProvider provider)
+        throws IOException, JsonGenerationException;
+
+    /*
+    /**********************************************************
+    /* Helper methods for JSON Schema generation
+    /**********************************************************
+     */
+    
+    /**
+     * Default implementation simply claims type is "string"; usually
+     * overriden by custom serializers.
+     */
+    @Override
+    public JsonNode getSchema(SerializerProvider provider, Type typeHint)
+        throws JsonMappingException
+    {
+        return createSchemaNode("string");
+    }
+    
+    /**
+     * Default implementation simply claims type is "string"; usually
+     * overriden by custom serializers.
+     */
+    @Override
+    public JsonNode getSchema(SerializerProvider provider, Type typeHint, boolean isOptional)
+        throws JsonMappingException
+    {
+    	ObjectNode schema = (ObjectNode) getSchema(provider, typeHint);
+    	if (!isOptional) {
+    		schema.put("required", !isOptional);
+    	}
+        return schema;
+    }
+    
+    protected ObjectNode createObjectNode() {
+        return JsonNodeFactory.instance.objectNode();
+    }
+    
+    protected ObjectNode createSchemaNode(String type)
+    {
+        ObjectNode schema = createObjectNode();
+        schema.put("type", type);
+        return schema;
+    }
+    
+    protected ObjectNode createSchemaNode(String type, boolean isOptional)
+    {
+        ObjectNode schema = createSchemaNode(type);
+        // as per [JACKSON-563]. Note that 'required' defaults to false
+        if (!isOptional) {
+            schema.put("required", !isOptional);
+        }
+        return schema;
+    }
+    
+    /**
+     * Default implementation specifies no format. This behavior is usually
+     * overriden by custom serializers.
+     */
+    @Override
+    public void acceptJsonFormatVisitor(JsonFormatVisitorWrapper visitor, JavaType typeHint)
+        throws JsonMappingException
+    {
+        visitor.expectAnyFormat(typeHint);
+    }
+            
+    /*
+    /**********************************************************
+    /* Helper methods for exception handling
+    /**********************************************************
+     */
+    
+    /**
+     * Method that will modify caught exception (passed in as argument)
+     * as necessary to include reference information, and to ensure it
+     * is a subtype of {@link IOException}, or an unchecked exception.
+     *<p>
+     * Rules for wrapping and unwrapping are bit complicated; essentially:
+     *<ul>
+     * <li>Errors are to be passed as is (if uncovered via unwrapping)
+     * <li>"Plain" IOExceptions (ones that are not of type
+     *   {@link JsonMappingException} are to be passed as is
+     *</ul>
+     */
+    public void wrapAndThrow(SerializerProvider provider,
+            Throwable t, Object bean, String fieldName)
+        throws IOException
+    {
+        /* 05-Mar-2009, tatu: But one nasty edge is when we get
+         *   StackOverflow: usually due to infinite loop. But that
+         *   usually gets hidden within an InvocationTargetException...
+         */
+        while (t instanceof InvocationTargetException && t.getCause() != null) {
+            t = t.getCause();
+        }
+        // Errors and "plain" IOExceptions to be passed as is
+        if (t instanceof Error) {
+            throw (Error) t;
+        }
+        // Ditto for IOExceptions... except for mapping exceptions!
+        boolean wrap = (provider == null) || provider.isEnabled(SerializationFeature.WRAP_EXCEPTIONS);
+        if (t instanceof IOException) {
+            if (!wrap || !(t instanceof JsonMappingException)) {
+                throw (IOException) t;
+            }
+        } else if (!wrap) { // [JACKSON-407] -- allow disabling wrapping for unchecked exceptions
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            }
+        }
+        // [JACKSON-55] Need to add reference information
+        throw JsonMappingException.wrapWithPath(t, bean, fieldName);
+    }
+
+    public void wrapAndThrow(SerializerProvider provider,
+            Throwable t, Object bean, int index)
+        throws IOException
+    {
+        while (t instanceof InvocationTargetException && t.getCause() != null) {
+            t = t.getCause();
+        }
+        // Errors are to be passed as is
+        if (t instanceof Error) {
+            throw (Error) t;
+        }
+        // Ditto for IOExceptions... except for mapping exceptions!
+        boolean wrap = (provider == null) || provider.isEnabled(SerializationFeature.WRAP_EXCEPTIONS);
+        if (t instanceof IOException) {
+            if (!wrap || !(t instanceof JsonMappingException)) {
+                throw (IOException) t;
+            }
+        } else if (!wrap) { // [JACKSON-407] -- allow disabling wrapping for unchecked exceptions
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            }
+        }
+        // [JACKSON-55] Need to add reference information
+        throw JsonMappingException.wrapWithPath(t, bean, index);
+    }
+
+    /*
+    /**********************************************************
+    /* Helper methods, other
+    /**********************************************************
+     */
+    
+    /**
+     * Method that can be called to determine if given serializer is the default
+     * serializer Jackson uses; as opposed to a custom serializer installed by
+     * a module or calling application. Determination is done using
+     * {@link JacksonStdImpl} annotation on serializer class.
+     */
+    protected boolean isDefaultSerializer(JsonSerializer<?> serializer) {
+        return ClassUtil.isJacksonStdImpl(serializer);
+    }
+
+    /**
+     * Helper method that can be used to see if specified property has annotation
+     * indicating that a converter is to be used for contained values (contents
+     * of structured types; array/List/Map values)
+     * 
+     * @param existingSerializer (optional) configured content
+     *    serializer if one already exists.
+     * 
+     * @since 2.2
+     */
+    protected JsonSerializer<?> findConvertingContentSerializer(SerializerProvider provider,
+            BeanProperty prop, JsonSerializer<?> existingSerializer)
+        throws JsonMappingException
+    {
+        /* 19-Oct-2014, tatu: As per [databind#357], need to avoid infinite loop
+         *   when applying contextual content converter; this is not ideal way,
+         *   but should work for most cases.
+         */
+        final AnnotationIntrospector intr = provider.getAnnotationIntrospector();
+        if (intr != null && prop != null) {
+            AnnotatedMember m = prop.getMember();
+            if (m != null) {
+                Object convDef = intr.findSerializationContentConverter(m);
+                if (convDef != null) {
+                    Converter<Object,Object> conv = provider.converterInstance(prop.getMember(), convDef);
+                    JavaType delegateType = conv.getOutputType(provider.getTypeFactory());
+                    // [databind#731]: Should skip if nominally java.lang.Object
+                    if (existingSerializer == null) {
+                        existingSerializer = provider.findValueSerializer(delegateType);
+                    }
+                    return new StdDelegatingSerializer(conv, delegateType, existingSerializer);
+                }
+            }
+        }
+        return existingSerializer;
+    }
+
+    /**
+     * Helper method used to locate filter that is needed, based on filter id
+     * this serializer was constructed with.
+     * 
+     * @since 2.3
+     */
+    protected PropertyFilter findPropertyFilter(SerializerProvider provider,
+            Object filterId, Object valueToFilter)
+        throws JsonMappingException
+    {
+        FilterProvider filters = provider.getFilterProvider();
+        // Not ok to miss the provider, if a filter is declared to be needed.
+        if (filters == null) {
+            throw new JsonMappingException("Can not resolve PropertyFilter with id '"+filterId+"'; no FilterProvider configured");
+        }
+        PropertyFilter filter = filters.findPropertyFilter(filterId, valueToFilter);
+        // But whether unknown ids are ok just depends on filter provider; if we get null that's fine
+        return filter;
+    }
+}
+
+```

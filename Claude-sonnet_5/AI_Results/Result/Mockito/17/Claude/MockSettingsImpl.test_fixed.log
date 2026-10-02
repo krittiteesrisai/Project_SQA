@@ -1,0 +1,7 @@
+Failing tests: 2
+  - org.mockito.internal.creation.MockSettingsImplTest::testIsSerializable_true_whenExtraInterfacesContainsSerializable
+  - org.mockito.internal.creation.MockSettingsImplTest::testSerializable_shouldSetExtraInterfacesToSerializable
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

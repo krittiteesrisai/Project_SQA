@@ -1,0 +1,7 @@
+Failing tests: 2
+  - com.google.gson.stream.JsonReaderTest::doPeek_nonEmptyArray_semicolonStrict_throws
+  - com.google.gson.stream.JsonReaderTest::endObject_wrongToken_throwsIllegalState
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

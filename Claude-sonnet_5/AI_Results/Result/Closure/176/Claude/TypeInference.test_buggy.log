@@ -1,0 +1,37 @@
+Failing tests: 32
+  - com.google.javascript.jscomp.TypeInferenceTest::testUnaryNegForcesNumberType
+  - com.google.javascript.jscomp.TypeInferenceTest::testOrWithSameTypeOnBothSides
+  - com.google.javascript.jscomp.TypeInferenceTest::testCommaOperatorTakesTypeOfLastChild
+  - com.google.javascript.jscomp.TypeInferenceTest::testIfWithAndConditionBothBranchesJoin
+  - com.google.javascript.jscomp.TypeInferenceTest::testGetPropOnUnknownPropertyResultsInUnknownType
+  - com.google.javascript.jscomp.TypeInferenceTest::testAndWithSameTypeOnBothSides
+  - com.google.javascript.jscomp.TypeInferenceTest::testCallOnNonFunctionTypeDoesNotCrash
+  - com.google.javascript.jscomp.TypeInferenceTest::testTypeofAlwaysReturnsString
+  - com.google.javascript.jscomp.TypeInferenceTest::testEmptyFunctionBody
+  - com.google.javascript.jscomp.TypeInferenceTest::testBinaryMultiplicationForcesNumberType
+  - com.google.javascript.jscomp.TypeInferenceTest::testAddUnknownAndUnknownResultsInUnknown
+  - com.google.javascript.jscomp.TypeInferenceTest::testArrayLiteralAlwaysArrayType
+  - com.google.javascript.jscomp.TypeInferenceTest::testHookJoinsTrueAndFalseBranchTypes
+  - com.google.javascript.jscomp.TypeInferenceTest::testReturnWithValueDoesNotCrashWhenNoFunctionType
+  - com.google.javascript.jscomp.TypeInferenceTest::testForInLoopDoesNotCrashOnBranchedFlow
+  - com.google.javascript.jscomp.TypeInferenceTest::testAddNumberAndNumberResultsInNumber
+  - com.google.javascript.jscomp.TypeInferenceTest::testReturnWithoutValue
+  - com.google.javascript.jscomp.TypeInferenceTest::testComparisonOperatorForcesBooleanType
+  - com.google.javascript.jscomp.TypeInferenceTest::testSwitchCaseConditionBranch
+  - com.google.javascript.jscomp.TypeInferenceTest::testIfElseSimpleConditionBothBranchesJoin
+  - com.google.javascript.jscomp.TypeInferenceTest::testIfWithOrConditionBothBranchesJoin
+  - com.google.javascript.jscomp.TypeInferenceTest::testVarDeclarationWithStringLiteral
+  - com.google.javascript.jscomp.TypeInferenceTest::testInferredVarTypeIsLeastSupertypeAcrossAssignments
+  - com.google.javascript.jscomp.TypeInferenceTest::testVarDeclarationWithNumberLiteral
+  - com.google.javascript.jscomp.TypeInferenceTest::testAssignAddUpdatesLeftVariable
+  - com.google.javascript.jscomp.TypeInferenceTest::testVarDeclarationWithoutInitializerDefaultsToVoid
+  - com.google.javascript.jscomp.TypeInferenceTest::testPlainAssignmentExpressionUpdatesType
+  - com.google.javascript.jscomp.TypeInferenceTest::testAddFallbackUnionWhenNotStringNotNumberLike
+  - com.google.javascript.jscomp.TypeInferenceTest::testCatchParamWithoutJsDocIsUnknownType
+  - com.google.javascript.jscomp.TypeInferenceTest::testAddStringAndNumberResultsInString
+  - com.google.javascript.jscomp.TypeInferenceTest::testAddUnknownAndNumberResultsInUnknown
+  - com.google.javascript.jscomp.TypeInferenceTest::testNewOnUnknownConstructorResultsInUnknownType
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

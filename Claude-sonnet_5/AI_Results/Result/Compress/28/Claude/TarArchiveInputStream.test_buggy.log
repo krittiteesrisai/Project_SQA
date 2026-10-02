@@ -1,0 +1,8 @@
+Failing tests: 3
+  - org.apache.commons.compress.archivers.tar.TarArchiveInputStreamTest::testGetLongNameData_trimsTrailingNulls
+  - org.apache.commons.compress.archivers.tar.TarArchiveInputStreamTest::testGetLongNameData_malformed_noEntryAfter_returnsNull
+  - org.apache.commons.compress.archivers.tar.TarArchiveInputStreamTest::testGetLongNameData_noTrailingNulls_noTrimBranch
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

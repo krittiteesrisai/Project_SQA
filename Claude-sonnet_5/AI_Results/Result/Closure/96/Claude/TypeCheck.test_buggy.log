@@ -1,0 +1,38 @@
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ FAIL
+Executed command:  cd /home/piyachayanin/SQA_2/AI_Testing/work/Closure_96b && ant -f /home/piyachayanin/defects4j/framework/projects/defects4j.build.xml -Dd4j.home=/home/piyachayanin/defects4j -Dd4j.dir.projects=/home/piyachayanin/defects4j/framework/projects -Dbasedir=/home/piyachayanin/SQA_2/AI_Testing/work/Closure_96b -Dd4j.test.dir=/home/piyachayanin/SQA_2/AI_Testing/work/Closure_96b/.test_suite compile.gen.tests 2>&1
+Buildfile: /home/piyachayanin/defects4j/framework/projects/defects4j.build.xml
+
+compile:
+    [javac] /home/piyachayanin/SQA_2/AI_Testing/work/Closure_96b/build.xml:56: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+    [javac] /home/piyachayanin/SQA_2/AI_Testing/work/Closure_96b/build.xml:62: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+
+compile.gen.tests:
+     [echo] classes.dir: /home/piyachayanin/SQA_2/AI_Testing/work/Closure_96b/build/classes
+     [echo] build.home: /home/piyachayanin/SQA_2/AI_Testing/work/Closure_96b/build
+    [mkdir] Created dir: /home/piyachayanin/SQA_2/AI_Testing/work/Closure_96b/.classes_testgen
+    [javac] /home/piyachayanin/defects4j/framework/projects/defects4j.build.xml:268: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+    [javac] Compiling 1 source file to /home/piyachayanin/SQA_2/AI_Testing/work/Closure_96b/.classes_testgen
+    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6
+    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release
+    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release
+    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
+    [javac] /home/piyachayanin/SQA_2/AI_Testing/work/Closure_96b/.test_suite/com/google/javascript/jscomp/TypeCheckTest.java:48: error: no suitable method found for init(ImmutableList<SourceFile>,ImmutableList<SourceFile>,CompilerOptions)
+    [javac]     compiler.init(
+    [javac]             ^
+    [javac]     method Compiler.init(JSSourceFile[],JSSourceFile[],CompilerOptions) is not applicable
+    [javac]       (argument mismatch; ImmutableList<SourceFile> cannot be converted to JSSourceFile[])
+    [javac]     method Compiler.init(List<JSSourceFile>,List<JSSourceFile>,CompilerOptions) is not applicable
+    [javac]       (argument mismatch; ImmutableList<SourceFile> cannot be converted to List<JSSourceFile>)
+    [javac]     method Compiler.init(JSSourceFile[],JSModule[],CompilerOptions) is not applicable
+    [javac]       (argument mismatch; ImmutableList<SourceFile> cannot be converted to JSSourceFile[])
+    [javac] 1 error
+    [javac] 4 warnings
+
+BUILD FAILED
+/home/piyachayanin/defects4j/framework/projects/defects4j.build.xml:268: Compile failed; see the compiler error output for details.
+
+Total time: 0 seconds
+Cannot compile extracted test suite! at /home/piyachayanin/defects4j/framework/bin/d4j/d4j-test line 126.
+Compilation failed in require at /home/piyachayanin/defects4j/framework/bin/defects4j line 195.

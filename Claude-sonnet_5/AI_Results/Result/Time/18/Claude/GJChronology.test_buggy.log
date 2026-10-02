@@ -1,0 +1,6 @@
+Failing tests: 1
+  - org.joda.time.chrono.GJChronologyTest::testToString_customCutover_midnight_usesDateFormatter
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

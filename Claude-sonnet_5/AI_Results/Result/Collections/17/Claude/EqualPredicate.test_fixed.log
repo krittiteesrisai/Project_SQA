@@ -1,0 +1,7 @@
+Failing tests: 2
+  - org.apache.commons.collections.functors.EqualPredicateTest::testSingleArgConstructor_SameReference_BrokenEquals_ExposesDocumentedDefaultEquatorBehavior
+  - org.apache.commons.collections.functors.EqualPredicateTest::testSingleArgConstructor_BothValueAndInputNull_DoesNotThrow
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

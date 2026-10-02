@@ -1,0 +1,14 @@
+Failing tests: 9
+  - com.google.javascript.jscomp.CodePrinterTest::testDoWhile_Pretty_NoBreakBeforeWhile
+  - com.google.javascript.jscomp.CodePrinterTest::testSwitchCase_Pretty_IndentAndCaseBody
+  - com.google.javascript.jscomp.CodePrinterTest::testCompactPrint_SimpleVarDeclaration
+  - com.google.javascript.jscomp.CodePrinterTest::testIfNoElse_Pretty_BreakAfterBlockFor
+  - com.google.javascript.jscomp.CodePrinterTest::testTryCatchFinally_Pretty_NoBreakBeforeFinally
+  - com.google.javascript.jscomp.CodePrinterTest::testIfElse_Pretty_BreakAfterBlockFor
+  - com.google.javascript.jscomp.CodePrinterTest::testTryCatch_Pretty_NoBreakBeforeCatch
+  - com.google.javascript.jscomp.CodePrinterTest::testPreferLineBreakAtEndOfFile_True_SmallFile_NoBreakNeeded
+  - com.google.javascript.jscomp.CodePrinterTest::testPreferLineBreakAtEndOfFile_False_NoExtraChange
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

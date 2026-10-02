@@ -1,0 +1,12 @@
+Failing tests: 7
+  - org.apache.commons.codec.net.QuotedPrintableCodecTest::testEncodeObject_ByteArray
+  - org.apache.commons.codec.net.QuotedPrintableCodecTest::testInstanceEncodeBytes_DelegatesToStatic
+  - org.apache.commons.codec.net.QuotedPrintableCodecTest::testStaticEncode_BoundaryPrintableChars
+  - org.apache.commons.codec.net.QuotedPrintableCodecTest::testStaticEncode_CustomBitSet
+  - org.apache.commons.codec.net.QuotedPrintableCodecTest::testStaticDecode_NonEscapeCharsAppendedAsIs_IncludingCRLF
+  - org.apache.commons.codec.net.QuotedPrintableCodecTest::testStaticEncode_EmptyArray
+  - org.apache.commons.codec.net.QuotedPrintableCodecTest::testStaticEncode_NegativeByteValue
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

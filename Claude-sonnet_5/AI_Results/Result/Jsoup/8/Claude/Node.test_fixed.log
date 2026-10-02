@@ -1,0 +1,8 @@
+Failing tests: 3
+  - org.jsoup.nodes.NodeTest::testAttrGetNullKeyThrows
+  - org.jsoup.nodes.NodeTest::testHasAttrNullKeyThrows
+  - org.jsoup.nodes.NodeTest::testOuterHtml_detachedNonDocumentNode_throwsNPE
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

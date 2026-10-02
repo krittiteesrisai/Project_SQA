@@ -1,0 +1,7 @@
+Failing tests: 2
+  - org.apache.commons.jxpath.ri.compiler.CoreFunctionTest::testCount_NullVariable
+  - org.apache.commons.jxpath.ri.compiler.CoreFunctionTest::testToString_UnknownFunctionCode_DefaultName
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

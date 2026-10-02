@@ -1,0 +1,7 @@
+Failing tests: 2
+  - org.jsoup.parser.CharacterReaderTest::consumeTagName_stopsAtLt_outOfSpecBugFix
+  - org.jsoup.parser.CharacterReaderTest::bufferUp_consumeToEndAcrossBoundary_matchesWholeContent
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

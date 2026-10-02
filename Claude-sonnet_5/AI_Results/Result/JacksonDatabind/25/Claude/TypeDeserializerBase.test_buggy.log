@@ -1,0 +1,23 @@
+Failing tests: 18
+  - com.fasterxml.jackson.databind.jsontype.impl.TypeDeserializerBaseTest::testFindDefaultImplDeserializer_nullDefaultImpl_failEnabled_returnsNull
+  - com.fasterxml.jackson.databind.jsontype.impl.TypeDeserializerBaseTest::testDeserializeWithNativeTypeId_deprecatedTwoArg_usesParserGetTypeId
+  - com.fasterxml.jackson.databind.jsontype.impl.TypeDeserializerBaseTest::testFindDeserializer_baseTypeNull_skipsNarrowing
+  - com.fasterxml.jackson.databind.jsontype.impl.TypeDeserializerBaseTest::testFindDeserializer_typeFound_differentJavaTypeClass_noNarrow
+  - com.fasterxml.jackson.databind.jsontype.impl.TypeDeserializerBaseTest::testForProperty_copiesFieldsAndSetsProperty
+  - com.fasterxml.jackson.databind.jsontype.impl.TypeDeserializerBaseTest::testDeserializeWithNativeTypeId_nullTypeId_defaultFound
+  - com.fasterxml.jackson.databind.jsontype.impl.TypeDeserializerBaseTest::testFindDeserializer_emptyTypeId_treatedAsUnresolved
+  - com.fasterxml.jackson.databind.jsontype.impl.TypeDeserializerBaseTest::testFindDeserializer_typeNotFound_defaultImplNull_failDisabled_returnsNullifying
+  - com.fasterxml.jackson.databind.jsontype.impl.TypeDeserializerBaseTest::testFindDeserializer_typeNotFound_defaultImplNull_failEnabled_throwsViaHandleUnknown
+  - com.fasterxml.jackson.databind.jsontype.impl.TypeDeserializerBaseTest::testFindDefaultImplDeserializer_nonBogusDefaultImpl_computesAndCaches
+  - com.fasterxml.jackson.databind.jsontype.impl.TypeDeserializerBaseTest::testConstructor_defaultImplNull_getDefaultImplReturnsNull
+  - com.fasterxml.jackson.databind.jsontype.impl.TypeDeserializerBaseTest::testFindDeserializer_typeNotFound_defaultImplPresent_used
+  - com.fasterxml.jackson.databind.jsontype.impl.TypeDeserializerBaseTest::testDeserializeWithNativeTypeId_nonStringTypeId_convertedViaStringValueOf
+  - com.fasterxml.jackson.databind.jsontype.impl.TypeDeserializerBaseTest::testFindDefaultImplDeserializer_nullDefaultImpl_failDisabled_returnsNullifying
+  - com.fasterxml.jackson.databind.jsontype.impl.TypeDeserializerBaseTest::testDeserializeWithNativeTypeId_nullTypeId_defaultNotFound_throwsMappingException
+  - com.fasterxml.jackson.databind.jsontype.impl.TypeDeserializerBaseTest::testForProperty_sharesDeserializerCacheMap
+  - com.fasterxml.jackson.databind.jsontype.impl.TypeDeserializerBaseTest::testFindDeserializer_typeFound_sameJavaTypeClass_narrowsAndCaches
+  - com.fasterxml.jackson.databind.jsontype.impl.TypeDeserializerBaseTest::testDeserializeWithNativeTypeId_stringTypeId_usedDirectly
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

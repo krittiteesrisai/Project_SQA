@@ -1,0 +1,9 @@
+Failing tests: 4
+  - com.fasterxml.jackson.core.sym.ByteQuadsCanonicalizerTest::testAddThenFindTwoQuadWithSecondQuadZero_KnownDefect
+  - com.fasterxml.jackson.core.sym.ByteQuadsCanonicalizerTest::testCreateRootWithFixedSeed
+  - com.fasterxml.jackson.core.sym.ByteQuadsCanonicalizerTest::testFindAndAddCollisionFullPathSingleQuad
+  - com.fasterxml.jackson.core.sym.ByteQuadsCanonicalizerTest::testCreateRootDefaultSeedIsOddAndNonZero
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

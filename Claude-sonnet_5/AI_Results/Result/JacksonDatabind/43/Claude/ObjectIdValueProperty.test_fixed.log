@@ -1,0 +1,7 @@
+Failing tests: 2
+  - com.fasterxml.jackson.databind.deser.impl.ObjectIdValuePropertyTest::testWithValueDeserializerActuallyUsesNewDeserializerOnDeserialize
+  - com.fasterxml.jackson.databind.deser.impl.ObjectIdValuePropertyTest::testDeserializeSetAndReturnNullIdSkipsFindObjectIdAndReturnsNull
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

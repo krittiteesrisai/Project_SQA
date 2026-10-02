@@ -1,0 +1,11 @@
+Failing tests: 6
+  - org.apache.commons.math.stat.inference.ChiSquareTestImplTest::testChiSquareTestWithAlpha_Accept
+  - org.apache.commons.math.stat.inference.ChiSquareTestImplTest::testChiSquare_NormalCase_Larger
+  - org.apache.commons.math.stat.inference.ChiSquareTestImplTest::testDataSetsComparison_UnequalCounts_NormalCase
+  - org.apache.commons.math.stat.inference.ChiSquareTestImplTest::testChiSquareTestDataSetsComparison_EqualCounts
+  - org.apache.commons.math.stat.inference.ChiSquareTestImplTest::testChiSquareTestDataSetsComparison_UnequalCounts
+  - org.apache.commons.math.stat.inference.ChiSquareTestImplTest::testChiSquareTest_NormalCase_Larger
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

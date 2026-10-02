@@ -1,0 +1,12 @@
+Failing tests: 7
+  - org.apache.commons.jxpath.ri.model.jdom.JDOMNodePointerTest::testIsLeaf_DocumentNoContent
+  - org.apache.commons.jxpath.ri.model.jdom.JDOMNodePointerTest::testRelativePositionByName_MultipleSameNameSiblings
+  - org.apache.commons.jxpath.ri.model.jdom.JDOMNodePointerTest::testSetValue_Element_WithElementValue_CDATAChild_NotAddedDueToConditionBug
+  - org.apache.commons.jxpath.ri.model.jdom.JDOMNodePointerTest::testCreateChildWithValue
+  - org.apache.commons.jxpath.ri.model.jdom.JDOMNodePointerTest::testCreateChild_FactorySet_WholeCollectionIndex
+  - org.apache.commons.jxpath.ri.model.jdom.JDOMNodePointerTest::testAsPath_ChildElement_DefaultNamespace
+  - org.apache.commons.jxpath.ri.model.jdom.JDOMNodePointerTest::testTestNode_NodeNameTest_WildcardNoPrefix_ReturnsTrue
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

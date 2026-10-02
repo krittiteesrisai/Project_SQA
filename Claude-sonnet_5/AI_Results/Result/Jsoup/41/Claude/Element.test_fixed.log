@@ -1,0 +1,15 @@
+Failing tests: 10
+  - org.jsoup.nodes.ElementTest::dataNodes_filtersOnlyDataNodes
+  - org.jsoup.nodes.ElementTest::getElementsContainingText_found
+  - org.jsoup.nodes.ElementTest::clone_producesNewInstance_notEqualDueToIdentityEquals
+  - org.jsoup.nodes.ElementTest::getElementsMatchingText_validRegexString
+  - org.jsoup.nodes.ElementTest::getElementsByIndexEquals_found
+  - org.jsoup.nodes.ElementTest::getElementsByIndexLessThan_found
+  - org.jsoup.nodes.ElementTest::getElementsMatchingText_pattern_found
+  - org.jsoup.nodes.ElementTest::getElementsByAttributeValueNot_found
+  - org.jsoup.nodes.ElementTest::equals_differentInstanceSameContent_false
+  - org.jsoup.nodes.ElementTest::text_combinesChildTextWithBlockSpacing
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

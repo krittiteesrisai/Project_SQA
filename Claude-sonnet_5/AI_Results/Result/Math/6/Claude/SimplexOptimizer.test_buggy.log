@@ -1,0 +1,7 @@
+Failing tests: 2
+  - org.apache.commons.math3.optim.nonlinear.scalar.noderiv.SimplexOptimizerTest::testOptimizeMinimize_NelderMeadSimplex_FindsMinimum
+  - org.apache.commons.math3.optim.nonlinear.scalar.noderiv.SimplexOptimizerTest::testOptimize_ConvergesQuickly_WithLooseChecker
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

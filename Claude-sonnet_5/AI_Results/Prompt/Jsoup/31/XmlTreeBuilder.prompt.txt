@@ -1,0 +1,126 @@
+คุณคือ Java testing engineer ที่เชี่ยวชาญด้าน unit testing และ JUnit 4
+เป้าหมาย: เขียนชุดทดสอบ JUnit 4 สำหรับคลาสด้านล่าง เพื่อให้ได้ branch coverage สูงที่สุดเท่าที่เป็นไปได้
+และมีโอกาสดักจับข้อบกพร่อง (fault) ในโค้ดได้จริง
+ข้อกำหนด:
+1. ใช้เฉพาะ JUnit 4 และไลบรารีที่อยู่ใน classpath ต่อไปนี้: commons-lang-2.4.jar, gson-2.7.jar, hamcrest-core-1.3.jar, javax.servlet-api-3.1.0.jar, jetty-http-9.2.22.v20170606.jar, jetty-http-9.2.26.v20180806.jar, jetty-http-9.2.28.v20190418.jar, jetty-io-9.2.22.v20170606.jar, jetty-io-9.2.26.v20180806.jar, jetty-io-9.2.28.v20190418.jar, jetty-security-9.2.22.v20170606.jar, jetty-security-9.2.26.v20180806.jar, jetty-security-9.2.28.v20190418.jar, jetty-server-9.2.22.v20170606.jar, jetty-server-9.2.26.v20180806.jar, jetty-server-9.2.28.v20190418.jar, jetty-servlet-9.2.22.v20170606.jar, jetty-servlet-9.2.26.v20180806.jar, jetty-servlet-9.2.28.v20190418.jar, jetty-util-9.2.22.v20170606.jar, jetty-util-9.2.26.v20180806.jar, jetty-util-9.2.28.v20190418.jar, junit-4.12-hamcrest-1.3.jar, junit-4.12.jar, junit-4.5.jar
+2. ตั้งชื่อคลาสทดสอบเป็น XmlTreeBuilderTest และ import คลาสเป้าหมายให้ถูกต้อง
+3. ครอบคลุมกรณี: ค่าขอบเขต (boundary), ค่า null/ว่าง, อินพุตผิดรูปแบบ,
+และเงื่อนไข if/else, loop ทุกสาขาเท่าที่วิเคราะห์ได้จากซอร์สที่ให้มา
+4. ห้ามเดา behavior ที่ไม่มีอยู่ในซอร์สโค้ด หากไม่แน่ใจให้เขียนคอมเมนต์กำกับ
+5. หลังโค้ดเทส ให้สรุปเป็นตารางสั้น ๆ ว่าแต่ละเมธอดเทสใด ครอบคลุม Branch/Condition ใด
+ซอร์สโค้ดคลาสเป้าหมาย (Defects4J: Jsoup-31b):
+```java
+package org.jsoup.parser;
+
+import org.jsoup.helper.Validate;
+import org.jsoup.nodes.*;
+
+import java.util.Iterator;
+
+/**
+ * @author Jonathan Hedley
+ */
+public class XmlTreeBuilder extends TreeBuilder {
+    @Override
+    protected void initialiseParse(String input, String baseUri, ParseErrorList errors) {
+        super.initialiseParse(input, baseUri, errors);
+        stack.add(doc); // place the document onto the stack. differs from HtmlTreeBuilder (not on stack)
+    }
+
+    @Override
+    protected boolean process(Token token) {
+        // start tag, end tag, doctype, comment, character, eof
+        switch (token.type) {
+            case StartTag:
+                insert(token.asStartTag());
+                break;
+            case EndTag:
+                popStackToClose(token.asEndTag());
+                break;
+            case Comment:
+                insert(token.asComment());
+                break;
+            case Character:
+                insert(token.asCharacter());
+                break;
+            case Doctype:
+                insert(token.asDoctype());
+                break;
+            case EOF: // could put some normalisation here if desired
+                break;
+            default:
+                Validate.fail("Unexpected token type: " + token.type);
+        }
+        return true;
+    }
+
+    private void insertNode(Node node) {
+        currentElement().appendChild(node);
+    }
+
+    Element insert(Token.StartTag startTag) {
+        Tag tag = Tag.valueOf(startTag.name());
+        // todo: wonder if for xml parsing, should treat all tags as unknown? because it's not html.
+        Element el = new Element(tag, baseUri, startTag.attributes);
+        insertNode(el);
+        if (startTag.isSelfClosing()) {
+            tokeniser.acknowledgeSelfClosingFlag();
+            if (!tag.isKnownTag()) // unknown tag, remember this is self closing for output. see above.
+                tag.setSelfClosing();
+        } else {
+            stack.add(el);
+        }
+        return el;
+    }
+
+    void insert(Token.Comment commentToken) {
+        Comment comment = new Comment(commentToken.getData(), baseUri);
+        Node insert = comment;
+        insertNode(insert);
+    }
+
+    void insert(Token.Character characterToken) {
+        Node node = new TextNode(characterToken.getData(), baseUri);
+        insertNode(node);
+    }
+
+    void insert(Token.Doctype d) {
+        DocumentType doctypeNode = new DocumentType(d.getName(), d.getPublicIdentifier(), d.getSystemIdentifier(), baseUri);
+        insertNode(doctypeNode);
+    }
+
+    /**
+     * If the stack contains an element with this tag's name, pop up the stack to remove the first occurrence. If not
+     * found, skips.
+     *
+     * @param endTag
+     */
+    private void popStackToClose(Token.EndTag endTag) {
+        String elName = endTag.name();
+        Element firstFound = null;
+
+        Iterator<Element> it = stack.descendingIterator();
+        while (it.hasNext()) {
+            Element next = it.next();
+            if (next.nodeName().equals(elName)) {
+                firstFound = next;
+                break;
+            }
+        }
+        if (firstFound == null)
+            return; // not found, skip
+
+        it = stack.descendingIterator();
+        while (it.hasNext()) {
+            Element next = it.next();
+            if (next == firstFound) {
+                it.remove();
+                break;
+            } else {
+                it.remove();
+            }
+        }
+    }
+}
+
+```

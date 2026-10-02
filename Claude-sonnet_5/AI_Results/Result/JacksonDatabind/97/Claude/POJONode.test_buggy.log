@@ -1,0 +1,10 @@
+Failing tests: 5
+  - com.fasterxml.jackson.databind.node.POJONodeTest::testSerialize_JsonSerializableValue_DelegatesSerialize
+  - com.fasterxml.jackson.databind.node.POJONodeTest::testBinaryValue_NonByteArray_ThrowsException
+  - com.fasterxml.jackson.databind.node.POJONodeTest::testToString_RawValue
+  - com.fasterxml.jackson.databind.node.POJONodeTest::testSerialize_OtherValue_CallsWriteObject
+  - com.fasterxml.jackson.databind.node.POJONodeTest::testSerialize_NullValue_CallsDefaultSerializeNull
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

@@ -1,0 +1,8 @@
+Failing tests: 3
+  - com.google.javascript.jscomp.CommandLineRunnerTest::testCreateExterns_UseOnlyCustomExternsTrue_NoDefaultExterns
+  - com.google.javascript.jscomp.CommandLineRunnerTest::testNonEqualsArg_PassedThroughUnchanged
+  - com.google.javascript.jscomp.CommandLineRunnerTest::testVersionFlag_PrintsVersionInfo
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

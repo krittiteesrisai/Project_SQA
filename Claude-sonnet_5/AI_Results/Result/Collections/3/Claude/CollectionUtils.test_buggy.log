@@ -1,0 +1,7 @@
+Failing tests: 2
+  - org.apache.commons.collections.CollectionUtilsTest::testIndexObjObj_Collection_NotFound_ReturnsExhaustedIterator
+  - org.apache.commons.collections.CollectionUtilsTest::testRemoveAll_Basic
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

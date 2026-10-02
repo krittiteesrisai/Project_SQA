@@ -1,0 +1,11 @@
+Failing tests: 6
+  - org.jsoup.parser.HtmlTreeBuilderStateTest::testInBody_FormOnlyOneAllowed
+  - org.jsoup.parser.HtmlTreeBuilderStateTest::testInBody_XmpUsesRawText
+  - org.jsoup.parser.HtmlTreeBuilderStateTest::testInBody_IframeUsesRawText
+  - org.jsoup.parser.HtmlTreeBuilderStateTest::testInBody_NoembedUsesRawText
+  - org.jsoup.parser.HtmlTreeBuilderStateTest::testInBody_RpRtBug_RtNotAttachedDirectlyUnderRuby
+  - org.jsoup.parser.HtmlTreeBuilderStateTest::testInTable_StrayTextFosterParentedOutsideTable
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

@@ -1,0 +1,10 @@
+Failing tests: 5
+  - com.google.javascript.jscomp.TypedScopeCreatorTest::testEnumDuplicateKey_reportsEnumDupWarning
+  - com.google.javascript.jscomp.TypedScopeCreatorTest::testPrototypeReassignmentWithDeclaredSupertype_isIgnored
+  - com.google.javascript.jscomp.TypedScopeCreatorTest::testLocalScope_qualifiedPropertyAssignmentRootedInGlobalScope_declaredInGlobalScope
+  - com.google.javascript.jscomp.TypedScopeCreatorTest::testObjectLiteralKeyType_isNotGenericStringType
+  - com.google.javascript.jscomp.TypedScopeCreatorTest::testEnumGetterKey_reportsEnumNotConstantWarning
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

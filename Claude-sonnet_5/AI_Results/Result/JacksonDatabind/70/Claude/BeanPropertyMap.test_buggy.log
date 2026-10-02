@@ -1,0 +1,47 @@
+Failing tests: 42
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::wrapAndThrow_runtimeException_wrapped_whenWrapEnabled
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::renameAll_nullTransformer_returnsSameInstance
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::wrapAndThrow_runtimeException_rethrownAsIs_whenWrapDisabled
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::wrapAndThrow_ioException_rethrownAsIs_whenWrapDisabled
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::remove_existingProperty_removesAndLeavesHoleInOrder
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::find_primaryMatch_returnsProperty_usingDifferentStringRef
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::withCaseInsensitivity_differentState_returnsNewInstanceWithSameData
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::renameAll_withTransformer_renamesPropertiesAndKeepsHoles
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::find_notFound_primarySlotNull_returnsNull
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::remove_nonExistingProperty_throwsNoSuchElementException
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::findDeserializeAndSet_exceptionFromProperty_isWrapped
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::renameAll_withDeserializerThatChanges_wrapsNewDeserializer
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::find_secondaryMatch_returnsProperty
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::renameAll_nopTransformer_returnsSameInstance
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::replace_existingProperty_updatesHashAndOrderedArray
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::duplicateNamedProperties_bothCountedButFindReturnsFirstInserted
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::findDeserializeAndSet_propertyFound_callsDeserializeAndReturnsTrue
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::find_caseInsensitive_matchesRegardlessOfCase
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::withoutProperties_emptyCollection_returnsSameInstance
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::find_secondaryEmpty_noMatch_returnsNull
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::findByIndex_foundAndNotFound
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::iterator_returnsAllNonNullProperties
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::construct_staticFactory_worksSameAsConstructor
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::toString_containsAllPropertyNames
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::withProperty_appendNew_sizeShouldReflectNewCount
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::getPropertiesInInsertionOrder_preservesGivenOrder
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::withProperty_appendNew_triggersSpillGrowth_andIsFindable
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::assignIndexes_assignsUniqueSequentialIndexesToAllProps
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::replace_nonExistingProperty_throwsNoSuchElementException
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::find_withNullKey_throwsIllegalArgumentException
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::wrapAndThrow_invocationTargetException_unwrapsCause
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::findDeserializeAndSet_propertyNotFound_returnsFalse
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::withProperty_replaceExisting_updatesValueAndKeepsSize
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::renameAll_whenNewDeserializerSameAsOld_doesNotCallWithValueDeserializer
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::wrapAndThrow_plainIOException_rethrownAsIs_evenWhenWrapEnabled
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::findSize_boundaries_viaConstructionAndLookup
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::find_spillMatch_returnsProperty
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::withCaseInsensitivity_sameState_returnsSameInstance
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::withoutProperties_nonEmptyButNoMatch_stillCreatesNewInstance
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::withoutProperties_excludesMatchingAndDropsHoles
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::find_spillLoop_noMatch_returnsNull
+  - com.fasterxml.jackson.databind.deser.impl.BeanPropertyMapTest::size_afterConstruction_matchesInputCount
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

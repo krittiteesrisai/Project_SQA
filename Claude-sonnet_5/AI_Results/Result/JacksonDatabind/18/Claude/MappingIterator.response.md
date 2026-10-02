@@ -1,0 +1,461 @@
+# การวิเคราะห์และแนวทางการทดสอบ
+
+จากการวิเคราะห์ซอร์สโค้ด `MappingIterator` พบ branch/condition สำคัญที่ต้องครอบคลุม:
+- Constructor: เงื่อนไข `managedParser && (p != null) && p.isExpectedStartArrayToken()` (short-circuit 3 จุด)
+- `hasNextValue()`: `_parser == null`, `!_hasNextChecked`, `t == null`, `t == null || t == END_ARRAY`, `_closeParser`
+- `nextValue()`: `!_hasNextChecked` + `!hasNextValue()`, `_parser == null`, `_updatedValue == null`
+- `hasNext()`/`next()`: catch `JsonMappingException` vs `IOException`
+- `close()`: `_parser != null`
+- `readAll()` (ทั้ง 3 overload): loop 0 รอบ / มากกว่า 1 รอบ
+
+เนื่องจาก constructor เป็น `protected` และ field เป็น `protected` ผมจึงวางไฟล์ทดสอบไว้ใน **package เดียวกัน** (`com.fasterxml.jackson.databind`) เพื่อเข้าถึงได้โดยไม่ต้องใช้ reflection ในกรณีปกติ (ใช้ reflection เฉพาะกรณี edge-case ที่ไม่เกิดขึ้นจาก flow จริง)
+
+```java
+package com.fasterxml.jackson.databind;
+
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.util.*;
+
+import org.junit.Test;
+
+import com.fasterxml.jackson.core.FormatSchema;
+import com.fasterxml.jackson.core.JsonLocation;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
+// import ชั้นเป้าหมายอย่างชัดเจนตามข้อกำหนด (แม้จะอยู่ package เดียวกันก็ compile ได้)
+import com.fasterxml.jackson.databind.MappingIterator;
+
+/**
+ * Unit test สำหรับ MappingIterator (Defects4J: JacksonDatabind-18b)
+ * วางไว้ใน package เดียวกับ target class เพราะ constructor เป็น protected
+ */
+@SuppressWarnings("unchecked")
+public class MappingIteratorTest {
+
+    // ---------- Helper ----------
+    private MappingIterator<Object> createIterator(JsonParser p, JsonDeserializer<?> deser,
+            boolean managedParser, Object updatedValue) {
+        DeserializationContext ctxt = mock(DeserializationContext.class);
+        return new MappingIterator<Object>(null, p, ctxt, deser, managedParser, updatedValue);
+    }
+
+    // ===================================================================
+    // Constructor branch: managedParser && (p!=null) && isExpectedStartArrayToken()
+    // ===================================================================
+
+    @Test
+    public void testConstructor_managedParser_startArray_clearsToken() {
+        JsonParser parser = mock(JsonParser.class);
+        when(parser.isExpectedStartArrayToken()).thenReturn(true);
+        JsonDeserializer<?> deser = mock(JsonDeserializer.class);
+
+        createIterator(parser, deser, true, null);
+
+        verify(parser, times(1)).isExpectedStartArrayToken();
+        verify(parser, times(1)).clearCurrentToken();
+    }
+
+    @Test
+    public void testConstructor_managedParser_notStartArray_noClear() {
+        JsonParser parser = mock(JsonParser.class);
+        when(parser.isExpectedStartArrayToken()).thenReturn(false);
+        JsonDeserializer<?> deser = mock(JsonDeserializer.class);
+
+        createIterator(parser, deser, true, null);
+
+        verify(parser, times(1)).isExpectedStartArrayToken();
+        verify(parser, never()).clearCurrentToken();
+    }
+
+    @Test
+    public void testConstructor_notManagedParser_startArrayFlagIgnored() {
+        JsonParser parser = mock(JsonParser.class);
+        when(parser.isExpectedStartArrayToken()).thenReturn(true);
+        JsonDeserializer<?> deser = mock(JsonDeserializer.class);
+
+        // managedParser=false -> short-circuit ก่อนเรียก isExpectedStartArrayToken()
+        createIterator(parser, deser, false, null);
+
+        verify(parser, never()).isExpectedStartArrayToken();
+        verify(parser, never()).clearCurrentToken();
+    }
+
+    @Test
+    public void testConstructor_managedParser_nullParser_noException() {
+        JsonDeserializer<?> deser = mock(JsonDeserializer.class);
+        // p == null -> short-circuit, ไม่เกิด NPE
+        MappingIterator<Object> it = createIterator(null, deser, true, null);
+        assertNull(it.getParser());
+    }
+
+    // ===================================================================
+    // hasNext() / hasNextValue()
+    // ===================================================================
+
+    @Test
+    public void testHasNext_nullParser_returnsFalse() throws IOException {
+        MappingIterator<Object> it = createIterator(null, mock(JsonDeserializer.class), false, null);
+        assertFalse(it.hasNext());
+        assertFalse(it.hasNextValue());
+    }
+
+    @Test
+    public void testHasNextValue_currentTokenNotNull_shortCircuitsNextToken() throws IOException {
+        JsonParser parser = mock(JsonParser.class);
+        when(parser.getCurrentToken()).thenReturn(JsonToken.VALUE_STRING);
+        MappingIterator<Object> it = createIterator(parser, mock(JsonDeserializer.class), false, null);
+
+        assertTrue(it.hasNextValue());
+        verify(parser, never()).nextToken();
+
+        // เรียกซ้ำ - ต้องไม่เรียก getCurrentToken() ซ้ำ เพราะ _hasNextChecked=true แล้ว
+        assertTrue(it.hasNextValue());
+        verify(parser, times(1)).getCurrentToken();
+    }
+
+    @Test
+    public void testHasNextValue_eofClosesManagedParser() throws IOException {
+        JsonParser parser = mock(JsonParser.class);
+        when(parser.getCurrentToken()).thenReturn(null);
+        when(parser.nextToken()).thenReturn(null);
+        MappingIterator<Object> it = createIterator(parser, mock(JsonDeserializer.class), true, null);
+
+        assertFalse(it.hasNextValue());
+        verify(parser, times(1)).close();
+        assertNull(it.getParser());
+    }
+
+    @Test
+    public void testHasNextValue_eofDoesNotCloseUnmanagedParser() throws IOException {
+        JsonParser parser = mock(JsonParser.class);
+        when(parser.getCurrentToken()).thenReturn(null);
+        when(parser.nextToken()).thenReturn(null);
+        MappingIterator<Object> it = createIterator(parser, mock(JsonDeserializer.class), false, null);
+
+        assertFalse(it.hasNextValue());
+        verify(parser, never()).close();
+        assertNull(it.getParser());
+    }
+
+    @Test
+    public void testHasNextValue_endArrayStopsIteration() throws IOException {
+        JsonParser parser = mock(JsonParser.class);
+        when(parser.getCurrentToken()).thenReturn(null);
+        when(parser.nextToken()).thenReturn(JsonToken.END_ARRAY);
+        MappingIterator<Object> it = createIterator(parser, mock(JsonDeserializer.class), false, null);
+
+        assertFalse(it.hasNextValue());
+        assertNull(it.getParser());
+    }
+
+    @Test
+    public void testHasNextValue_nextTokenAvailable_returnsTrue() throws IOException {
+        JsonParser parser = mock(JsonParser.class);
+        when(parser.getCurrentToken()).thenReturn(null);
+        when(parser.nextToken()).thenReturn(JsonToken.VALUE_NUMBER_INT);
+        MappingIterator<Object> it = createIterator(parser, mock(JsonDeserializer.class), false, null);
+
+        assertTrue(it.hasNextValue());
+    }
+
+    @Test
+    public void testHasNext_wrapsJsonMappingException() throws IOException {
+        JsonParser parser = mock(JsonParser.class);
+        when(parser.getCurrentToken()).thenReturn(null);
+        when(parser.nextToken()).thenThrow(JsonMappingException.from(parser, "boom"));
+        MappingIterator<Object> it = createIterator(parser, mock(JsonDeserializer.class), false, null);
+
+        try {
+            it.hasNext();
+            fail("expected RuntimeJsonMappingException");
+        } catch (RuntimeJsonMappingException expected) {
+            // ok
+        }
+    }
+
+    @Test
+    public void testHasNext_wrapsPlainIOException() throws IOException {
+        JsonParser parser = mock(JsonParser.class);
+        when(parser.getCurrentToken()).thenReturn(null);
+        when(parser.nextToken()).thenThrow(new IOException("io fail"));
+        MappingIterator<Object> it = createIterator(parser, mock(JsonDeserializer.class), false, null);
+
+        try {
+            it.hasNext();
+            fail("expected RuntimeException");
+        } catch (RuntimeJsonMappingException notExpected) {
+            fail("should not be RuntimeJsonMappingException branch");
+        } catch (RuntimeException expected) {
+            // ok - ตรง catch(IOException) branch
+        }
+    }
+
+    // ===================================================================
+    // next() / nextValue()
+    // ===================================================================
+
+    @Test(expected = NoSuchElementException.class)
+    public void testNextValue_throwsWhenParserNull() throws IOException {
+        MappingIterator<Object> it = createIterator(null, mock(JsonDeserializer.class), false, null);
+        it.nextValue();
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void testNext_throwsNoSuchElement_whenParserNull() {
+        MappingIterator<Object> it = createIterator(null, mock(JsonDeserializer.class), false, null);
+        it.next();
+    }
+
+    @Test
+    public void testNextValue_deserializeWithoutUpdatedValue() throws IOException {
+        JsonParser parser = mock(JsonParser.class);
+        when(parser.getCurrentToken()).thenReturn(JsonToken.VALUE_STRING);
+        JsonDeserializer<Object> deser = mock(JsonDeserializer.class);
+        Object expected = "hello";
+        when(deser.deserialize(eq(parser), any(DeserializationContext.class))).thenReturn(expected);
+
+        MappingIterator<Object> it = createIterator(parser, deser, false, null);
+        Object val = it.nextValue();
+
+        assertEquals(expected, val);
+        verify(parser, times(1)).clearCurrentToken();
+        verify(deser, times(1)).deserialize(eq(parser), any(DeserializationContext.class));
+    }
+
+    @Test
+    public void testNextValue_deserializeWithUpdatedValue() throws IOException {
+        JsonParser parser = mock(JsonParser.class);
+        when(parser.getCurrentToken()).thenReturn(JsonToken.VALUE_STRING);
+        JsonDeserializer<Object> deser = mock(JsonDeserializer.class);
+        Object updated = new Object();
+
+        MappingIterator<Object> it = createIterator(parser, deser, false, updated);
+        Object val = it.nextValue();
+
+        assertSame(updated, val);
+        verify(deser, times(1)).deserialize(eq(parser), any(DeserializationContext.class), eq(updated));
+        verify(parser, times(1)).clearCurrentToken();
+    }
+
+    @Test
+    public void testNext_wrapsJsonMappingException() throws IOException {
+        JsonParser parser = mock(JsonParser.class);
+        when(parser.getCurrentToken()).thenReturn(JsonToken.VALUE_STRING);
+        JsonDeserializer<Object> deser = mock(JsonDeserializer.class);
+        when(deser.deserialize(eq(parser), any(DeserializationContext.class)))
+                .thenThrow(JsonMappingException.from(parser, "fail"));
+
+        MappingIterator<Object> it = createIterator(parser, deser, false, null);
+        try {
+            it.next();
+            fail("expected RuntimeJsonMappingException");
+        } catch (RuntimeJsonMappingException expected) {
+            // ok
+        }
+    }
+
+    @Test
+    public void testNext_wrapsPlainIOException() throws IOException {
+        JsonParser parser = mock(JsonParser.class);
+        when(parser.getCurrentToken()).thenReturn(JsonToken.VALUE_STRING);
+        JsonDeserializer<Object> deser = mock(JsonDeserializer.class);
+        when(deser.deserialize(eq(parser), any(DeserializationContext.class)))
+                .thenThrow(new IOException("io fail"));
+
+        MappingIterator<Object> it = createIterator(parser, deser, false, null);
+        try {
+            it.next();
+            fail("expected RuntimeException");
+        } catch (RuntimeJsonMappingException notExpected) {
+            fail("should not be RuntimeJsonMappingException branch");
+        } catch (RuntimeException expected) {
+            // ok
+        }
+    }
+
+    /**
+     * หมายเหตุ: state นี้ (_hasNextChecked=true แต่ _parser=null) ไม่สามารถเกิดขึ้นได้
+     * จาก public API flow ปกติ (เพราะ hasNextValue() จะ set _hasNextChecked=true
+     * เฉพาะเมื่อ parser ยัง != null) แต่ใช้ reflection เพื่อบังคับ branch
+     * "_parser == null" ใน nextValue() ให้ครอบคลุมเพื่อ branch coverage
+     */
+    @Test(expected = NoSuchElementException.class)
+    public void testNextValue_artificialState_parserNullAfterChecked() throws Exception {
+        MappingIterator<Object> it = createIterator(mock(JsonParser.class),
+                mock(JsonDeserializer.class), false, null);
+
+        Field checked = MappingIterator.class.getDeclaredField("_hasNextChecked");
+        checked.setAccessible(true);
+        checked.setBoolean(it, true);
+
+        Field parserField = MappingIterator.class.getDeclaredField("_parser");
+        parserField.setAccessible(true);
+        parserField.set(it, null);
+
+        it.nextValue();
+    }
+
+    // ===================================================================
+    // remove()
+    // ===================================================================
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void testRemove_alwaysThrows() {
+        MappingIterator<Object> it = createIterator(null, mock(JsonDeserializer.class), false, null);
+        it.remove();
+    }
+
+    // ===================================================================
+    // close()
+    // ===================================================================
+
+    @Test
+    public void testClose_closesParserWhenNotNull() throws IOException {
+        JsonParser parser = mock(JsonParser.class);
+        MappingIterator<Object> it = createIterator(parser, mock(JsonDeserializer.class), false, null);
+        it.close();
+        verify(parser, times(1)).close();
+    }
+
+    @Test
+    public void testClose_noExceptionWhenParserNull() throws IOException {
+        MappingIterator<Object> it = createIterator(null, mock(JsonDeserializer.class), false, null);
+        it.close(); // ไม่ควร throw
+    }
+
+    // ===================================================================
+    // readAll() overloads
+    // ===================================================================
+
+    @Test
+    public void testReadAllNoArg_emptyResult() throws IOException {
+        MappingIterator<Object> it = createIterator(null, mock(JsonDeserializer.class), false, null);
+        List<Object> result = it.readAll();
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    public void testReadAllNoArg_delegatesToReadAllList() throws IOException {
+        JsonParser parser = mock(JsonParser.class);
+        when(parser.getCurrentToken()).thenReturn(null);
+        when(parser.nextToken()).thenReturn(JsonToken.VALUE_STRING).thenReturn(null);
+        JsonDeserializer<Object> deser = mock(JsonDeserializer.class);
+        when(deser.deserialize(eq(parser), any(DeserializationContext.class))).thenReturn("x");
+
+        MappingIterator<Object> it = createIterator(parser, deser, false, null);
+        List<Object> result = it.readAll();
+
+        assertEquals(Collections.singletonList("x"), result);
+    }
+
+    @Test
+    public void testReadAllList_multipleElements_loopsCorrectly() throws IOException {
+        JsonParser parser = mock(JsonParser.class);
+        when(parser.getCurrentToken()).thenReturn(null);
+        when(parser.nextToken())
+                .thenReturn(JsonToken.VALUE_STRING)
+                .thenReturn(JsonToken.VALUE_STRING)
+                .thenReturn(null);
+        JsonDeserializer<Object> deser = mock(JsonDeserializer.class);
+        when(deser.deserialize(eq(parser), any(DeserializationContext.class)))
+                .thenReturn("a")
+                .thenReturn("b");
+
+        MappingIterator<Object> it = createIterator(parser, deser, true, null);
+        List<Object> result = it.readAll(new ArrayList<Object>());
+
+        assertEquals(Arrays.asList("a", "b"), result);
+        verify(parser, times(1)).close(); // managed parser -> ปิดตอน EOF
+    }
+
+    @Test
+    public void testReadAllCollection_singleElement() throws IOException {
+        JsonParser parser = mock(JsonParser.class);
+        when(parser.getCurrentToken()).thenReturn(null);
+        when(parser.nextToken()).thenReturn(JsonToken.VALUE_NUMBER_INT).thenReturn(null);
+        JsonDeserializer<Object> deser = mock(JsonDeserializer.class);
+        when(deser.deserialize(eq(parser), any(DeserializationContext.class))).thenReturn(42);
+
+        MappingIterator<Object> it = createIterator(parser, deser, false, null);
+        Set<Object> result = it.readAll(new HashSet<Object>());
+
+        assertEquals(1, result.size());
+        assertTrue(result.contains(42));
+    }
+
+    // ===================================================================
+    // Accessors
+    // ===================================================================
+
+    @Test
+    public void testGetParser_returnsUnderlyingParser() {
+        JsonParser parser = mock(JsonParser.class);
+        MappingIterator<Object> it = createIterator(parser, mock(JsonDeserializer.class), false, null);
+        assertSame(parser, it.getParser());
+    }
+
+    @Test
+    public void testGetParserSchema_delegatesToParser() {
+        JsonParser parser = mock(JsonParser.class);
+        FormatSchema schema = mock(FormatSchema.class);
+        when(parser.getSchema()).thenReturn(schema);
+        MappingIterator<Object> it = createIterator(parser, mock(JsonDeserializer.class), false, null);
+        assertSame(schema, it.getParserSchema());
+    }
+
+    @Test
+    public void testGetCurrentLocation_delegatesToParser() {
+        JsonParser parser = mock(JsonParser.class);
+        JsonLocation loc = mock(JsonLocation.class);
+        when(parser.getCurrentLocation()).thenReturn(loc);
+        MappingIterator<Object> it = createIterator(parser, mock(JsonDeserializer.class), false, null);
+        assertSame(loc, it.getCurrentLocation());
+    }
+
+    // ===================================================================
+    // emptyIterator() factory (protected static)
+    // ===================================================================
+
+    @Test
+    public void testEmptyIteratorFactory_returnsUsableEmptyInstance() throws IOException {
+        MappingIterator<Object> it = MappingIterator.emptyIterator();
+        assertFalse(it.hasNext());
+        assertNull(it.getParser());
+    }
+}
+```
+
+## ตารางสรุปการครอบคลุม Branch/Condition
+
+| Test Method | Branch/Condition ที่ครอบคลุม |
+|---|---|
+| testConstructor_managedParser_startArray_clearsToken | ทุกเงื่อนไขใน `&&` เป็น true → เรียก `clearCurrentToken()` |
+| testConstructor_managedParser_notStartArray_noClear | `isExpectedStartArrayToken()==false` → ไม่เรียก clear |
+| testConstructor_notManagedParser_startArrayFlagIgnored | `managedParser==false` short-circuit |
+| testConstructor_managedParser_nullParser_noException | `p==null` short-circuit, ไม่ NPE |
+| testHasNext_nullParser_returnsFalse | `_parser==null` ใน hasNextValue()/hasNext() |
+| testHasNextValue_currentTokenNotNull_shortCircuitsNextToken | `t!=null` branch + `_hasNextChecked==true` short-circuit รอบสอง |
+| testHasNextValue_eofClosesManagedParser | `t==null` (nextToken)→null, `_closeParser==true` |
+| testHasNextValue_eofDoesNotCloseUnmanagedParser | เหมือนบน แต่ `_closeParser==false` |
+| testHasNextValue_endArrayStopsIteration | `t==END_ARRAY` branch |
+| testHasNextValue_nextTokenAvailable_returnsTrue | nextToken() คืน token ปกติ → return true |
+| testHasNext_wrapsJsonMappingException | `catch(JsonMappingException)` ใน hasNext() |
+| testHasNext_wrapsPlainIOException | `catch(IOException)` ใน hasNext() |
+| testNextValue_throwsWhenParserNull / testNext_throwsNoSuchElement_whenParserNull | `!hasNextValue()` → throw NoSuchElementException |
+| testNextValue_deserializeWithoutUpdatedValue | `_updatedValue==null` branch |
+| testNextValue_deserializeWithUpdatedValue | `_updatedValue!=null` branch |
+| testNext_wrapsJsonMappingException / testNext_wrapsPlainIOException | catch ใน `next()` ทั้งสองแบบ |
+| testNextValue_artificialState_parserNullAfterChecked | `_parser==null` หลัง `_hasNextChecked==true` (edge-case, ใช้ reflection) |
+| testRemove_alwaysThrows | remove() throw UnsupportedOperationException |
+| testClose_closesParserWhenNotNull / testClose_noExceptionWhenParserNull | `_parser!=null` true/false ใน close() |
+| testReadAllNoArg_emptyResult / testReadAllNoArg_delegatesToReadAllList | readAll() delegate + loop 0/1 รอบ |
+| testReadAllList_multipleElements_loopsCorrectly | readAll(List) loop หลายรอบ + managed close |
+| testReadAllCollection_singleElement | readAll(Collection) overload |
+| testGetParser_returnsUnderlyingParser / testGetParserSchema_delegatesToParser / testGetCurrentLocation_delegatesToParser | accessor delegation |
+| testEmptyIteratorFactory_returnsUsableEmptyInstance | static factory `emptyIterator()` |
+
+**หมายเหตุ:** test `testNextValue_artificialState_parserNullAfterChecked` ใช้ reflection บังคับ state ที่ไม่เกิดจาก flow ปกติของ public API เพื่อให้ครอบคลุม defensive branch เท่านั้น — ไม่ใช่ behavior ที่รับประกันจาก spec

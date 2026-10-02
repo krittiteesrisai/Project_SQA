@@ -1,0 +1,7 @@
+Failing tests: 2
+  - org.apache.commons.lang3.math.NumberUtilsTest::testCreateNumber_Hex16Digits_Long
+  - org.apache.commons.lang3.math.NumberUtilsTest::testCreateNumber_Hex8Digits_Integer
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

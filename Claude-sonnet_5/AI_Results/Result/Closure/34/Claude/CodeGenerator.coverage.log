@@ -1,0 +1,13 @@
+       Lines total: 613
+     Lines covered: 525
+  Conditions total: 453
+Conditions covered: 323
+     Line coverage: 85.6%
+Condition coverage: 71.3%
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (coverage.instrument).......................................... OK
+Running ant (run.gen.tests)................................................ OK
+Running ant (coverage.report).............................................. OK
+WARNING: Some tests failed (see /home/piyachayanin/SQA_2/AI_Testing/work/Closure_34b/failing_tests)!

@@ -1,0 +1,13 @@
+Failing tests: 8
+  - org.jfree.data.general.DatasetUtilitiesTest::testFindMaximumDomainValue_Valid
+  - org.jfree.data.general.DatasetUtilitiesTest::testFindMinimumDomainValue_Valid
+  - org.jfree.data.general.DatasetUtilitiesTest::testFindDomainBounds_XY_WithVisibleSeriesKeys
+  - org.jfree.data.general.DatasetUtilitiesTest::testIterateDomainBounds_StandardCase
+  - org.jfree.data.general.DatasetUtilitiesTest::testFindDomainBounds_XY_Valid
+  - org.jfree.data.general.DatasetUtilitiesTest::testIterateToFindDomainBounds_StandardCase
+  - org.jfree.data.general.DatasetUtilitiesTest::testCreateConsolidatedPieDataset_NoAggregation_WhenMinItemsTooHigh
+  - org.jfree.data.general.DatasetUtilitiesTest::testCreateConsolidatedPieDataset_NullValueSkipped
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

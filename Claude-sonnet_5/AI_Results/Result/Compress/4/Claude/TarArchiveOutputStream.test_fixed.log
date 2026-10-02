@@ -1,0 +1,10 @@
+Failing tests: 5
+  - org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest::testWriteFullRecordDirectlyNoAssembly
+  - org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest::testWriteSmallChunkGoesDirectlyToAssemblyBuffer
+  - org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest::testWriteAssemblyStaysPartial
+  - org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest::testWriteAssemblyMergeIntoFullRecord
+  - org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest::testWriteMultipleFullRecordsPlusRemainder
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

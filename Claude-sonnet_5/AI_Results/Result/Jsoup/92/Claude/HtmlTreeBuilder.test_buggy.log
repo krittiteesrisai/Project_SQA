@@ -1,0 +1,10 @@
+Failing tests: 5
+  - org.jsoup.parser.HtmlTreeBuilderTest::testResetInsertionMode_tdContextElement_last_knownDefect
+  - org.jsoup.parser.HtmlTreeBuilderTest::testPopStackToCloseVarargs
+  - org.jsoup.parser.HtmlTreeBuilderTest::testInsertElement_emptyStackGoesToDoc
+  - org.jsoup.parser.HtmlTreeBuilderTest::testClearFormattingElementsToLastMarker
+  - org.jsoup.parser.HtmlTreeBuilderTest::testHeadElement
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

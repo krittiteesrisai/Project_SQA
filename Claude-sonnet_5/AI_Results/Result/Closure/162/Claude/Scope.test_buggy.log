@@ -1,0 +1,48 @@
+Failing tests: 43
+  - com.google.javascript.jscomp.ScopeTest::testVarIsDefine_falseByDefault
+  - com.google.javascript.jscomp.ScopeTest::testUnboundVars_excludedWhenExtern
+  - com.google.javascript.jscomp.ScopeTest::testVarGetNameNodeAndJSDocInfoNull
+  - com.google.javascript.jscomp.ScopeTest::testVarGetInitialValue_varParent
+  - com.google.javascript.jscomp.ScopeTest::testGetVar_returnsNullWhenNotFoundAndNoParent
+  - com.google.javascript.jscomp.ScopeTest::testVarIsGlobalIsLocal
+  - com.google.javascript.jscomp.ScopeTest::testVarEqualsAndHashCode
+  - com.google.javascript.jscomp.ScopeTest::testVarSetType_whenInferredTrue
+  - com.google.javascript.jscomp.ScopeTest::testVarGetInputName_nullInput
+  - com.google.javascript.jscomp.ScopeTest::testVarGetInitialValue_assignParent
+  - com.google.javascript.jscomp.ScopeTest::testVarGetDeclarationAndGetSymbol
+  - com.google.javascript.jscomp.ScopeTest::testDeclareDefaultInferredTrue
+  - com.google.javascript.jscomp.ScopeTest::testNestedScopeDepthAndGlobalScope
+  - com.google.javascript.jscomp.ScopeTest::testUndeclareRemovesVar
+  - com.google.javascript.jscomp.ScopeTest::testDeclareExplicitInferredFalse
+  - com.google.javascript.jscomp.ScopeTest::testBottomScopeConstructor
+  - com.google.javascript.jscomp.ScopeTest::testVarIsNoShadow_falseWhenNoInfo
+  - com.google.javascript.jscomp.ScopeTest::testVarGetInitialValue_noParentThrowsNPE
+  - com.google.javascript.jscomp.ScopeTest::testGetVar_recursesToParentAndReturnsNullWhenNotFound
+  - com.google.javascript.jscomp.ScopeTest::testChildScopeConstructor_nullParentThrows
+  - com.google.javascript.jscomp.ScopeTest::testGetVar_recursesToParentWhenFound
+  - com.google.javascript.jscomp.ScopeTest::testVarResolveType_nullTypeNoOp
+  - com.google.javascript.jscomp.ScopeTest::testVarIsExtern_trueWhenInputNull
+  - com.google.javascript.jscomp.ScopeTest::testGetArgumentsVar_singletonAndProperties
+  - com.google.javascript.jscomp.ScopeTest::testVarGetInitialValue_otherParentReturnsNull
+  - com.google.javascript.jscomp.ScopeTest::testGetReferencesAndGetScope
+  - com.google.javascript.jscomp.ScopeTest::testDeclareEmptyNameThrows
+  - com.google.javascript.jscomp.ScopeTest::testGetSlotAndGetOwnSlot
+  - com.google.javascript.jscomp.ScopeTest::testDeclareDuplicateThrows
+  - com.google.javascript.jscomp.ScopeTest::testUnboundVars_excludedWhenParentIsNotVar
+  - com.google.javascript.jscomp.ScopeTest::testUnboundVars_excludedWhenNoParent
+  - com.google.javascript.jscomp.ScopeTest::testIsDeclared_allBranches
+  - com.google.javascript.jscomp.ScopeTest::testGetVar_foundInOwnScope
+  - com.google.javascript.jscomp.ScopeTest::testChildScopeConstructor_inheritsThisTypeFromParent
+  - com.google.javascript.jscomp.ScopeTest::testVarGetInitialValue_functionParent
+  - com.google.javascript.jscomp.ScopeTest::testUnboundVars_excludedWhenTypeNotNull
+  - com.google.javascript.jscomp.ScopeTest::testGlobalScopeConstructor
+  - com.google.javascript.jscomp.ScopeTest::testUndeclare_wrongScopeThrows
+  - com.google.javascript.jscomp.ScopeTest::testGetVarsAndAllSymbolsAndVarCount
+  - com.google.javascript.jscomp.ScopeTest::testVarToString_containsName
+  - com.google.javascript.jscomp.ScopeTest::testVarSetType_whenInferredFalseThrows
+  - com.google.javascript.jscomp.ScopeTest::testDeclareNullNameThrows
+  - com.google.javascript.jscomp.ScopeTest::testChildScopeConstructor_sameRootNodeAsParentThrows
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

@@ -1,0 +1,10 @@
+Failing tests: 5
+  - org.jsoup.nodes.DocumentTypeTest::testOuterHtmlHead_PublicIdOnly
+  - org.jsoup.nodes.DocumentTypeTest::testOuterHtmlHead_AppendsToExistingContent
+  - org.jsoup.nodes.DocumentTypeTest::testConstructorWithNullValues
+  - org.jsoup.nodes.DocumentTypeTest::testOuterHtmlHead_PublicIdNull_SystemIdNull
+  - org.jsoup.nodes.DocumentTypeTest::testOuterHtmlHead_SystemIdOnly
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

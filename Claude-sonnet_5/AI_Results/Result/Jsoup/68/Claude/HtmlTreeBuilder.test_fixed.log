@@ -1,0 +1,8 @@
+Failing tests: 3
+  - org.jsoup.parser.HtmlTreeBuilderTest::testGenerateImpliedEndTags_PopsMatchingUntilNonMatch
+  - org.jsoup.parser.HtmlTreeBuilderTest::testInScope_MaxScopeSearchDepthClamp
+  - org.jsoup.parser.HtmlTreeBuilderTest::testResetInsertionMode_Td_LastTrue_ExposesKnownDefect
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

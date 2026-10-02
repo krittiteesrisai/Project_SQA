@@ -1,0 +1,11 @@
+Failing tests: 3
+  - org.jsoup.nodes.DocumentTypeTest::testConstructor_NullPublicIdAndSystemId_TreatedAsBlank
+  - org.jsoup.nodes.DocumentTypeTest::testOuterHtmlHead_AllBlank_NullValues
+  - org.jsoup.nodes.DocumentTypeTest::testConstructor_EmptyName_ThrowsException
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK
+Use of uninitialized value $lines[77] in pattern match (m//) at /home/piyachayanin/defects4j/framework/core/Utils.pm line 738.
+Use of uninitialized value $lines[77] in pattern match (m//) at /home/piyachayanin/defects4j/framework/core/Utils.pm line 738.
+Use of uninitialized value in pattern match (m//) at /home/piyachayanin/defects4j/framework/core/Utils.pm line 741.

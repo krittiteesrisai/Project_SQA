@@ -1,0 +1,13 @@
+       Lines total: 1106
+     Lines covered: 817
+  Conditions total: 783
+Conditions covered: 505
+     Line coverage: 73.9%
+Condition coverage: 64.5%
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (coverage.instrument).......................................... OK
+Running ant (run.gen.tests)................................................ OK
+Running ant (coverage.report).............................................. OK
+WARNING: Some tests failed (see /home/piyachayanin/SQA_2/AI_Testing/work/Jsoup_87b/failing_tests)!

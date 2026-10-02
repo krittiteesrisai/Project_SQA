@@ -1,0 +1,7 @@
+Failing tests: 2
+  - com.google.javascript.jscomp.PeepholeFoldConstantsTest::testFoldUnary_droppedInExpressionStatement
+  - com.google.javascript.jscomp.PeepholeFoldConstantsTest::testFoldAndOr_parentAssign_noFold
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

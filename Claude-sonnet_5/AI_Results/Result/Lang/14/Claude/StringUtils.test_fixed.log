@@ -1,0 +1,11 @@
+Failing tests: 6
+  - org.apache.commons.lang3.StringUtilsTest::testIndexOfIgnoreCaseStartPos
+  - org.apache.commons.lang3.StringUtilsTest::testStartsWithAny
+  - org.apache.commons.lang3.StringUtilsTest::testSubstringBeforeLast
+  - org.apache.commons.lang3.StringUtilsTest::testIndexOfAnyStrings
+  - org.apache.commons.lang3.StringUtilsTest::testRepeatChar
+  - org.apache.commons.lang3.StringUtilsTest::testRepeatStringSeparator
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

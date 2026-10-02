@@ -1,0 +1,13 @@
+Failing tests: 8
+  - org.apache.commons.math3.optim.BaseOptimizerTest::testParseOptimizationDataEmptyArray
+  - org.apache.commons.math3.optim.BaseOptimizerTest::testParseOptimizationDataUnknownTypeIsIgnored
+  - org.apache.commons.math3.optim.BaseOptimizerTest::testInitialCountsAreZero
+  - org.apache.commons.math3.optim.BaseOptimizerTest::testIncrementEvaluationCountZeroMaxThrowsImmediately
+  - org.apache.commons.math3.optim.BaseOptimizerTest::testOptimizeWithNoArguments
+  - org.apache.commons.math3.optim.BaseOptimizerTest::testGetMaxIterationsDefaultIsZero
+  - org.apache.commons.math3.optim.BaseOptimizerTest::testParseOptimizationDataMaxEvalOnly
+  - org.apache.commons.math3.optim.BaseOptimizerTest::testIncrementIterationCountZeroMaxThrowsImmediately
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

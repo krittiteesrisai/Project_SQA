@@ -1,0 +1,8 @@
+Failing tests: 3
+  - org.jfree.data.time.TimePeriodValuesTest::testUpdateBounds_MaxMiddleIndex_KnownBug
+  - org.jfree.data.time.TimePeriodValuesTest::testClone_WithItems_NotSameReference
+  - org.jfree.data.time.TimePeriodValuesTest::testCreateCopy_Subset
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

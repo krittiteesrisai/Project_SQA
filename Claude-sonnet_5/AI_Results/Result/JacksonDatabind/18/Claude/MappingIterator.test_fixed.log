@@ -1,0 +1,12 @@
+Failing tests: 7
+  - com.fasterxml.jackson.databind.MappingIteratorTest::testHasNextValue_eofDoesNotCloseUnmanagedParser
+  - com.fasterxml.jackson.databind.MappingIteratorTest::testNext_wrapsJsonMappingException
+  - com.fasterxml.jackson.databind.MappingIteratorTest::testHasNext_wrapsJsonMappingException
+  - com.fasterxml.jackson.databind.MappingIteratorTest::testHasNextValue_eofClosesManagedParser
+  - com.fasterxml.jackson.databind.MappingIteratorTest::testNextValue_artificialState_parserNullAfterChecked
+  - com.fasterxml.jackson.databind.MappingIteratorTest::testHasNextValue_endArrayStopsIteration
+  - com.fasterxml.jackson.databind.MappingIteratorTest::testHasNextValue_currentTokenNotNull_shortCircuitsNextToken
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

@@ -1,0 +1,397 @@
+คุณคือ Java testing engineer ที่เชี่ยวชาญด้าน unit testing และ JUnit 4
+เป้าหมาย: เขียนชุดทดสอบ JUnit 4 สำหรับคลาสด้านล่าง เพื่อให้ได้ branch coverage สูงที่สุดเท่าที่เป็นไปได้
+และมีโอกาสดักจับข้อบกพร่อง (fault) ในโค้ดได้จริง
+ข้อกำหนด:
+1. ใช้เฉพาะ JUnit 4 และไลบรารีที่อยู่ใน classpath ต่อไปนี้: antlr-2.7.7.jar, asm-3.3.1.jar, asm-4.2.jar, asm-analysis-3.2.jar, asm-commons-3.2.jar, asm-tree-3.2.jar, asm-util-3.2.jar, assertj-core-3.8.0.jar, assertj-core-3.9.1.jar, byte-buddy-1.7.5.jar, byte-buddy-1.9.3.jar, byte-buddy-agent-1.7.5.jar, byte-buddy-agent-1.9.3.jar, cglib-2.2.2.jar, cglib-3.1.jar, groovy-1.7.9.jar, groovy-2.4.0.jar, guava-18.0.jar, hamcrest-core-1.1.jar, hamcrest-core-1.3.jar, hibernate-cglib-repack-2.1_3.jar, jackson-annotations-2.10.0-20190519.085045-3.jar, jackson-annotations-2.2.0.jar, jackson-annotations-2.2.1.jar, jackson-annotations-2.3.0.jar, jackson-annotations-2.4.0-rc3.jar, jackson-annotations-2.4.0.jar, jackson-annotations-2.5.0.jar, jackson-annotations-2.6.0-rc1.jar, jackson-annotations-2.6.0-rc2.jar, jackson-annotations-2.6.0-rc3.jar, jackson-annotations-2.6.0.jar, jackson-annotations-2.7.0-rc2.jar, jackson-annotations-2.7.0.jar, jackson-annotations-2.8.0.jar, jackson-annotations-2.8.0.rc1.jar, jackson-annotations-2.9.0.jar, jackson-annotations-2.9.0.pr3.jar, jackson-annotations-3.0-20190323.173155-41.jar, jackson-annotations-3.0-20190519.085339-43.jar, jackson-core-2.10.0-20190518.180547-60.jar, jackson-core-2.2.0.jar, jackson-core-2.2.1.jar, jackson-core-2.3.0.jar, jackson-core-2.4.0-rc3.jar, jackson-core-2.4.0.jar, jackson-core-2.4.1.1.jar, jackson-core-2.4.2.jar, jackson-core-2.4.3.jar, jackson-core-2.4.5.jar, jackson-core-2.4.6.jar, jackson-core-2.5.0.jar, jackson-core-2.5.1.jar, jackson-core-2.5.3.jar, jackson-core-2.5.4.jar, jackson-core-2.5.5.jar, jackson-core-2.6.0-rc1.jar, jackson-core-2.6.0-rc2.jar, jackson-core-2.6.0-rc3.jar, jackson-core-2.6.0.jar, jackson-core-2.6.1.jar, jackson-core-2.6.2.jar, jackson-core-2.6.3.jar, jackson-core-2.6.4.jar, jackson-core-2.6.5.jar, jackson-core-2.6.6.jar, jackson-core-2.6.7.jar, jackson-core-2.7.0-rc2.jar, jackson-core-2.7.0.jar, jackson-core-2.7.1.jar, jackson-core-2.7.2.jar, jackson-core-2.7.4.jar, jackson-core-2.7.5.jar, jackson-core-2.7.6.jar, jackson-core-2.7.7.jar, jackson-core-2.7.8.jar, jackson-core-2.7.9.jar, jackson-core-2.8.0.jar, jackson-core-2.8.0.rc1.jar, jackson-core-2.8.0.rc2.jar, jackson-core-2.8.10.jar, jackson-core-2.8.3.jar, jackson-core-2.8.4.jar, jackson-core-2.8.5.jar, jackson-core-2.8.6.jar, jackson-core-2.8.7.jar, jackson-core-2.8.8-20170301.000803-1.jar, jackson-core-2.8.8.jar, jackson-core-2.8.9.jar, jackson-core-2.9.0.pr3.jar, jackson-core-2.9.6.jar, jackson-core-2.9.7.jar, jackson-core-2.9.8.jar, jackson-core-2.9.9.jar, jackson-core-3.0.0-20190516.032312-448.jar, javassist-3.19.0-GA.jar, javassist-3.20.0-GA.jar, javassist-3.21.0-GA.jar, javassist-3.22.0-CR2.jar, javassist-3.24.0-GA.jar, jimfs-1.1.jar, jsr-275-0.9.1.jar, jsr-275-0.9.2.jar, junit-4.10.jar, junit-4.11.jar, junit-4.12-hamcrest-1.3.jar, junit-4.12.jar, junit-4.8.2.jar, mockito-all-1.10.19.jar, mockito-core-1.10.19.jar, mockito-core-2.10.0.jar, mockito-core-2.23.0.jar, objenesis-2.1.jar, objenesis-2.6.jar, objenesis-3.0.1.jar, powermock-api-mockito-1.6.2.jar, powermock-api-mockito-1.6.3.jar, powermock-api-mockito-1.6.5.jar, powermock-api-mockito-1.7.3.jar, powermock-api-mockito-1.7.4.jar, powermock-api-mockito-common-1.6.5.jar, powermock-api-mockito-common-1.7.3.jar, powermock-api-mockito-common-1.7.4.jar, powermock-api-mockito2-2.0.0-beta.5.jar, powermock-api-mockito2-2.0.0.jar, powermock-api-support-1.6.2.jar, powermock-api-support-1.6.3.jar, powermock-api-support-1.6.5.jar, powermock-api-support-1.7.3.jar, powermock-api-support-1.7.4.jar, powermock-api-support-2.0.0-beta.5.jar, powermock-api-support-2.0.0.jar, powermock-core-1.6.2.jar, powermock-core-1.6.3.jar, powermock-core-1.6.5.jar, powermock-core-1.7.3.jar, powermock-core-1.7.4.jar, powermock-core-2.0.0-beta.5.jar, powermock-core-2.0.0.jar, powermock-module-junit4-1.6.2.jar, powermock-module-junit4-1.6.3.jar, powermock-module-junit4-1.6.5.jar, powermock-module-junit4-1.7.3.jar, powermock-module-junit4-1.7.4.jar, powermock-module-junit4-2.0.0-beta.5.jar, powermock-module-junit4-2.0.0.jar, powermock-module-junit4-common-1.6.2.jar, powermock-module-junit4-common-1.6.3.jar, powermock-module-junit4-common-1.6.5.jar, powermock-module-junit4-common-1.7.3.jar, powermock-module-junit4-common-1.7.4.jar, powermock-module-junit4-common-2.0.0-beta.5.jar, powermock-module-junit4-common-2.0.0.jar, powermock-reflect-1.6.2.jar, powermock-reflect-1.6.3.jar, powermock-reflect-1.6.5.jar, powermock-reflect-1.7.3.jar, powermock-reflect-1.7.4.jar, powermock-reflect-2.0.0-beta.5.jar, powermock-reflect-2.0.0.jar
+2. ตั้งชื่อคลาสทดสอบเป็น JsonValueSerializerTest และ import คลาสเป้าหมายให้ถูกต้อง
+3. ครอบคลุมกรณี: ค่าขอบเขต (boundary), ค่า null/ว่าง, อินพุตผิดรูปแบบ,
+และเงื่อนไข if/else, loop ทุกสาขาเท่าที่วิเคราะห์ได้จากซอร์สที่ให้มา
+4. ห้ามเดา behavior ที่ไม่มีอยู่ในซอร์สโค้ด หากไม่แน่ใจให้เขียนคอมเมนต์กำกับ
+5. หลังโค้ดเทส ให้สรุปเป็นตารางสั้น ๆ ว่าแต่ละเมธอดเทสใด ครอบคลุม Branch/Condition ใด
+ซอร์สโค้ดคลาสเป้าหมาย (Defects4J: JacksonDatabind-60b):
+```java
+package com.fasterxml.jackson.databind.ser.std;
+
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Type;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+import com.fasterxml.jackson.core.*;
+import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.annotation.JacksonStdImpl;
+import com.fasterxml.jackson.databind.introspect.AnnotatedMethod;
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatVisitable;
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatVisitorWrapper;
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonStringFormatVisitor;
+import com.fasterxml.jackson.databind.jsonschema.SchemaAware;
+import com.fasterxml.jackson.databind.jsontype.TypeSerializer;
+import com.fasterxml.jackson.databind.ser.BeanSerializer;
+import com.fasterxml.jackson.databind.ser.ContextualSerializer;
+
+/**
+ * Serializer class that can serialize Object that have a
+ * {@link com.fasterxml.jackson.annotation.JsonValue} annotation to
+ * indicate that serialization should be done by calling the method
+ * annotated, and serializing result it returns.
+ *<p>
+ * Implementation note: we will post-process resulting serializer
+ * (much like what is done with {@link BeanSerializer})
+ * to figure out actual serializers for final types.
+ *  This must be done from {@link #createContextual} method, and NOT from constructor;
+ * otherwise we could end up with an infinite loop.
+ */
+@SuppressWarnings("serial")
+@JacksonStdImpl
+public class JsonValueSerializer
+    extends StdSerializer<Object>
+    implements ContextualSerializer, JsonFormatVisitable, SchemaAware
+    {
+    /**
+     * @since 2.8 (was "plain" method before)
+     */
+    protected final AnnotatedMethod _accessorMethod;
+
+    protected final JsonSerializer<Object> _valueSerializer;
+
+    protected final BeanProperty _property;
+
+    /**
+     * This is a flag that is set in rare (?) cases where this serializer
+     * is used for "natural" types (boolean, int, String, double); and where
+     * we actually must force type information wrapping, even though
+     * one would not normally be added.
+     */
+    protected final boolean _forceTypeInformation;
+    
+    /*
+    /**********************************************************
+    /* Life-cycle
+    /**********************************************************
+     */
+
+    /**
+     * @param ser Explicit serializer to use, if caller knows it (which
+     *    occurs if and only if the "value method" was annotated with
+     *    {@link com.fasterxml.jackson.databind.annotation.JsonSerialize#using}), otherwise
+     *    null
+     *    
+     * @since 2.8 Earlier method took "raw" Method, but that does not work with access
+     *    to information we need
+     */
+    @SuppressWarnings("unchecked")
+    public JsonValueSerializer(AnnotatedMethod valueMethod, JsonSerializer<?> ser)
+    {
+        super(valueMethod.getType());
+        _accessorMethod = valueMethod;
+        _valueSerializer = (JsonSerializer<Object>) ser;
+        _property = null;
+        _forceTypeInformation = true; // gets reconsidered when we are contextualized
+    }
+
+    @SuppressWarnings("unchecked")
+    public JsonValueSerializer(JsonValueSerializer src, BeanProperty property,
+            JsonSerializer<?> ser, boolean forceTypeInfo)
+    {
+        super(_notNullClass(src.handledType()));
+        _accessorMethod = src._accessorMethod;
+        _valueSerializer = (JsonSerializer<Object>) ser;
+        _property = property;
+        _forceTypeInformation = forceTypeInfo;
+    }
+
+    @SuppressWarnings("unchecked")
+    private final static Class<Object> _notNullClass(Class<?> cls) {
+        return (cls == null) ? Object.class : (Class<Object>) cls;
+    }
+    
+    public JsonValueSerializer withResolved(BeanProperty property,
+            JsonSerializer<?> ser, boolean forceTypeInfo)
+    {
+        if (_property == property && _valueSerializer == ser
+                && forceTypeInfo == _forceTypeInformation) {
+            return this;
+        }
+        return new JsonValueSerializer(this, property, ser, forceTypeInfo);
+    }
+    
+    /*
+    /**********************************************************
+    /* Post-processing
+    /**********************************************************
+     */
+
+    /**
+     * We can try to find the actual serializer for value, if we can
+     * statically figure out what the result type must be.
+     */
+    @Override
+    public JsonSerializer<?> createContextual(SerializerProvider provider,
+            BeanProperty property)
+        throws JsonMappingException
+    {
+        JsonSerializer<?> ser = _valueSerializer;
+        if (ser == null) {
+            /* Can only assign serializer statically if the declared type is final:
+             * if not, we don't really know the actual type until we get the instance.
+             */
+            // 10-Mar-2010, tatu: Except if static typing is to be used
+            JavaType t = _accessorMethod.getType();
+            if (provider.isEnabled(MapperFeature.USE_STATIC_TYPING) || t.isFinal()) {
+                // false -> no need to cache
+                /* 10-Mar-2010, tatu: Ideally we would actually separate out type
+                 *   serializer from value serializer; but, alas, there's no access
+                 *   to serializer factory at this point... 
+                 */
+                // 05-Sep-2013, tatu: I _think_ this can be considered a primary property...
+                ser = provider.findPrimaryPropertySerializer(t, property);
+                /* 09-Dec-2010, tatu: Turns out we must add special handling for
+                 *   cases where "native" (aka "natural") type is being serialized,
+                 *   using standard serializer
+                 */
+                boolean forceTypeInformation = isNaturalTypeWithStdHandling(t.getRawClass(), ser);
+                return withResolved(property, ser, forceTypeInformation);
+            }
+        } else {
+            // 05-Sep-2013, tatu: I _think_ this can be considered a primary property...
+            ser = provider.handlePrimaryContextualization(ser, property);
+            return withResolved(property, ser, _forceTypeInformation);
+        }
+        return this;
+    }
+    
+    /*
+    /**********************************************************
+    /* Actual serialization
+    /**********************************************************
+     */
+    
+    @Override
+    public void serialize(Object bean, JsonGenerator gen, SerializerProvider prov) throws IOException
+    {
+        try {
+            Object value = _accessorMethod.getValue(bean);
+            if (value == null) {
+                prov.defaultSerializeNull(gen);
+                return;
+            }
+            JsonSerializer<Object> ser = _valueSerializer;
+            if (ser == null) {
+                Class<?> c = value.getClass();
+                /* 10-Mar-2010, tatu: Ideally we would actually separate out type
+                 *   serializer from value serializer; but, alas, there's no access
+                 *   to serializer factory at this point... 
+                 */
+                // let's cache it, may be needed soon again
+                ser = prov.findTypedValueSerializer(c, true, _property);
+            }
+            ser.serialize(value, gen, prov);
+        } catch (IOException ioe) {
+            throw ioe;
+        } catch (Exception e) {
+            Throwable t = e;
+            // Need to unwrap this specific type, to see infinite recursion...
+            while (t instanceof InvocationTargetException && t.getCause() != null) {
+                t = t.getCause();
+            }
+            // Errors shouldn't be wrapped (and often can't, as well)
+            if (t instanceof Error) {
+                throw (Error) t;
+            }
+            // let's try to indicate the path best we can...
+            throw JsonMappingException.wrapWithPath(t, bean, _accessorMethod.getName() + "()");
+        }
+    }
+
+    @Override
+    public void serializeWithType(Object bean, JsonGenerator gen, SerializerProvider provider,
+            TypeSerializer typeSer0) throws IOException
+    {
+        // Regardless of other parts, first need to find value to serialize:
+        Object value = null;
+        try {
+            value = _accessorMethod.getValue(bean);
+            // and if we got null, can also just write it directly
+            if (value == null) {
+                provider.defaultSerializeNull(gen);
+                return;
+            }
+            JsonSerializer<Object> ser = _valueSerializer;
+            if (ser == null) { // no serializer yet? Need to fetch
+//                ser = provider.findTypedValueSerializer(value.getClass(), true, _property);
+                ser = provider.findValueSerializer(value.getClass(), _property);
+            } else {
+                /* 09-Dec-2010, tatu: To work around natural type's refusal to add type info, we do
+                 *    this (note: type is for the wrapper type, not enclosed value!)
+                 */
+                if (_forceTypeInformation) {
+                    typeSer0.writeTypePrefixForScalar(bean, gen);
+                    ser.serialize(value, gen, provider);
+                    typeSer0.writeTypeSuffixForScalar(bean, gen);
+                    return;
+                }
+            }
+            // 28-Sep-2016, tatu: As per [databind#1385], we do need to do some juggling
+            //    to use different Object for type id (logical type) and actual serialization
+            //    (delegat type).
+            ser.serializeWithType(value, gen, provider, typeSer0);
+        } catch (IOException ioe) {
+            throw ioe;
+        } catch (Exception e) {
+            Throwable t = e;
+            // Need to unwrap this specific type, to see infinite recursion...
+            while (t instanceof InvocationTargetException && t.getCause() != null) {
+                t = t.getCause();
+            }
+            // Errors shouldn't be wrapped (and often can't, as well)
+            if (t instanceof Error) {
+                throw (Error) t;
+            }
+            // let's try to indicate the path best we can...
+            throw JsonMappingException.wrapWithPath(t, bean, _accessorMethod.getName() + "()");
+        }
+    }
+    
+    @SuppressWarnings("deprecation")
+    @Override
+    public JsonNode getSchema(SerializerProvider provider, Type typeHint)
+        throws JsonMappingException
+    {
+        if (_valueSerializer instanceof SchemaAware) {
+            return ((SchemaAware)_valueSerializer).getSchema(provider, null);
+        }
+        return com.fasterxml.jackson.databind.jsonschema.JsonSchema.getDefaultSchemaNode();
+    }
+
+    @Override
+    public void acceptJsonFormatVisitor(JsonFormatVisitorWrapper visitor, JavaType typeHint)
+        throws JsonMappingException
+    {
+        /* 27-Apr-2015, tatu: First things first; for JSON Schema introspection,
+         *    Enum types that use `@JsonValue` are special (but NOT necessarily
+         *    anything else that RETURNS an enum!)
+         *    So we will need to add special
+         *    handling here (see https://github.com/FasterXML/jackson-module-jsonSchema/issues/57
+         *    for details).
+         *    
+         *    Note that meaning of JsonValue, then, is very different for Enums. Sigh.
+         */
+        final JavaType type = _accessorMethod.getType();
+        Class<?> declaring = _accessorMethod.getDeclaringClass();
+        if ((declaring != null) && declaring.isEnum()) {
+            if (_acceptJsonFormatVisitorForEnum(visitor, typeHint, declaring)) {
+                return;
+            }
+        }
+        JsonSerializer<Object> ser = _valueSerializer;
+        if (ser == null) {
+            ser = visitor.getProvider().findTypedValueSerializer(type, false, _property);
+            if (ser == null) { // can this ever occur?
+                visitor.expectAnyFormat(typeHint);
+                return;
+            }
+        }
+        ser.acceptJsonFormatVisitor(visitor, null); 
+    }
+
+    /**
+     * Overridable helper method used for special case handling of schema information for
+     * Enums.
+     * 
+     * @return True if method handled callbacks; false if not; in latter case caller will
+     *   send default callbacks
+     *
+     * @since 2.6
+     */
+    protected boolean _acceptJsonFormatVisitorForEnum(JsonFormatVisitorWrapper visitor,
+            JavaType typeHint, Class<?> enumType)
+        throws JsonMappingException
+    {
+        // Copied from EnumSerializer#acceptJsonFormatVisitor
+        JsonStringFormatVisitor stringVisitor = visitor.expectStringFormat(typeHint);
+        if (stringVisitor != null) {
+            Set<String> enums = new LinkedHashSet<String>();
+            for (Object en : enumType.getEnumConstants()) {
+                try {
+                    // 21-Apr-2016, tatu: This is convoluted to the max, but essentially we
+                    //   call `@JsonValue`-annotated accessor method on all Enum members,
+                    //   so it all "works out". To some degree.
+                    enums.add(String.valueOf(_accessorMethod.callOn(en)));
+                } catch (Exception e) {
+                    Throwable t = e;
+                    while (t instanceof InvocationTargetException && t.getCause() != null) {
+                        t = t.getCause();
+                    }
+                    if (t instanceof Error) {
+                        throw (Error) t;
+                    }
+                    throw JsonMappingException.wrapWithPath(t, en, _accessorMethod.getName() + "()");
+                }
+            }
+            stringVisitor.enumTypes(enums);
+        }
+        return true;
+    }
+
+    protected boolean isNaturalTypeWithStdHandling(Class<?> rawType, JsonSerializer<?> ser)
+    {
+        // First: do we have a natural type being handled?
+        if (rawType.isPrimitive()) {
+            if (rawType != Integer.TYPE && rawType != Boolean.TYPE && rawType != Double.TYPE) {
+                return false;
+            }
+        } else {
+            if (rawType != String.class &&
+                    rawType != Integer.class && rawType != Boolean.class && rawType != Double.class) {
+                return false;
+            }
+        }
+        return isDefaultSerializer(ser);
+    }
+
+    /*
+    /**********************************************************
+    /* Other methods
+    /**********************************************************
+     */
+
+    @Override
+    public String toString() {
+        return "(@JsonValue serializer for method " + _accessorMethod.getDeclaringClass() + "#" + _accessorMethod.getName() + ")";
+    }
+
+    /*
+    /**********************************************************
+    /* Helper class
+    /**********************************************************
+     */
+
+    /**
+     * Silly little wrapper class we need to re-route type serialization so that we can
+     * override Object to use for type id (logical type) even when asking serialization
+     * of something else (delegate type)
+     */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+}
+
+```

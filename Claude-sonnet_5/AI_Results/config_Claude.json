@@ -1,0 +1,12 @@
+{
+  "provider": "kku",
+  "model": {
+    "name": "Claude",
+    "id": "claude-sonnet-5"
+  },
+  "temperature": 0,
+  "max_output_tokens": null,
+  "workers": 2,
+  "cp_test_mode": "names",
+  "coverage_metric": "line"
+}

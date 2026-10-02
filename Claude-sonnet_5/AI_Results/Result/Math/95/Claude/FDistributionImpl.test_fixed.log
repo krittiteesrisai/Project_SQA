@@ -1,0 +1,7 @@
+Failing tests: 2
+  - org.apache.commons.math.distribution.FDistributionImplTest::testGetInitialDomain_DenominatorLessThanTwo
+  - org.apache.commons.math.distribution.FDistributionImplTest::testGetInitialDomain_DenominatorEqualsTwo
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

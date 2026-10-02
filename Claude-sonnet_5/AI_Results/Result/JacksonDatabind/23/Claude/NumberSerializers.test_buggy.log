@@ -1,0 +1,9 @@
+Failing tests: 4
+  - com.fasterxml.jackson.databind.ser.std.NumberSerializersTest::testCreateContextual_FormatNull_ReturnsSameInstance
+  - com.fasterxml.jackson.databind.ser.std.NumberSerializersTest::testCreateContextual_MemberNull_ReturnsSameInstance
+  - com.fasterxml.jackson.databind.ser.std.NumberSerializersTest::testCreateContextual_ShapeNotString_ReturnsSameInstance
+  - com.fasterxml.jackson.databind.ser.std.NumberSerializersTest::testCreateContextual_ShapeString_ReturnsToStringSerializerInstance
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

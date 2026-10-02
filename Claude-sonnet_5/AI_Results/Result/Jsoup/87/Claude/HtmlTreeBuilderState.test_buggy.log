@@ -1,0 +1,10 @@
+Failing tests: 5
+  - org.jsoup.parser.HtmlTreeBuilderStateTest::testAfterBody_WhitespaceAndCommentHandledAtHtmlLevel
+  - org.jsoup.parser.HtmlTreeBuilderStateTest::testInBody_Xmp_IsRawTextAndClosesP
+  - org.jsoup.parser.HtmlTreeBuilderStateTest::testAfterFrameset_TrailingCommentCapturedAtAfterAfterFrameset
+  - org.jsoup.parser.HtmlTreeBuilderStateTest::testInBody_InputHiddenKeepsFramesetOk_NonHiddenDisables
+  - org.jsoup.parser.HtmlTreeBuilderStateTest::testAfterAfterBody_TrailingCommentAtDocumentLevel
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

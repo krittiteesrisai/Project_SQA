@@ -1,0 +1,368 @@
+# วิเคราะห์และแนวทางการทดสอบ
+
+จากซอร์สโค้ดที่ให้มา คลาส `MakeDeclaredNamesUnique` แบ่งเป็น 2 ส่วนหลัก:
+
+1. **ส่วนที่ต้องใช้ `Node` / `NodeTraversal` / `Compiler` จริง** (เมธอด `enterScope`, `exitScope`, `shouldTraverse`, `visit`, `findDeclaredNames`, และ `ContextualRenameInverter` ส่วนที่ต้อง traverse AST) — โค้ดที่ให้มาไม่ได้แสดง API/constructor ของ `Node`, `NodeTraversal`, `Compiler` ไว้ให้ชัดเจนพอที่จะสร้าง object เหล่านี้ได้โดยไม่ "เดา" behavior ที่ไม่มีอยู่ในซอร์สที่ให้มา ผมจึง**ไม่เขียน integration test ผ่าน AST จริง** เพื่อไม่ละเมิดข้อกำหนดที่ 4 (คอมเมนต์กำกับไว้ในโค้ด)
+2. **ส่วนตรรกะที่ปิดตัวเอง (self-contained logic)** ได้แก่ `ContextualRenamer`, `InlineRenamer`, `BoilerplateRenamer`, constructor ของ `MakeDeclaredNamesUnique`, factory method `getContextualRenameInverter`, และ static method `ContextualRenameInverter.getOrginalName` — ส่วนนี้สามารถทดสอบได้ตรงไปตรงมาจาก field/เมธอกที่เห็นในซอร์สทั้งหมด ผมจึงเน้นให้ครอบคลุมทุก if/else, loop (increment logic), boundary (empty string, null), และ malformed input (เช่น idPrefix ว่าง, name เป็น `arguments`, null)
+
+```java
+package com.google.javascript.jscomp;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
+import com.google.common.base.Supplier;
+import com.google.javascript.jscomp.MakeDeclaredNamesUnique.BoilerplateRenamer;
+import com.google.javascript.jscomp.MakeDeclaredNamesUnique.ContextualRenameInverter;
+import com.google.javascript.jscomp.MakeDeclaredNamesUnique.ContextualRenamer;
+import com.google.javascript.jscomp.MakeDeclaredNamesUnique.InlineRenamer;
+import com.google.javascript.jscomp.MakeDeclaredNamesUnique.Renamer;
+
+import org.junit.Test;
+
+/**
+ * Unit test สำหรับ {@link MakeDeclaredNamesUnique}
+ *
+ * หมายเหตุ (ตามข้อกำหนดข้อ 4): เมธอด enterScope/exitScope/shouldTraverse/visit/
+ * findDeclaredNames และ ContextualRenameInverter#process/visit/enterScope/exitScope
+ * ต้องพึ่งพา Node/NodeTraversal/Compiler ที่แท้จริง ซึ่ง API การสร้าง object เหล่านี้
+ * ไม่ได้ปรากฏอยู่ในซอร์สโค้ดที่ให้มา จึง "ไม่" เขียนเทสจำลอง AST ขึ้นมาเอง
+ * (เพื่อไม่เดา behavior ที่ไม่มีอยู่ในซอร์ส) แต่จะทดสอบ logic ที่ปิดตัวเอง
+ * (Renamer implementations, constructors, static helper methods) ให้ครบทุก
+ * branch ที่วิเคราะห์ได้แทน
+ */
+public class MakeDeclaredNamesUniqueTest {
+
+  // ---------- helpers ----------
+
+  private Supplier<String> constantSupplier(final String value) {
+    return new Supplier<String>() {
+      @Override
+      public String get() {
+        return value;
+      }
+    };
+  }
+
+  private Supplier<String> sequentialSupplier() {
+    return new Supplier<String>() {
+      private int counter = 0;
+      @Override
+      public String get() {
+        return String.valueOf(counter++);
+      }
+    };
+  }
+
+  // ---------- Constants ----------
+
+  @Test
+  public void testConstants() {
+    assertEquals("arguments", MakeDeclaredNamesUnique.ARGUMENTS);
+    assertEquals("$$", ContextualRenamer.UNIQUE_ID_SEPARATOR);
+  }
+
+  // ---------- MakeDeclaredNamesUnique constructors / factory ----------
+
+  @Test
+  public void testDefaultConstructorDoesNotThrow() {
+    new MakeDeclaredNamesUnique();
+  }
+
+  @Test
+  public void testCustomRenamerConstructorDoesNotThrow() {
+    Renamer custom = new ContextualRenamer();
+    new MakeDeclaredNamesUnique(custom);
+  }
+
+  @Test
+  public void testGetContextualRenameInverterReturnsInverterInstance() {
+    // ตัว constructor ของ ContextualRenameInverter เพียงแค่เก็บ reference
+    // ไม่มีการ dereference compiler ดังนั้น null จึงปลอดภัยสำหรับทดสอบ factory
+    CompilerPass pass = MakeDeclaredNamesUnique.getContextualRenameInverter(null);
+    assertNotNull(pass);
+    assertTrue(pass instanceof ContextualRenameInverter);
+  }
+
+  // ---------- ContextualRenameInverter.getOrginalName (static) ----------
+
+  @Test
+  public void testGetOrginalNameNoSeparatorReturnsSame() {
+    assertEquals("foo", ContextualRenameInverter.getOrginalName("foo"));
+  }
+
+  @Test
+  public void testGetOrginalNameWithSeparatorStripsSuffix() {
+    assertEquals("foo", ContextualRenameInverter.getOrginalName("foo$$1"));
+  }
+
+  @Test
+  public void testGetOrginalNameWithMultipleSeparatorsUsesLastOccurrence() {
+    assertEquals("foo$$bar", ContextualRenameInverter.getOrginalName("foo$$bar$$2"));
+  }
+
+  @Test
+  public void testGetOrginalNameEmptyStringReturnsEmpty() {
+    assertEquals("", ContextualRenameInverter.getOrginalName(""));
+  }
+
+  @Test
+  public void testGetOrginalNameSeparatorAtStartReturnsEmpty() {
+    assertEquals("", ContextualRenameInverter.getOrginalName("$$1"));
+  }
+
+  // ---------- ContextualRenamer ----------
+
+  @Test
+  public void testContextualRenamerGlobalDeclarationHasNoReplacement() {
+    ContextualRenamer root = new ContextualRenamer();
+    root.addDeclaredName("foo");
+    assertNull(root.getReplacementName("foo")); // global -> ไม่เก็บ replacement
+  }
+
+  @Test
+  public void testContextualRenamerGlobalArgumentsIgnored() {
+    ContextualRenamer root = new ContextualRenamer();
+    root.addDeclaredName(MakeDeclaredNamesUnique.ARGUMENTS);
+    assertNull(root.getReplacementName(MakeDeclaredNamesUnique.ARGUMENTS));
+  }
+
+  @Test
+  public void testContextualRenamerGlobalDeclareTwiceDoesNotThrow() {
+    ContextualRenamer root = new ContextualRenamer();
+    root.addDeclaredName("dup");
+    root.addDeclaredName("dup"); // setCount แบบ conditional ต้องไม่ throw
+    assertNull(root.getReplacementName("dup"));
+  }
+
+  @Test
+  public void testContextualRenamerChildFirstDeclarationKeepsName() {
+    ContextualRenamer root = new ContextualRenamer();
+    Renamer child = root.forChildScope();
+    child.addDeclaredName("bar");
+    assertNull(child.getReplacementName("bar")); // id == 0 -> newName = null
+  }
+
+  @Test
+  public void testContextualRenamerSiblingScopesSameNameGetsSuffixed() {
+    ContextualRenamer root = new ContextualRenamer();
+    Renamer child1 = root.forChildScope();
+    child1.addDeclaredName("bar");
+
+    Renamer child2 = root.forChildScope();
+    child2.addDeclaredName("bar");
+
+    assertNull(child1.getReplacementName("bar"));
+    assertEquals("bar$$1", child2.getReplacementName("bar")); // id != 0
+  }
+
+  @Test
+  public void testContextualRenamerDuplicateAddDeclaredNameSameScopeIsNoOp() {
+    ContextualRenamer root = new ContextualRenamer();
+    Renamer child1 = root.forChildScope();
+    child1.addDeclaredName("baz");
+    child1.addDeclaredName("baz"); // declarations.containsKey == true -> skip
+
+    Renamer child2 = root.forChildScope();
+    child2.addDeclaredName("baz");
+
+    // ถ้า duplicate เพิ่ม counter ซ้อนจะได้ "baz$$2" ไม่ใช่ "baz$$1"
+    assertEquals("baz$$1", child2.getReplacementName("baz"));
+  }
+
+  @Test
+  public void testContextualRenamerGlobalReservationAffectsChildScope() {
+    ContextualRenamer root = new ContextualRenamer();
+    root.addDeclaredName("qux"); // reserve ระดับ global
+    Renamer child = root.forChildScope();
+    child.addDeclaredName("qux");
+    assertEquals("qux$$1", child.getReplacementName("qux"));
+  }
+
+  @Test
+  public void testContextualRenamerChildArgumentsIgnored() {
+    ContextualRenamer root = new ContextualRenamer();
+    Renamer child = root.forChildScope();
+    child.addDeclaredName(MakeDeclaredNamesUnique.ARGUMENTS);
+    assertNull(child.getReplacementName(MakeDeclaredNamesUnique.ARGUMENTS));
+  }
+
+  @Test
+  public void testContextualRenamerEmptyNameGlobalThenChildGetsSuffixed() {
+    ContextualRenamer root = new ContextualRenamer();
+    root.addDeclaredName(""); // ชื่อว่างไม่ถูก special-case ใน ContextualRenamer
+    Renamer child = root.forChildScope();
+    child.addDeclaredName("");
+    assertEquals("$$1", child.getReplacementName(""));
+  }
+
+  @Test
+  public void testContextualRenamerStripConstIfReplacedAlwaysFalse() {
+    ContextualRenamer root = new ContextualRenamer();
+    assertFalse(root.stripConstIfReplaced());
+    assertFalse(root.forChildScope().stripConstIfReplaced());
+  }
+
+  @Test
+  public void testContextualRenamerGetReplacementNameUnknownReturnsNull() {
+    ContextualRenamer root = new ContextualRenamer();
+    assertNull(root.getReplacementName("never_declared"));
+  }
+
+  @Test(expected = NullPointerException.class)
+  public void testContextualRenamerAddDeclaredNameNullThrowsNPE() {
+    ContextualRenamer root = new ContextualRenamer();
+    root.addDeclaredName(null); // name.equals(ARGUMENTS) กับ name == null
+  }
+
+  @Test
+  public void testContextualRenamerGetReplacementNameNullIsGraceful() {
+    ContextualRenamer root = new ContextualRenamer();
+    assertNull(root.getReplacementName(null)); // HashMap#get(null) ไม่ throw
+  }
+
+  // ---------- BoilerplateRenamer ----------
+
+  @Test
+  public void testBoilerplateRenamerForChildScopeReturnsInlineRenamer() {
+    BoilerplateRenamer br = new BoilerplateRenamer(constantSupplier("x"), "bp");
+    Renamer child = br.forChildScope();
+    assertTrue(child instanceof InlineRenamer);
+  }
+
+  @Test
+  public void testBoilerplateRenamerGlobalBehaviorInheritedFromContextualRenamer() {
+    BoilerplateRenamer br = new BoilerplateRenamer(constantSupplier("x"), "bp");
+    br.addDeclaredName("g"); // global = true (default super()) -> ไม่เก็บ replacement
+    assertNull(br.getReplacementName("g"));
+  }
+
+  // ---------- InlineRenamer ----------
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testInlineRenamerConstructorEmptyPrefixThrows() {
+    new InlineRenamer(constantSupplier("x"), "", false);
+  }
+
+  @Test
+  public void testInlineRenamerConstructorNonEmptyPrefixDoesNotThrow() {
+    new InlineRenamer(constantSupplier("x"), "p", false);
+  }
+
+  @Test(expected = IllegalStateException.class)
+  public void testInlineRenamerAddDeclaredNameArgumentsThrows() {
+    InlineRenamer ir = new InlineRenamer(constantSupplier("x"), "p", false);
+    ir.addDeclaredName(MakeDeclaredNamesUnique.ARGUMENTS);
+  }
+
+  @Test(expected = NullPointerException.class)
+  public void testInlineRenamerAddDeclaredNameNullThrowsNPE() {
+    InlineRenamer ir = new InlineRenamer(constantSupplier("x"), "p", false);
+    ir.addDeclaredName(null);
+  }
+
+  @Test
+  public void testInlineRenamerGetReplacementNameNullIsGraceful() {
+    InlineRenamer ir = new InlineRenamer(constantSupplier("x"), "p", false);
+    assertNull(ir.getReplacementName(null));
+  }
+
+  @Test
+  public void testInlineRenamerAddDeclaredNameGeneratesUniqueName() {
+    InlineRenamer ir = new InlineRenamer(constantSupplier("42"), "p", false);
+    ir.addDeclaredName("x");
+    assertEquals("x$$p42", ir.getReplacementName("x")); // ไม่มี separator เดิม
+  }
+
+  @Test
+  public void testInlineRenamerDuplicateAddDeclaredNameIsNoOp() {
+    InlineRenamer ir = new InlineRenamer(sequentialSupplier(), "p", false);
+    ir.addDeclaredName("x"); // ใช้ id "0" -> "x$$p0"
+    ir.addDeclaredName("x"); // declarations.containsKey == true -> ต้องไม่ใช้ id "1"
+    assertEquals("x$$p0", ir.getReplacementName("x"));
+  }
+
+  @Test
+  public void testInlineRenamerGetUniqueNameEmptyNameUnchanged() {
+    InlineRenamer ir = new InlineRenamer(constantSupplier("x"), "p", false);
+    ir.addDeclaredName("");
+    assertEquals("", ir.getReplacementName("")); // name.isEmpty() -> return name
+  }
+
+  @Test
+  public void testInlineRenamerGetUniqueNameTruncatesExistingSeparator() {
+    InlineRenamer ir = new InlineRenamer(constantSupplier("7"), "p", false);
+    ir.addDeclaredName("foo$$1"); // มี separator เดิม -> ตัดก่อน lastIndexOf
+    assertEquals("foo$$p7", ir.getReplacementName("foo$$1"));
+  }
+
+  @Test
+  public void testInlineRenamerForChildScopeReturnsNewInstanceSameConstnessAndConfig() {
+    InlineRenamer ir = new InlineRenamer(constantSupplier("x"), "p", true);
+    Renamer child = ir.forChildScope();
+    assertNotSame(ir, child);
+    assertTrue(child instanceof InlineRenamer);
+    assertTrue(child.stripConstIfReplaced());
+
+    child.addDeclaredName("y");
+    assertEquals("y$$px", child.getReplacementName("y")); // supplier/idPrefix ถูกส่งต่อ
+  }
+
+  @Test
+  public void testInlineRenamerStripConstIfReplacedTrue() {
+    InlineRenamer ir = new InlineRenamer(constantSupplier("x"), "p", true);
+    assertTrue(ir.stripConstIfReplaced());
+  }
+
+  @Test
+  public void testInlineRenamerStripConstIfReplacedFalse() {
+    InlineRenamer ir = new InlineRenamer(constantSupplier("x"), "p", false);
+    assertFalse(ir.stripConstIfReplaced());
+  }
+
+  @Test
+  public void testInlineRenamerGetReplacementNameUnknownReturnsNull() {
+    InlineRenamer ir = new InlineRenamer(constantSupplier("x"), "p", false);
+    assertNull(ir.getReplacementName("unknown"));
+  }
+}
+```
+
+## ตารางสรุปการครอบคลุม Branch/Condition
+
+| กลุ่มเมธอดทดสอบ | Branch / Condition ที่ครอบคลุม |
+|---|---|
+| `testConstants` | ตรวจค่าคงที่ `ARGUMENTS`, `UNIQUE_ID_SEPARATOR` |
+| `testDefaultConstructorDoesNotThrow`, `testCustomRenamerConstructorDoesNotThrow` | constructor ทั้ง 2 แบบของ `MakeDeclaredNamesUnique` |
+| `testGetContextualRenameInverterReturnsInverterInstance` | factory method `getContextualRenameInverter` |
+| `testGetOrginalName*` (5 เมธอด) | `indexOfSeparator` เจอ/ไม่เจอ separator, หลาย separator, string ว่าง, separator ตำแหน่งเริ่มต้น |
+| `testContextualRenamerGlobalDeclarationHasNoReplacement` | `addDeclaredName`: branch `global == true` |
+| `testContextualRenamerGlobalArgumentsIgnored` | branch `name.equals(ARGUMENTS) == true` (global) |
+| `testContextualRenamerGlobalDeclareTwiceDoesNotThrow` | `reserveName` เรียกซ้ำ (setCount conditional) |
+| `testContextualRenamerChildFirstDeclarationKeepsName` | branch `global == false`, `id == 0` |
+| `testContextualRenamerSiblingScopesSameNameGetsSuffixed` | branch `id != 0` (ครั้งที่สอง), การแชร์ `nameUsage` ข้าม sibling scope |
+| `testContextualRenamerDuplicateAddDeclaredNameSameScopeIsNoOp` | branch `declarations.containsKey(name) == true` -> skip |
+| `testContextualRenamerGlobalReservationAffectsChildScope` | เชื่อม global reservation กับ child scope increment |
+| `testContextualRenamerChildArgumentsIgnored` | branch `name.equals(ARGUMENTS) == true` (local) |
+| `testContextualRenamerEmptyNameGlobalThenChildGetsSuffixed` | boundary: ชื่อว่าง (`""`) ไม่ special-case |
+| `testContextualRenamerStripConstIfReplacedAlwaysFalse` | `stripConstIfReplaced()` คงที่ false |
+| `testContextualRenamerGetReplacementNameUnknownReturnsNull` | ชื่อที่ไม่เคยประกาศ |
+| `testContextualRenamerAddDeclaredNameNullThrowsNPE` / `...GetReplacementNameNullIsGraceful` | null input: throws vs graceful |
+| `testBoilerplateRenamerForChildScopeReturnsInlineRenamer` | `BoilerplateRenamer.forChildScope()` override |
+| `testBoilerplateRenamerGlobalBehaviorInheritedFromContextualRenamer` | inherited `addDeclaredName` (global=true) |
+| `testInlineRenamerConstructorEmptyPrefixThrows` / `...NonEmptyPrefixDoesNotThrow` | `Preconditions.checkArgument(!idPrefix.isEmpty())` true/false |
+| `testInlineRenamerAddDeclaredNameArgumentsThrows` | `Preconditions.checkState(!name.equals(ARGUMENTS))` true branch |
+| `testInlineRenamerAddDeclaredNameNullThrowsNPE` / `...GetReplacementNameNullIsGraceful` | null input malformed case |
+| `testInlineRenamerAddDeclaredNameGeneratesUniqueName` | `getUniqueName`: ไม่มี separator เดิม |
+| `testInlineRenamerDuplicateAddDeclaredNameIsNoOp` | `declarations.containsKey(name)==true` -> skip |
+| `testInlineRenamerGetUniqueNameEmptyNameUnchanged` | branch `name.isEmpty() == true` |
+| `testInlineRenamerGetUniqueNameTruncatesExistingSeparator` | branch `indexOf(separator) != -1` |
+| `testInlineRenamerForChildScopeReturnsNewInstanceSameConstnessAndConfig` | `forChildScope()` + propagate supplier/idPrefix |
+| `testInlineRenamerStripConstIfReplacedTrue/False` | `stripConstIfReplaced()` ทั้ง true/false |
+| `testInlineRenamerGetReplacementNameUnknownReturnsNull` | ชื่อที่ไม่เคยประกาศ |
+
+**หมายเหตุสำคัญ:** เมธอด `enterScope`, `exitScope`, `shouldTraverse`, `visit`, `findDeclaredNames` (ของ `MakeDeclaredNamesUnique`) และ `enterScope/exitScope/visit/process/handleScopeVar` (ของ `ContextualRenameInverter`) **ไม่ได้ถูกทดสอบโดยตรง** เนื่องจากต้องใช้ `Node`/`NodeTraversal`/`Compiler`/`Scope` object จริงซึ่ง API การสร้างไม่ได้แสดงไว้ในซอร์สที่ให้มา การจำลอง Node tree เองจะเป็นการ "เดา" behavior ของ framework ที่ไม่มีอยู่ในซอร์ส จึงเว้นไว้ตามข้อกำหนดข้อ 4 — หากต้องการ coverage ส่วนนี้เพิ่ม ควรใช้ `CompilerTestCase`/`Compiler` จริงจาก test-tree ของโปรเจกต์ (ซึ่งไม่ได้แสดงในซอร์สที่ให้มา)

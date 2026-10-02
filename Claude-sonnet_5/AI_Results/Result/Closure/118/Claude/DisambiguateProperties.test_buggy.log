@@ -1,0 +1,7 @@
+Failing tests: 2
+  - com.google.javascript.jscomp.DisambiguatePropertiesTest::testObjectLiteralProperty_isTrackedWithoutException
+  - com.google.javascript.jscomp.DisambiguatePropertiesTest::testProcess_throwsIllegalStateException_whenNotNormalized
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

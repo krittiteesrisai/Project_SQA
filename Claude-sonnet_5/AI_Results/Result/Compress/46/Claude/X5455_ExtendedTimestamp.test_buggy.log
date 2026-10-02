@@ -1,0 +1,7 @@
+Failing tests: 2
+  - org.apache.commons.compress.archivers.zip.X5455_ExtendedTimestampTest::testGetCentralDirectoryData_truncatesAccessCreate
+  - org.apache.commons.compress.archivers.zip.X5455_ExtendedTimestampTest::testParseFromCentralDirectoryData_delegatesAndResets
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

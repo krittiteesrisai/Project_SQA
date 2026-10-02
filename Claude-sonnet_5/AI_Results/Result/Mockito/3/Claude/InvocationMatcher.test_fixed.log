@@ -1,0 +1,8 @@
+Failing tests: 3
+  - org.mockito.internal.invocation.InvocationMatcherTest::captureArgumentsFrom_varargs_capturesFixedAndVarargPositions
+  - org.mockito.internal.invocation.InvocationMatcherTest::toString_doesNotThrow_andReturnsNonNull
+  - org.mockito.internal.invocation.InvocationMatcherTest::captureArgumentsFrom_varargs_noFixedParams_onlyLoop2Executes
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

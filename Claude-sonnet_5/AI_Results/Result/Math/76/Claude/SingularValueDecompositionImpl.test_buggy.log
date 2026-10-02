@@ -1,0 +1,8 @@
+Failing tests: 3
+  - org.apache.commons.math.linear.SingularValueDecompositionImplTest::testGetSolver_SingularSquareMatrix_NonSingularFalse
+  - org.apache.commons.math.linear.SingularValueDecompositionImplTest::testGetCovariance_IdentityMatrix_AllDimensionsIncluded
+  - org.apache.commons.math.linear.SingularValueDecompositionImplTest::testGetCovariance_PartialThreshold_ExcludesSmallSingularValues
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

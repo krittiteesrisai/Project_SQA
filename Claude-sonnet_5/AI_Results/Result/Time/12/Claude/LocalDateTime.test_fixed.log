@@ -1,0 +1,7 @@
+Failing tests: 2
+  - org.joda.time.LocalDateTimeTest::testConstructor_long
+  - org.joda.time.LocalDateTimeTest::testConstructor_long_Chronology_null
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

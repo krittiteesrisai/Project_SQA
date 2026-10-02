@@ -1,0 +1,12 @@
+Failing tests: 7
+  - com.google.javascript.jscomp.NormalizeTest::testSplitVarAssertOnChangeThrows
+  - com.google.javascript.jscomp.NormalizeTest::testFunctionRewriteAssertOnChangeThrows
+  - com.google.javascript.jscomp.NormalizeTest::testForInitializerAssertOnChangeThrows
+  - com.google.javascript.jscomp.NormalizeTest::testParseAndNormalizeSyntheticCode
+  - com.google.javascript.jscomp.NormalizeTest::testMoveNamedFunctionsAssertOnChangeThrows
+  - com.google.javascript.jscomp.NormalizeTest::testLabelWrapAssertOnChangeThrows
+  - com.google.javascript.jscomp.NormalizeTest::testWhileAssertOnChangeThrows
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

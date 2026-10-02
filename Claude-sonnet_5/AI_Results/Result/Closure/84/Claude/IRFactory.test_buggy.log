@@ -1,0 +1,8 @@
+Failing tests: 3
+  - com.google.javascript.jscomp.parsing.IRFactoryTest::testParenthesized_SetsParenthesizedProp
+  - com.google.javascript.jscomp.parsing.IRFactoryTest::testSwitch_CaseAndDefault
+  - com.google.javascript.jscomp.parsing.IRFactoryTest::testTry_FinallyOnly_CatchBlockLineTakenFromFinally
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

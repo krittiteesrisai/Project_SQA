@@ -1,0 +1,8 @@
+Failing tests: 3
+  - org.jsoup.nodes.EntitiesTest::testUnescape_NamedEntityWithoutSemicolon_Strict_NoMatch
+  - org.jsoup.nodes.EntitiesTest::testUnescape_NullString_ThrowsNPE
+  - org.jsoup.nodes.EntitiesTest::testUnescape_InvalidNumericFormat_NumberFormatException_RemainsUnchanged
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

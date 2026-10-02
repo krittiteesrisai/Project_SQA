@@ -1,0 +1,636 @@
+คุณคือ Java testing engineer ที่เชี่ยวชาญด้าน unit testing และ JUnit 4
+เป้าหมาย: เขียนชุดทดสอบ JUnit 4 สำหรับคลาสด้านล่าง เพื่อให้ได้ branch coverage สูงที่สุดเท่าที่เป็นไปได้
+และมีโอกาสดักจับข้อบกพร่อง (fault) ในโค้ดได้จริง
+ข้อกำหนด:
+1. ใช้เฉพาะ JUnit 4 และไลบรารีที่อยู่ใน classpath ต่อไปนี้: antlr-2.7.7.jar, asm-3.3.1.jar, asm-4.2.jar, asm-analysis-3.2.jar, asm-commons-3.2.jar, asm-tree-3.2.jar, asm-util-3.2.jar, assertj-core-3.8.0.jar, assertj-core-3.9.1.jar, byte-buddy-1.7.5.jar, byte-buddy-1.9.3.jar, byte-buddy-agent-1.7.5.jar, byte-buddy-agent-1.9.3.jar, cglib-2.2.2.jar, cglib-3.1.jar, groovy-1.7.9.jar, groovy-2.4.0.jar, guava-18.0.jar, hamcrest-core-1.1.jar, hamcrest-core-1.3.jar, hibernate-cglib-repack-2.1_3.jar, jackson-annotations-2.10.0-20190519.085045-3.jar, jackson-annotations-2.2.0.jar, jackson-annotations-2.2.1.jar, jackson-annotations-2.3.0.jar, jackson-annotations-2.4.0-rc3.jar, jackson-annotations-2.4.0.jar, jackson-annotations-2.5.0.jar, jackson-annotations-2.6.0-rc1.jar, jackson-annotations-2.6.0-rc2.jar, jackson-annotations-2.6.0-rc3.jar, jackson-annotations-2.6.0.jar, jackson-annotations-2.7.0-rc2.jar, jackson-annotations-2.7.0.jar, jackson-annotations-2.8.0.jar, jackson-annotations-2.8.0.rc1.jar, jackson-annotations-2.9.0.jar, jackson-annotations-2.9.0.pr3.jar, jackson-annotations-3.0-20190323.173155-41.jar, jackson-annotations-3.0-20190519.085339-43.jar, jackson-core-2.10.0-20190518.180547-60.jar, jackson-core-2.2.0.jar, jackson-core-2.2.1.jar, jackson-core-2.3.0.jar, jackson-core-2.4.0-rc3.jar, jackson-core-2.4.0.jar, jackson-core-2.4.1.1.jar, jackson-core-2.4.2.jar, jackson-core-2.4.3.jar, jackson-core-2.4.5.jar, jackson-core-2.4.6.jar, jackson-core-2.5.0.jar, jackson-core-2.5.1.jar, jackson-core-2.5.3.jar, jackson-core-2.5.4.jar, jackson-core-2.5.5.jar, jackson-core-2.6.0-rc1.jar, jackson-core-2.6.0-rc2.jar, jackson-core-2.6.0-rc3.jar, jackson-core-2.6.0.jar, jackson-core-2.6.1.jar, jackson-core-2.6.2.jar, jackson-core-2.6.3.jar, jackson-core-2.6.4.jar, jackson-core-2.6.5.jar, jackson-core-2.6.6.jar, jackson-core-2.6.7.jar, jackson-core-2.7.0-rc2.jar, jackson-core-2.7.0.jar, jackson-core-2.7.1.jar, jackson-core-2.7.2.jar, jackson-core-2.7.4.jar, jackson-core-2.7.5.jar, jackson-core-2.7.6.jar, jackson-core-2.7.7.jar, jackson-core-2.7.8.jar, jackson-core-2.7.9.jar, jackson-core-2.8.0.jar, jackson-core-2.8.0.rc1.jar, jackson-core-2.8.0.rc2.jar, jackson-core-2.8.10.jar, jackson-core-2.8.3.jar, jackson-core-2.8.4.jar, jackson-core-2.8.5.jar, jackson-core-2.8.6.jar, jackson-core-2.8.7.jar, jackson-core-2.8.8-20170301.000803-1.jar, jackson-core-2.8.8.jar, jackson-core-2.8.9.jar, jackson-core-2.9.0.pr3.jar, jackson-core-2.9.6.jar, jackson-core-2.9.7.jar, jackson-core-2.9.8.jar, jackson-core-2.9.9.jar, jackson-core-3.0.0-20190516.032312-448.jar, javassist-3.19.0-GA.jar, javassist-3.20.0-GA.jar, javassist-3.21.0-GA.jar, javassist-3.22.0-CR2.jar, javassist-3.24.0-GA.jar, jimfs-1.1.jar, jsr-275-0.9.1.jar, jsr-275-0.9.2.jar, junit-4.10.jar, junit-4.11.jar, junit-4.12-hamcrest-1.3.jar, junit-4.12.jar, junit-4.8.2.jar, mockito-all-1.10.19.jar, mockito-core-1.10.19.jar, mockito-core-2.10.0.jar, mockito-core-2.23.0.jar, objenesis-2.1.jar, objenesis-2.6.jar, objenesis-3.0.1.jar, powermock-api-mockito-1.6.2.jar, powermock-api-mockito-1.6.3.jar, powermock-api-mockito-1.6.5.jar, powermock-api-mockito-1.7.3.jar, powermock-api-mockito-1.7.4.jar, powermock-api-mockito-common-1.6.5.jar, powermock-api-mockito-common-1.7.3.jar, powermock-api-mockito-common-1.7.4.jar, powermock-api-mockito2-2.0.0-beta.5.jar, powermock-api-mockito2-2.0.0.jar, powermock-api-support-1.6.2.jar, powermock-api-support-1.6.3.jar, powermock-api-support-1.6.5.jar, powermock-api-support-1.7.3.jar, powermock-api-support-1.7.4.jar, powermock-api-support-2.0.0-beta.5.jar, powermock-api-support-2.0.0.jar, powermock-core-1.6.2.jar, powermock-core-1.6.3.jar, powermock-core-1.6.5.jar, powermock-core-1.7.3.jar, powermock-core-1.7.4.jar, powermock-core-2.0.0-beta.5.jar, powermock-core-2.0.0.jar, powermock-module-junit4-1.6.2.jar, powermock-module-junit4-1.6.3.jar, powermock-module-junit4-1.6.5.jar, powermock-module-junit4-1.7.3.jar, powermock-module-junit4-1.7.4.jar, powermock-module-junit4-2.0.0-beta.5.jar, powermock-module-junit4-2.0.0.jar, powermock-module-junit4-common-1.6.2.jar, powermock-module-junit4-common-1.6.3.jar, powermock-module-junit4-common-1.6.5.jar, powermock-module-junit4-common-1.7.3.jar, powermock-module-junit4-common-1.7.4.jar, powermock-module-junit4-common-2.0.0-beta.5.jar, powermock-module-junit4-common-2.0.0.jar, powermock-reflect-1.6.2.jar, powermock-reflect-1.6.3.jar, powermock-reflect-1.6.5.jar, powermock-reflect-1.7.3.jar, powermock-reflect-1.7.4.jar, powermock-reflect-2.0.0-beta.5.jar, powermock-reflect-2.0.0.jar
+2. ตั้งชื่อคลาสทดสอบเป็น NumberDeserializersTest และ import คลาสเป้าหมายให้ถูกต้อง
+3. ครอบคลุมกรณี: ค่าขอบเขต (boundary), ค่า null/ว่าง, อินพุตผิดรูปแบบ,
+และเงื่อนไข if/else, loop ทุกสาขาเท่าที่วิเคราะห์ได้จากซอร์สที่ให้มา
+4. ห้ามเดา behavior ที่ไม่มีอยู่ในซอร์สโค้ด หากไม่แน่ใจให้เขียนคอมเมนต์กำกับ
+5. หลังโค้ดเทส ให้สรุปเป็นตารางสั้น ๆ ว่าแต่ละเมธอดเทสใด ครอบคลุม Branch/Condition ใด
+ซอร์สโค้ดคลาสเป้าหมาย (Defects4J: JacksonDatabind-40b):
+```java
+package com.fasterxml.jackson.databind.deser.std;
+
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.HashSet;
+
+import com.fasterxml.jackson.core.*;
+import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.annotation.JacksonStdImpl;
+import com.fasterxml.jackson.databind.jsontype.TypeDeserializer;
+
+/**
+ * Container class for deserializers that handle core JDK primitive
+ * (and matching wrapper) types, as well as standard "big" numeric types.
+ * Note that this includes types such as {@link java.lang.Boolean}
+ * and {@link java.lang.Character} which are not strictly numeric,
+ * but are part of primitive/wrapper types.
+ */
+public class NumberDeserializers
+{
+    private final static HashSet<String> _classNames = new HashSet<String>();
+    static {
+        // note: can skip primitive types; other ways to check them:
+        Class<?>[] numberTypes = new Class<?>[] {
+            Boolean.class,
+            Byte.class,
+            Short.class,
+            Character.class,
+            Integer.class,
+            Long.class,
+            Float.class,
+            Double.class,
+            // and more generic ones
+            Number.class, BigDecimal.class, BigInteger.class
+        };
+        for (Class<?> cls : numberTypes) {
+            _classNames.add(cls.getName());
+        }
+    }
+
+    public static JsonDeserializer<?> find(Class<?> rawType, String clsName) {
+        if (rawType.isPrimitive()) {
+            if (rawType == Integer.TYPE) {
+                return IntegerDeserializer.primitiveInstance;
+            }
+            if (rawType == Boolean.TYPE) {
+                return BooleanDeserializer.primitiveInstance;
+            }
+            if (rawType == Long.TYPE) {
+                return LongDeserializer.primitiveInstance;
+            }
+            if (rawType == Double.TYPE) {
+                return DoubleDeserializer.primitiveInstance;
+            }
+            if (rawType == Character.TYPE) {
+                return CharacterDeserializer.primitiveInstance;
+            }
+            if (rawType == Byte.TYPE) {
+                return ByteDeserializer.primitiveInstance;
+            }
+            if (rawType == Short.TYPE) {
+                return ShortDeserializer.primitiveInstance;
+            }
+            if (rawType == Float.TYPE) {
+                return FloatDeserializer.primitiveInstance;
+            }
+        } else if (_classNames.contains(clsName)) {
+            // Start with most common types; int, boolean, long, double
+            if (rawType == Integer.class) {
+                return IntegerDeserializer.wrapperInstance;
+            }
+            if (rawType == Boolean.class) {
+                return BooleanDeserializer.wrapperInstance;
+            }
+            if (rawType == Long.class) {
+                return LongDeserializer.wrapperInstance;
+            }
+            if (rawType == Double.class) {
+                return DoubleDeserializer.wrapperInstance;
+            }
+            if (rawType == Character.class) {
+                return CharacterDeserializer.wrapperInstance;
+            }
+            if (rawType == Byte.class) {
+                return ByteDeserializer.wrapperInstance;
+            }
+            if (rawType == Short.class) {
+                return ShortDeserializer.wrapperInstance;
+            }
+            if (rawType == Float.class) {
+                return FloatDeserializer.wrapperInstance;
+            }
+            if (rawType == Number.class) {
+                return NumberDeserializer.instance;
+            }
+            if (rawType == BigDecimal.class) {
+                return BigDecimalDeserializer.instance;
+            }
+            if (rawType == BigInteger.class) {
+                return BigIntegerDeserializer.instance;
+            }
+        } else {
+            return null;
+        }
+        // should never occur
+        throw new IllegalArgumentException("Internal error: can't find deserializer for "+rawType.getName());
+    }
+    
+    /*
+    /**********************************************************
+    /* Then one intermediate base class for things that have
+    /* both primitive and wrapper types
+    /**********************************************************
+     */
+
+    protected abstract static class PrimitiveOrWrapperDeserializer<T>
+        extends StdScalarDeserializer<T>
+    {
+        private static final long serialVersionUID = 1L;
+
+        protected final T _nullValue;
+        protected final boolean _primitive;
+
+        protected PrimitiveOrWrapperDeserializer(Class<T> vc, T nvl) {
+            super(vc);
+            _nullValue = nvl;
+            _primitive = vc.isPrimitive();
+        }
+
+        @Override
+        public final T getNullValue(DeserializationContext ctxt) throws JsonMappingException
+        {
+            if (_primitive && ctxt.isEnabled(DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES)) {
+                throw ctxt.mappingException(
+                        "Can not map JSON null into type %s (set DeserializationConfig.DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES to 'false' to allow)",
+                        handledType().toString());
+            }
+            return _nullValue;
+        }
+
+        @Override
+        @Deprecated // remove in 2.7
+        public final T getNullValue() {
+            return _nullValue;
+        }
+
+            // [databind#1095]: Should not allow coercion from into null from Empty String
+            // either, if `null` not allowed
+    }
+
+    /*
+    /**********************************************************
+    /* Then primitive/wrapper types
+    /**********************************************************
+     */
+
+    @JacksonStdImpl
+    public final static class BooleanDeserializer
+        extends PrimitiveOrWrapperDeserializer<Boolean>
+    {
+        private static final long serialVersionUID = 1L;
+
+        final static BooleanDeserializer primitiveInstance = new BooleanDeserializer(Boolean.TYPE, Boolean.FALSE);
+        final static BooleanDeserializer wrapperInstance = new BooleanDeserializer(Boolean.class, null);
+
+        public BooleanDeserializer(Class<Boolean> cls, Boolean nvl)
+        {
+            super(cls, nvl);
+        }
+        
+        @Override
+        public Boolean deserialize(JsonParser j, DeserializationContext ctxt) throws IOException
+        {
+            return _parseBoolean(j, ctxt);
+        }
+
+        // Since we can never have type info ("natural type"; String, Boolean, Integer, Double):
+        // (is it an error to even call this version?)
+        @Override
+        public Boolean deserializeWithType(JsonParser p, DeserializationContext ctxt,
+                TypeDeserializer typeDeserializer)
+            throws IOException
+        {
+            return _parseBoolean(p, ctxt);
+        }
+    }
+
+    @JacksonStdImpl
+    public static class ByteDeserializer
+        extends PrimitiveOrWrapperDeserializer<Byte>
+    {
+        private static final long serialVersionUID = 1L;
+
+        final static ByteDeserializer primitiveInstance = new ByteDeserializer(Byte.TYPE, (byte) 0);
+        final static ByteDeserializer wrapperInstance = new ByteDeserializer(Byte.class, null);
+        
+        public ByteDeserializer(Class<Byte> cls, Byte nvl)
+        {
+            super(cls, nvl);
+        }
+
+        @Override
+        public Byte deserialize(JsonParser p, DeserializationContext ctxt) throws IOException
+        {
+            return _parseByte(p, ctxt);
+        }
+    }
+
+    @JacksonStdImpl
+    public static class ShortDeserializer
+        extends PrimitiveOrWrapperDeserializer<Short>
+    {
+        private static final long serialVersionUID = 1L;
+
+        final static ShortDeserializer primitiveInstance = new ShortDeserializer(Short.TYPE, Short.valueOf((short)0));
+        final static ShortDeserializer wrapperInstance = new ShortDeserializer(Short.class, null);
+        
+        public ShortDeserializer(Class<Short> cls, Short nvl)
+        {
+            super(cls, nvl);
+        }
+
+        @Override
+        public Short deserialize(JsonParser jp, DeserializationContext ctxt)
+            throws IOException
+        {
+            return _parseShort(jp, ctxt);
+        }
+    }
+
+    @JacksonStdImpl
+    public static class CharacterDeserializer
+        extends PrimitiveOrWrapperDeserializer<Character>
+    {
+        private static final long serialVersionUID = 1L;
+
+        final static CharacterDeserializer primitiveInstance = new CharacterDeserializer(Character.TYPE, '\0');
+        final static CharacterDeserializer wrapperInstance = new CharacterDeserializer(Character.class, null);
+        
+        public CharacterDeserializer(Class<Character> cls, Character nvl)
+        {
+            super(cls, nvl);
+        }
+
+        @Override
+        public Character deserialize(JsonParser p, DeserializationContext ctxt)
+            throws IOException
+        {
+            switch (p.getCurrentTokenId()) {
+            case JsonTokenId.ID_NUMBER_INT: // ok iff ascii value
+                int value = p.getIntValue();
+                if (value >= 0 && value <= 0xFFFF) {
+                    return Character.valueOf((char) value);
+                }
+                break;
+            case JsonTokenId.ID_STRING: // this is the usual type
+                // But does it have to be exactly one char?
+                String text = p.getText();
+                if (text.length() == 1) {
+                    return Character.valueOf(text.charAt(0));
+                }
+                // actually, empty should become null?
+                if (text.length() == 0) {
+                    return (Character) getEmptyValue(ctxt);
+                }               
+                break;
+            case JsonTokenId.ID_START_ARRAY:
+                if (ctxt.isEnabled(DeserializationFeature.UNWRAP_SINGLE_VALUE_ARRAYS)) {
+                    p.nextToken();
+                    final Character C = deserialize(p, ctxt);
+                    if (p.nextToken() != JsonToken.END_ARRAY) {
+                        throw ctxt.wrongTokenException(p, JsonToken.END_ARRAY, 
+                                "Attempted to unwrap single value array for single '" + _valueClass.getName() + "' value but there was more than a single value in the array"
+                                );
+                    }
+                    return C;
+                }
+            }
+            throw ctxt.mappingException(_valueClass, p.getCurrentToken());
+        }
+    }
+
+    @JacksonStdImpl
+    public final static class IntegerDeserializer
+        extends PrimitiveOrWrapperDeserializer<Integer>
+    {
+        private static final long serialVersionUID = 1L;
+
+        final static IntegerDeserializer primitiveInstance = new IntegerDeserializer(Integer.TYPE, Integer.valueOf(0));
+        final static IntegerDeserializer wrapperInstance = new IntegerDeserializer(Integer.class, null);
+        
+        public IntegerDeserializer(Class<Integer> cls, Integer nvl) {
+            super(cls, nvl);
+        }
+
+        // since 2.6, slightly faster lookups for this very common type
+        @Override
+        public boolean isCachable() { return true; }
+
+        @Override
+        public Integer deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+            if (p.hasToken(JsonToken.VALUE_NUMBER_INT)) {
+                return p.getIntValue();
+            }
+            return _parseInteger(p, ctxt);
+        }
+
+        // Since we can never have type info ("natural type"; String, Boolean, Integer, Double):
+        // (is it an error to even call this version?)
+        @Override
+        public Integer deserializeWithType(JsonParser p, DeserializationContext ctxt,
+                TypeDeserializer typeDeserializer) throws IOException
+        {
+            if (p.hasToken(JsonToken.VALUE_NUMBER_INT)) {
+                return p.getIntValue();
+            }
+            return _parseInteger(p, ctxt);
+        }
+    }
+
+    @JacksonStdImpl
+    public final static class LongDeserializer
+        extends PrimitiveOrWrapperDeserializer<Long>
+    {
+        private static final long serialVersionUID = 1L;
+
+        final static LongDeserializer primitiveInstance = new LongDeserializer(Long.TYPE, Long.valueOf(0L));
+        final static LongDeserializer wrapperInstance = new LongDeserializer(Long.class, null);
+        
+        public LongDeserializer(Class<Long> cls, Long nvl) {
+            super(cls, nvl);
+        }
+
+        // since 2.6, slightly faster lookups for this very common type
+        @Override
+        public boolean isCachable() { return true; }
+        
+        @Override
+        public Long deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+            if (p.hasToken(JsonToken.VALUE_NUMBER_INT)) {
+                return p.getLongValue();
+            }
+            return _parseLong(p, ctxt);
+        }
+    }
+
+    @JacksonStdImpl
+    public static class FloatDeserializer
+        extends PrimitiveOrWrapperDeserializer<Float>
+    {
+        private static final long serialVersionUID = 1L;
+
+        final static FloatDeserializer primitiveInstance = new FloatDeserializer(Float.TYPE, 0.f);
+        final static FloatDeserializer wrapperInstance = new FloatDeserializer(Float.class, null);
+        
+        public FloatDeserializer(Class<Float> cls, Float nvl) {
+            super(cls, nvl);
+        }
+
+        @Override
+        public Float deserialize(JsonParser p, DeserializationContext ctxt) throws IOException
+        {
+            return _parseFloat(p, ctxt);
+        }
+    }
+
+    @JacksonStdImpl
+    public static class DoubleDeserializer
+        extends PrimitiveOrWrapperDeserializer<Double>
+    {
+        private static final long serialVersionUID = 1L;
+
+        final static DoubleDeserializer primitiveInstance = new DoubleDeserializer(Double.TYPE, 0.d);
+        final static DoubleDeserializer wrapperInstance = new DoubleDeserializer(Double.class, null);
+        
+        public DoubleDeserializer(Class<Double> cls, Double nvl) {
+            super(cls, nvl);
+        }
+
+        @Override
+        public Double deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException {
+            return _parseDouble(jp, ctxt);
+        }
+
+        // Since we can never have type info ("natural type"; String, Boolean, Integer, Double):
+        // (is it an error to even call this version?)
+        @Override
+        public Double deserializeWithType(JsonParser jp, DeserializationContext ctxt,
+                TypeDeserializer typeDeserializer) throws IOException
+        {
+            return _parseDouble(jp, ctxt);
+        }
+    }
+
+    /**
+     * For type <code>Number.class</code>, we can just rely on type
+     * mappings that plain {@link JsonParser#getNumberValue} returns.
+     *<p>
+     * There is one additional complication: some numeric
+     * types (specifically, int/Integer and double/Double) are "non-typed";
+     * meaning that they will NEVER be output with type information.
+     * But other numeric types may need such type information.
+     * This is why {@link #deserializeWithType} must be overridden.
+     */
+    @SuppressWarnings("serial")
+    @JacksonStdImpl
+    public static class NumberDeserializer
+        extends StdScalarDeserializer<Object>
+    {
+        public final static NumberDeserializer instance = new NumberDeserializer();
+        
+        public NumberDeserializer() {
+            super(Number.class);
+        }
+
+        @Override
+        public Object deserialize(JsonParser p, DeserializationContext ctxt) throws IOException
+        {
+            switch (p.getCurrentTokenId()) {
+            case JsonTokenId.ID_NUMBER_INT:
+                if (ctxt.hasSomeOfFeatures(F_MASK_INT_COERCIONS)) {
+                    return _coerceIntegral(p, ctxt);
+                }
+                return p.getNumberValue();
+
+            case JsonTokenId.ID_NUMBER_FLOAT:
+                if (ctxt.isEnabled(DeserializationFeature.USE_BIG_DECIMAL_FOR_FLOATS)) {
+                    return p.getDecimalValue();
+                }
+                return Double.valueOf(p.getDoubleValue());
+
+            case JsonTokenId.ID_STRING:
+                /* Textual values are more difficult... not parsing itself, but figuring
+                 * out 'minimal' type to use 
+                 */
+                String text = p.getText().trim();
+                if (text.length() == 0) {
+                    return getEmptyValue(ctxt);
+                }
+                if (_hasTextualNull(text)) {
+                    return getNullValue(ctxt);
+                }
+                if (_isPosInf(text)) {
+                    return Double.POSITIVE_INFINITY;
+                }
+                if (_isNegInf(text)) {
+                    return Double.NEGATIVE_INFINITY;
+                }
+                if (_isNaN(text)) {
+                    return Double.NaN;
+                }
+                try {
+                    if (!_isIntNumber(text)) {
+                        if (ctxt.isEnabled(DeserializationFeature.USE_BIG_DECIMAL_FOR_FLOATS)) {
+                            return new BigDecimal(text);
+                        }
+                        return new Double(text);
+                    }
+                    if (ctxt.isEnabled(DeserializationFeature.USE_BIG_INTEGER_FOR_INTS)) {
+                        return new BigInteger(text);
+                    }
+                    long value = Long.parseLong(text);
+                    if (!ctxt.isEnabled(DeserializationFeature.USE_LONG_FOR_INTS)) {
+                        if (value <= Integer.MAX_VALUE && value >= Integer.MIN_VALUE) {
+                            return Integer.valueOf((int) value);
+                        }
+                    }
+                    return Long.valueOf(value);
+                } catch (IllegalArgumentException iae) {
+                    throw ctxt.weirdStringException(text, _valueClass, "not a valid number");
+                }
+            case JsonTokenId.ID_START_ARRAY:
+                if (ctxt.isEnabled(DeserializationFeature.UNWRAP_SINGLE_VALUE_ARRAYS)) {
+                    p.nextToken();
+                    final Object value = deserialize(p, ctxt);
+                    if (p.nextToken() != JsonToken.END_ARRAY) {
+                        throw ctxt.wrongTokenException(p, JsonToken.END_ARRAY, 
+                                "Attempted to unwrap single value array for single '" + _valueClass.getName() + "' value but there was more than a single value in the array"
+                                );
+                    }
+                    return value;
+                }
+                break;
+            }
+            // Otherwise, no can do:
+            throw ctxt.mappingException(_valueClass, p.getCurrentToken());
+        }
+
+        /**
+         * As mentioned in class Javadoc, there is additional complexity in
+         * handling potentially mixed type information here. Because of this,
+         * we must actually check for "raw" integers and doubles first, before
+         * calling type deserializer.
+         */
+        @Override
+        public Object deserializeWithType(JsonParser jp, DeserializationContext ctxt,
+                                          TypeDeserializer typeDeserializer)
+            throws IOException
+        {
+            switch (jp.getCurrentTokenId()) {
+            case JsonTokenId.ID_NUMBER_INT:
+            case JsonTokenId.ID_NUMBER_FLOAT:
+            case JsonTokenId.ID_STRING:
+                // can not point to type information: hence must be non-typed (int/double)
+                return deserialize(jp, ctxt);
+            }
+            return typeDeserializer.deserializeTypedFromScalar(jp, ctxt);
+        }
+    }
+
+    /*
+    /**********************************************************
+    /* And then bit more complicated (but non-structured) number
+    /* types
+    /**********************************************************
+     */
+
+    /**
+     * This is bit trickier to implement efficiently, while avoiding
+     * overflow problems.
+     */
+    @SuppressWarnings("serial")
+    @JacksonStdImpl
+    public static class BigIntegerDeserializer
+        extends StdScalarDeserializer<BigInteger>
+    {
+        public final static BigIntegerDeserializer instance = new BigIntegerDeserializer();
+
+        public BigIntegerDeserializer() { super(BigInteger.class); }
+
+        @SuppressWarnings("incomplete-switch")
+        @Override
+        public BigInteger deserialize(JsonParser p, DeserializationContext ctxt) throws IOException
+        {
+            switch (p.getCurrentTokenId()) {
+            case JsonTokenId.ID_NUMBER_INT:
+                switch (p.getNumberType()) {
+                case INT:
+                case LONG:
+                case BIG_INTEGER:
+                    return p.getBigIntegerValue();
+                }
+                break;
+            case JsonTokenId.ID_NUMBER_FLOAT:
+                if (!ctxt.isEnabled(DeserializationFeature.ACCEPT_FLOAT_AS_INT)) {
+                    _failDoubleToIntCoercion(p, ctxt, "java.math.BigInteger");
+                }
+                return p.getDecimalValue().toBigInteger();
+            case JsonTokenId.ID_START_ARRAY:
+                if (ctxt.isEnabled(DeserializationFeature.UNWRAP_SINGLE_VALUE_ARRAYS)) {
+                    p.nextToken();
+                    final BigInteger value = deserialize(p, ctxt);
+                    if (p.nextToken() != JsonToken.END_ARRAY) {
+                        throw ctxt.wrongTokenException(p, JsonToken.END_ARRAY,
+                            "Attempted to unwrap single value array for single 'BigInteger' value but there was more than a single value in the array"
+                        );
+                    }
+                    return value;
+                }
+                break;
+            case JsonTokenId.ID_STRING: // let's do implicit re-parse
+                String text = p.getText().trim();
+                if (text.length() == 0) {
+                    return null;
+                }
+                try {
+                    return new BigInteger(text);
+                } catch (IllegalArgumentException iae) {
+                    throw ctxt.weirdStringException(text, _valueClass, "not a valid representation");
+                }
+            }
+            // String is ok too, can easily convert; otherwise, no can do:
+            throw ctxt.mappingException(_valueClass, p.getCurrentToken());
+        }
+    }
+    
+    @SuppressWarnings("serial")
+    @JacksonStdImpl
+    public static class BigDecimalDeserializer
+        extends StdScalarDeserializer<BigDecimal>
+    {
+        public final static BigDecimalDeserializer instance = new BigDecimalDeserializer();
+ 
+        public BigDecimalDeserializer() { super(BigDecimal.class); }
+
+        @Override
+        public BigDecimal deserialize(JsonParser p, DeserializationContext ctxt)
+            throws IOException
+        {
+            switch (p.getCurrentTokenId()) {
+            case JsonTokenId.ID_NUMBER_INT:
+            case JsonTokenId.ID_NUMBER_FLOAT:
+                return p.getDecimalValue();
+            case JsonTokenId.ID_STRING:
+                String text = p.getText().trim();
+                if (text.length() == 0) {
+                    return null;
+                }
+                try {
+                    return new BigDecimal(text);
+                } catch (IllegalArgumentException iae) {
+                    throw ctxt.weirdStringException(text, _valueClass, "not a valid representation");
+                }
+            case JsonTokenId.ID_START_ARRAY:
+                if (ctxt.isEnabled(DeserializationFeature.UNWRAP_SINGLE_VALUE_ARRAYS)) {
+                    p.nextToken();
+                    final BigDecimal value = deserialize(p, ctxt);
+                    if (p.nextToken() != JsonToken.END_ARRAY) {
+                        throw ctxt.wrongTokenException(p, JsonToken.END_ARRAY,
+                            "Attempted to unwrap single value array for single 'BigDecimal' value but there was more than a single value in the array"
+                        );
+                    }
+                    return value;
+                }
+                break;
+            }
+            // Otherwise, no can do:
+            throw ctxt.mappingException(_valueClass, p.getCurrentToken());
+        }
+    }
+}
+
+```

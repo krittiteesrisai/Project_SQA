@@ -1,0 +1,14 @@
+Failing tests: 9
+  - org.jsoup.select.QueryParserTest::testNot_empty_throws
+  - org.jsoup.select.QueryParserTest::testMatches_empty_throws
+  - org.jsoup.select.QueryParserTest::testByClass_empty_throws
+  - org.jsoup.select.QueryParserTest::testContainsData_empty_throws
+  - org.jsoup.select.QueryParserTest::testMalformedAttribute_unexpectedToken_throws
+  - org.jsoup.select.QueryParserTest::testById_empty_throws
+  - org.jsoup.select.QueryParserTest::testHas_empty_throws
+  - org.jsoup.select.QueryParserTest::testAttribute_emptyKey_throws
+  - org.jsoup.select.QueryParserTest::testContains_empty_throws
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

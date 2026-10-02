@@ -1,0 +1,11 @@
+Failing tests: 6
+  - org.jfree.chart.imagemap.StandardToolTipTagFragmentGeneratorTest::testGenerateToolTipFragment_WithSingleQuote
+  - org.jfree.chart.imagemap.StandardToolTipTagFragmentGeneratorTest::testGenerateToolTipFragment_WithQuotes
+  - org.jfree.chart.imagemap.StandardToolTipTagFragmentGeneratorTest::testGenerateToolTipFragment_WithHtmlSpecialChars
+  - org.jfree.chart.imagemap.StandardToolTipTagFragmentGeneratorTest::testGenerateToolTipFragment_WithAmpersand
+  - org.jfree.chart.imagemap.StandardToolTipTagFragmentGeneratorTest::testGenerateToolTipFragment_MalformedHtmlInput
+  - org.jfree.chart.imagemap.StandardToolTipTagFragmentGeneratorTest::testGenerateToolTipFragment_NullText
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

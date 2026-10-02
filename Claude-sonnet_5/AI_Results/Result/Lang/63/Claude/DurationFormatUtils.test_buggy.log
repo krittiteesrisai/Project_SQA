@@ -1,0 +1,8 @@
+Failing tests: 3
+  - org.apache.commons.lang.time.DurationFormatUtilsTest::testFormatPeriod5Arg_ExactlyAtThreshold_UsesCalendarBranch
+  - org.apache.commons.lang.time.DurationFormatUtilsTest::testFormatPeriod5Arg_OverThreshold_PadTrue
+  - org.apache.commons.lang.time.DurationFormatUtilsTest::testFormatPeriod5Arg_OverThreshold_PadFalse
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

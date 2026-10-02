@@ -1,0 +1,33 @@
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ FAIL
+Executed command:  cd /home/piyachayanin/SQA_2/AI_Testing/work/JacksonDatabind_2b && ant -f /home/piyachayanin/defects4j/framework/projects/defects4j.build.xml -Dd4j.home=/home/piyachayanin/defects4j -Dd4j.dir.projects=/home/piyachayanin/defects4j/framework/projects -Dbasedir=/home/piyachayanin/SQA_2/AI_Testing/work/JacksonDatabind_2b -Dd4j.test.dir=/home/piyachayanin/SQA_2/AI_Testing/work/JacksonDatabind_2b/.test_suite compile.gen.tests 2>&1
+Buildfile: /home/piyachayanin/defects4j/framework/projects/defects4j.build.xml
+
+test-offline:
+
+get-deps:
+
+jackson-databind-from-maven.compile:
+    [javac] /home/piyachayanin/SQA_2/AI_Testing/work/JacksonDatabind_2b/maven-build.xml:87: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+
+compile:
+
+compile.gen.tests:
+     [echo] classes.dir: target/classes
+     [echo] build.home: target/classes/..
+    [mkdir] Created dir: /home/piyachayanin/SQA_2/AI_Testing/work/JacksonDatabind_2b/.classes_testgen
+    [javac] /home/piyachayanin/defects4j/framework/projects/defects4j.build.xml:268: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+    [javac] Compiling 1 source file to /home/piyachayanin/SQA_2/AI_Testing/work/JacksonDatabind_2b/.classes_testgen
+    [javac] /home/piyachayanin/SQA_2/AI_Testing/work/JacksonDatabind_2b/.test_suite/com/fasterxml/jackson/databind/util/TokenBufferTest.java:25: error: reference to TokenBuffer is ambiguous
+    [javac]         TokenBuffer buf = new TokenBuffer(null); // deprecated ctor delegates hasNativeIds=false
+    [javac]                           ^
+    [javac]   both constructor TokenBuffer(ObjectCodec) in TokenBuffer and constructor TokenBuffer(JsonParser) in TokenBuffer match
+    [javac] 1 error
+
+BUILD FAILED
+/home/piyachayanin/defects4j/framework/projects/defects4j.build.xml:268: Compile failed; see the compiler error output for details.
+
+Total time: 1 second
+Cannot compile extracted test suite! at /home/piyachayanin/defects4j/framework/bin/d4j/d4j-test line 126.
+Compilation failed in require at /home/piyachayanin/defects4j/framework/bin/defects4j line 195.

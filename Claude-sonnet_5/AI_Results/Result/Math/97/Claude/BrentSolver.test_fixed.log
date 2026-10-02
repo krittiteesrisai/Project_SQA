@@ -1,0 +1,8 @@
+Failing tests: 3
+  - org.apache.commons.math.analysis.BrentSolverTest::testSolveThreeArg_MaxIsRoot_ExposesSetResultBug
+  - org.apache.commons.math.analysis.BrentSolverTest::testSolveThreeArg_MinIsRoot_ExposesSetResultBug
+  - org.apache.commons.math.analysis.BrentSolverTest::testSolveThreeArg_NullFunction_ThrowsNPE
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

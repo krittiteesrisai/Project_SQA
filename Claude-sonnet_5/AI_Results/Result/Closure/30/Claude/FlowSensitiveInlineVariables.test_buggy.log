@@ -1,0 +1,9 @@
+Failing tests: 4
+  - com.google.javascript.jscomp.FlowSensitiveInlineVariablesTest::testNonAdjacentNoSideEffectStillInlined
+  - com.google.javascript.jscomp.FlowSensitiveInlineVariablesTest::testAssignAsRValueNotInlined
+  - com.google.javascript.jscomp.FlowSensitiveInlineVariablesTest::testSimpleVarInline
+  - com.google.javascript.jscomp.FlowSensitiveInlineVariablesTest::testInlineWithLabeledAssignment
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

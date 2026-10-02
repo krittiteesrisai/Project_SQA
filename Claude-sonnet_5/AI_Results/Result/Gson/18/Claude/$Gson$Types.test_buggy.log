@@ -1,0 +1,9 @@
+
+Extract test suite......................................................... tar (child): /home/piyachayanin/SQA_2/AI_Testing/AI_Results/Result/Gson/18/Claude/.tests.tar.bz2: Cannot open: No such file or directory
+tar (child): Error is not recoverable: exiting now
+tar: Child returned status 2
+tar: Error is not recoverable: exiting now
+FAIL
+Executed command: mkdir -p /home/piyachayanin/SQA_2/AI_Testing/work/Gson_18b/.test_suite && rm -rf /home/piyachayanin/SQA_2/AI_Testing/work/Gson_18b/.test_suite/* && tar -xjf /home/piyachayanin/SQA_2/AI_Testing/AI_Results/Result/Gson/18/Claude/$Gson$Types.tests.tar.bz2 -C /home/piyachayanin/SQA_2/AI_Testing/work/Gson_18b/.test_suite
+Died at /home/piyachayanin/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/piyachayanin/defects4j/framework/bin/defects4j line 195.

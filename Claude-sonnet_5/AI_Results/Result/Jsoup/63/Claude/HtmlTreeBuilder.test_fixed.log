@@ -1,0 +1,8 @@
+Failing tests: 3
+  - org.jsoup.parser.HtmlTreeBuilderTest::testClearFormattingElementsToLastMarker_WithMarker
+  - org.jsoup.parser.HtmlTreeBuilderTest::testResetInsertionMode_Td_Last_SpecCompliant_DetectsJsoup63bBug
+  - org.jsoup.parser.HtmlTreeBuilderTest::testPopStackToClose_varargs
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

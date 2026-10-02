@@ -1,0 +1,8 @@
+Failing tests: 3
+  - com.fasterxml.jackson.databind.introspect.AnnotationMapTest::testAdd_FirstInsertionReturnsFalse
+  - com.fasterxml.jackson.databind.introspect.AnnotationMapTest::testAdd_ReplaceWithNonEqualAnnotationReturnsFalse
+  - com.fasterxml.jackson.databind.introspect.AnnotationMapTest::testAdd_ReplaceWithEqualAnnotationReturnsTrue
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

@@ -1,0 +1,10 @@
+Failing tests: 5
+  - org.mockito.internal.stubbing.defaultanswers.ReturnsSmartNullsTest::smartNullToString_shouldFormatMethodCall_withArgs
+  - org.mockito.internal.stubbing.defaultanswers.ReturnsSmartNullsTest::smartNullToString_shouldFormatMethodCall_withNoArgs
+  - org.mockito.internal.stubbing.defaultanswers.ReturnsSmartNullsTest::shouldReturnOrdinaryLongValue_whenDelegateProvidesNonNull
+  - org.mockito.internal.stubbing.defaultanswers.ReturnsSmartNullsTest::smartNullToString_withNullArguments_shouldNotThrow_butProduceMalformedMessage
+  - org.mockito.internal.stubbing.defaultanswers.ReturnsSmartNullsTest::shouldReturnNull_forVoidReturnType
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

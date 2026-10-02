@@ -1,0 +1,91 @@
+คุณคือ Java testing engineer ที่เชี่ยวชาญด้าน unit testing และ JUnit 4
+เป้าหมาย: เขียนชุดทดสอบ JUnit 4 สำหรับคลาสด้านล่าง เพื่อให้ได้ branch coverage สูงที่สุดเท่าที่เป็นไปได้
+และมีโอกาสดักจับข้อบกพร่อง (fault) ในโค้ดได้จริง
+ข้อกำหนด:
+1. ใช้เฉพาะ JUnit 4 และไลบรารีที่อยู่ใน classpath ต่อไปนี้: asm-all-5.0.4.jar, assertj-core-2.1.0.jar, cglib-and-asm-1.0.jar, cobertura-2.0.3.jar, fest-assert-1.3.jar, fest-util-1.1.4.jar, hamcrest-all-1.3.jar, hamcrest-core-1.1.jar, junit-4.12-hamcrest-1.3.jar, objenesis-2.1.jar, objenesis-2.2.jar, powermock-reflect-1.2.5.jar
+2. ตั้งชื่อคลาสทดสอบเป็น ReturnsSmartNullsTest และ import คลาสเป้าหมายให้ถูกต้อง
+3. ครอบคลุมกรณี: ค่าขอบเขต (boundary), ค่า null/ว่าง, อินพุตผิดรูปแบบ,
+และเงื่อนไข if/else, loop ทุกสาขาเท่าที่วิเคราะห์ได้จากซอร์สที่ให้มา
+4. ห้ามเดา behavior ที่ไม่มีอยู่ในซอร์สโค้ด หากไม่แน่ใจให้เขียนคอมเมนต์กำกับ
+5. หลังโค้ดเทส ให้สรุปเป็นตารางสั้น ๆ ว่าแต่ละเมธอดเทสใด ครอบคลุม Branch/Condition ใด
+ซอร์สโค้ดคลาสเป้าหมาย (Defects4J: Mockito-31b):
+```java
+/*
+ * Copyright (c) 2007 Mockito contributors
+ * This program is made available under the terms of the MIT License.
+ */
+package org.mockito.internal.stubbing.defaultanswers;
+
+import java.io.Serializable;
+import java.lang.reflect.Method;
+
+import org.mockito.Mockito;
+import org.mockito.cglib.proxy.MethodInterceptor;
+import org.mockito.cglib.proxy.MethodProxy;
+import org.mockito.exceptions.Reporter;
+import org.mockito.internal.creation.jmock.ClassImposterizer;
+import org.mockito.internal.debugging.Location;
+import org.mockito.internal.util.ObjectMethodsGuru;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
+
+/**
+ * Optional Answer that can be used with
+ * {@link Mockito#mock(Class, Answer)}
+ * <p>
+ * This implementation can be helpful when working with legacy code. Unstubbed
+ * methods often return null. If your code uses the object returned by an
+ * unstubbed call you get a NullPointerException. This implementation of
+ * Answer returns SmartNulls instead of nulls.
+ * SmartNull gives nicer exception message than NPE because it points out the
+ * line where unstubbed method was called. You just click on the stack trace.
+ * <p>
+ * ReturnsSmartNulls first tries to return ordinary return values (see
+ * {@link ReturnsMoreEmptyValues}) then it tries to return SmartNull. If the
+ * return type is not mockable (e.g. final) then ordinary null is returned.
+ * <p>
+ * ReturnsSmartNulls will be probably the default return values strategy in
+ * Mockito 2.0
+ */
+public class ReturnsSmartNulls implements Answer<Object>, Serializable {
+
+    private static final long serialVersionUID = 7618312406617949441L;
+
+    private final class ThrowingInterceptor implements MethodInterceptor {
+        private final InvocationOnMock invocation;
+        private final Location location = new Location();
+
+        private ThrowingInterceptor(InvocationOnMock invocation) {
+            this.invocation = invocation;
+        }
+
+        public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
+            if (new ObjectMethodsGuru().isToString(method)) {
+                return "SmartNull returned by unstubbed " + formatMethodCall()  + " method on mock";
+            }
+
+            new Reporter().smartNullPointerException(location);
+            return null;
+        }
+
+		private String formatMethodCall() {
+			return invocation.getMethod().getName() + "()";
+		}
+    }
+
+    private final Answer<Object> delegate = new ReturnsMoreEmptyValues();
+
+    public Object answer(final InvocationOnMock invocation) throws Throwable {
+        Object defaultReturnValue = delegate.answer(invocation);
+        if (defaultReturnValue != null) {
+            return defaultReturnValue;
+        }
+        Class<?> type = invocation.getMethod().getReturnType();
+        if (ClassImposterizer.INSTANCE.canImposterise(type)) {
+            return ClassImposterizer.INSTANCE.imposterise(new ThrowingInterceptor(invocation), type);
+        }
+        return null;
+    }
+}
+
+```

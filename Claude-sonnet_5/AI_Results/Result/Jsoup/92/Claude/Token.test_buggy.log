@@ -1,0 +1,7 @@
+Failing tests: 2
+  - org.jsoup.parser.TokenTest::testTagAppendAttributeValueIntArray_Empty
+  - org.jsoup.parser.TokenTest::testTagNewAttribute_NoValueBranch_NullValue
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

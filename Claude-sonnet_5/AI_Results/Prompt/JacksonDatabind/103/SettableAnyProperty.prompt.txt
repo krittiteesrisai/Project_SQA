@@ -1,0 +1,260 @@
+คุณคือ Java testing engineer ที่เชี่ยวชาญด้าน unit testing และ JUnit 4
+เป้าหมาย: เขียนชุดทดสอบ JUnit 4 สำหรับคลาสด้านล่าง เพื่อให้ได้ branch coverage สูงที่สุดเท่าที่เป็นไปได้
+และมีโอกาสดักจับข้อบกพร่อง (fault) ในโค้ดได้จริง
+ข้อกำหนด:
+1. ใช้เฉพาะ JUnit 4 และไลบรารีที่อยู่ใน classpath ต่อไปนี้: antlr-2.7.7.jar, asm-3.3.1.jar, asm-4.2.jar, asm-analysis-3.2.jar, asm-commons-3.2.jar, asm-tree-3.2.jar, asm-util-3.2.jar, assertj-core-3.8.0.jar, assertj-core-3.9.1.jar, byte-buddy-1.7.5.jar, byte-buddy-1.9.3.jar, byte-buddy-agent-1.7.5.jar, byte-buddy-agent-1.9.3.jar, cglib-2.2.2.jar, cglib-3.1.jar, groovy-1.7.9.jar, groovy-2.4.0.jar, guava-18.0.jar, hamcrest-core-1.1.jar, hamcrest-core-1.3.jar, hibernate-cglib-repack-2.1_3.jar, jackson-annotations-2.10.0-20190519.085045-3.jar, jackson-annotations-2.2.0.jar, jackson-annotations-2.2.1.jar, jackson-annotations-2.3.0.jar, jackson-annotations-2.4.0-rc3.jar, jackson-annotations-2.4.0.jar, jackson-annotations-2.5.0.jar, jackson-annotations-2.6.0-rc1.jar, jackson-annotations-2.6.0-rc2.jar, jackson-annotations-2.6.0-rc3.jar, jackson-annotations-2.6.0.jar, jackson-annotations-2.7.0-rc2.jar, jackson-annotations-2.7.0.jar, jackson-annotations-2.8.0.jar, jackson-annotations-2.8.0.rc1.jar, jackson-annotations-2.9.0.jar, jackson-annotations-2.9.0.pr3.jar, jackson-annotations-3.0-20190323.173155-41.jar, jackson-annotations-3.0-20190519.085339-43.jar, jackson-core-2.10.0-20190518.180547-60.jar, jackson-core-2.2.0.jar, jackson-core-2.2.1.jar, jackson-core-2.3.0.jar, jackson-core-2.4.0-rc3.jar, jackson-core-2.4.0.jar, jackson-core-2.4.1.1.jar, jackson-core-2.4.2.jar, jackson-core-2.4.3.jar, jackson-core-2.4.5.jar, jackson-core-2.4.6.jar, jackson-core-2.5.0.jar, jackson-core-2.5.1.jar, jackson-core-2.5.3.jar, jackson-core-2.5.4.jar, jackson-core-2.5.5.jar, jackson-core-2.6.0-rc1.jar, jackson-core-2.6.0-rc2.jar, jackson-core-2.6.0-rc3.jar, jackson-core-2.6.0.jar, jackson-core-2.6.1.jar, jackson-core-2.6.2.jar, jackson-core-2.6.3.jar, jackson-core-2.6.4.jar, jackson-core-2.6.5.jar, jackson-core-2.6.6.jar, jackson-core-2.6.7.jar, jackson-core-2.7.0-rc2.jar, jackson-core-2.7.0.jar, jackson-core-2.7.1.jar, jackson-core-2.7.2.jar, jackson-core-2.7.4.jar, jackson-core-2.7.5.jar, jackson-core-2.7.6.jar, jackson-core-2.7.7.jar, jackson-core-2.7.8.jar, jackson-core-2.7.9.jar, jackson-core-2.8.0.jar, jackson-core-2.8.0.rc1.jar, jackson-core-2.8.0.rc2.jar, jackson-core-2.8.10.jar, jackson-core-2.8.3.jar, jackson-core-2.8.4.jar, jackson-core-2.8.5.jar, jackson-core-2.8.6.jar, jackson-core-2.8.7.jar, jackson-core-2.8.8-20170301.000803-1.jar, jackson-core-2.8.8.jar, jackson-core-2.8.9.jar, jackson-core-2.9.0.pr3.jar, jackson-core-2.9.6.jar, jackson-core-2.9.7.jar, jackson-core-2.9.8.jar, jackson-core-2.9.9.jar, jackson-core-3.0.0-20190516.032312-448.jar, javassist-3.19.0-GA.jar, javassist-3.20.0-GA.jar, javassist-3.21.0-GA.jar, javassist-3.22.0-CR2.jar, javassist-3.24.0-GA.jar, jimfs-1.1.jar, jsr-275-0.9.1.jar, jsr-275-0.9.2.jar, junit-4.10.jar, junit-4.11.jar, junit-4.12-hamcrest-1.3.jar, junit-4.12.jar, junit-4.8.2.jar, mockito-all-1.10.19.jar, mockito-core-1.10.19.jar, mockito-core-2.10.0.jar, mockito-core-2.23.0.jar, objenesis-2.1.jar, objenesis-2.6.jar, objenesis-3.0.1.jar, powermock-api-mockito-1.6.2.jar, powermock-api-mockito-1.6.3.jar, powermock-api-mockito-1.6.5.jar, powermock-api-mockito-1.7.3.jar, powermock-api-mockito-1.7.4.jar, powermock-api-mockito-common-1.6.5.jar, powermock-api-mockito-common-1.7.3.jar, powermock-api-mockito-common-1.7.4.jar, powermock-api-mockito2-2.0.0-beta.5.jar, powermock-api-mockito2-2.0.0.jar, powermock-api-support-1.6.2.jar, powermock-api-support-1.6.3.jar, powermock-api-support-1.6.5.jar, powermock-api-support-1.7.3.jar, powermock-api-support-1.7.4.jar, powermock-api-support-2.0.0-beta.5.jar, powermock-api-support-2.0.0.jar, powermock-core-1.6.2.jar, powermock-core-1.6.3.jar, powermock-core-1.6.5.jar, powermock-core-1.7.3.jar, powermock-core-1.7.4.jar, powermock-core-2.0.0-beta.5.jar, powermock-core-2.0.0.jar, powermock-module-junit4-1.6.2.jar, powermock-module-junit4-1.6.3.jar, powermock-module-junit4-1.6.5.jar, powermock-module-junit4-1.7.3.jar, powermock-module-junit4-1.7.4.jar, powermock-module-junit4-2.0.0-beta.5.jar, powermock-module-junit4-2.0.0.jar, powermock-module-junit4-common-1.6.2.jar, powermock-module-junit4-common-1.6.3.jar, powermock-module-junit4-common-1.6.5.jar, powermock-module-junit4-common-1.7.3.jar, powermock-module-junit4-common-1.7.4.jar, powermock-module-junit4-common-2.0.0-beta.5.jar, powermock-module-junit4-common-2.0.0.jar, powermock-reflect-1.6.2.jar, powermock-reflect-1.6.3.jar, powermock-reflect-1.6.5.jar, powermock-reflect-1.7.3.jar, powermock-reflect-1.7.4.jar, powermock-reflect-2.0.0-beta.5.jar, powermock-reflect-2.0.0.jar
+2. ตั้งชื่อคลาสทดสอบเป็น SettableAnyPropertyTest และ import คลาสเป้าหมายให้ถูกต้อง
+3. ครอบคลุมกรณี: ค่าขอบเขต (boundary), ค่า null/ว่าง, อินพุตผิดรูปแบบ,
+และเงื่อนไข if/else, loop ทุกสาขาเท่าที่วิเคราะห์ได้จากซอร์สที่ให้มา
+4. ห้ามเดา behavior ที่ไม่มีอยู่ในซอร์สโค้ด หากไม่แน่ใจให้เขียนคอมเมนต์กำกับ
+5. หลังโค้ดเทส ให้สรุปเป็นตารางสั้น ๆ ว่าแต่ละเมธอดเทสใด ครอบคลุม Branch/Condition ใด
+ซอร์สโค้ดคลาสเป้าหมาย (Defects4J: JacksonDatabind-103b):
+```java
+package com.fasterxml.jackson.databind.deser;
+
+import java.io.IOException;
+import java.util.Map;
+
+import com.fasterxml.jackson.core.*;
+import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.deser.impl.ReadableObjectId.Referring;
+import com.fasterxml.jackson.databind.introspect.AnnotatedField;
+import com.fasterxml.jackson.databind.introspect.AnnotatedMember;
+import com.fasterxml.jackson.databind.introspect.AnnotatedMethod;
+import com.fasterxml.jackson.databind.jsontype.TypeDeserializer;
+import com.fasterxml.jackson.databind.util.ClassUtil;
+
+/**
+ * Class that represents a "wildcard" set method which can be used
+ * to generically set values of otherwise unmapped (aka "unknown")
+ * properties read from Json content.
+ *<p>
+ * !!! Note: might make sense to refactor to share some code
+ * with {@link SettableBeanProperty}?
+ */
+public class SettableAnyProperty
+    implements java.io.Serializable
+{
+    private static final long serialVersionUID = 1L;
+    
+    /**
+     * Method used for setting "any" properties, along with annotation
+     * information. Retained to allow contextualization of any properties.
+     */
+    protected final BeanProperty _property;
+
+    /**
+     * Annotated variant is needed for JDK serialization only
+     */
+    final protected AnnotatedMember _setter;
+
+    final boolean _setterIsField;
+    
+    protected final JavaType _type;
+
+    protected JsonDeserializer<Object> _valueDeserializer;
+
+    protected final TypeDeserializer _valueTypeDeserializer;
+
+    /**
+     * @since 2.9
+     */
+    protected final KeyDeserializer _keyDeserializer;
+
+    /*
+    /**********************************************************
+    /* Life-cycle
+    /**********************************************************
+     */
+
+    public SettableAnyProperty(BeanProperty property, AnnotatedMember setter, JavaType type,
+            KeyDeserializer keyDeser,
+            JsonDeserializer<Object> valueDeser, TypeDeserializer typeDeser)
+    {
+        _property = property;
+        _setter = setter;
+        _type = type;
+        _valueDeserializer = valueDeser;
+        _valueTypeDeserializer = typeDeser;
+        _keyDeserializer = keyDeser;
+        _setterIsField = setter instanceof AnnotatedField;
+    }
+
+    @Deprecated // since 2.9
+    public SettableAnyProperty(BeanProperty property, AnnotatedMember setter, JavaType type,
+            JsonDeserializer<Object> valueDeser, TypeDeserializer typeDeser)
+    {
+        this(property, setter, type, null, valueDeser, typeDeser);
+    }
+
+    public SettableAnyProperty withValueDeserializer(JsonDeserializer<Object> deser) {
+        return new SettableAnyProperty(_property, _setter, _type,
+                _keyDeserializer, deser, _valueTypeDeserializer);
+    }
+
+    public void fixAccess(DeserializationConfig config) {
+        _setter.fixAccess(
+                config.isEnabled(MapperFeature.OVERRIDE_PUBLIC_ACCESS_MODIFIERS));
+    }
+
+    /*
+    /**********************************************************
+    /* JDK serialization handling
+    /**********************************************************
+     */
+
+    /**
+     * Need to define this to verify that we retain actual Method reference
+     */
+    Object readResolve() {
+        // sanity check...
+        if (_setter == null || _setter.getAnnotated() == null) {
+            throw new IllegalArgumentException("Missing method (broken JDK (de)serialization?)");
+        }
+        return this;
+    }
+    
+    /*
+    /**********************************************************
+    /* Public API, accessors
+    /**********************************************************
+     */
+
+    public BeanProperty getProperty() { return _property; }
+    
+    public boolean hasValueDeserializer() { return (_valueDeserializer != null); }
+
+    public JavaType getType() { return _type; }
+
+    /*
+    /**********************************************************
+    /* Public API, deserialization
+    /**********************************************************
+     */
+    
+    /**
+     * Method called to deserialize appropriate value, given parser (and
+     * context), and set it using appropriate method (a setter method).
+     */
+    public final void deserializeAndSet(JsonParser p, DeserializationContext ctxt,
+            Object instance, String propName)
+        throws IOException
+    {
+        try {
+            Object key = (_keyDeserializer == null) ? propName
+                    : _keyDeserializer.deserializeKey(propName, ctxt);
+            set(instance, key, deserialize(p, ctxt));
+        } catch (UnresolvedForwardReference reference) {
+            if (!(_valueDeserializer.getObjectIdReader() != null)) {
+                throw JsonMappingException.from(p, "Unresolved forward reference but no identity info.", reference);
+            }
+            AnySetterReferring referring = new AnySetterReferring(this, reference,
+                    _type.getRawClass(), instance, propName);
+            reference.getRoid().appendReferring(referring);
+        }
+    }
+
+    public Object deserialize(JsonParser p, DeserializationContext ctxt) throws IOException
+    {
+        JsonToken t = p.getCurrentToken();
+        if (t == JsonToken.VALUE_NULL) {
+            return _valueDeserializer.getNullValue(ctxt);
+        }
+        if (_valueTypeDeserializer != null) {
+            return _valueDeserializer.deserializeWithType(p, ctxt, _valueTypeDeserializer);
+        }
+        return _valueDeserializer.deserialize(p, ctxt);
+    }
+
+    @SuppressWarnings("unchecked")
+    public void set(Object instance, Object propName, Object value) throws IOException
+    {
+        try {
+            // if annotation in the field (only map is supported now)
+            if (_setterIsField) {
+                AnnotatedField field = (AnnotatedField) _setter;
+                Map<Object,Object> val = (Map<Object,Object>) field.getValue(instance);
+                /* 01-Jun-2016, tatu: At this point it is not quite clear what to do if
+                 *    field is `null` -- we cannot necessarily count on zero-args
+                 *    constructor except for a small set of types, so for now just
+                 *    ignore if null. May need to figure out something better in future.
+                 */
+                if (val != null) {
+                    // add the property key and value
+                    val.put(propName, value);
+                }
+            } else {
+                // note: cannot use 'setValue()' due to taking 2 args
+                ((AnnotatedMethod) _setter).callOnWith(instance, propName, value);
+            }
+        } catch (Exception e) {
+            _throwAsIOE(e, propName, value);
+        }
+    }
+
+    /*
+    /**********************************************************
+    /* Helper methods
+    /**********************************************************
+     */
+
+    /**
+     * @param e Exception to re-throw or wrap
+     * @param propName Name of property (from Json input) to set
+     * @param value Value of the property
+     */
+    protected void _throwAsIOE(Exception e, Object propName, Object value)
+        throws IOException
+    {
+        if (e instanceof IllegalArgumentException) {
+            String actType = ClassUtil.classNameOf(value);
+            StringBuilder msg = new StringBuilder("Problem deserializing \"any\" property '").append(propName);
+            msg.append("' of class "+getClassName()+" (expected type: ").append(_type);
+            msg.append("; actual type: ").append(actType).append(")");
+            String origMsg = e.getMessage();
+            if (origMsg != null) {
+                msg.append(", problem: ").append(origMsg);
+            } else {
+                msg.append(" (no error message provided)");
+            }
+            throw new JsonMappingException(null, msg.toString(), e);
+        }
+        ClassUtil.throwIfIOE(e);
+        ClassUtil.throwIfRTE(e);
+        // let's wrap the innermost problem
+        Throwable t = ClassUtil.getRootCause(e);
+        throw new JsonMappingException(null, t.getMessage(), t);
+    }
+
+    private String getClassName() { return _setter.getDeclaringClass().getName(); }
+
+    @Override public String toString() { return "[any property on class "+getClassName()+"]"; }
+
+    private static class AnySetterReferring extends Referring {
+        private final SettableAnyProperty _parent;
+        private final Object _pojo;
+        private final String _propName;
+
+        public AnySetterReferring(SettableAnyProperty parent,
+                UnresolvedForwardReference reference, Class<?> type, Object instance, String propName)
+        {
+            super(reference, type);
+            _parent = parent;
+            _pojo = instance;
+            _propName = propName;
+        }
+
+        @Override
+        public void handleResolvedForwardReference(Object id, Object value)
+            throws IOException
+        {
+            if (!hasId(id)) {
+                throw new IllegalArgumentException("Trying to resolve a forward reference with id [" + id.toString()
+                        + "] that wasn't previously registered.");
+            }
+            _parent.set(_pojo, _propName, value);
+        }
+    }
+}
+
+```

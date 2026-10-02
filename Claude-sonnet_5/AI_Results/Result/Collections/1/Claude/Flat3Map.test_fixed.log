@@ -1,0 +1,11 @@
+Failing tests: 6
+  - org.apache.commons.collections.map.Flat3MapTest::testRemoveNonNullKeySize2ShiftToKey1_ExpectedContractValue
+  - org.apache.commons.collections.map.Flat3MapTest::testRemoveNullKeySize2ShiftToKey1_ExpectedContractValue
+  - org.apache.commons.collections.map.Flat3MapTest::testRemoveNullKeySize3ShiftFromKey2_ExpectedContractValue
+  - org.apache.commons.collections.map.Flat3MapTest::testRemoveNonNullKeySize3ShiftFromKey1_ExpectedContractValue
+  - org.apache.commons.collections.map.Flat3MapTest::testRemoveNonNullKeySize3ShiftFromKey2_ExpectedContractValue
+  - org.apache.commons.collections.map.Flat3MapTest::testRemoveNullKeySize3ShiftFromKey1_ExpectedContractValue
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

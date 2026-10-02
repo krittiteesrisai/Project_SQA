@@ -1,0 +1,6 @@
+model,project,bug_id,stage,error,attempts,first_failed,last_failed
+Claude,Closure,169,setup,[Errno 2] No such file or directory: 'work/Closure_169b/src/com/google/javascript/rhino/jstype/EquivalenceMethod.java',3,2026-09-30T01:37:14,2026-10-02T15:55:33
+Claude,Codec,3,empty_response,"AI ตอบกลับว่าง (DoubleMetaphone, finish_reason=length, completion_tokens=65536, มีส่วน reasoning=True) ดู DoubleMetaphone.raw.json",3,2026-09-30T06:08:17,2026-10-02T16:04:44
+Claude,Codec,13,setup,[Errno 2] No such file or directory: 'work/Codec_13b/src/main/java/org/apache/commons/codec/binary/CharSequenceUtils.java',3,2026-09-30T06:17:01,2026-10-02T15:55:20
+Claude,Codec,14,setup,[Errno 2] No such file or directory: 'work/Codec_14b/src/main/java/src/main/resources/org/apache/commons/codec/language/bm/ash_lang/txt.java',3,2026-09-30T06:17:05,2026-10-02T15:55:26
+Claude,Jsoup,71,setup,[Errno 2] No such file or directory: 'work/Jsoup_71b/src/main/java/org/jsoup/nodes/PseudoTextElement.java',3,2026-10-01T10:12:25,2026-10-02T15:55:34

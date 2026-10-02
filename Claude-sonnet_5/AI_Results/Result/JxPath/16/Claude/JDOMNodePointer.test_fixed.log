@@ -1,0 +1,8 @@
+Failing tests: 3
+  - org.apache.commons.jxpath.ri.model.jdom.JDOMNodePointerTest::testIsLeaf_DocumentNoContent
+  - org.apache.commons.jxpath.ri.model.jdom.JDOMNodePointerTest::testTestNode_NodeTypeTest_Node
+  - org.apache.commons.jxpath.ri.model.jdom.JDOMNodePointerTest::testSetValue_ElementValueWithCDATAChild_ExposesBug
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

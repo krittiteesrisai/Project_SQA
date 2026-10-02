@@ -1,0 +1,11 @@
+Failing tests: 3
+  - com.google.javascript.jscomp.PrepareAstTest::testNormalizeBlocks_forWithoutBlock_throws
+  - com.google.javascript.jscomp.PrepareAstTest::testNormalizeBlocks_doWithoutBlock_throws
+  - com.google.javascript.jscomp.PrepareAstTest::testNormalizeBlocks_nestedUnnormalizedIf_recursionThrows
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK
+Use of uninitialized value $lines[94] in pattern match (m//) at /home/piyachayanin/defects4j/framework/core/Utils.pm line 738.
+Use of uninitialized value $lines[94] in pattern match (m//) at /home/piyachayanin/defects4j/framework/core/Utils.pm line 738.
+Use of uninitialized value in pattern match (m//) at /home/piyachayanin/defects4j/framework/core/Utils.pm line 741.

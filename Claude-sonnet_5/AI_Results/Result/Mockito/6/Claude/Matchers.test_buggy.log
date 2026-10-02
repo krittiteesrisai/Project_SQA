@@ -1,0 +1,17 @@
+Failing tests: 12
+  - org.mockito.MatchersTest::argThat_customHamcrestMatcherWorksInRealMock
+  - org.mockito.MatchersTest::startsWith_matchesPrefixInRealMock
+  - org.mockito.MatchersTest::contains_doesNotMatchMissingSubstring
+  - org.mockito.MatchersTest::isA_matchesOnlyGivenType
+  - org.mockito.MatchersTest::eqInt_matchesExactValueInRealMock
+  - org.mockito.MatchersTest::notNull_doesNotMatchNullArgument
+  - org.mockito.MatchersTest::isNull_matchesNullArgument
+  - org.mockito.MatchersTest::contains_matchesSubstringInRealMock
+  - org.mockito.MatchersTest::notNull_matchesNonNullArgument
+  - org.mockito.MatchersTest::same_matchesOnlySameInstance
+  - org.mockito.MatchersTest::isA_returnsNull
+  - org.mockito.MatchersTest::isA_doesNotMatchDifferentType
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

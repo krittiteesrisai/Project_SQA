@@ -1,0 +1,10 @@
+Failing tests: 5
+  - org.jsoup.parser.HtmlTreeBuilderTest::testInsertEmptyUnknownSelfClosingTagMarksTagSelfClosing
+  - org.jsoup.parser.HtmlTreeBuilderTest::testFramesetOkGetSet
+  - org.jsoup.parser.HtmlTreeBuilderTest::testGenerateImpliedEndTagsNoExclude
+  - org.jsoup.parser.HtmlTreeBuilderTest::testInsertFormAssociatesFormListedControls
+  - org.jsoup.parser.HtmlTreeBuilderTest::testHeadElementGetSet
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

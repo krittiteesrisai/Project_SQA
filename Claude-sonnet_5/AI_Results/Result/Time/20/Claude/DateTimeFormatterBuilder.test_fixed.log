@@ -1,0 +1,10 @@
+Failing tests: 5
+  - org.joda.time.format.DateTimeFormatterBuilderTest::testParserOnly_printerNull_directPath
+  - org.joda.time.format.DateTimeFormatterBuilderTest::testPrinterOnly_parserNull_directPath
+  - org.joda.time.format.DateTimeFormatterBuilderTest::testAppendTimeZoneShortName_noLookup_printOnly
+  - org.joda.time.format.DateTimeFormatterBuilderTest::testAppendTimeZoneName_noLookup_printOnly
+  - org.joda.time.format.DateTimeFormatterBuilderTest::testAppendPrinterParserArray_lengthOne_valid
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

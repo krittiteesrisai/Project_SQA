@@ -1,0 +1,7 @@
+Failing tests: 2
+  - com.fasterxml.jackson.databind.ser.std.DateTimeSerializerBaseTest::testAsTimestamp_NullUseTimestamp_NoCustomFormat_ProviderEnabled
+  - com.fasterxml.jackson.databind.ser.std.DateTimeSerializerBaseTest::testAsTimestamp_NullUseTimestamp_NoCustomFormat_ProviderDisabled
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

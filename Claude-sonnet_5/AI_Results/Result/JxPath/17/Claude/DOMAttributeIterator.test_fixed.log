@@ -1,0 +1,22 @@
+Failing tests: 17
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testGetPosition_ReflectsLastSetPositionValue
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testConstructor_WildcardName_DifferentPrefixDifferentNamespace_NoMatch
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testGetNodePointer_AfterExplicitSetPosition_NoClampNeeded
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testConstructor_WildcardName_SingleAttributeIncluded
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testConstructor_WildcardName_ExcludesDefaultXmlnsAttr
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testConstructor_WildcardName_ExcludesXmlnsPrefixedAttr
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testGetNodePointer_EmptyAttributes_ReturnsNull
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testConstructor_WildcardName_DifferentPrefixSameNamespace_Matches
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testGetNodePointer_NegativePosition_IndexClampedToZero
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testConstructor_WildcardName_NoAttributes
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testSetPosition_Boundaries
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testConstructor_WildcardName_SamePrefixMatches_NoNamespaceResolutionNeeded
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testGetAttribute_WithNamespace_FoundDirectlyViaNS
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testGetNodePointer_InitialPositionZero_NonEmpty_ResetsPositionToZero
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testConstructor_SpecificName_Found
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testConstructor_NonElementNode_AttributesEmpty
+  - org.apache.commons.jxpath.ri.model.dom.DOMAttributeIteratorTest::testConstructor_SpecificName_NotFound
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

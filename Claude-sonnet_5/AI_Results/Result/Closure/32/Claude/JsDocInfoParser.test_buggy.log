@@ -1,0 +1,9 @@
+Failing tests: 4
+  - com.google.javascript.jscomp.parsing.JsDocInfoParserTest::testParseTypeString_questionMarkAlone
+  - com.google.javascript.jscomp.parsing.JsDocInfoParserTest::testParse_noCompile
+  - com.google.javascript.jscomp.parsing.JsDocInfoParserTest::testParse_fileOverview
+  - com.google.javascript.jscomp.parsing.JsDocInfoParserTest::testParse_externs
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

@@ -1,0 +1,41 @@
+Failing tests: 36
+  - com.google.javascript.jscomp.TypeCheckTest::testCommaOperator
+  - com.google.javascript.jscomp.TypeCheckTest::testAnonymousFunctionNoMasking
+  - com.google.javascript.jscomp.TypeCheckTest::testReturnTypeMatch
+  - com.google.javascript.jscomp.TypeCheckTest::testEmptySourceNoProblems
+  - com.google.javascript.jscomp.TypeCheckTest::testBasicLiteralsNoWarnings
+  - com.google.javascript.jscomp.TypeCheckTest::testThisInsideConstructor
+  - com.google.javascript.jscomp.TypeCheckTest::testEmptyFunctionBody
+  - com.google.javascript.jscomp.TypeCheckTest::testOptionalParameterBoundaryOk
+  - com.google.javascript.jscomp.TypeCheckTest::testTypeofValidStringComparison
+  - com.google.javascript.jscomp.TypeCheckTest::testHiddenSuperclassPropertyMismatch
+  - com.google.javascript.jscomp.TypeCheckTest::testConflictingExtendedTypeConstructorExtendsInterface
+  - com.google.javascript.jscomp.TypeCheckTest::testExistentEnumElementOk
+  - com.google.javascript.jscomp.TypeCheckTest::testWhitespaceOnlySource
+  - com.google.javascript.jscomp.TypeCheckTest::testVarInferredTypeNoJsDoc
+  - com.google.javascript.jscomp.TypeCheckTest::testCallFunctionOk
+  - com.google.javascript.jscomp.TypeCheckTest::testNotVoidTypeof
+  - com.google.javascript.jscomp.TypeCheckTest::testInterfaceExtendsInterfaceOk
+  - com.google.javascript.jscomp.TypeCheckTest::testConstructorImplementsInterfaceOk
+  - com.google.javascript.jscomp.TypeCheckTest::testDictPropertyAccessWithDotOperator
+  - com.google.javascript.jscomp.TypeCheckTest::testConflictingImplementedTypeOnInterface
+  - com.google.javascript.jscomp.TypeCheckTest::testNumericComparisonOk
+  - com.google.javascript.jscomp.TypeCheckTest::testBitwiseOperatorsOk
+  - com.google.javascript.jscomp.TypeCheckTest::testWithAndSwitchStatements
+  - com.google.javascript.jscomp.TypeCheckTest::testVarArgsAcceptsManyArguments
+  - com.google.javascript.jscomp.TypeCheckTest::testVarArgsAcceptsZeroArguments
+  - com.google.javascript.jscomp.TypeCheckTest::testArithmeticOperatorsOk
+  - com.google.javascript.jscomp.TypeCheckTest::testCorrectArgumentCountOk
+  - com.google.javascript.jscomp.TypeCheckTest::testIncrementOnNumberOk
+  - com.google.javascript.jscomp.TypeCheckTest::testNewOnConstructorOk
+  - com.google.javascript.jscomp.TypeCheckTest::testValidOverrideNoWarning
+  - com.google.javascript.jscomp.TypeCheckTest::testBadImplementedTypeNonInterface
+  - com.google.javascript.jscomp.TypeCheckTest::testConflictingExtendedTypeInterfaceExtendsConstructor
+  - com.google.javascript.jscomp.TypeCheckTest::testFunctionMasksVariable
+  - com.google.javascript.jscomp.TypeCheckTest::testEqualityBetweenSameTypeNoWarning
+  - com.google.javascript.jscomp.TypeCheckTest::testInAndInstanceofOk
+  - com.google.javascript.jscomp.TypeCheckTest::testMiscExpressions
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

@@ -1,0 +1,7 @@
+Failing tests: 2
+  - com.google.gson.internal.bind.TypeAdaptersTest::calendar_readMissingFields_defaultsToZero
+  - com.google.gson.internal.bind.TypeAdaptersTest::calendar_readUnknownKey_skippedWithoutAssignment
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

@@ -1,0 +1,7 @@
+Failing tests: 2
+  - com.fasterxml.jackson.databind.deser.BasicDeserializerFactoryTest::testDeserialize_unresolvableAbstractMapType_throwsIllegalArgumentException
+  - com.fasterxml.jackson.databind.deser.BasicDeserializerFactoryTest::testDeserialize_unresolvableAbstractCollectionType_throwsIllegalArgumentException
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

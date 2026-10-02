@@ -1,0 +1,23 @@
+Failing tests: 18
+  - com.google.javascript.jscomp.RenamePrototypesTest::testCombinedPrototypeAndObjLit_oneFails_notRenamed
+  - com.google.javascript.jscomp.RenamePrototypesTest::testLeadingUnderscore_treatedAsExported_notRenamed
+  - com.google.javascript.jscomp.RenamePrototypesTest::testNonAggressive_plainLowercaseName_notRenamed
+  - com.google.javascript.jscomp.RenamePrototypesTest::testDefaultReservedName_toString_notRenamed
+  - com.google.javascript.jscomp.RenamePrototypesTest::testPrototypeAssignObjectLiteral_ASSIGN_branch_and_numberKeySkip
+  - com.google.javascript.jscomp.RenamePrototypesTest::testRefOnlyProperty_combinedBranch_notRenamed
+  - com.google.javascript.jscomp.RenamePrototypesTest::testRefOnlyProperty_combinedBranch_renamed
+  - com.google.javascript.jscomp.RenamePrototypesTest::testObjLitProperty_aggressiveIrrelevant_notRenamed
+  - com.google.javascript.jscomp.RenamePrototypesTest::testNonAggressive_nameWithDigit_renamed
+  - com.google.javascript.jscomp.RenamePrototypesTest::testPrevRenameMap_reusedName
+  - com.google.javascript.jscomp.RenamePrototypesTest::testPrevRenameMap_conflictWithReserved_fallsBackToNameGenerator
+  - com.google.javascript.jscomp.RenamePrototypesTest::testCombinedPrototypeAndObjLit_bothTrue_renamed
+  - com.google.javascript.jscomp.RenamePrototypesTest::testExternedPropertyNotRenamed_viaGetElem
+  - com.google.javascript.jscomp.RenamePrototypesTest::testExternedPropertyNotRenamed_viaGetProp
+  - com.google.javascript.jscomp.RenamePrototypesTest::testNonAggressive_nameWithUppercase_renamed
+  - com.google.javascript.jscomp.RenamePrototypesTest::testGetPropertyMap_reflectsRenaming
+  - com.google.javascript.jscomp.RenamePrototypesTest::testAggressiveRenaming_plainName_renamed
+  - com.google.javascript.jscomp.RenamePrototypesTest::testTrailingUnderscore_objLit_treatedAsPrivate_renamed
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

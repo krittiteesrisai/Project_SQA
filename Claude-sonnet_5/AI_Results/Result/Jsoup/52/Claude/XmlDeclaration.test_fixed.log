@@ -1,0 +1,14 @@
+Failing tests: 9
+  - org.jsoup.nodes.XmlDeclarationTest::testGetWholeDeclaration_XmlNameOneAttribute_ReturnsNameUnchanged
+  - org.jsoup.nodes.XmlDeclarationTest::testGetWholeDeclaration_NameCaseSensitive_XMLUppercase_ReturnsNameUnchanged
+  - org.jsoup.nodes.XmlDeclarationTest::testGetWholeDeclaration_XmlNameNoAttributes_ReturnsNameUnchanged
+  - org.jsoup.nodes.XmlDeclarationTest::testGetWholeDeclaration_XmlWithVersionOnly_ReturnsVersionOnly
+  - org.jsoup.nodes.XmlDeclarationTest::testGetWholeDeclaration_XmlWithNeitherVersionNorEncoding_ReturnsNameOnly
+  - org.jsoup.nodes.XmlDeclarationTest::testGetWholeDeclaration_XmlWithVersionAndEncoding_ReturnsBoth
+  - org.jsoup.nodes.XmlDeclarationTest::testGetWholeDeclaration_NameNotXml_ReturnsNameUnchanged
+  - org.jsoup.nodes.XmlDeclarationTest::testToString_SimpleXmlNoExtraAttributes_WrapsNameWithBrackets
+  - org.jsoup.nodes.XmlDeclarationTest::testGetWholeDeclaration_XmlWithEncodingOnly_ReturnsEncodingOnly
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

@@ -1,0 +1,10 @@
+Failing tests: 5
+  - org.jsoup.parser.CharacterReaderTest::testConsumeAsStringPastEndThrows
+  - org.jsoup.parser.CharacterReaderTest::testConsumeAsStringNormal
+  - org.jsoup.parser.CharacterReaderTest::testConsumeToEndNormal
+  - org.jsoup.parser.CharacterReaderTest::testConsumeToEndOnEmptyInput
+  - org.jsoup.parser.CharacterReaderTest::testConsumeToCharNotFound
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

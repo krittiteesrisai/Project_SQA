@@ -1,0 +1,9 @@
+Failing tests: 4
+  - org.mockito.MockitoTest::testVerifyZeroInteractions_emptyVarargs_noException
+  - org.mockito.MockitoTest::testVerify_only_failure_whenOtherInteractionExists
+  - org.mockito.MockitoTest::testDoCallRealMethod_onConcreteClassMock
+  - org.mockito.MockitoTest::testMock_withAnswer_callsRealMethods
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

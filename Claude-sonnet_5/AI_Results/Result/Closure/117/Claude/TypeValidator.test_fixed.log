@@ -1,0 +1,13 @@
+Failing tests: 8
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectNotNullOrUndefined_NullType_NonGetProp_ReturnsFalse
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectStringOrNumber_Object_RecordsMismatch
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectCanAssignToPropertyOf_Incompatible_ReturnsFalse
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectNotNullOrUndefined_NullType_GetProp_GlobalScope_ReturnsFalse
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectString_ObjectType_RecordsMismatch
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectObject_NullType_FailsAndRecordsMismatch
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectIndexMatch_UnknownObjType_ObjectIndex_RecordsMismatch
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectNotNullOrUndefined_VoidType_ReturnsFalseAndMismatch
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

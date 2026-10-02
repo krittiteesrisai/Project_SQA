@@ -1,0 +1,13 @@
+       Lines total: 1521
+     Lines covered: 858
+  Conditions total: 1008
+Conditions covered: 461
+     Line coverage: 56.4%
+Condition coverage: 45.7%
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (coverage.instrument).......................................... OK
+Running ant (run.gen.tests)................................................ OK
+Running ant (coverage.report).............................................. OK
+WARNING: Some tests failed (see /home/piyachayanin/SQA_2/AI_Testing/work/JacksonCore_2b/failing_tests)!

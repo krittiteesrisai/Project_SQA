@@ -1,0 +1,255 @@
+คุณคือ Java testing engineer ที่เชี่ยวชาญด้าน unit testing และ JUnit 4
+เป้าหมาย: เขียนชุดทดสอบ JUnit 4 สำหรับคลาสด้านล่าง เพื่อให้ได้ branch coverage สูงที่สุดเท่าที่เป็นไปได้
+และมีโอกาสดักจับข้อบกพร่อง (fault) ในโค้ดได้จริง
+ข้อกำหนด:
+1. ใช้เฉพาะ JUnit 4 และไลบรารีที่อยู่ใน classpath ต่อไปนี้: antlr-2.7.7.jar, asm-3.3.1.jar, asm-4.2.jar, asm-analysis-3.2.jar, asm-commons-3.2.jar, asm-tree-3.2.jar, asm-util-3.2.jar, assertj-core-3.8.0.jar, assertj-core-3.9.1.jar, byte-buddy-1.7.5.jar, byte-buddy-1.9.3.jar, byte-buddy-agent-1.7.5.jar, byte-buddy-agent-1.9.3.jar, cglib-2.2.2.jar, cglib-3.1.jar, groovy-1.7.9.jar, groovy-2.4.0.jar, guava-18.0.jar, hamcrest-core-1.1.jar, hamcrest-core-1.3.jar, hibernate-cglib-repack-2.1_3.jar, jackson-annotations-2.10.0-20190519.085045-3.jar, jackson-annotations-2.2.0.jar, jackson-annotations-2.2.1.jar, jackson-annotations-2.3.0.jar, jackson-annotations-2.4.0-rc3.jar, jackson-annotations-2.4.0.jar, jackson-annotations-2.5.0.jar, jackson-annotations-2.6.0-rc1.jar, jackson-annotations-2.6.0-rc2.jar, jackson-annotations-2.6.0-rc3.jar, jackson-annotations-2.6.0.jar, jackson-annotations-2.7.0-rc2.jar, jackson-annotations-2.7.0.jar, jackson-annotations-2.8.0.jar, jackson-annotations-2.8.0.rc1.jar, jackson-annotations-2.9.0.jar, jackson-annotations-2.9.0.pr3.jar, jackson-annotations-3.0-20190323.173155-41.jar, jackson-annotations-3.0-20190519.085339-43.jar, jackson-core-2.10.0-20190518.180547-60.jar, jackson-core-2.2.0.jar, jackson-core-2.2.1.jar, jackson-core-2.3.0.jar, jackson-core-2.4.0-rc3.jar, jackson-core-2.4.0.jar, jackson-core-2.4.1.1.jar, jackson-core-2.4.2.jar, jackson-core-2.4.3.jar, jackson-core-2.4.5.jar, jackson-core-2.4.6.jar, jackson-core-2.5.0.jar, jackson-core-2.5.1.jar, jackson-core-2.5.3.jar, jackson-core-2.5.4.jar, jackson-core-2.5.5.jar, jackson-core-2.6.0-rc1.jar, jackson-core-2.6.0-rc2.jar, jackson-core-2.6.0-rc3.jar, jackson-core-2.6.0.jar, jackson-core-2.6.1.jar, jackson-core-2.6.2.jar, jackson-core-2.6.3.jar, jackson-core-2.6.4.jar, jackson-core-2.6.5.jar, jackson-core-2.6.6.jar, jackson-core-2.6.7.jar, jackson-core-2.7.0-rc2.jar, jackson-core-2.7.0.jar, jackson-core-2.7.1.jar, jackson-core-2.7.2.jar, jackson-core-2.7.4.jar, jackson-core-2.7.5.jar, jackson-core-2.7.6.jar, jackson-core-2.7.7.jar, jackson-core-2.7.8.jar, jackson-core-2.7.9.jar, jackson-core-2.8.0.jar, jackson-core-2.8.0.rc1.jar, jackson-core-2.8.0.rc2.jar, jackson-core-2.8.10.jar, jackson-core-2.8.3.jar, jackson-core-2.8.4.jar, jackson-core-2.8.5.jar, jackson-core-2.8.6.jar, jackson-core-2.8.7.jar, jackson-core-2.8.8-20170301.000803-1.jar, jackson-core-2.8.8.jar, jackson-core-2.8.9.jar, jackson-core-2.9.0.pr3.jar, jackson-core-2.9.6.jar, jackson-core-2.9.7.jar, jackson-core-2.9.8.jar, jackson-core-2.9.9.jar, jackson-core-3.0.0-20190516.032312-448.jar, javassist-3.19.0-GA.jar, javassist-3.20.0-GA.jar, javassist-3.21.0-GA.jar, javassist-3.22.0-CR2.jar, javassist-3.24.0-GA.jar, jimfs-1.1.jar, jsr-275-0.9.1.jar, jsr-275-0.9.2.jar, junit-4.10.jar, junit-4.11.jar, junit-4.12-hamcrest-1.3.jar, junit-4.12.jar, junit-4.8.2.jar, mockito-all-1.10.19.jar, mockito-core-1.10.19.jar, mockito-core-2.10.0.jar, mockito-core-2.23.0.jar, objenesis-2.1.jar, objenesis-2.6.jar, objenesis-3.0.1.jar, powermock-api-mockito-1.6.2.jar, powermock-api-mockito-1.6.3.jar, powermock-api-mockito-1.6.5.jar, powermock-api-mockito-1.7.3.jar, powermock-api-mockito-1.7.4.jar, powermock-api-mockito-common-1.6.5.jar, powermock-api-mockito-common-1.7.3.jar, powermock-api-mockito-common-1.7.4.jar, powermock-api-mockito2-2.0.0-beta.5.jar, powermock-api-mockito2-2.0.0.jar, powermock-api-support-1.6.2.jar, powermock-api-support-1.6.3.jar, powermock-api-support-1.6.5.jar, powermock-api-support-1.7.3.jar, powermock-api-support-1.7.4.jar, powermock-api-support-2.0.0-beta.5.jar, powermock-api-support-2.0.0.jar, powermock-core-1.6.2.jar, powermock-core-1.6.3.jar, powermock-core-1.6.5.jar, powermock-core-1.7.3.jar, powermock-core-1.7.4.jar, powermock-core-2.0.0-beta.5.jar, powermock-core-2.0.0.jar, powermock-module-junit4-1.6.2.jar, powermock-module-junit4-1.6.3.jar, powermock-module-junit4-1.6.5.jar, powermock-module-junit4-1.7.3.jar, powermock-module-junit4-1.7.4.jar, powermock-module-junit4-2.0.0-beta.5.jar, powermock-module-junit4-2.0.0.jar, powermock-module-junit4-common-1.6.2.jar, powermock-module-junit4-common-1.6.3.jar, powermock-module-junit4-common-1.6.5.jar, powermock-module-junit4-common-1.7.3.jar, powermock-module-junit4-common-1.7.4.jar, powermock-module-junit4-common-2.0.0-beta.5.jar, powermock-module-junit4-common-2.0.0.jar, powermock-reflect-1.6.2.jar, powermock-reflect-1.6.3.jar, powermock-reflect-1.6.5.jar, powermock-reflect-1.7.3.jar, powermock-reflect-1.7.4.jar, powermock-reflect-2.0.0-beta.5.jar, powermock-reflect-2.0.0.jar
+2. ตั้งชื่อคลาสทดสอบเป็น NumberSerializersTest และ import คลาสเป้าหมายให้ถูกต้อง
+3. ครอบคลุมกรณี: ค่าขอบเขต (boundary), ค่า null/ว่าง, อินพุตผิดรูปแบบ,
+และเงื่อนไข if/else, loop ทุกสาขาเท่าที่วิเคราะห์ได้จากซอร์สที่ให้มา
+4. ห้ามเดา behavior ที่ไม่มีอยู่ในซอร์สโค้ด หากไม่แน่ใจให้เขียนคอมเมนต์กำกับ
+5. หลังโค้ดเทส ให้สรุปเป็นตารางสั้น ๆ ว่าแต่ละเมธอดเทสใด ครอบคลุม Branch/Condition ใด
+ซอร์สโค้ดคลาสเป้าหมาย (Defects4J: JacksonDatabind-23b):
+```java
+package com.fasterxml.jackson.databind.ser.std;
+
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.Map;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.core.*;
+import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.annotation.JacksonStdImpl;
+import com.fasterxml.jackson.databind.introspect.AnnotatedMember;
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatVisitorWrapper;
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonIntegerFormatVisitor;
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonNumberFormatVisitor;
+import com.fasterxml.jackson.databind.jsontype.TypeSerializer;
+import com.fasterxml.jackson.databind.ser.ContextualSerializer;
+
+/**
+ * Container class for serializers used for handling standard JDK-provided types.
+ */
+@SuppressWarnings("serial")
+public class NumberSerializers
+{
+    protected NumberSerializers() { }
+
+    public static void addAll(Map<String, JsonSerializer<?>> allDeserializers)
+    {
+        final JsonSerializer<?> intS = new IntegerSerializer();
+        allDeserializers.put(Integer.class.getName(), intS);
+        allDeserializers.put(Integer.TYPE.getName(), intS);
+        allDeserializers.put(Long.class.getName(), LongSerializer.instance);
+        allDeserializers.put(Long.TYPE.getName(), LongSerializer.instance);
+        allDeserializers.put(Byte.class.getName(), IntLikeSerializer.instance);
+        allDeserializers.put(Byte.TYPE.getName(), IntLikeSerializer.instance);
+        allDeserializers.put(Short.class.getName(), ShortSerializer.instance);
+        allDeserializers.put(Short.TYPE.getName(), ShortSerializer.instance);
+
+        // Numbers, limited length floating point
+        allDeserializers.put(Float.class.getName(), FloatSerializer.instance);
+        allDeserializers.put(Float.TYPE.getName(), FloatSerializer.instance);
+        allDeserializers.put(Double.class.getName(), DoubleSerializer.instance);
+        allDeserializers.put(Double.TYPE.getName(), DoubleSerializer.instance);
+    }
+
+    /*
+    /**********************************************************
+    /* Shared base class
+    /**********************************************************
+     */
+
+    protected abstract static class Base<T> extends StdScalarSerializer<T>
+        implements ContextualSerializer
+    {
+
+        protected final JsonParser.NumberType _numberType;
+        protected final String _schemaType;
+        protected final boolean _isInt;
+
+        protected Base(Class<?> cls, JsonParser.NumberType numberType, String schemaType) {
+            super(cls, false);
+            _numberType = numberType;
+            _schemaType = schemaType;
+            _isInt = (numberType == JsonParser.NumberType.INT)
+                    || (numberType == JsonParser.NumberType.LONG)
+                    || (numberType == JsonParser.NumberType.BIG_INTEGER)
+                    ;
+        }
+
+        @Override
+        public JsonNode getSchema(SerializerProvider provider, Type typeHint) {
+            return createSchemaNode(_schemaType, true);
+        }
+
+        @Override
+        public void acceptJsonFormatVisitor(JsonFormatVisitorWrapper visitor, JavaType typeHint) throws JsonMappingException
+        {
+            if (_isInt) {
+                JsonIntegerFormatVisitor v2 = visitor.expectIntegerFormat(typeHint);
+                if (v2 != null) {
+                    v2.numberType(_numberType);
+                }
+            } else {
+                JsonNumberFormatVisitor v2 = visitor.expectNumberFormat(typeHint);
+                if (v2 != null) {
+                    v2.numberType(_numberType);
+                }
+            }
+        }
+
+        @Override
+        public JsonSerializer<?> createContextual(SerializerProvider prov,
+                BeanProperty property) throws JsonMappingException
+        {
+            if (property != null) {
+                AnnotatedMember m = property.getMember();
+                if (m != null) {
+                    JsonFormat.Value format = prov.getAnnotationIntrospector().findFormat(m);
+                    if (format != null) {
+                        switch (format.getShape()) {
+                        case STRING:
+                            return ToStringSerializer.instance;
+                        default:
+                        }
+                    }
+                }
+            }
+            return this;
+        }
+    }
+    
+    /*
+    /**********************************************************
+    /* Concrete serializers, numerics
+    /**********************************************************
+     */
+
+    @JacksonStdImpl
+    public final static class ShortSerializer extends Base<Short>
+    {
+        final static ShortSerializer instance = new ShortSerializer();
+
+        public ShortSerializer() { super(Short.class, JsonParser.NumberType.INT, "number"); }
+
+
+        @Override
+        public void serialize(Short value, JsonGenerator gen, SerializerProvider provider) throws IOException {
+            gen.writeNumber(value.shortValue());
+        }
+    }
+
+    /**
+     * This is the special serializer for regular {@link java.lang.Integer}s
+     * (and primitive ints)
+     *<p>
+     * Since this is one of "native" types, no type information is ever
+     * included on serialization (unlike for most scalar types)
+     *<p>
+     * NOTE: as of 2.6, generic signature changed to Object, to avoid generation
+     * of bridge methods.
+     */
+    @JacksonStdImpl
+    public final static class IntegerSerializer extends Base<Object>
+    {
+        public IntegerSerializer() { super(Integer.class, JsonParser.NumberType.INT ,"integer"); }
+    
+        @Override
+        public void serialize(Object value, JsonGenerator gen, SerializerProvider provider) throws IOException {
+            gen.writeNumber(((Integer) value).intValue());
+        }
+        
+        // IMPORTANT: copied from `NonTypedScalarSerializerBase`
+        @Override
+        public void serializeWithType(Object value, JsonGenerator gen,
+                SerializerProvider provider, TypeSerializer typeSer) throws IOException {
+            // no type info, just regular serialization
+            serialize(value, gen, provider);            
+        }
+
+    }
+
+    /**
+     * Similar to {@link IntegerSerializer}, but will not cast to Integer:
+     * instead, cast is to {@link java.lang.Number}, and conversion is
+     * by calling {@link java.lang.Number#intValue}.
+     */
+    @JacksonStdImpl
+    public final static class IntLikeSerializer extends Base<Number>
+    {
+        final static IntLikeSerializer instance = new IntLikeSerializer();
+
+        public IntLikeSerializer() {
+            super(Number.class, JsonParser.NumberType.INT, "integer");
+        }
+
+
+        @Override
+        public void serialize(Number value, JsonGenerator gen, SerializerProvider provider) throws IOException {
+            gen.writeNumber(value.intValue());
+        }
+    }
+
+    @JacksonStdImpl
+    public final static class LongSerializer extends Base<Object>
+    {
+
+        final static LongSerializer instance = new LongSerializer();
+    
+        public LongSerializer() { super(Long.class, JsonParser.NumberType.LONG, "number"); }
+
+
+        @Override
+        public void serialize(Object value, JsonGenerator gen, SerializerProvider provider) throws IOException {
+            gen.writeNumber(((Long) value).longValue());
+        }
+    }
+
+    @JacksonStdImpl
+    public final static class FloatSerializer extends Base<Object>
+    {
+
+        final static FloatSerializer instance = new FloatSerializer();
+
+        public FloatSerializer() { super(Float.class, JsonParser.NumberType.FLOAT, "number"); }
+
+
+        @Override
+        public void serialize(Object value, JsonGenerator gen, SerializerProvider provider) throws IOException {
+            gen.writeNumber(((Float) value).floatValue());
+        }
+    }
+
+    /**
+     * This is the special serializer for regular {@link java.lang.Double}s
+     * (and primitive doubles)
+     *<p>
+     * Since this is one of "native" types, no type information is ever
+     * included on serialization (unlike for most scalar types as of 1.5)
+     */
+    @JacksonStdImpl
+    public final static class DoubleSerializer extends Base<Object>
+    {
+
+        final static DoubleSerializer instance = new DoubleSerializer();
+    
+        public DoubleSerializer() { super(Double.class, JsonParser.NumberType.DOUBLE, "number"); }
+
+
+        @Override
+        public void serialize(Object value, JsonGenerator gen, SerializerProvider provider) throws IOException {
+            gen.writeNumber(((Double) value).doubleValue());
+        }
+
+        // IMPORTANT: copied from `NonTypedScalarSerializerBase`
+        @Override
+        public void serializeWithType(Object value, JsonGenerator gen,
+                SerializerProvider provider, TypeSerializer typeSer) throws IOException {
+            // no type info, just regular serialization
+            serialize(value, gen, provider);            
+        }
+    }
+}
+
+```

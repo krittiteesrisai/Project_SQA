@@ -1,0 +1,9 @@
+Failing tests: 4
+  - org.apache.commons.codec.binary.Base32Test::testEncode_ChunkingSeparatorInsertedInMainLoop_NoTrailingSeparator
+  - org.apache.commons.codec.binary.Base32Test::testConstructorLineLengthPositive_DefaultSeparator
+  - org.apache.commons.codec.binary.Base32Test::testConstructorLineLengthWithHex_Combined
+  - org.apache.commons.codec.binary.Base32Test::testEncode_NegativeByteValue_UnsignedConversion
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

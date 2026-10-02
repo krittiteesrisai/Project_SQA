@@ -1,0 +1,8 @@
+Failing tests: 3
+  - com.google.javascript.rhino.jstype.PrototypeObjectTypeTest::testToStringHelper_prettyPrint_forAnnotationsTrue_noTruncation
+  - com.google.javascript.rhino.jstype.PrototypeObjectTypeTest::testToStringHelper_prettyPrint_truncatedAtMax_forAnnotationsFalse
+  - com.google.javascript.rhino.jstype.PrototypeObjectTypeTest::testToStringHelper_prettyPrint_withFewProperties
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

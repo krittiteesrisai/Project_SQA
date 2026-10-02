@@ -1,0 +1,9 @@
+Failing tests: 4
+  - com.fasterxml.jackson.databind.deser.BuilderBasedDeserializerTest::testIgnoreUnknownProperty_noException
+  - com.fasterxml.jackson.databind.deser.BuilderBasedDeserializerTest::testPropertyBasedCreator_ignorablePropertyIgnored
+  - com.fasterxml.jackson.databind.deser.BuilderBasedDeserializerTest::testDeserialize_startingAtEndObjectToken
+  - com.fasterxml.jackson.databind.deser.BuilderBasedDeserializerTest::testPropertyBasedCreator_bufferedPropertyBeforeCreatorProp
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

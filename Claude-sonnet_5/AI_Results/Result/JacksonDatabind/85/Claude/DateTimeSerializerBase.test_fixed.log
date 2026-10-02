@@ -1,0 +1,9 @@
+Failing tests: 4
+  - com.fasterxml.jackson.databind.ser.std.DateTimeSerializerBaseTest::testCreateContextual_LocaleOnly_DefaultsForPatternAndTimeZone
+  - com.fasterxml.jackson.databind.ser.std.DateTimeSerializerBaseTest::testAsTimestamp_NullUseTimestamp_NoCustomFormat_ProviderEnabled
+  - com.fasterxml.jackson.databind.ser.std.DateTimeSerializerBaseTest::testCreateContextual_StringShape_UsesDefaultsFromProvider
+  - com.fasterxml.jackson.databind.ser.std.DateTimeSerializerBaseTest::testAsTimestamp_NullUseTimestamp_NoCustomFormat_ProviderDisabled
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

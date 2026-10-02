@@ -1,0 +1,14 @@
+Failing tests: 9
+  - com.fasterxml.jackson.databind.ser.std.EnumSerializerTest::testGetSchema_AsString_TypeHintIsEnum_PopulatesEnumArray
+  - com.fasterxml.jackson.databind.ser.std.EnumSerializerTest::testSerialize_AsIndexFalse_ToStringEnabled_WritesToString
+  - com.fasterxml.jackson.databind.ser.std.EnumSerializerTest::testSerialize_DynamicFlag_ProviderIndexEnabled_WritesNumber
+  - com.fasterxml.jackson.databind.ser.std.EnumSerializerTest::testSerializeAsIndexHelper_Dynamic_DelegatesToProvider
+  - com.fasterxml.jackson.databind.ser.std.EnumSerializerTest::testSerialize_AsIndexFalse_ToStringDisabled_WritesEnumValuesString
+  - com.fasterxml.jackson.databind.ser.std.EnumSerializerTest::testAcceptJsonFormatVisitor_AsString_ToStringDisabled_UsesNames
+  - com.fasterxml.jackson.databind.ser.std.EnumSerializerTest::testSerialize_DynamicFlag_ProviderIndexDisabled_ToStringDisabled_WritesEnumString
+  - com.fasterxml.jackson.databind.ser.std.EnumSerializerTest::testAcceptJsonFormatVisitor_AsString_ToStringEnabled_UsesToString
+  - com.fasterxml.jackson.databind.ser.std.EnumSerializerTest::testGetSchema_AsString_TypeHintNotEnum_NoEnumArray
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

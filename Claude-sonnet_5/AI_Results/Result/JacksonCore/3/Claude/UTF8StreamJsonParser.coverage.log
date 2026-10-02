@@ -1,0 +1,16 @@
+       Lines total: 1538
+     Lines covered: 816
+  Conditions total: 1016
+Conditions covered: 440
+     Line coverage: 53.1%
+Condition coverage: 43.3%
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (coverage.instrument).......................................... OK
+Running ant (run.gen.tests)................................................ OK
+Running ant (coverage.report).............................................. OK
+Use of uninitialized value $lines[17] in pattern match (m//) at /home/piyachayanin/defects4j/framework/core/Utils.pm line 738.
+Use of uninitialized value $lines[17] in pattern match (m//) at /home/piyachayanin/defects4j/framework/core/Utils.pm line 738.
+Use of uninitialized value in pattern match (m//) at /home/piyachayanin/defects4j/framework/core/Utils.pm line 741.
+WARNING: Some tests failed (see /home/piyachayanin/SQA_2/AI_Testing/work/JacksonCore_3b/failing_tests)!

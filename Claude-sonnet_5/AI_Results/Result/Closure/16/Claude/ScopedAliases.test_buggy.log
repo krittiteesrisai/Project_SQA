@@ -1,0 +1,10 @@
+Failing tests: 5
+  - com.google.javascript.jscomp.ScopedAliasesTest::testNamespaceShadow_DoesNotCrash
+  - com.google.javascript.jscomp.ScopedAliasesTest::testAlias_SingleSegmentQualifiedName_RootIndexNegativeOne
+  - com.google.javascript.jscomp.ScopedAliasesTest::testHotSwapScript_CalledDirectly
+  - com.google.javascript.jscomp.ScopedAliasesTest::testProcess_NoScopeCalls_NoChange
+  - com.google.javascript.jscomp.ScopedAliasesTest::testValidAlias_TransitiveSubstitution
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

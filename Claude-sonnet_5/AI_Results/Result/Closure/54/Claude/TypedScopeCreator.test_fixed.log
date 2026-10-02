@@ -1,0 +1,10 @@
+Failing tests: 5
+  - com.google.javascript.jscomp.TypedScopeCreatorTest::testExtraParameterWithoutMatchingJSDoc_Inferred
+  - com.google.javascript.jscomp.TypedScopeCreatorTest::testObjectLiteralProperties_DeclaredOnType
+  - com.google.javascript.jscomp.TypedScopeCreatorTest::testPrototypeReassignment_NoExplicitSuper_UndeclaredAndNotRedeclared
+  - com.google.javascript.jscomp.TypedScopeCreatorTest::testEnumDuplicateKey_Warns
+  - com.google.javascript.jscomp.TypedScopeCreatorTest::testPrototypeReassignment_ExplicitSuper_Ignored
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

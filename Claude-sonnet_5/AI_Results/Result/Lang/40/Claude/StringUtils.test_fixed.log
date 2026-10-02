@@ -1,0 +1,10 @@
+Failing tests: 5
+  - org.apache.commons.lang.StringUtilsTest::testIndexOfAnyButChars
+  - org.apache.commons.lang.StringUtilsTest::testLastIndexOfString
+  - org.apache.commons.lang.StringUtilsTest::testStartsWithAny
+  - org.apache.commons.lang.StringUtilsTest::testSubstringBeforeLast
+  - org.apache.commons.lang.StringUtilsTest::testRepeatStringSeparatorInt
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

@@ -1,0 +1,9 @@
+Failing tests: 4
+  - com.google.debugging.sourcemap.SourceMapConsumerV3Test::testGetMappingForLine_columnBeforeFirstEntry_returnsPreviousMapping
+  - com.google.debugging.sourcemap.SourceMapConsumerV3Test::testGetMappingForLine_binarySearchBranches
+  - com.google.debugging.sourcemap.SourceMapConsumerV3Test::testGetMappingForLine_nullLine_returnsPreviousMapping
+  - com.google.debugging.sourcemap.SourceMapConsumerV3Test::testParseValidSimpleMap_exactMatch
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

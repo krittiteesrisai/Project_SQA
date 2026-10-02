@@ -1,0 +1,10 @@
+Failing tests: 5
+  - org.jsoup.parser.TreeBuilderStateTest::inBody_inputHidden_doesNotDisableFrameset
+  - org.jsoup.parser.TreeBuilderStateTest::inBody_isindex_ignoredWhenFormExists
+  - org.jsoup.parser.TreeBuilderStateTest::defect_inBody_optionNotAutoClosed_dueToStringUtilInBug
+  - org.jsoup.parser.TreeBuilderStateTest::inHeadNoscript_elseBranch_anythingElse
+  - org.jsoup.parser.TreeBuilderStateTest::inHead_otherStartTag_anythingElse
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

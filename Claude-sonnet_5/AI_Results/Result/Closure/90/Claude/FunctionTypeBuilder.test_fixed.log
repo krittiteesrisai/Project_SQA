@@ -1,0 +1,9 @@
+Failing tests: 4
+  - com.google.javascript.jscomp.FunctionTypeBuilderTest::testIsFunctionTypeDeclaration_allFalse_false
+  - com.google.javascript.jscomp.FunctionTypeBuilderTest::testInferParameterTypes_inexistentParam_reportsWarning
+  - com.google.javascript.jscomp.FunctionTypeBuilderTest::testInferInheritance_baseTypeWithoutConstructorOrInterface_reportsWarning
+  - com.google.javascript.jscomp.FunctionTypeBuilderTest::testInferInheritance_implementsWithoutConstructor_reportsWarning
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

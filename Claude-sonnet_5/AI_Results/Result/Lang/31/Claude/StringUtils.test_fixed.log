@@ -1,0 +1,9 @@
+Failing tests: 4
+  - org.apache.commons.lang3.StringUtilsTest::testIndexOfIgnoreCaseStartPos
+  - org.apache.commons.lang3.StringUtilsTest::testStartsWithAny
+  - org.apache.commons.lang3.StringUtilsTest::testDifference
+  - org.apache.commons.lang3.StringUtilsTest::testStripWithChars
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

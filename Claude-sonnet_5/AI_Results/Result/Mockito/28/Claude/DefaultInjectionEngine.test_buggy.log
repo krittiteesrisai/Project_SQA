@@ -1,0 +1,10 @@
+Failing tests: 5
+  - org.mockito.internal.configuration.DefaultInjectionEngineTest::injectMocksOnFields_mockConsumedOnce_notInjectedTwiceAcrossHierarchy
+  - org.mockito.internal.configuration.DefaultInjectionEngineTest::injectMocksOnFields_cannotInstantiateInterfaceField_exposesKnownNPEBug
+  - org.mockito.internal.configuration.DefaultInjectionEngineTest::injectMocksOnFields_supertypesLastOrdering_subtypeFieldGetsPriority
+  - org.mockito.internal.configuration.DefaultInjectionEngineTest::injectMocksOnFields_classHierarchy_injectsSubclassAndSuperclassFields
+  - org.mockito.internal.configuration.DefaultInjectionEngineTest::injectMocksOnFields_ambiguousCandidatesSameType_doesNotFail
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

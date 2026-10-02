@@ -1,0 +1,8 @@
+Failing tests: 3
+  - org.apache.commons.math.stat.descriptive.moment.VarianceTest::testEvaluateWeightsBeginLengthWrapperAlsoAffectedByFault
+  - org.apache.commons.math.stat.descriptive.moment.VarianceTest::testEvaluateWeightsMeanSubarrayDetectsSumWeightsFault
+  - org.apache.commons.math.stat.descriptive.moment.VarianceTest::testEvaluateWeightsZeroLengthReturnsNaN
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

@@ -1,0 +1,164 @@
+package org.mockito.internal.stubbing.answers;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import org.mockito.exceptions.base.MockitoException;
+import org.mockito.internal.invocation.Invocation;
+import org.mockito.internal.invocation.DelegatingMethod;
+import org.mockito.internal.invocation.realmethod.RealMethod;
+import org.mockito.stubbing.Answer;
+
+import java.io.IOException;
+import java.lang.reflect.Method;
+
+/**
+ * Unit test สำหรับ AnswersValidator
+ *
+ * ดูหมายเหตุเกี่ยวกับการสร้าง Invocation ด้านบน (ก่อน code block) — ใช้ reflect Method
+ * จาก SampleInterface แทนการ mock เพื่อให้ isVoid()/returnsPrimitive()/isValidReturnType()/
+ * isValidException() คำนวณจากลักษณะ method จริง ไม่ต้องเดา behavior ของ Invocation เอง
+ */
+public class AnswersValidatorTest {
+
+    private AnswersValidator validator;
+
+    // interface ตัวอย่างใช้สร้าง Method ที่มี return type / throws clause ต่างกัน
+    interface SampleInterface {
+        void voidMethod();
+        int intMethod();
+        String stringMethod();
+        void methodDeclaringIOException() throws IOException;
+        void methodDeclaringNoCheckedException();
+    }
+
+    @Before
+    public void setUp() {
+        validator = new AnswersValidator();
+    }
+
+    /**
+     * สร้าง Invocation จริงจาก reflect Method ของ SampleInterface
+     * (ดูหมายเหตุเรื่อง constructor signature ที่สมมติไว้ด้านบน)
+     */
+    private Invocation invocationFor(String methodName, Class<?>... paramTypes) throws NoSuchMethodException {
+        Method method = SampleInterface.class.getMethod(methodName, paramTypes);
+        RealMethod realMethod = new RealMethod() {
+            public Object invoke(Object target, Object[] arguments) throws Throwable {
+                throw new UnsupportedOperationException("ไม่ถูกเรียกใช้ในชุดทดสอบนี้");
+            }
+        };
+        // สมมติ parameter order: mock, mockitoMethod, args, sequenceNumber, realMethod
+        return new Invocation(new Object(), new DelegatingMethod(method), new Object[0], 1, realMethod);
+    }
+
+    // ---------------- ThrowsException branches ----------------
+
+    @Test(expected = MockitoException.class)
+    public void shouldFailWhenThrowableIsNull() throws Exception {
+        Invocation invocation = invocationFor("voidMethod");
+        validator.validate(new ThrowsException(null), invocation); // throwable == null
+    }
+
+    @Test
+    public void shouldPassWhenThrowableIsRuntimeException() throws Exception {
+        Invocation invocation = invocationFor("voidMethod");
+        // branch: throwable instanceof RuntimeException -> early return, ไม่ตรวจสอบต่อ
+        validator.validate(new ThrowsException(new RuntimeException()), invocation);
+    }
+
+    @Test
+    public void shouldPassWhenThrowableIsError() throws Exception {
+        Invocation invocation = invocationFor("voidMethod");
+        // branch: throwable instanceof Error -> early return
+        validator.validate(new ThrowsException(new Error()), invocation);
+    }
+
+    @Test
+    public void shouldPassWhenCheckedExceptionIsDeclaredByMethod() throws Exception {
+        Invocation invocation = invocationFor("methodDeclaringIOException");
+        // branch: !invocation.isValidException(throwable) == false -> ไม่ throw
+        validator.validate(new ThrowsException(new IOException()), invocation);
+    }
+
+    @Test(expected = MockitoException.class)
+    public void shouldFailWhenCheckedExceptionIsNotDeclaredByMethod() throws Exception {
+        Invocation invocation = invocationFor("methodDeclaringNoCheckedException");
+        // branch: !invocation.isValidException(throwable) == true -> throw
+        validator.validate(new ThrowsException(new IOException()), invocation);
+    }
+
+    // ---------------- Returns branches ----------------
+
+    @Test(expected = MockitoException.class)
+    public void shouldFailWhenStubbingVoidMethodWithReturnValue() throws Exception {
+        Invocation invocation = invocationFor("voidMethod");
+        // branch: invocation.isVoid() == true
+        validator.validate(new Returns("value"), invocation);
+    }
+
+    @Test(expected = MockitoException.class)
+    public void shouldFailWhenReturningNullForPrimitiveReturnType() throws Exception {
+        Invocation invocation = invocationFor("intMethod");
+        // branch: answer.returnsNull() && invocation.returnsPrimitive() == true
+        validator.validate(new Returns(null), invocation);
+    }
+
+    @Test
+    public void shouldPassWhenReturningNullForObjectReturnType() throws Exception {
+        Invocation invocation = invocationFor("stringMethod");
+        // returnsNull()==true -> ข้าม branch ที่ 2 (ไม่ primitive) และ branch ที่ 3 (เพราะ !returnsNull()==false)
+        validator.validate(new Returns(null), invocation);
+    }
+
+    @Test(expected = MockitoException.class)
+    public void shouldFailWhenReturnTypeIsInvalid() throws Exception {
+        Invocation invocation = invocationFor("stringMethod");
+        // Integer ไม่ assignable กับ String -> isValidReturnType() ควรเป็น false
+        validator.validate(new Returns(123), invocation);
+    }
+
+    @Test
+    public void shouldPassWhenReturnTypeIsValid() throws Exception {
+        Invocation invocation = invocationFor("stringMethod");
+        // returnsNull()==false, isValidReturnType(String.class)==true -> ไม่ throw
+        validator.validate(new Returns("hello"), invocation);
+    }
+
+    // ---------------- DoesNothing branches ----------------
+
+    @Test(expected = MockitoException.class)
+    public void shouldFailWhenDoesNothingUsedOnNonVoidMethod() throws Exception {
+        Invocation invocation = invocationFor("stringMethod");
+        // branch: !invocation.isVoid() == true
+        validator.validate(DoesNothing.doesNothing(), invocation);
+    }
+
+    @Test
+    public void shouldPassWhenDoesNothingUsedOnVoidMethod() throws Exception {
+        Invocation invocation = invocationFor("voidMethod");
+        // branch: !invocation.isVoid() == false -> ไม่ throw
+        validator.validate(DoesNothing.doesNothing(), invocation);
+    }
+
+    // ---------------- dispatch / edge cases ----------------
+
+    @Test
+    public void shouldDoNothingWhenAnswerIsNotRecognizedType() throws Exception {
+        Invocation invocation = invocationFor("voidMethod");
+        Answer<Object> customAnswer = new Answer<Object>() {
+            public Object answer(org.mockito.invocation.InvocationOnMock inv) throws Throwable {
+                return null;
+            }
+        };
+        // ไม่ตรงกับ ThrowsException/Returns/DoesNothing เลย -> ทุก if เป็น false, ไม่ throw
+        validator.validate(customAnswer, invocation);
+    }
+
+    @Test
+    public void shouldDoNothingWhenAnswerIsNull() throws Exception {
+        Invocation invocation = invocationFor("voidMethod");
+        // answer == null -> instanceof ทั้งหมดเป็น false -> ไม่ NPE, ไม่ throw
+        validator.validate(null, invocation);
+    }
+}

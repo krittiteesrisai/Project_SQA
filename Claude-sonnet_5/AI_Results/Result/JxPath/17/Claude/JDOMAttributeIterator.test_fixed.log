@@ -1,0 +1,12 @@
+Failing tests: 7
+  - org.apache.commons.jxpath.ri.model.jdom.JDOMAttributeIteratorTest::testConstructor_PrefixNull_SpecificName_Found
+  - org.apache.commons.jxpath.ri.model.jdom.JDOMAttributeIteratorTest::testConstructor_PrefixNull_Wildcard_FiltersNamespace
+  - org.apache.commons.jxpath.ri.model.jdom.JDOMAttributeIteratorTest::testConstructor_PrefixXml_SpecificName_NotFound
+  - org.apache.commons.jxpath.ri.model.jdom.JDOMAttributeIteratorTest::testConstructor_PrefixNull_SpecificName_NotFound
+  - org.apache.commons.jxpath.ri.model.jdom.JDOMAttributeIteratorTest::testConstructor_PrefixXml_SpecificName_Found
+  - org.apache.commons.jxpath.ri.model.jdom.JDOMAttributeIteratorTest::testConstructor_PrefixNull_Wildcard_NoAttributes
+  - org.apache.commons.jxpath.ri.model.jdom.JDOMAttributeIteratorTest::testConstructor_UnknownPrefix_ResolverReturnsNull_EmptyAttributes
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

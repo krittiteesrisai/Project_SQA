@@ -1,0 +1,42 @@
+Failing tests: 37
+  - com.google.javascript.jscomp.TypeValidatorTest::testSetShouldReport_toggleDoesNotThrow
+  - com.google.javascript.jscomp.TypeValidatorTest::testGetReadableJSTypeName_nonNameNode_returnsTypeToString
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectNumber_number_matchesNumberContext_noMismatch
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectCanCast_assignableEitherDirection_noMismatch
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectValidTypeofName_noException
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectString_number_matchesStringContext_noMismatch
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectNotNullOrUndefined_unknownType_returnsTrue
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectIndexMatch_unknownObjectType_routesToStringOrNumber_noException
+  - com.google.javascript.jscomp.TypeValidatorTest::testGetMismatches_initiallyEmpty
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectCanAssignTo_notAssignable_mismatchRegistered
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectSwitchMatchesCase_differentType_mismatchRegistered
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectIndexMatch_arrayType_routesToExpectNumber_noMismatch
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectSwitchMatchesCase_sameType_noMismatch
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectActualObject_objectType_noMismatch
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectIndexMatch_objectType_routesToExpectString_noMismatch
+  - com.google.javascript.jscomp.TypeValidatorTest::testGetReadableJSTypeName_nameNode_returnsQualifiedName
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectCanCast_notAssignableEitherDirection_mismatchRegistered
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectAnyObject_numberType_noExceptionOutcomeUncertain
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectCanAssignToPropertyOf_notAssignable_mismatchRegistered
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectObject_stringMatchesObjectContext_returnsTrue
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectCanAssignTo_assignable_returnsTrue
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectActualObject_numberType_mismatchRegistered
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectObject_nullType_returnsFalse_mismatchFilteredByNullRestriction
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectAnyObject_objectType_noMismatch
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectBitwiseable_object_mismatchRegistered
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectNotNullOrUndefined_numberType_returnsTrue
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectNumber_object_mismatchRegistered
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectIndexMatch_nullType_finalElseBranch_mismatchAlwaysFiltered
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectCanAssignToPropertyOf_assignable_returnsTrue
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectArgumentMatchesParameter_assignable_noMismatch
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectBitwiseable_number_noMismatch
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectCanAssignToPropertyOf_leftIsNoType_skipsCheck
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectStringOrNumber_number_noMismatch
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectNotNullOrUndefined_noType_returnsTrue
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectArgumentMatchesParameter_notAssignable_mismatchRegistered
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectIndexMatch_arrayType_routesToExpectNumber_mismatchRegistered
+  - com.google.javascript.jscomp.TypeValidatorTest::testExpectNotNullOrUndefined_nullType_returnsFalse_mismatchAlwaysFiltered
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

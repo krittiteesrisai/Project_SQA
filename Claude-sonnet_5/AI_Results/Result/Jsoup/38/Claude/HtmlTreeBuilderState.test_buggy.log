@@ -1,0 +1,10 @@
+Failing tests: 5
+  - org.jsoup.parser.HtmlTreeBuilderStateTest::testAfterAfterFramesetNoframesProcessed
+  - org.jsoup.parser.HtmlTreeBuilderStateTest::testAfterBodyTrailingCommentAttachesUnderHtml
+  - org.jsoup.parser.HtmlTreeBuilderStateTest::testInBodyXmpTreatsContentAsRawData
+  - org.jsoup.parser.HtmlTreeBuilderStateTest::testInHeadNoscriptPreservesParsedChildren
+  - org.jsoup.parser.HtmlTreeBuilderStateTest::testTableTextFosterParenting
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

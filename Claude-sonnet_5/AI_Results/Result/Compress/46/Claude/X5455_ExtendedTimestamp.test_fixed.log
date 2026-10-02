@@ -1,0 +1,8 @@
+Failing tests: 3
+  - org.apache.commons.compress.archivers.zip.X5455_ExtendedTimestampTest::testSetModifyJavaTime_boundaryJustBelowLimit_noException
+  - org.apache.commons.compress.archivers.zip.X5455_ExtendedTimestampTest::testGetCentralDirectoryData_truncatesAccessCreate
+  - org.apache.commons.compress.archivers.zip.X5455_ExtendedTimestampTest::testParseFromCentralDirectoryData_delegatesAndResets
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

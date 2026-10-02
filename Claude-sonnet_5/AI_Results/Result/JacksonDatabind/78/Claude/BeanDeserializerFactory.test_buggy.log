@@ -1,0 +1,7 @@
+Failing tests: 2
+  - com.fasterxml.jackson.databind.deser.BeanDeserializerFactoryTest::testDeserialize_useGettersAsSetters_nonCollectionType_notSettable_throws
+  - com.fasterxml.jackson.databind.deser.BeanDeserializerFactoryTest::testDeserialize_useGettersAsSetters_disabled_unknownPropertyThrows
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

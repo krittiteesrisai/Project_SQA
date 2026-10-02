@@ -1,0 +1,11 @@
+Failing tests: 6
+  - org.apache.commons.collections.map.Flat3MapTest::testRemoveNullKeySize3FallthroughAtKey1
+  - org.apache.commons.collections.map.Flat3MapTest::testRemoveNullKeySize3FallthroughAtKey2
+  - org.apache.commons.collections.map.Flat3MapTest::testRemoveNonNullKeySize3FallthroughAtKey1
+  - org.apache.commons.collections.map.Flat3MapTest::testRemoveNonNullKeySize3FallthroughAtKey2
+  - org.apache.commons.collections.map.Flat3MapTest::testRemoveNullKeySize2FallthroughAtKey1
+  - org.apache.commons.collections.map.Flat3MapTest::testRemoveNonNullKeySize2FallthroughAtKey1
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

@@ -1,0 +1,8 @@
+Failing tests: 3
+  - com.fasterxml.jackson.core.filter.FilteringParserDelegateTest::testFieldNameFilterExcludesNonMatchingWithoutIncludePath
+  - com.fasterxml.jackson.core.filter.FilteringParserDelegateTest::testScalarSingleMatchAlternatingBehavior
+  - com.fasterxml.jackson.core.filter.FilteringParserDelegateTest::testDefaultFilterExcludesScalarRoot
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

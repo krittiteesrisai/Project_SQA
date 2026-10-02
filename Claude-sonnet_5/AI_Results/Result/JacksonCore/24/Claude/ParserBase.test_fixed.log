@@ -1,0 +1,24 @@
+Failing tests: 19
+  - com.fasterxml.jackson.core.base.ParserBaseTest::testParseNumericValue_int_len10_positiveFitsBoundary
+  - com.fasterxml.jackson.core.base.ParserBaseTest::testParseNumericValue_int_lenGT18_outOfLongRange_expInt_throws
+  - com.fasterxml.jackson.core.base.ParserBaseTest::testParseNumericValue_int_lenLE9
+  - com.fasterxml.jackson.core.base.ParserBaseTest::testGetIntValue_unknown_usesFastPathTextBuffer
+  - com.fasterxml.jackson.core.base.ParserBaseTest::testParseNumericValue_int_len10_negativeNotFit
+  - com.fasterxml.jackson.core.base.ParserBaseTest::testParseNumericValue_int_lenGT18_outOfLongRange_expLong_throws
+  - com.fasterxml.jackson.core.base.ParserBaseTest::testParseNumericValue_int_len10_positiveNotFit
+  - com.fasterxml.jackson.core.base.ParserBaseTest::testParseIntValue_fallbackGenericPath
+  - com.fasterxml.jackson.core.base.ParserBaseTest::testParseNumericValue_int_len10_negativeFitsBoundary
+  - com.fasterxml.jackson.core.base.ParserBaseTest::testParseNumericValue_int_len11to18
+  - com.fasterxml.jackson.core.base.ParserBaseTest::testConvertNumberToLong_fromBigInteger_overflow
+  - com.fasterxml.jackson.core.base.ParserBaseTest::testGetBigIntegerValue_unknown_viaLongPath
+  - com.fasterxml.jackson.core.base.ParserBaseTest::testConvertNumberToInt_fromDouble_overflow
+  - com.fasterxml.jackson.core.base.ParserBaseTest::testConvertNumberToLong_fromDouble_overflow
+  - com.fasterxml.jackson.core.base.ParserBaseTest::testParseIntValue_optimizedPath
+  - com.fasterxml.jackson.core.base.ParserBaseTest::testConvertNumberToInt_fromBigInteger_overflow
+  - com.fasterxml.jackson.core.base.ParserBaseTest::testGetLongValue_unknown_viaIntOptimization
+  - com.fasterxml.jackson.core.base.ParserBaseTest::testConvertNumberToInt_fromLong_overflow
+  - com.fasterxml.jackson.core.base.ParserBaseTest::testConvertNumberToInt_fromBigDecimal_overflow
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

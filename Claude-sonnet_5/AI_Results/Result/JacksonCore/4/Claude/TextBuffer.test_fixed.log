@@ -1,0 +1,9 @@
+Failing tests: 4
+  - com.fasterxml.jackson.core.util.TextBufferTest::testAppendString_DirectOnFreshBuffer_FaultCheck
+  - com.fasterxml.jackson.core.util.TextBufferTest::testAppendCharArray_DirectOnFreshBuffer_FaultCheck
+  - com.fasterxml.jackson.core.util.TextBufferTest::testExpandCurrentSegment_AtMax
+  - com.fasterxml.jackson.core.util.TextBufferTest::testAppendChar_DirectOnFreshBuffer_FaultCheck
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

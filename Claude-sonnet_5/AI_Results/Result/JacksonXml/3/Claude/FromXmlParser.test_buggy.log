@@ -1,0 +1,7 @@
+Failing tests: 2
+  - com.fasterxml.jackson.dataformat.xml.deser.FromXmlParserTest::testEmptyElementProducesValueNull
+  - com.fasterxml.jackson.dataformat.xml.deser.FromXmlParserTest::testSelfClosingElementSameAsEmpty
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

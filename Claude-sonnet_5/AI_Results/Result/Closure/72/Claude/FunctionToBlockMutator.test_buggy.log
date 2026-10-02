@@ -1,0 +1,8 @@
+Failing tests: 3
+  - com.google.javascript.jscomp.FunctionToBlockMutatorTest::testMutate_callInLoop_fixesUninitializedVar
+  - com.google.javascript.jscomp.FunctionToBlockMutatorTest::testMutate_notCallInLoop_leavesUninitializedVar
+  - com.google.javascript.jscomp.FunctionToBlockMutatorTest::testMutate_callInLoop_loopStructureNotDescendedInto
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

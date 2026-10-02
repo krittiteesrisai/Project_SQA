@@ -1,0 +1,9 @@
+Failing tests: 4
+  - org.jsoup.nodes.ElementTest::testAppendChildOrder
+  - org.jsoup.nodes.ElementTest::testPrependChildOrder
+  - org.jsoup.nodes.ElementTest::testLastElementSiblingSingleChild_PerJavadocContract
+  - org.jsoup.nodes.ElementTest::testFirstElementSiblingSingleChild_PerJavadocContract
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

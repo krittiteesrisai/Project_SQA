@@ -1,0 +1,9 @@
+Failing tests: 4
+  - org.jsoup.nodes.ElementTest::getElementsContainingText_found
+  - org.jsoup.nodes.ElementTest::getElementsMatchingText_patternAndString
+  - org.jsoup.nodes.ElementTest::prependText_addsAtStart
+  - org.jsoup.nodes.ElementTest::getElementsByAttributeValueNot_found
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

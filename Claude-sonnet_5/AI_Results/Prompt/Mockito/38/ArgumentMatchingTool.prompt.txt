@@ -1,0 +1,64 @@
+คุณคือ Java testing engineer ที่เชี่ยวชาญด้าน unit testing และ JUnit 4
+เป้าหมาย: เขียนชุดทดสอบ JUnit 4 สำหรับคลาสด้านล่าง เพื่อให้ได้ branch coverage สูงที่สุดเท่าที่เป็นไปได้
+และมีโอกาสดักจับข้อบกพร่อง (fault) ในโค้ดได้จริง
+ข้อกำหนด:
+1. ใช้เฉพาะ JUnit 4 และไลบรารีที่อยู่ใน classpath ต่อไปนี้: asm-all-5.0.4.jar, assertj-core-2.1.0.jar, cglib-and-asm-1.0.jar, cobertura-2.0.3.jar, fest-assert-1.3.jar, fest-util-1.1.4.jar, hamcrest-all-1.3.jar, hamcrest-core-1.1.jar, junit-4.12-hamcrest-1.3.jar, objenesis-2.1.jar, objenesis-2.2.jar, powermock-reflect-1.2.5.jar
+2. ตั้งชื่อคลาสทดสอบเป็น ArgumentMatchingToolTest และ import คลาสเป้าหมายให้ถูกต้อง
+3. ครอบคลุมกรณี: ค่าขอบเขต (boundary), ค่า null/ว่าง, อินพุตผิดรูปแบบ,
+และเงื่อนไข if/else, loop ทุกสาขาเท่าที่วิเคราะห์ได้จากซอร์สที่ให้มา
+4. ห้ามเดา behavior ที่ไม่มีอยู่ในซอร์สโค้ด หากไม่แน่ใจให้เขียนคอมเมนต์กำกับ
+5. หลังโค้ดเทส ให้สรุปเป็นตารางสั้น ๆ ว่าแต่ละเมธอดเทสใด ครอบคลุม Branch/Condition ใด
+ซอร์สโค้ดคลาสเป้าหมาย (Defects4J: Mockito-38b):
+```java
+/*
+ * Copyright (c) 2007 Mockito contributors
+ * This program is made available under the terms of the MIT License.
+ */
+package org.mockito.internal.verification.argumentmatching;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import org.hamcrest.Matcher;
+import org.hamcrest.StringDescription;
+import org.mockito.internal.matchers.ContainsExtraTypeInformation;
+
+@SuppressWarnings("unchecked")
+public class ArgumentMatchingTool {
+
+    /**
+     * Suspiciously not matching arguments are those that don't much, the toString() representation is the same but types are different.
+     */
+    public Integer[] getSuspiciouslyNotMatchingArgsIndexes(List<Matcher> matchers, Object[] arguments) {
+        if (matchers.size() != arguments.length) {
+            return new Integer[0];
+        }
+        
+        List<Integer> suspicious = new LinkedList<Integer>();
+        int i = 0;
+        for (Matcher m : matchers) {
+            if (m instanceof ContainsExtraTypeInformation 
+                    && !safelyMatches(m, arguments[i]) 
+                    && toStringEquals(m, arguments[i])
+                    && !((ContainsExtraTypeInformation) m).typeMatches(arguments[i])) {
+                suspicious.add(i);
+            }
+            i++;
+        }
+        return suspicious.toArray(new Integer[0]);
+    }
+
+    private boolean safelyMatches(Matcher m, Object arg) {
+        try {
+            return m.matches(arg);
+        } catch (Throwable t) {
+            return false;
+        }
+    }
+
+    private boolean toStringEquals(Matcher m, Object arg) {
+        return StringDescription.toString(m).equals(arg.toString());
+    }
+}
+
+```

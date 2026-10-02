@@ -1,0 +1,23 @@
+time,model,project,bug,stage,error
+2026-09-30T01:37:14,Claude,Closure,169,setup,[Errno 2] No such file or directory: 'work/Closure_169b/src/com/google/javascript/rhino/jstype/EquivalenceMethod.java'
+2026-09-30T06:08:17,Claude,Codec,3,empty_response,"AI ตอบกลับว่าง (DoubleMetaphone, finish_reason=length, completion_tokens=65536, มีส่วน reasoning=True) ดู DoubleMetaphone.raw.json"
+2026-09-30T06:17:01,Claude,Codec,13,setup,[Errno 2] No such file or directory: 'work/Codec_13b/src/main/java/org/apache/commons/codec/binary/CharSequenceUtils.java'
+2026-09-30T06:17:05,Claude,Codec,14,setup,[Errno 2] No such file or directory: 'work/Codec_14b/src/main/java/src/main/resources/org/apache/commons/codec/language/bm/ash_lang/txt.java'
+2026-09-30T09:23:52,Claude,JacksonCore,3,empty_response,"AI ตอบกลับว่าง (UTF8StreamJsonParser, finish_reason=content_filter, completion_tokens=558, มีส่วน reasoning=True) ดู UTF8StreamJsonParser.raw.json"
+2026-10-01T05:25:25,Claude,JacksonDatabind,64,empty_response,"AI ตอบกลับว่าง (PropertyBuilder, finish_reason=None, completion_tokens=None, มีส่วน reasoning=True) ดู PropertyBuilder.raw.json"
+2026-10-01T06:13:46,Claude,JacksonDatabind,79,empty_response,"AI ตอบกลับว่าง (BeanSerializerBase, finish_reason=length, completion_tokens=65536, มีส่วน reasoning=True) ดู BeanSerializerBase.raw.json"
+2026-10-01T06:40:15,Claude,JacksonDatabind,102,empty_response,"AI ตอบกลับว่าง (DateTimeSerializerBase, finish_reason=None, completion_tokens=None, มีส่วน reasoning=True) ดู DateTimeSerializerBase.raw.json"
+2026-10-01T06:40:15,Claude,JacksonDatabind,101,empty_response,"AI ตอบกลับว่าง (BeanDeserializer, finish_reason=None, completion_tokens=None, มีส่วน reasoning=True) ดู BeanDeserializer.raw.json"
+2026-10-01T06:40:15,Claude,JacksonDatabind,100,empty_response,"AI ตอบกลับว่าง (TreeTraversingParser, finish_reason=None, completion_tokens=None, มีส่วน reasoning=True) ดู TreeTraversingParser.raw.json"
+2026-10-01T08:24:00,Claude,Jsoup,14,empty_response,"AI ตอบกลับว่าง (TokeniserState, finish_reason=length, completion_tokens=65536, มีส่วน reasoning=True) ดู TokeniserState.raw.json"
+2026-10-01T10:12:25,Claude,Jsoup,71,setup,[Errno 2] No such file or directory: 'work/Jsoup_71b/src/main/java/org/jsoup/nodes/PseudoTextElement.java'
+2026-10-02T15:20:56,Claude,Codec,13,setup,[Errno 2] No such file or directory: 'work/Codec_13b/src/main/java/org/apache/commons/codec/binary/CharSequenceUtils.java'
+2026-10-02T15:21:02,Claude,Codec,14,setup,[Errno 2] No such file or directory: 'work/Codec_14b/src/main/java/src/main/resources/org/apache/commons/codec/language/bm/ash_lang/txt.java'
+2026-10-02T15:21:09,Claude,Closure,169,setup,[Errno 2] No such file or directory: 'work/Closure_169b/src/com/google/javascript/rhino/jstype/EquivalenceMethod.java'
+2026-10-02T15:21:10,Claude,Jsoup,71,setup,[Errno 2] No such file or directory: 'work/Jsoup_71b/src/main/java/org/jsoup/nodes/PseudoTextElement.java'
+2026-10-02T15:30:35,Claude,Codec,3,empty_response,"AI ตอบกลับว่าง (DoubleMetaphone, finish_reason=length, completion_tokens=65536, มีส่วน reasoning=True) ดู DoubleMetaphone.raw.json"
+2026-10-02T15:55:20,Claude,Codec,13,setup,[Errno 2] No such file or directory: 'work/Codec_13b/src/main/java/org/apache/commons/codec/binary/CharSequenceUtils.java'
+2026-10-02T15:55:26,Claude,Codec,14,setup,[Errno 2] No such file or directory: 'work/Codec_14b/src/main/java/src/main/resources/org/apache/commons/codec/language/bm/ash_lang/txt.java'
+2026-10-02T15:55:33,Claude,Closure,169,setup,[Errno 2] No such file or directory: 'work/Closure_169b/src/com/google/javascript/rhino/jstype/EquivalenceMethod.java'
+2026-10-02T15:55:34,Claude,Jsoup,71,setup,[Errno 2] No such file or directory: 'work/Jsoup_71b/src/main/java/org/jsoup/nodes/PseudoTextElement.java'
+2026-10-02T16:04:44,Claude,Codec,3,empty_response,"AI ตอบกลับว่าง (DoubleMetaphone, finish_reason=length, completion_tokens=65536, มีส่วน reasoning=True) ดู DoubleMetaphone.raw.json"

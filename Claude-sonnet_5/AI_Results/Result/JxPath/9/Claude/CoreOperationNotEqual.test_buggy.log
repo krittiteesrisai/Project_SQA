@@ -1,0 +1,8 @@
+Failing tests: 3
+  - org.apache.commons.jxpath.ri.compiler.CoreOperationNotEqualTest::testComputeValue_EmptyNodeSetVsLiteral_ReturnsFalse
+  - org.apache.commons.jxpath.ri.compiler.CoreOperationNotEqualTest::testComputeValue_NodeSetVsLiteral_SomeDiffer_ReturnsTrue
+  - org.apache.commons.jxpath.ri.compiler.CoreOperationNotEqualTest::testComputeValue_NumberVsEmptyString_ReturnsTrue
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

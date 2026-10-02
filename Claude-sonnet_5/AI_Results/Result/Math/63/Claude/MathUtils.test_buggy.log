@@ -1,0 +1,7 @@
+Failing tests: 2
+  - org.apache.commons.math.util.MathUtilsTest::testRoundDouble_default
+  - org.apache.commons.math.util.MathUtilsTest::testRoundFloat_default
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

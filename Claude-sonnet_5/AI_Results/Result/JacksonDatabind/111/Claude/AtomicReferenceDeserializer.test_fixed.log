@@ -1,0 +1,23 @@
+Failing tests: 18
+  - com.fasterxml.jackson.databind.deser.std.AtomicReferenceDeserializerTest::testReferenceValueCreatesNewInstanceEachCall
+  - com.fasterxml.jackson.databind.deser.std.AtomicReferenceDeserializerTest::testConstructorWithNullTypeDeserializerAndValueDeserializer
+  - com.fasterxml.jackson.databind.deser.std.AtomicReferenceDeserializerTest::testReferenceValueWithNonNullContent
+  - com.fasterxml.jackson.databind.deser.std.AtomicReferenceDeserializerTest::testSupportsUpdateWithNullConfigStillReturnsTrue
+  - com.fasterxml.jackson.databind.deser.std.AtomicReferenceDeserializerTest::testGetNullValueReturnsNewAtomicReferenceWithNullContent
+  - com.fasterxml.jackson.databind.deser.std.AtomicReferenceDeserializerTest::testUpdateReferenceSetsNewValueAndReturnsSameInstance
+  - com.fasterxml.jackson.databind.deser.std.AtomicReferenceDeserializerTest::testUpdateReferenceFromNullToValue
+  - com.fasterxml.jackson.databind.deser.std.AtomicReferenceDeserializerTest::testUpdateReferenceWithNullContent
+  - com.fasterxml.jackson.databind.deser.std.AtomicReferenceDeserializerTest::testWithResolvedReturnsNewInstanceOfCorrectType
+  - com.fasterxml.jackson.databind.deser.std.AtomicReferenceDeserializerTest::testGetEmptyValueReturnsDistinctInstancesEachCall
+  - com.fasterxml.jackson.databind.deser.std.AtomicReferenceDeserializerTest::testWithResolvedAcceptsNullArguments
+  - com.fasterxml.jackson.databind.deser.std.AtomicReferenceDeserializerTest::testGetEmptyValueReturnsAtomicReferenceInstanceWithNullContent
+  - com.fasterxml.jackson.databind.deser.std.AtomicReferenceDeserializerTest::testReferenceValueWithNullContent
+  - com.fasterxml.jackson.databind.deser.std.AtomicReferenceDeserializerTest::testGetNullValueReturnsDistinctInstancesEachCall
+  - com.fasterxml.jackson.databind.deser.std.AtomicReferenceDeserializerTest::testGetReferencedWithNullUnderlyingValue
+  - com.fasterxml.jackson.databind.deser.std.AtomicReferenceDeserializerTest::testGetReferencedReturnsUnderlyingValue
+  - com.fasterxml.jackson.databind.deser.std.AtomicReferenceDeserializerTest::testSupportsUpdateAlwaysReturnsTrue
+  - com.fasterxml.jackson.databind.deser.std.AtomicReferenceDeserializerTest::testWithResolvedPreservesBehaviorOfNewInstance
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

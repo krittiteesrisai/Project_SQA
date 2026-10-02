@@ -1,0 +1,11 @@
+Failing tests: 6
+  - org.apache.commons.compress.archivers.zip.ZipArchiveEntryTest::testZipArchiveEntryCopyConstructor
+  - org.apache.commons.compress.archivers.zip.ZipArchiveEntryTest::testZipEntryCopyConstructor_nullExtra
+  - org.apache.commons.compress.archivers.zip.ZipArchiveEntryTest::testEquals_oneInternalNameNull_otherSet_false
+  - org.apache.commons.compress.archivers.zip.ZipArchiveEntryTest::testEquals_internalNameSet_sameValue_true
+  - org.apache.commons.compress.archivers.zip.ZipArchiveEntryTest::testEquals_internalNameSet_differentValue_false
+  - org.apache.commons.compress.archivers.zip.ZipArchiveEntryTest::testZipEntryCopyConstructor_emptyExtra
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

@@ -1,0 +1,33 @@
+Failing tests: 28
+  - com.fasterxml.jackson.databind.deser.std.StringCollectionDeserializerTest::handleNonArray_canWrapTrue_nullToken_usesNullProvider_whenNotSkipped
+  - com.fasterxml.jackson.databind.deser.std.StringCollectionDeserializerTest::withResolved_returnsSameInstance_whenAllArgumentsUnchanged
+  - com.fasterxml.jackson.databind.deser.std.StringCollectionDeserializerTest::deserialize3Arg_appendsToPreExistingResultCollection
+  - com.fasterxml.jackson.databind.deser.std.StringCollectionDeserializerTest::deserialize2Arg_withDelegate_usesCreateUsingDelegate
+  - com.fasterxml.jackson.databind.deser.std.StringCollectionDeserializerTest::getContentDeserializer_returnsConfiguredValueDeserializer
+  - com.fasterxml.jackson.databind.deser.std.StringCollectionDeserializerTest::deserializeUsingCustom_customDeserializerReturnsNull_addsNullAsIs
+  - com.fasterxml.jackson.databind.deser.std.StringCollectionDeserializerTest::getValueInstantiator_returnsConfiguredInstantiator
+  - com.fasterxml.jackson.databind.deser.std.StringCollectionDeserializerTest::deserialize3Arg_notStartArray_cannotWrap_callsHandleUnexpectedToken
+  - com.fasterxml.jackson.databind.deser.std.StringCollectionDeserializerTest::deserializeUsingCustom_endArray_breaksImmediately
+  - com.fasterxml.jackson.databind.deser.std.StringCollectionDeserializerTest::deserialize3Arg_emptyStringTextValue_isAddedAsIs
+  - com.fasterxml.jackson.databind.deser.std.StringCollectionDeserializerTest::isCachable_trueWhenNoCustomDeserializers
+  - com.fasterxml.jackson.databind.deser.std.StringCollectionDeserializerTest::deserializeUsingCustom_nullToken_usesNullProvider_whenNotSkipped
+  - com.fasterxml.jackson.databind.deser.std.StringCollectionDeserializerTest::deserializeUsingCustom_otherToken_usesCustomDeserializer
+  - com.fasterxml.jackson.databind.deser.std.StringCollectionDeserializerTest::deserialize3Arg_addsTextValuesUntilEndArray
+  - com.fasterxml.jackson.databind.deser.std.StringCollectionDeserializerTest::deserialize3Arg_emptyArray_returnsEmptyCollection
+  - com.fasterxml.jackson.databind.deser.std.StringCollectionDeserializerTest::withResolved_returnsNewInstance_whenValueDeserializerChanged
+  - com.fasterxml.jackson.databind.deser.std.StringCollectionDeserializerTest::isCachable_falseWhenValueDeserializerPresent
+  - com.fasterxml.jackson.databind.deser.std.StringCollectionDeserializerTest::deserialize3Arg_ioExceptionFromParser_propagatesUnwrapped
+  - com.fasterxml.jackson.databind.deser.std.StringCollectionDeserializerTest::handleNonArray_canWrapViaContextFeature_whenUnwrapSingleNull
+  - com.fasterxml.jackson.databind.deser.std.StringCollectionDeserializerTest::deserialize3Arg_nullTokenUsesNullProvider_whenNotSkipped
+  - com.fasterxml.jackson.databind.deser.std.StringCollectionDeserializerTest::handleNonArray_unwrapSingleFalse_cannotWrap_evenIfContextEnabled
+  - com.fasterxml.jackson.databind.deser.std.StringCollectionDeserializerTest::handleNonArray_canWrapTrue_nonNullToken_usesConfiguredValueDeserializer
+  - com.fasterxml.jackson.databind.deser.std.StringCollectionDeserializerTest::deserializeWithType_delegatesToTypeDeserializer
+  - com.fasterxml.jackson.databind.deser.std.StringCollectionDeserializerTest::getContentDeserializer_nullWhenNotConfigured
+  - com.fasterxml.jackson.databind.deser.std.StringCollectionDeserializerTest::deserialize2Arg_withoutDelegate_usesCreateUsingDefaultThenFills
+  - com.fasterxml.jackson.databind.deser.std.StringCollectionDeserializerTest::isCachable_falseWhenDelegateDeserializerPresent
+  - com.fasterxml.jackson.databind.deser.std.StringCollectionDeserializerTest::deserialize3Arg_exceptionFromNullProvider_isWrappedAsJsonMappingException
+  - com.fasterxml.jackson.databind.deser.std.StringCollectionDeserializerTest::deserializeUsingCustom_nextTextValueNonNull_stillDelegatesToCustomDeserializer
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

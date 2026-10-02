@@ -1,0 +1,17 @@
+Failing tests: 12
+  - com.google.javascript.jscomp.LiveVariablesAnalysisTest::testFlowThrough_Or_BasicGen
+  - com.google.javascript.jscomp.LiveVariablesAnalysisTest::testFlowThrough_Hook_AllOperandsGen
+  - com.google.javascript.jscomp.LiveVariablesAnalysisTest::testFlowThrough_ForIn_VarDeclLhs
+  - com.google.javascript.jscomp.LiveVariablesAnalysisTest::testFlowThrough_While
+  - com.google.javascript.jscomp.LiveVariablesAnalysisTest::testFlowThrough_NoOp_Script_Block_Function
+  - com.google.javascript.jscomp.LiveVariablesAnalysisTest::testFlowThrough_For_Regular_ConditionOnly
+  - com.google.javascript.jscomp.LiveVariablesAnalysisTest::testFlowThrough_ForIn_DirectNameLhs
+  - com.google.javascript.jscomp.LiveVariablesAnalysisTest::testFlowThrough_Do
+  - com.google.javascript.jscomp.LiveVariablesAnalysisTest::testFlowThrough_If
+  - com.google.javascript.jscomp.LiveVariablesAnalysisTest::testFlowThrough_TryCatch_OnExEdgeSuppressesKill
+  - com.google.javascript.jscomp.LiveVariablesAnalysisTest::testFlowThrough_Default_RecursesCallArgs_IgnoresUndeclaredGlobal
+  - com.google.javascript.jscomp.LiveVariablesAnalysisTest::testIsArgumentsName_DeclaredLocally_TreatedAsNormalVar
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

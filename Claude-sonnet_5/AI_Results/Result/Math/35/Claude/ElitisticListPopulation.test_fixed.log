@@ -1,0 +1,10 @@
+Failing tests: 5
+  - org.apache.commons.math3.genetics.ElitisticListPopulationTest::testNextGeneration_ElitismRateNegative_ResultsInEmptyPopulation
+  - org.apache.commons.math3.genetics.ElitisticListPopulationTest::testNextGeneration_ElitismRateGreaterThanOne_CausesIndexOutOfBounds
+  - org.apache.commons.math3.genetics.ElitisticListPopulationTest::testConstructorPopulationLimitOnly_ElitismRateOutOfRange_NoValidation
+  - org.apache.commons.math3.genetics.ElitisticListPopulationTest::testConstructorWithChromosomes_ElitismRateAboveOne_NoValidation
+  - org.apache.commons.math3.genetics.ElitisticListPopulationTest::testConstructorWithChromosomes_ElitismRateNegative_NoValidation
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK

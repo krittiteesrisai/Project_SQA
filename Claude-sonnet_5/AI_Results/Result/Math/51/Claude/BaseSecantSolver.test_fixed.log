@@ -1,0 +1,7 @@
+Failing tests: 2
+  - org.apache.commons.math.analysis.solvers.BaseSecantSolverTest::testNullFunctionThrowsNPE
+  - org.apache.commons.math.analysis.solvers.BaseSecantSolverTest::testVerifyBracketingFailsDegenerateInterval
+
+Extract test suite......................................................... OK
+Running ant (compile.gen.tests)............................................ OK
+Running ant (run.gen.tests)................................................ OK
