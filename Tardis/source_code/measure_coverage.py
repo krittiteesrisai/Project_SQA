@@ -7,7 +7,10 @@ import csv
 import re
 import time
 
-D4J_BIN = "/home/windows_11/defects4j/framework/bin/defects4j"
+D4J_HOME = os.environ.get("D4J_HOME", os.path.expanduser("~/defects4j"))
+D4J_BIN = os.path.join(D4J_HOME, "framework/bin/defects4j")
+
+  
 
 CSV_HEADER = [
     "Project",

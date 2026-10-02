@@ -28,7 +28,8 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 # =================================================================
 
 # ตำแหน่งที่ติดตั้ง Defects4J (ใช้อ่านรายชื่อ class ที่ถูกแก้ไขสำหรับ FAST-SKIP)
-D4J_HOME = os.environ.get("D4J_HOME", "/home/windows_11/defects4j")
+D4J_HOME = os.environ.get("D4J_HOME", os.path.expanduser("~/defects4j"))
+D4J_BIN = os.path.join(D4J_HOME, "framework/bin/defects4j")
 
 # ใช้เป็น "ตัวสำรอง" เท่านั้น: ปกติรายการบั๊กจริงมาจาก `defects4j bids -p <Project>`
 D4J_PROJECTS = {
