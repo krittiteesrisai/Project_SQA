@@ -112,7 +112,7 @@ Automation Script หลักของการทดลอง ทำหน้�
 
 ## 3. Environment ที่ใช้
 
-การทดลองนี้ดำเนินการบน **Windows**
+การทดลองนี้ดำเนินการบน **Windows** โดยใช้ Git Bash สำหรับคำสั่ง Unix-like ที่ Defects4J ต้องการ และใช้ Windows CMD/Python สำหรับ Automation Script
 
 Software หลักที่ใช้ประกอบด้วย:
 
@@ -122,7 +122,7 @@ Software หลักที่ใช้ประกอบด้วย:
 - Java 11
 - Java 17
 - Strawberry Perl
-- Apache Ant
+- Apache Ant 1.10.18
 - Defects4J
 - UTBotJava
 
@@ -130,7 +130,7 @@ Software หลักที่ใช้ประกอบด้วย:
 
 ### Java 11
 
-ใช้สำหรับ Defects4J
+ใช้สำหรับ Defects4J และการ Build/Test Projects ใน Defects4J
 
 Environment เดิมที่ใช้ในการทดลอง:
 
@@ -140,7 +140,7 @@ C:\Program Files\Eclipse Adoptium\jdk-11.0.32.101-hotspot
 
 ### Java 17
 
-ใช้สำหรับ UTBot CLI
+ใช้สำหรับ Build และ Run UTBot CLI
 
 Environment เดิมที่ใช้:
 
@@ -148,11 +148,88 @@ Environment เดิมที่ใช้:
 C:\Program Files\jdk-17.0.12
 ```
 
+### Strawberry Perl
+
+Defects4J ใช้ Perl Scripts เป็นส่วนสำคัญของ Framework
+
+ในช่วงแรกของการ Setup ได้ทดลองใช้ Perl ที่มากับ Git Bash (`/usr/bin/perl`) แต่พบว่า Environment ดังกล่าวขาด Perl Modules บางส่วนที่ Defects4J ต้องการ และการติดตั้ง Dependencies เพิ่มด้วย CPAN/cpanm ไม่สมบูรณ์
+
+Environment สุดท้ายที่ใช้ในการทดลองจึงใช้ **Strawberry Perl**
+
+ตัวอย่าง Path:
+
+```text
+C:\Strawberry\perl\bin\perl.exe
+```
+
+เมื่อตรวจจาก Git Bash:
+
+```bash
+which perl
+```
+
+ควรชี้ไปยัง Strawberry Perl เช่น:
+
+```text
+/c/Strawberry/perl/bin/perl
+```
+
+ควรตรวจสอบ Modules ที่จำเป็นอย่างน้อยด้วย:
+
+```bash
+perl -MString::Interpolate -e 'print "OK\n"'
+perl -MEncode -e 'print "OK\n"'
+```
+
+### Apache Ant
+
+Environment ที่ใช้ในการทดลองติดตั้ง:
+
+```text
+Apache Ant 1.10.18
+```
+
+Path เดิม:
+
+```text
+C:\Program Files\apache-ant-1.10.18
+```
+
+ตรวจสอบด้วย:
+
+```bash
+ant -version
+```
+
+Defects4J และบาง Projects จำเป็นต้องใช้ Ant ในขั้นตอน Build และ Coverage
+
+นอกจากนี้ Environment Windows ที่ใช้ในการทดลองมีการใช้ Windows wrapper ของ Major:
+
+```text
+major/bin/ant.cmd
+```
+
+เพื่อให้ Defects4J สามารถเรียก Ant/Major ได้ถูกต้องบน Windows
+
 ### Git Bash
+
+Path ที่ใช้ในการทดลอง:
 
 ```text
 C:\Program Files\Git\bin\bash.exe
 ```
+
+Git Bash ยังถูกใช้โดย Defects4J และ Automation ในบางขั้นตอนที่ต้องการ Unix-like shell
+
+### Character Encoding
+
+ระหว่างการทดลองกำหนด Java Encoding เป็น UTF-8:
+
+```bash
+export JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF-8"
+```
+
+เพื่อลดปัญหา Encoding ระหว่าง Java, Defects4J และ Build Tools บน Windows
 
 ### Defects4J Work Directory
 
@@ -160,7 +237,9 @@ C:\Program Files\Git\bin\bash.exe
 D:\d4j_work_auto
 ```
 
-Path เหล่านี้เป็นเพียงค่า Default จากเครื่องที่ใช้ทดลอง สามารถเปลี่ยนได้ด้วย Environment Variables
+Path ต่าง ๆ ในหัวข้อนี้เป็น Environment เดิมที่ใช้ในการทดลอง ไม่จำเป็นต้องติดตั้งไว้ตำแหน่งเดียวกันทั้งหมด เนื่องจาก Automation Script รองรับ Environment Variables สำหรับ Path หลัก
+
+อย่างไรก็ตาม Local Compatibility Patch ของ Defects4J บางส่วนยังมี Windows-specific configuration ซึ่งอธิบายเพิ่มเติมในหัวข้อถัดไป
 
 ---
 
@@ -190,19 +269,52 @@ Base Commit ที่ใช้:
 UTBot/patches/defects4j-version.txt
 ```
 
+เพื่อให้การ Reproduce ใช้ Source Version เดียวกับการทดลอง ควร Checkout Commit นี้ก่อน Apply Windows Compatibility Patch
+
 ---
 
 ## 5. การแก้ไข Defects4J สำหรับ Windows
 
-Defects4J เดิมจำเป็นต้องมีการแก้ไขบางส่วนเพื่อให้สามารถใช้กับ Environment Windows ของการทดลองนี้ได้
+Defects4J มี Workflow หลายส่วนที่ออกแบบมาสำหรับ Unix-like Environment การรัน Defects4J Dataset บน Windows จึงพบปัญหา Compatibility หลายจุด เช่น:
 
-การแก้ไขถูกเก็บไว้ใน:
+- Shell command และ command chaining
+- Windows/Unix path conversion
+- การเรียก Apache Ant และ Major
+- การ Apply Patch
+- File URL ของ Build Tools
+- Project-specific build scripts
+- Line Ending ของ `.diff` และ `.patch`
+- การทำงานร่วมกับ Git Bash และ Strawberry Perl
+
+ระหว่างการทดลองจึงมีการแก้ไข Local Source ของ Defects4J หลายส่วน เช่น:
+
+```text
+framework/core/Vcs.pm
+framework/core/Utils.pm
+framework/core/Project.pm
+```
+
+รวมถึง Project-specific modules และ build files บางส่วนที่พบปัญหาระหว่างการรัน Dataset
+
+ตัวอย่างปัญหาที่พบในช่วง Setup คือ Defects4J สร้าง shell command สำหรับเปลี่ยน Working Directory และเรียก Git ซึ่งทำงานแตกต่างกันระหว่าง Unix shell และ Windows Environment
+
+นอกจากนี้ Major/Ant จำเป็นต้องใช้ Windows-compatible wrapper:
+
+```text
+major/bin/ant.cmd
+```
+
+การแก้ไข Source ที่ใช้จริงใน Final Experiment ถูกเก็บไว้ใน:
 
 ```text
 UTBot/patches/defects4j-windows.patch
 ```
 
-สำหรับการสร้าง Environment ใหม่ ให้ Clone Defects4J:
+ดังนั้นในการ Reproduce **ไม่จำเป็นต้องแก้ Source Code ตามรายการข้างต้นด้วยตนเอง** แต่ควร Checkout Defects4J ที่ Base Commit เดียวกับการทดลองและ Apply Patch ที่เก็บไว้ใน Repository
+
+### การ Apply Defects4J Windows Patch
+
+Clone Defects4J:
 
 ```bash
 git clone https://github.com/rjust/defects4j.git
@@ -223,15 +335,51 @@ git apply /path/to/Project_SQA/UTBot/patches/defects4j-windows.patch
 
 โดย `/path/to/Project_SQA/` ต้องเปลี่ยนให้ตรงกับตำแหน่ง Repository ในเครื่องของผู้ทดลอง
 
+สามารถตรวจสอบการเปลี่ยนแปลงหลัง Apply ได้ด้วย:
+
+```bash
+git status
+```
+
 ### หมายเหตุเรื่อง Line Ending
 
 ระหว่างการทดลองบน Windows พบว่าไฟล์ `.diff` และ `.patch` บางไฟล์ของ Defects4J จำเป็นต้องใช้ **LF Line Ending**
 
 การเปลี่ยนแปลงที่มีเพียง Line Ending บางส่วนจะไม่ปรากฏอยู่ใน `git diff` ดังนั้นจึงไม่ได้ถูกบันทึกทั้งหมดไว้ใน `defects4j-windows.patch`
 
-หากเกิดปัญหาระหว่าง Checkout หรือ Apply Patch บน Windows ควรตรวจสอบ Line Ending ของไฟล์ `.diff` และ `.patch` ที่เกี่ยวข้องว่าเป็น LF หรือไม่
+หากเกิด Error เช่น:
+
+```text
+corrupt patch
+```
+
+หรือ:
+
+```text
+Cannot determine how to apply patch
+```
+
+ระหว่าง Defects4J Checkout หรือ Apply Patch ควรตรวจสอบ Line Ending ของไฟล์ `.diff` หรือ `.patch` ที่ Error ว่าเป็น LF หรือไม่
 
 จุดนี้ถือเป็นข้อจำกัดด้าน Reproducibility ของ Environment Windows ที่ใช้ในการทดลองนี้
+
+### หมายเหตุเรื่อง Windows-specific Paths
+
+Compatibility Modifications บางส่วนเกิดจาก Build Scripts ของ Defects4J Projects ที่อ้างอิง Tools ภายนอก เช่น Ant หรือ Git Bash
+
+ดังนั้นผู้ทดลองที่ติดตั้ง Tools ใน Path แตกต่างจาก Environment เดิมอาจต้องปรับ Path ที่เกี่ยวข้องเพิ่มเติม
+
+Environment เดิมใช้:
+
+```text
+Apache Ant:
+C:\Program Files\apache-ant-1.10.18
+
+Git Bash:
+C:\Program Files\Git\bin\bash.exe
+```
+
+การทดลองนี้จึงไม่รับประกันว่า `defects4j-windows.patch` เพียงอย่างเดียวจะสามารถสร้าง Windows Environment เดิมได้แบบอัตโนมัติ 100% บนทุกเครื่อง
 
 ---
 
@@ -254,6 +402,8 @@ Commit ที่ใช้ในการทดลอง:
 ```text
 UTBot/patches/utbot-version.txt
 ```
+
+การ Reproduce ควรใช้ Commit นี้เพื่อให้ Source Code ตรงกับ Version ที่ใช้สร้าง UTBot CLI สำหรับ Final Experiment
 
 ---
 
@@ -286,6 +436,8 @@ git checkout 73bd2b2aed09ba94e7cbd875c662f78db10c2da8
 git apply /path/to/Project_SQA/UTBot/patches/utbot-modifications.patch
 ```
 
+Patch นี้ใช้สำหรับสร้าง UTBot CLI Version เดียวกับที่ใช้ในการทดลอง จึงควร Apply บน Clean Checkout ของ Commit ที่ระบุไว้ ไม่ควร Apply ซ้ำบน Working Tree ที่มีการแก้ไขดังกล่าวอยู่แล้ว
+
 ---
 
 ## 8. การ Build UTBot CLI
@@ -310,15 +462,23 @@ utbot-cli\build\libs\utbot-cli-local-1.0.jar
 Project_SQA\UTBot\Code\utbot-cli-local-1.0.jar
 ```
 
-ไฟล์ JAR นี้ถูก Ignore จาก Git เนื่องจากเป็นไฟล์ Binary ที่สามารถ Build ใหม่ได้จาก Source Code
+ไฟล์ JAR นี้ถูก Ignore จาก Git เนื่องจากเป็น Binary ที่สามารถ Build ใหม่ได้จาก Source Code
 
 `run-utbot.bat` จะใช้ Java 17 ในการรัน UTBot CLI พร้อม JVM Options ที่จำเป็น
+
+หาก Java 17 ไม่ได้ติดตั้งอยู่ใน Default Path ของ Environment เดิม สามารถกำหนด:
+
+```cmd
+set "JAVA17_HOME=C:\path\to\jdk-17"
+```
+
+ก่อนเรียกใช้งาน
 
 ---
 
 ## 9. การตั้งค่า Environment Variables
 
-Automation Script รองรับ Environment Variables เพื่อให้ผู้ทดลองคนอื่นสามารถใช้ Path ที่แตกต่างจากเครื่องเดิมได้
+Automation Script รองรับ Environment Variables เพื่อให้ผู้ทดลองสามารถใช้ Path ที่แตกต่างจากเครื่องเดิมได้
 
 ตัวอย่างบน Windows CMD:
 
@@ -338,23 +498,44 @@ set "GIT_BASH=C:\Program Files\Git\bin\bash.exe"
 set "D4J_WORK_ROOT=D:\d4j_work_auto"
 ```
 
-หากไม่ได้กำหนด Environment Variables Script จะใช้ Default Path จาก Environment เดิมของการทดลอง
+สำหรับ Defects4J Environment ควรตรวจสอบว่า Strawberry Perl และ Apache Ant อยู่ใน `PATH` ด้วย
+
+ตัวอย่าง Git Bash Environment ที่ใช้ในการทดลอง:
+
+```bash
+export JAVA_HOME="/c/Program Files/Eclipse Adoptium/jdk-11.0.32.101-hotspot"
+export PATH="/c/Strawberry/perl/bin:/c/Strawberry/perl/site/bin:/c/Strawberry/c/bin:$JAVA_HOME/bin:$PATH"
+export JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF-8"
+export PATH="/path/to/defects4j/framework/bin:$PATH"
+```
+
+โดย `/path/to/defects4j/` ต้องเปลี่ยนเป็น Path ของ Defects4J Repository ในเครื่องของผู้ทดลอง
+
+หากไม่ได้กำหนด `JAVA11_HOME`, `JAVA17_HOME`, `GIT_BASH` หรือ `D4J_WORK_ROOT` Automation Script จะใช้ Default Paths จาก Environment เดิมของการทดลอง
 
 ---
 
 ## 10. ตรวจสอบ Environment ก่อนรัน
 
+ก่อนเริ่ม Automated Experiment แนะนำให้ตรวจ Environment ให้ผ่านก่อน เพื่อแยกปัญหา Setup ออกจากผลการทดลอง
+
 ### ตรวจ Java 11
+
+บน Windows CMD:
 
 ```cmd
 "%JAVA11_HOME%\bin\java.exe" -version
 ```
+
+ควรเป็น Java 11
 
 ### ตรวจ Java 17
 
 ```cmd
 "%JAVA17_HOME%\bin\java.exe" -version
 ```
+
+ควรเป็น Java 17
 
 ### ตรวจ Python
 
@@ -368,6 +549,54 @@ python --version
 git --version
 ```
 
+### ตรวจ Git Bash
+
+```cmd
+"%GIT_BASH%" --version
+```
+
+### ตรวจ Apache Ant
+
+```cmd
+ant -version
+```
+
+Environment เดิมของการทดลองใช้:
+
+```text
+Apache Ant(TM) version 1.10.18
+```
+
+### ตรวจ Strawberry Perl
+
+จาก Git Bash:
+
+```bash
+which perl
+perl -v
+```
+
+ควรตรวจสอบว่า `perl` ที่ถูกเรียกเป็น Strawberry Perl ไม่ใช่ `/usr/bin/perl`
+
+ตัวอย่าง:
+
+```text
+/c/Strawberry/perl/bin/perl
+```
+
+จากนั้นตรวจ Modules:
+
+```bash
+perl -MString::Interpolate -e 'print "OK\n"'
+perl -MEncode -e 'print "OK\n"'
+```
+
+ทั้งสองคำสั่งควรแสดง:
+
+```text
+OK
+```
+
 ### ตรวจ Defects4J
 
 จาก Git Bash:
@@ -376,17 +605,27 @@ git --version
 defects4j info -p Lang
 ```
 
-### ตรวจ Perl
+หาก Environment พร้อม คำสั่งควรแสดงข้อมูลของ Lang Project โดยไม่มี Perl Module Error
 
-```bash
-perl -MEncode -e "print qq(OK\n)"
-```
+### ตรวจ UTBot CLI
 
-หากใช้งานได้ควรแสดง:
+หลังจาก Build และ Copy JAR แล้ว ตรวจสอบว่ามีไฟล์:
 
 ```text
-OK
+UTBot/Code/utbot-cli-local-1.0.jar
 ```
+
+และสามารถเรียกผ่าน:
+
+```cmd
+UTBot\Code\run-utbot.bat --help
+```
+
+### แนะนำให้ Smoke Test ก่อนรัน Dataset ทั้งหมด
+
+ก่อนเริ่ม Automated Experiment ทั้ง 854 Bugs ควรทดลอง Checkout และ Run กับ Bug จำนวนน้อยก่อน เพื่อยืนยันว่า Defects4J, Java, Perl, Ant และ UTBot สามารถทำงานร่วมกันได้ใน Environment ใหม่
+
+หาก Smoke Test ผ่านแล้วจึงเริ่ม Automated Experiment ตามขั้นตอนในหัวข้อถัดไป
 
 ---
 
