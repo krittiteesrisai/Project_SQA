@@ -17,12 +17,9 @@ Repository สำหรับ Project รายวิชา **Software Quality A
 
 ```text
 Project_SQA/
-├── Claude-sonnet_4_6/
-├── dataset/
+├── Claude-sonnet_5_5/
 ├── Gemini/
 ├── report/
-├── results/
-├── scripts/
 ├── TARDIS/
 ├── UTBot/
 ├── .gitattributes
