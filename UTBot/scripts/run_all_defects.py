@@ -22,54 +22,181 @@ UTBOT_CODE = UTBOT_DIR / "Code"
 UTBOT_RUNNER = UTBOT_CODE / "run-utbot.bat"
 
 RESULT_ROOT = UTBOT_DIR / "Result_Automated"
-D4J_WORK_ROOT = Path(r"D:\d4j_work_auto")
+D4J_WORK_ROOT = Path(
+    os.environ.get(
+        "D4J_WORK_ROOT",
+        r"D:\d4j_work_auto",
+    )
+)
 
 JAVA11_HOME = Path(
-    r"C:\Program Files\Eclipse Adoptium\jdk-11.0.32.101-hotspot"
+    os.environ.get(
+        "JAVA11_HOME",
+        r"C:\Program Files\Eclipse Adoptium\jdk-11.0.32.101-hotspot",
+    )
+)
+
+GIT_BASH = Path(
+    os.environ.get(
+        "GIT_BASH",
+        r"C:\Program Files\Git\bin\bash.exe",
+    )
 )
 
 GENERATION_TIMEOUT_MS = 120_000
+TEST_TIMEOUT_SECONDS = 300
 
 
 # ============================================================
 # Command helpers
 # ============================================================
 
-def run_command(command, cwd=None, env=None, timeout=None):
+def kill_windows_processes_by_marker(marker):
+    """
+    Kill orphaned Defects4J processes whose command line contains
+    the checkout path, e.g. D:\\d4j_work_auto\\Math_85_buggy.
+    """
+    if os.name != "nt" or not marker:
+        return
+
+    marker = str(Path(marker).resolve())
+
+    # Escape single quotes for PowerShell single-quoted string.
+    ps_marker = marker.replace("'", "''")
+
+    script = (
+        f"$marker = '{ps_marker}'; "
+        "$currentPid = $PID; "
+        "$targets = Get-CimInstance Win32_Process | "
+        "Where-Object { "
+        "$_.ProcessId -ne $currentPid -and "
+        "$null -ne $_.CommandLine -and "
+        "$_.CommandLine.Contains($marker) "
+        "}; "
+        "$targets | Sort-Object ProcessId -Descending | "
+        "ForEach-Object { "
+        "try { "
+        "Stop-Process -Id $_.ProcessId -Force "
+        "-ErrorAction SilentlyContinue "
+        "} catch {} "
+        "}"
+    )
+
+    try:
+        subprocess.run(
+            [
+                "powershell.exe",
+                "-NoProfile",
+                "-NonInteractive",
+                "-Command",
+                script,
+            ],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            timeout=15,
+            shell=False,
+        )
+
+        print(
+            f"[TIMEOUT] Orphan cleanup attempted for: {marker}"
+        )
+
+    except subprocess.TimeoutExpired:
+        print("[WARNING] Orphan process cleanup timed out.")
+
+    except Exception as exc:
+        print(
+            f"[WARNING] Orphan process cleanup failed: {exc}"
+        )
+
+def run_command(
+    command,
+    cwd=None,
+    env=None,
+    timeout=None,
+    cleanup_marker=None,):
     print("\n>", " ".join(map(str, command)))
     start = time.perf_counter()
 
+    process = subprocess.Popen(
+        command,
+        cwd=cwd,
+        env=env,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        shell=False,
+    )
+
     try:
-        result = subprocess.run(
-            command,
-            cwd=cwd,
-            env=env,
-            text=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            timeout=timeout,
-            shell=False,
-        )
+        output, _ = process.communicate(timeout=timeout)
         elapsed = time.perf_counter() - start
-        return result.returncode, result.stdout, elapsed
+        return process.returncode, output or "", elapsed
 
     except subprocess.TimeoutExpired as exc:
         elapsed = time.perf_counter() - start
-        output = exc.stdout or ""
 
+        output = exc.stdout or ""
         if isinstance(output, bytes):
             output = output.decode(errors="replace")
 
-        return 124, output + "\nPROCESS TIMEOUT\n", elapsed
+        print(
+            f"[TIMEOUT] Process exceeded {timeout} seconds. "
+            f"Terminating process tree PID={process.pid}..."
+        )
+
+        if os.name == "nt":
+            try:
+                subprocess.run(
+                    [
+                        "taskkill",
+                        "/PID",
+                        str(process.pid),
+                        "/T",
+                        "/F",
+                    ],
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL,
+                    timeout=15,
+                    shell=False,
+                )
+            except subprocess.TimeoutExpired:
+                print("[WARNING] taskkill itself timed out.")
+            except Exception as kill_exc:
+                print(
+                    f"[WARNING] Could not terminate process tree: "
+                    f"{kill_exc}"
+                )
+        else:
+            try:
+                process.kill()
+            except Exception:
+                pass
+
+        # IMPORTANT:
+        # Do not call communicate() again here.
+        # Descendant processes may still hold stdout handles open,
+        # causing communicate() to wait forever on Windows.
+        if os.name == "nt" and cleanup_marker:
+            kill_windows_processes_by_marker(cleanup_marker)
+
+        print("[TIMEOUT] Cleanup finished; continuing batch.")
+
+        return (
+            124,
+            output + "\nPROCESS TIMEOUT\n",
+            elapsed,
+        )
 
 
-def run_defects4j(args, cwd):
+def run_defects4j(args, cwd, timeout=None):
     args_string = " ".join(args)
     cwd_bash = windows_to_bash_path(cwd)
 
+    java11_bash = windows_to_bash_path(JAVA11_HOME)
+
     command = (
-        f'export JAVA_HOME="/c/Program Files/'
-        f'Eclipse Adoptium/jdk-11.0.32.101-hotspot"; '
+        f'export JAVA_HOME="{java11_bash}"; '
         f'export PATH="$JAVA_HOME/bin:$PATH"; '
         f'export JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF-8"; '
         f'cd "{cwd_bash}" && defects4j {args_string}'
@@ -77,10 +204,12 @@ def run_defects4j(args, cwd):
 
     return run_command(
         [
-            r"C:\Program Files\Git\bin\bash.exe",
+            str(GIT_BASH),
             "-lc",
             command,
-        ]
+        ],
+        timeout=timeout,
+        cleanup_marker=cwd,
     )
 
 
@@ -94,16 +223,18 @@ def windows_to_bash_path(path):
 def run_defects4j_global(args):
     """Run a Defects4J command that does not require a checkout work directory."""
     args_string = " ".join(map(str, args))
+    java11_bash = windows_to_bash_path(JAVA11_HOME)
+
     command = (
-        f'export JAVA_HOME="/c/Program Files/'
-        f'Eclipse Adoptium/jdk-11.0.32.101-hotspot"; '
+        f'export JAVA_HOME="{java11_bash}"; '
         f'export PATH="$JAVA_HOME/bin:$PATH"; '
         f'export JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF-8"; '
         f'defects4j {args_string}'
     )
+
     return run_command(
         [
-            r"C:\Program Files\Git\bin\bash.exe",
+            str(GIT_BASH),
             "-lc",
             command,
         ]
@@ -201,8 +332,12 @@ def checkout(project, bug_id, version, destination):
             return False
 
     destination.parent.mkdir(parents=True, exist_ok=True)
+    java11_bash = windows_to_bash_path(JAVA11_HOME)
 
     command = (
+        f'export JAVA_HOME="{java11_bash}"; '
+        f'export PATH="$JAVA_HOME/bin:$PATH"; '
+        f'export JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF-8"; '
         f'defects4j checkout '
         f'-p {project} '
         f'-v {expected_vid} '
@@ -211,7 +346,7 @@ def checkout(project, bug_id, version, destination):
 
     code, output, _ = run_command(
         [
-            r"C:\Program Files\Git\bin\bash.exe",
+            str(GIT_BASH),
             "-lc",
             command,
         ]
@@ -244,10 +379,10 @@ def compile_project(work_dir):
 
 def export_property(work_dir, property_name):
     cwd_bash = windows_to_bash_path(work_dir)
+    java11_bash = windows_to_bash_path(JAVA11_HOME)
 
     command = (
-        f'export JAVA_HOME="/c/Program Files/'
-        f'Eclipse Adoptium/jdk-11.0.32.101-hotspot"; '
+        f'export JAVA_HOME="{java11_bash}"; '
         f'export PATH="$JAVA_HOME/bin:$PATH"; '
         f'export JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF-8"; '
         f'cd "{cwd_bash}" && '
@@ -256,7 +391,7 @@ def export_property(work_dir, property_name):
 
     result = subprocess.run(
         [
-            r"C:\Program Files\Git\bin\bash.exe",
+            str(GIT_BASH),
             "-lc",
             command,
         ],
@@ -318,8 +453,16 @@ def get_compile_classpath(work_dir):
 # ============================================================
 
 def class_to_source(source_root, class_name):
-    # Modified classes can be nested classes (Outer$Inner).
-    # The source file is normally Outer.java.
+    # First try the exact class name because '$' may legally be part
+    # of a top-level Java class name, e.g. Gson's $Gson$Types.
+    exact_relative = Path(*class_name.split(".")).with_suffix(".java")
+    exact_source = source_root / exact_relative
+
+    if exact_source.exists():
+        return exact_source
+
+    # Otherwise, treat '$' as a nested-class separator.
+    # Example: Outer$Inner -> Outer.java
     source_class = class_name.split("$", 1)[0]
     relative = Path(*source_class.split("."))
     return source_root / relative.with_suffix(".java")
@@ -441,6 +584,7 @@ def run_single_test_class(
     return run_defects4j(
         ["test"],
         work_dir,
+        timeout=TEST_TIMEOUT_SECONDS,
     )
 
 
@@ -467,9 +611,27 @@ def is_test_compile_error(output):
 
 def is_generated_test_incompatible(output):
     markers = (
+        # Java source-level incompatibility
         "lambda expressions are not supported in -source 6",
         "lambda expressions are not supported in -source 7",
         "diamond operator is not supported in -source 6",
+
+        # Invalid Java source emitted by generated UTBot test
+        "error: illegal start of type",
+        "error: illegal start of expression",
+
+        # Java module / JDK internal API incompatibility
+        "is declared in module java.base, which does not export it",
+        "package com.sun.org.apache.xerces.internal.utils is not visible",
+        "package jdk.xml.internal.JdkProperty does not exist",
+
+        # Dependency required by generated UTBot tests is unavailable
+        "package org.mockito does not exist",
+
+        # Generated test is incompatible with the target project's API
+        "no suitable constructor found for",
+        "has protected access in",
+        "Object cannot be converted to SecondMoment",
     )
     return any(marker in output for marker in markers)
 
@@ -975,8 +1137,10 @@ def bug_is_completed(project, bug_id):
     terminal_statuses = {
         "COMPLETED",
         "TEST_COMPILE_INCOMPATIBLE",
+        "TEST_TIMEOUT",
         "GENERATION_TIMEOUT",
         "GENERATION_FAILED",
+        "COVERAGE_FAILED",
     }
 
     target_bug = str(bug_id)
@@ -1241,12 +1405,16 @@ def run_bug(project, bug_id):
     else:
         print("\nRunning ALL generated tests on BUGGY...")
         buggy_code, buggy_output, buggy_test_seconds = run_defects4j(
-            ["test"], buggy_dir
+            ["test"],
+            buggy_dir,
+            timeout=TEST_TIMEOUT_SECONDS,
         )
 
         print("Running ALL generated tests on FIXED...")
         fixed_code, fixed_output, fixed_test_seconds = run_defects4j(
-            ["test"], fixed_dir
+            ["test"],
+            fixed_dir,
+            timeout=TEST_TIMEOUT_SECONDS,
         )
 
         (log_dir / "utbot_test_buggy.log").write_text(
@@ -1267,7 +1435,10 @@ def run_bug(project, bug_id):
 
         unique_buggy = buggy_failures - fixed_failures
 
-        if (
+        if buggy_code == 124 or fixed_code == 124:
+            bug_status = "TEST_TIMEOUT"
+        
+        elif (
             is_generated_test_incompatible(buggy_output)
             or is_generated_test_incompatible(fixed_output)
         ):
@@ -1360,7 +1531,7 @@ def run_bug(project, bug_id):
         )
 
         if coverage_result["status"] != "COMPLETED":
-            bug_status = coverage_result["status"]
+            bug_status = "COVERAGE_FAILED"
 
     def cov(section, key):
         if coverage_result is None:
@@ -1440,6 +1611,12 @@ def run_bug(project, bug_id):
 
     if bug_status == "TEST_COMPILE_INCOMPATIBLE":
         return "TEST_COMPILE_INCOMPATIBLE"
+
+    if bug_status == "TEST_TIMEOUT":
+        return "TEST_TIMEOUT"
+
+    if bug_status == "COVERAGE_FAILED":
+        return "COVERAGE_FAILED"
 
     return "ERROR"
 
@@ -1540,7 +1717,9 @@ def main():
     completed_now = 0
     incompatible_now = 0
     timeout_now = 0
+    test_timeout_now = 0
     generation_failed_now = 0
+    coverage_failed_now = 0
     skipped = 0
     failed = 0
 
@@ -1567,11 +1746,33 @@ def main():
                     f"[BATCH] {label} reached terminal "
                     f"test-compile incompatibility."
                 )
+
+            elif result == "TEST_TIMEOUT":
+                test_timeout_now += 1
+                print(
+                    f"[BATCH] {label} reached terminal "
+                    f"test execution timeout."
+                )
+
+            elif result == "GENERATION_TIMEOUT":
+                timeout_now += 1
+                print(
+                    f"[BATCH] {label} reached terminal "
+                    f"generation timeout."
+                )
+            
             elif result == "GENERATION_FAILED":
                 generation_failed_now += 1
                 print(
                     f"[BATCH] {label} reached terminal "
                     f"generation failure."
+                )
+
+            elif result == "COVERAGE_FAILED":
+                coverage_failed_now += 1
+                print(
+                    f"[BATCH] {label} reached terminal "
+                    f"coverage failure."
                 )
 
             else:
@@ -1604,8 +1805,10 @@ def main():
     print(f"Planned                     : {len(jobs)}")
     print(f"Completed now               : {completed_now}")
     print(f"Terminal incompatible       : {incompatible_now}")
+    print(f"Terminal test timeout       : {test_timeout_now}")
     print(f"Terminal generation timeout : {timeout_now}")
     print(f"Terminal generation failed  : {generation_failed_now}")
+    print(f"Terminal coverage failed    : {coverage_failed_now}")
     print(f"Resume skipped              : {skipped}")
     print(f"Actual errors/incomplete    : {failed}")
 

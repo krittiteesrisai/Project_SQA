@@ -1,0 +1,14 @@
+Repository: https://github.com/rjust/defects4j.git
+Branch: master
+Base commit: 8c16da8230843cdc918eaf4ddb449637f02b83c6
+
+Purpose:
+Local Windows compatibility modifications used for the UTBot + Defects4J experiment.
+
+Apply:
+git checkout 8c16da8230843cdc918eaf4ddb449637f02b83c6
+git apply defects4j-windows.patch
+
+Note:
+Some Defects4J patch files required LF line endings during the experiment.
+These line-ending-only working-tree changes are not represented by git diff.

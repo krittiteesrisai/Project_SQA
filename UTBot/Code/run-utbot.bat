@@ -1,5 +1,12 @@
 @echo off
-"C:\Program Files\jdk-17.0.12\bin\java.exe" ^
+
+if defined JAVA17_HOME (
+    set "JAVA_EXE=%JAVA17_HOME%\bin\java.exe"
+) else (
+    set "JAVA_EXE=C:\Program Files\jdk-17.0.12\bin\java.exe"
+)
+
+"%JAVA_EXE%" ^
 --add-opens java.base/java.util.concurrent.atomic=ALL-UNNAMED ^
 --add-opens java.base/java.lang.invoke=ALL-UNNAMED ^
 --add-opens java.base/java.util.concurrent=ALL-UNNAMED ^
@@ -49,4 +56,4 @@
 --add-opens java.base/jdk.internal.util.xml.impl=ALL-UNNAMED ^
 --add-opens java.base/jdk.internal.vm=ALL-UNNAMED ^
 --add-opens java.base/jdk.internal.vm.annotation=ALL-UNNAMED ^
--jar utbot-cli-local-1.0.jar %*
+-jar "%~dp0utbot-cli-local-1.0.jar" %*

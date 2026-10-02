@@ -1,1 +1,5 @@
 *.jar filter=lfs diff=lfs merge=lfs -text
+
+# Patch files must use LF line endings
+*.patch text eol=lf
+*.diff text eol=lf
