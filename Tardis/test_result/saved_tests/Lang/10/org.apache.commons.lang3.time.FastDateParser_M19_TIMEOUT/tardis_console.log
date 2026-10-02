@@ -1,0 +1,7 @@
+=== STDOUT ===
+10:59:11.543 [main] INFO  tardis.Main - This is TARDIS, version 0.3.0-SNAPSHOT, ? 2017-2026 University of Milano-Bicocca
+10:59:11.546 [main] INFO  tardis.Main - Target is method org/apache/commons/lang3/time/FastDateParser:([Lorg/apache/commons/lang3/time/FastDateParser$KeyValue;I[Ljava/lang/String;)I:copy
+10:59:12.073 [PerformerEvosuite-pool-1] ERROR tardis.implementation.evosuite.PerformerEvosuite - Internal error: EvoSuite wrapper /workspace/./tmp_tardis/2026_09_28_10_59_11/wrap/org/apache/commons/lang3/time/EvoSuiteWrapper_0.java compilation failed
+
+
+=== STDERR ===

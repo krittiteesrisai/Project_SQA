@@ -1,0 +1,35 @@
+=== STDOUT ===
+03:32:35.902 [main] INFO  tardis.Main - This is TARDIS, version 0.3.0-SNAPSHOT, ? 2017-2026 University of Milano-Bicocca
+03:32:35.904 [main] INFO  tardis.Main - Target is class org/apache/commons/lang/enums/ValuedEnum
+03:32:36.461 [PerformerEvosuite-pool-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Launched EvoSuite seed process, command line:  java -Xmx4G -jar /usr/share/java/evosuite-shaded-1.2.1-SNAPSHOT.jar -class org.apache.commons.lang.enums.ValuedEnum -mem 2048 -Dmock_if_no_generator=false -Dreplace_system_in=false -Dreplace_gui=false -Dp_functional_mocking=0.0 -DCP=/workspace/target/classes:/usr/share/java/jbse-0.12.0-SNAPSHOT-shaded.jar:/usr/share/java/sushi-lib-0.3.0-SNAPSHOT.jar -Dassertions=false -Dreport_dir=./tmp_tardis/2026_10_02_03_32_35 -Dsearch_budget=180 -Dtest_dir=./tmp_tardis/2026_10_02_03_32_35/test -Dvirtual_fs=false -Dselection_function=ROULETTEWHEEL -Dinline=false -Dsushi_modifiers_local_search=true -Duse_minimizer_during_crossover=true -Davoid_replicas_of_individuals=true -Dno_change_iterations_before_reset=30 -Dmax_subclasses_per_class=1 -Dcrossover_function=SUSHI_HYBRID -Dalgorithm=DYNAMOSA -generateMOSuite -Dcriterion=PATHCONDITION -Dsushi_statistics=true -Dpath_condition_target=LAST_ONLY -Dpath_condition_evaluators_dir=./tmp_tardis/2026_10_02_03_32_35/bin -Demit_tests_incrementally=true -Dpath_condition=org.apache.commons.lang.enums.ValuedEnum,compareTo(Ljava/lang/Object;)I,org.apache.commons.lang.enums.EvoSuiteWrapper_0:org.apache.commons.lang.enums.ValuedEnum,getValue()I,org.apache.commons.lang.enums.EvoSuiteWrapper_1:org.apache.commons.lang.enums.ValuedEnum,getEnum(Ljava/lang/Class;I)Lorg/apache/commons/lang/enums/Enum;,org.apache.commons.lang.enums.EvoSuiteWrapper_2:org.apache.commons.lang.enums.ValuedEnum,<init>(Ljava/lang/String;I)V,org.apache.commons.lang.enums.EvoSuiteWrapper_3
+03:32:39.012 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Generated test case org/apache/commons/lang/enums/ValuedEnum_2_Test, depth: 0, post-frontier path condition: org/apache/commons/lang/enums/ValuedEnum:(Ljava/lang/Class;I)Lorg/apache/commons/lang/enums/Enum;:getEnum:true
+03:32:44.898 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Unexpected frozen state exception while trying to generate path condition for additional fresh object
+03:32:44.901 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Message: jbse.mem.exc.CannotAssumeSymbolicObjectException: JBSE does not allow to create symbolic instances of class java/lang/Class.
+03:32:44.901 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Stack trace:
+03:32:44.901 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.mem.State.newInstanceSymbolic(State.java:2523)
+03:32:44.901 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.mem.State.createObjectSymbolic(State.java:2413)
+03:32:44.901 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.mem.State.assumeExpands(State.java:3188)
+03:32:44.901 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algo_XYLOAD_GETX.refineRefExpands(Algo_XYLOAD_GETX.java:85)
+03:32:44.901 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algo_XLOAD_GETX$1.refineRefExpands(Algo_XLOAD_GETX.java:115)
+03:32:44.901 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.StrategyRefine_XLOAD_GETX$1.visitDecisionAlternative_XLOAD_GETX_Expands(StrategyRefine_XLOAD_GETX.java:52)
+03:32:44.901 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.tree.DecisionAlternative_XLOAD_GETX_Expands.accept(DecisionAlternative_XLOAD_GETX_Expands.java:37)
+03:32:44.901 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.StrategyRefine_XLOAD_GETX.refine(StrategyRefine_XLOAD_GETX.java:75)
+03:32:44.901 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.StrategyRefine_XLOAD_GETX.refine(StrategyRefine_XLOAD_GETX.java:28)
+03:32:44.902 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algorithm.doExec(Algorithm.java:280)
+03:32:44.902 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algorithm.exec(Algorithm.java:218)
+03:32:44.902 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Engine.step(Engine.java:306)
+03:32:44.902 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Runner.doRun(Runner.java:660)
+03:32:44.902 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Runner.run(Runner.java:626)
+03:32:44.902 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPreFrontier.run(RunnerPreFrontier.java:126)
+03:32:44.902 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPath.runProgram(RunnerPath.java:237)
+03:32:44.902 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPath.runProgram(RunnerPath.java:187)
+03:32:44.902 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.PerformerJBSE.explore(PerformerJBSE.java:111)
+03:32:44.902 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.PerformerJBSE.executeJob(PerformerJBSE.java:90)
+03:32:44.902 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.framework.Performer.lambda$makeJob$1(Performer.java:181)
+03:32:44.903 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+03:32:44.903 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+03:32:44.903 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.lang.Thread.run(Thread.java:750)
+
+
+=== STDERR ===
+Killed

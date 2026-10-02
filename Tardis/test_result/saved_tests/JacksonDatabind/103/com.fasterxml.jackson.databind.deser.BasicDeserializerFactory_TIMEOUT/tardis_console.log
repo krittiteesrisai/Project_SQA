@@ -1,0 +1,21 @@
+=== STDOUT ===
+13:51:59.298 [main] INFO  tardis.Main - This is TARDIS, version 0.3.0-SNAPSHOT, ? 2017-2026 University of Milano-Bicocca
+13:51:59.301 [main] INFO  tardis.Main - Target is class com/fasterxml/jackson/databind/deser/BasicDeserializerFactory
+13:51:59.563 [PerformerEvosuite-pool-1] ERROR tardis.implementation.evosuite.PerformerEvosuite - Internal error while creating EvoSuite seed wrapper
+13:51:59.564 [PerformerEvosuite-pool-1] ERROR tardis.implementation.evosuite.PerformerEvosuite - Message: jbse.bc.exc.MethodCodeNotFoundException: com/fasterxml/jackson/databind/deser/BasicDeserializerFactory:(Lcom/fasterxml/jackson/databind/cfg/DeserializerFactoryConfig;)Lcom/fasterxml/jackson/databind/deser/DeserializerFactory;:withConfig
+13:51:59.564 [PerformerEvosuite-pool-1] ERROR tardis.implementation.evosuite.PerformerEvosuite - Stack trace:
+13:51:59.564 [PerformerEvosuite-pool-1] ERROR tardis.implementation.evosuite.PerformerEvosuite - jbse.bc.ClassFileJavassist.getMethodCodeAttribute(ClassFileJavassist.java:1123)
+13:51:59.564 [PerformerEvosuite-pool-1] ERROR tardis.implementation.evosuite.PerformerEvosuite - jbse.bc.ClassFileJavassist.getMethodCodeBySignature(ClassFileJavassist.java:1202)
+13:51:59.565 [PerformerEvosuite-pool-1] ERROR tardis.implementation.evosuite.PerformerEvosuite - jbse.mem.MethodFrame.<init>(MethodFrame.java:47)
+13:51:59.565 [PerformerEvosuite-pool-1] ERROR tardis.implementation.evosuite.PerformerEvosuite - jbse.mem.State.pushFrameSymbolic(State.java:1268)
+13:51:59.565 [PerformerEvosuite-pool-1] ERROR tardis.implementation.evosuite.PerformerEvosuite - tardis.implementation.evosuite.PerformerEvosuite.emitAndCompileEvoSuiteWrapperSeedTargetMethod(PerformerEvosuite.java:589)
+13:51:59.565 [PerformerEvosuite-pool-1] ERROR tardis.implementation.evosuite.PerformerEvosuite - tardis.implementation.evosuite.PerformerEvosuite.generateTestsAndScheduleJBSESeedTargetIsASetOfMethods(PerformerEvosuite.java:197)
+13:51:59.565 [PerformerEvosuite-pool-1] ERROR tardis.implementation.evosuite.PerformerEvosuite - tardis.implementation.evosuite.PerformerEvosuite.generateTestsAndScheduleJBSESeed(PerformerEvosuite.java:165)
+13:51:59.565 [PerformerEvosuite-pool-1] ERROR tardis.implementation.evosuite.PerformerEvosuite - tardis.implementation.evosuite.PerformerEvosuite.executeJob(PerformerEvosuite.java:133)
+13:51:59.565 [PerformerEvosuite-pool-1] ERROR tardis.implementation.evosuite.PerformerEvosuite - tardis.framework.Performer.lambda$makeJob$1(Performer.java:181)
+13:51:59.565 [PerformerEvosuite-pool-1] ERROR tardis.implementation.evosuite.PerformerEvosuite - java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+13:51:59.566 [PerformerEvosuite-pool-1] ERROR tardis.implementation.evosuite.PerformerEvosuite - java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+13:51:59.566 [PerformerEvosuite-pool-1] ERROR tardis.implementation.evosuite.PerformerEvosuite - java.lang.Thread.run(Thread.java:750)
+
+
+=== STDERR ===

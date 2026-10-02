@@ -1,0 +1,35 @@
+=== STDOUT ===
+01:45:57.188 [main] INFO  tardis.Main - This is TARDIS, version 0.3.0-SNAPSHOT, ? 2017-2026 University of Milano-Bicocca
+01:45:57.190 [main] INFO  tardis.Main - Target is method org/apache/commons/lang3/builder/HashCodeBuilder:(Ljava/lang/Object;Ljava/lang/Class;Lorg/apache/commons/lang3/builder/HashCodeBuilder;Z[Ljava/lang/String;)V:reflectionAppend
+01:45:57.598 [PerformerEvosuite-pool-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Launched EvoSuite seed process, command line:  java -Xmx4G -jar /usr/share/java/evosuite-shaded-1.2.1-SNAPSHOT.jar -class org.apache.commons.lang3.builder.HashCodeBuilder -mem 2048 -Dmock_if_no_generator=false -Dreplace_system_in=false -Dreplace_gui=false -Dp_functional_mocking=0.0 -DCP=/workspace/target/classes:/usr/share/java/jbse-0.12.0-SNAPSHOT-shaded.jar:/usr/share/java/sushi-lib-0.3.0-SNAPSHOT.jar -Dassertions=false -Dreport_dir=./tmp_tardis/2026_10_02_01_45_56 -Dsearch_budget=180 -Dtest_dir=./tmp_tardis/2026_10_02_01_45_56/test -Dvirtual_fs=false -Dselection_function=ROULETTEWHEEL -Dinline=false -Dsushi_modifiers_local_search=true -Duse_minimizer_during_crossover=true -Davoid_replicas_of_individuals=true -Dno_change_iterations_before_reset=30 -Dmax_subclasses_per_class=1 -Dcrossover_function=SUSHI_HYBRID -Dalgorithm=DYNAMOSA -generateMOSuite -Dcriterion=PATHCONDITION -Dsushi_statistics=true -Dpath_condition_target=LAST_ONLY -Dpath_condition_evaluators_dir=./tmp_tardis/2026_10_02_01_45_56/bin -Demit_tests_incrementally=true -Dpath_condition=org.apache.commons.lang3.builder.HashCodeBuilder,reflectionAppend(Ljava/lang/Object;Ljava/lang/Class;Lorg/apache/commons/lang3/builder/HashCodeBuilder;Z[Ljava/lang/String;)V,org.apache.commons.lang3.builder.EvoSuiteWrapper_0
+01:46:01.026 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Generated test case org/apache/commons/lang3/builder/HashCodeBuilder_0_Test, depth: 0, post-frontier path condition: org/apache/commons/lang3/builder/HashCodeBuilder:(Ljava/lang/Object;Ljava/lang/Class;Lorg/apache/commons/lang3/builder/HashCodeBuilder;Z[Ljava/lang/String;)V:reflectionAppend:true
+01:46:08.289 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Unexpected frozen state exception while trying to generate path condition for additional fresh object
+01:46:08.291 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Message: jbse.mem.exc.CannotAssumeSymbolicObjectException: JBSE does not allow to create symbolic instances of class java/lang/Class.
+01:46:08.291 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Stack trace:
+01:46:08.294 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.mem.State.newInstanceSymbolic(State.java:2523)
+01:46:08.294 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.mem.State.createObjectSymbolic(State.java:2413)
+01:46:08.294 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.mem.State.assumeExpands(State.java:3188)
+01:46:08.294 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algo_XYLOAD_GETX.refineRefExpands(Algo_XYLOAD_GETX.java:85)
+01:46:08.294 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algo_XLOAD_GETX$1.refineRefExpands(Algo_XLOAD_GETX.java:115)
+01:46:08.294 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.StrategyRefine_XLOAD_GETX$1.visitDecisionAlternative_XLOAD_GETX_Expands(StrategyRefine_XLOAD_GETX.java:52)
+01:46:08.295 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.tree.DecisionAlternative_XLOAD_GETX_Expands.accept(DecisionAlternative_XLOAD_GETX_Expands.java:37)
+01:46:08.295 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.StrategyRefine_XLOAD_GETX.refine(StrategyRefine_XLOAD_GETX.java:75)
+01:46:08.297 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.StrategyRefine_XLOAD_GETX.refine(StrategyRefine_XLOAD_GETX.java:28)
+01:46:08.299 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algorithm.doExec(Algorithm.java:280)
+01:46:08.299 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algorithm.exec(Algorithm.java:218)
+01:46:08.299 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Engine.step(Engine.java:306)
+01:46:08.299 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Runner.doRun(Runner.java:660)
+01:46:08.299 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Runner.run(Runner.java:626)
+01:46:08.299 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPreFrontier.run(RunnerPreFrontier.java:126)
+01:46:08.299 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPath.runProgram(RunnerPath.java:237)
+01:46:08.300 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPath.runProgram(RunnerPath.java:187)
+01:46:08.300 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.PerformerJBSE.explore(PerformerJBSE.java:111)
+01:46:08.300 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.PerformerJBSE.executeJob(PerformerJBSE.java:90)
+01:46:08.300 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.framework.Performer.lambda$makeJob$1(Performer.java:181)
+01:46:08.300 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+01:46:08.300 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+01:46:08.300 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.lang.Thread.run(Thread.java:750)
+
+
+=== STDERR ===
+Killed

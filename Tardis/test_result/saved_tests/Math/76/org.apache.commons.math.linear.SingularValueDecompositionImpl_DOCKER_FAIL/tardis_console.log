@@ -1,0 +1,60 @@
+=== STDOUT ===
+03:59:15.684 [main] INFO  tardis.Main - This is TARDIS, version 0.3.0-SNAPSHOT, ? 2017-2026 University of Milano-Bicocca
+03:59:15.686 [main] INFO  tardis.Main - Target is class org/apache/commons/math/linear/SingularValueDecompositionImpl
+03:59:16.589 [PerformerEvosuite-pool-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Launched EvoSuite seed process, command line:  java -Xmx4G -jar /usr/share/java/evosuite-shaded-1.2.1-SNAPSHOT.jar -class org.apache.commons.math.linear.SingularValueDecompositionImpl -mem 2048 -Dmock_if_no_generator=false -Dreplace_system_in=false -Dreplace_gui=false -Dp_functional_mocking=0.0 -DCP=/workspace/target/classes:/usr/share/java/jbse-0.12.0-SNAPSHOT-shaded.jar:/usr/share/java/sushi-lib-0.3.0-SNAPSHOT.jar -Dassertions=false -Dreport_dir=./tmp_tardis/2026_10_02_03_59_15 -Dsearch_budget=180 -Dtest_dir=./tmp_tardis/2026_10_02_03_59_15/test -Dvirtual_fs=false -Dselection_function=ROULETTEWHEEL -Dinline=false -Dsushi_modifiers_local_search=true -Duse_minimizer_during_crossover=true -Davoid_replicas_of_individuals=true -Dno_change_iterations_before_reset=30 -Dmax_subclasses_per_class=1 -Dcrossover_function=SUSHI_HYBRID -Dalgorithm=DYNAMOSA -generateMOSuite -Dcriterion=PATHCONDITION -Dsushi_statistics=true -Dpath_condition_target=LAST_ONLY -Dpath_condition_evaluators_dir=./tmp_tardis/2026_10_02_03_59_15/bin -Demit_tests_incrementally=true -Dpath_condition=org.apache.commons.math.linear.SingularValueDecompositionImpl,getU()Lorg/apache/commons/math/linear/RealMatrix;,org.apache.commons.math.linear.EvoSuiteWrapper_0:org.apache.commons.math.linear.SingularValueDecompositionImpl,getUT()Lorg/apache/commons/math/linear/RealMatrix;,org.apache.commons.math.linear.EvoSuiteWrapper_1:org.apache.commons.math.linear.SingularValueDecompositionImpl,getS()Lorg/apache/commons/math/linear/RealMatrix;,org.apache.commons.math.linear.EvoSuiteWrapper_2:org.apache.commons.math.linear.SingularValueDecompositionImpl,getSingularValues()[D,org.apache.commons.math.linear.EvoSuiteWrapper_3:org.apache.commons.math.linear.SingularValueDecompositionImpl,getV()Lorg/apache/commons/math/linear/RealMatrix;,org.apache.commons.math.linear.EvoSuiteWrapper_4:org.apache.commons.math.linear.SingularValueDecompositionImpl,getVT()Lorg/apache/commons/math/linear/RealMatrix;,org.apache.commons.math.linear.EvoSuiteWrapper_5:org.apache.commons.math.linear.SingularValueDecompositionImpl,getCovariance(D)Lorg/apache/commons/math/linear/RealMatrix;,org.apache.commons.math.linear.EvoSuiteWrapper_6:org.apache.commons.math.linear.SingularValueDecompositionImpl,getNorm()D,org.apache.commons.math.linear.EvoSuiteWrapper_7:org.apache.commons.math.linear.SingularValueDecompositionImpl,getConditionNumber()D,org.apache.commons.math.linear.EvoSuiteWrapper_8:org.apache.commons.math.linear.SingularValueDecompositionImpl,getRank()I,org.apache.commons.math.linear.EvoSuiteWrapper_9:org.apache.commons.math.linear.SingularValueDecompositionImpl,getSolver()Lorg/apache/commons/math/linear/DecompositionSolver;,org.apache.commons.math.linear.EvoSuiteWrapper_10:org.apache.commons.math.linear.SingularValueDecompositionImpl,<init>(Lorg/apache/commons/math/linear/RealMatrix;)V,org.apache.commons.math.linear.EvoSuiteWrapper_11:org.apache.commons.math.linear.SingularValueDecompositionImpl,<init>(Lorg/apache/commons/math/linear/RealMatrix;I)V,org.apache.commons.math.linear.EvoSuiteWrapper_12
+03:59:21.242 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Generated test case org/apache/commons/math/linear/SingularValueDecompositionImpl_12_Test, depth: 0, post-frontier path condition: org/apache/commons/math/linear/SingularValueDecompositionImpl:(Lorg/apache/commons/math/linear/RealMatrix;I)V:<init>:true
+03:59:21.407 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Generated test case org/apache/commons/math/linear/SingularValueDecompositionImpl_0_Test, depth: 0, post-frontier path condition: org/apache/commons/math/linear/SingularValueDecompositionImpl:()Lorg/apache/commons/math/linear/RealMatrix;:getU:true
+03:59:21.549 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Generated test case org/apache/commons/math/linear/SingularValueDecompositionImpl_8_Test, depth: 0, post-frontier path condition: org/apache/commons/math/linear/SingularValueDecompositionImpl:()D:getConditionNumber:true
+03:59:21.673 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Generated test case org/apache/commons/math/linear/SingularValueDecompositionImpl_7_Test, depth: 0, post-frontier path condition: org/apache/commons/math/linear/SingularValueDecompositionImpl:()D:getNorm:true
+03:59:21.888 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Generated test case org/apache/commons/math/linear/SingularValueDecompositionImpl_9_Test, depth: 0, post-frontier path condition: org/apache/commons/math/linear/SingularValueDecompositionImpl:()I:getRank:true
+03:59:22.170 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Generated test case org/apache/commons/math/linear/SingularValueDecompositionImpl_4_Test, depth: 0, post-frontier path condition: org/apache/commons/math/linear/SingularValueDecompositionImpl:()Lorg/apache/commons/math/linear/RealMatrix;:getV:true
+03:59:22.516 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Generated test case org/apache/commons/math/linear/SingularValueDecompositionImpl_2_Test, depth: 0, post-frontier path condition: org/apache/commons/math/linear/SingularValueDecompositionImpl:()Lorg/apache/commons/math/linear/RealMatrix;:getS:true
+03:59:25.028 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Generated test case org/apache/commons/math/linear/SingularValueDecompositionImpl_10_Test, depth: 0, post-frontier path condition: org/apache/commons/math/linear/SingularValueDecompositionImpl:()Lorg/apache/commons/math/linear/DecompositionSolver;:getSolver:true
+
+
+=== STDERR ===
+Exception in thread "PerformerJBSE-pool-1" java.lang.NullPointerException
+	at com.sun.tools.jdi.MirrorImpl.validateMirror(MirrorImpl.java:67)
+	at com.sun.tools.jdi.EventRequestManagerImpl.createBreakpointRequest(EventRequestManagerImpl.java:811)
+	at jbse.apps.run.DecisionProcedureGuidanceJDI$JVMJDI.trySetBreakPoint(DecisionProcedureGuidanceJDI.java:425)
+	at jbse.apps.run.DecisionProcedureGuidanceJDI$JVMJDI.goToBreakpoint(DecisionProcedureGuidanceJDI.java:354)
+	at jbse.apps.run.DecisionProcedureGuidanceJDI$SymbolicApplyJVMJDI.stepIntoSymbolicApplyMethod(DecisionProcedureGuidanceJDI.java:999)
+	at jbse.apps.run.DecisionProcedureGuidanceJDI$SymbolicApplyJVMJDI.eval_INVOKEX(DecisionProcedureGuidanceJDI.java:991)
+	at jbse.apps.run.DecisionProcedureGuidanceJDI$JVMJDI.startSymbolicApplyVm(DecisionProcedureGuidanceJDI.java:688)
+	at jbse.apps.run.DecisionProcedureGuidanceJDI$JVMJDI.getJDIValue(DecisionProcedureGuidanceJDI.java:644)
+	at jbse.apps.run.DecisionProcedureGuidanceJDI$JVMJDI.getValue(DecisionProcedureGuidanceJDI.java:535)
+	at jbse.apps.run.DecisionProcedureGuidance$JVM$Evaluator.visitPrimitiveSymbolicApply(DecisionProcedureGuidance.java:675)
+	at jbse.val.PrimitiveSymbolicApply.accept(PrimitiveSymbolicApply.java:227)
+	at jbse.apps.run.DecisionProcedureGuidance$JVM$Evaluator.visitExpression(DecisionProcedureGuidance.java:657)
+	at jbse.val.Expression.accept(Expression.java:253)
+	at jbse.apps.run.DecisionProcedureGuidance$JVM$Evaluator.visitExpression(DecisionProcedureGuidance.java:657)
+	at jbse.val.Expression.accept(Expression.java:253)
+	at jbse.apps.run.DecisionProcedureGuidance$JVM$Evaluator.visitExpression(DecisionProcedureGuidance.java:657)
+	at jbse.val.Expression.accept(Expression.java:253)
+	at jbse.apps.run.DecisionProcedureGuidance$JVM$Evaluator.visitNarrowingConversion(DecisionProcedureGuidance.java:735)
+	at jbse.val.NarrowingConversion.accept(NarrowingConversion.java:96)
+	at jbse.apps.run.DecisionProcedureGuidance$JVM$Evaluator.visitExpression(DecisionProcedureGuidance.java:657)
+	at jbse.val.Expression.accept(Expression.java:253)
+	at jbse.apps.run.DecisionProcedureGuidance$JVM$Evaluator.visitExpression(DecisionProcedureGuidance.java:657)
+	at jbse.val.Expression.accept(Expression.java:253)
+	at jbse.apps.run.DecisionProcedureGuidance$JVM.eval(DecisionProcedureGuidance.java:620)
+	at jbse.apps.run.DecisionProcedureGuidance$JVM.eval_XSWITCH(DecisionProcedureGuidance.java:572)
+	at jbse.apps.run.DecisionProcedureGuidance$JVM.access$200(DecisionProcedureGuidance.java:451)
+	at jbse.apps.run.DecisionProcedureGuidance.decide_XSWITCH_Nonconcrete(DecisionProcedureGuidance.java:251)
+	at jbse.dec.DecisionProcedureAlgorithms.decide_XSWITCH(DecisionProcedureAlgorithms.java:483)
+	at jbse.algo.Algo_XSWITCH.lambda$decider$3(Algo_XSWITCH.java:80)
+	at jbse.algo.Algorithm.doExec(Algorithm.java:256)
+	at jbse.algo.Algorithm.exec(Algorithm.java:218)
+	at jbse.jvm.Engine.step(Engine.java:306)
+	at jbse.jvm.Runner.doRun(Runner.java:660)
+	at jbse.jvm.Runner.run(Runner.java:626)
+	at tardis.implementation.jbse.RunnerPreFrontier.run(RunnerPreFrontier.java:126)
+	at tardis.implementation.jbse.RunnerPath.runProgram(RunnerPath.java:237)
+	at tardis.implementation.jbse.RunnerPath.runProgram(RunnerPath.java:187)
+	at tardis.implementation.jbse.PerformerJBSE.explore(PerformerJBSE.java:111)
+	at tardis.implementation.jbse.PerformerJBSE.executeJob(PerformerJBSE.java:90)
+	at tardis.framework.Performer.lambda$makeJob$1(Performer.java:181)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+Killed

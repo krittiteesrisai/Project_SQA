@@ -1,0 +1,64 @@
+=== STDOUT ===
+12:59:40.093 [main] INFO  tardis.Main - This is TARDIS, version 0.3.0-SNAPSHOT, ? 2017-2026 University of Milano-Bicocca
+12:59:40.097 [main] INFO  tardis.Main - Target is class com/fasterxml/jackson/databind/ser/std/NumberSerializer
+12:59:41.568 [PerformerEvosuite-pool-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Launched EvoSuite seed process, command line:  java -Xmx4G -jar /usr/share/java/evosuite-shaded-1.2.1-SNAPSHOT.jar -class com.fasterxml.jackson.databind.ser.std.NumberSerializer -mem 2048 -Dmock_if_no_generator=false -Dreplace_system_in=false -Dreplace_gui=false -Dp_functional_mocking=0.0 -DCP=/workspace/target/classes:/workspace/tardis_deps/70306b_jackson-annotations-2.10.0-20190519.085045-3.jar:/workspace/tardis_deps/4050bd_jackson-core-2.10.0-20190518.180547-60.jar:/usr/share/java/jbse-0.12.0-SNAPSHOT-shaded.jar:/usr/share/java/sushi-lib-0.3.0-SNAPSHOT.jar -Dassertions=false -Dreport_dir=./tmp_tardis/2026_10_02_12_59_39 -Dsearch_budget=180 -Dtest_dir=./tmp_tardis/2026_10_02_12_59_39/test -Dvirtual_fs=false -Dselection_function=ROULETTEWHEEL -Dinline=false -Dsushi_modifiers_local_search=true -Duse_minimizer_during_crossover=true -Davoid_replicas_of_individuals=true -Dno_change_iterations_before_reset=30 -Dmax_subclasses_per_class=1 -Dcrossover_function=SUSHI_HYBRID -Dalgorithm=DYNAMOSA -generateMOSuite -Dcriterion=PATHCONDITION -Dsushi_statistics=true -Dpath_condition_target=LAST_ONLY -Dpath_condition_evaluators_dir=./tmp_tardis/2026_10_02_12_59_39/bin -Demit_tests_incrementally=true -Dpath_condition=com.fasterxml.jackson.databind.ser.std.NumberSerializer,serialize(Ljava/lang/Number;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V,com.fasterxml.jackson.databind.ser.std.EvoSuiteWrapper_0:com.fasterxml.jackson.databind.ser.std.NumberSerializer,createContextual(Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/JsonSerializer;,com.fasterxml.jackson.databind.ser.std.EvoSuiteWrapper_1:com.fasterxml.jackson.databind.ser.std.NumberSerializer,acceptJsonFormatVisitor(Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitorWrapper;Lcom/fasterxml/jackson/databind/JavaType;)V,com.fasterxml.jackson.databind.ser.std.EvoSuiteWrapper_2:com.fasterxml.jackson.databind.ser.std.NumberSerializer,getSchema(Lcom/fasterxml/jackson/databind/SerializerProvider;Ljava/lang/reflect/Type;)Lcom/fasterxml/jackson/databind/JsonNode;,com.fasterxml.jackson.databind.ser.std.EvoSuiteWrapper_3:com.fasterxml.jackson.databind.ser.std.NumberSerializer,<init>(Ljava/lang/Class;)V,com.fasterxml.jackson.databind.ser.std.EvoSuiteWrapper_4
+12:59:51.448 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Generated test case com/fasterxml/jackson/databind/ser/std/NumberSerializer_3_Test, depth: 0, post-frontier path condition: com/fasterxml/jackson/databind/ser/std/NumberSerializer:(Lcom/fasterxml/jackson/databind/SerializerProvider;Ljava/lang/reflect/Type;)Lcom/fasterxml/jackson/databind/JsonNode;:getSchema:true
+12:59:51.727 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Generated test case com/fasterxml/jackson/databind/ser/std/NumberSerializer_0_Test, depth: 0, post-frontier path condition: com/fasterxml/jackson/databind/ser/std/NumberSerializer:(Ljava/lang/Number;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V:serialize:true
+12:59:52.389 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Generated test case com/fasterxml/jackson/databind/ser/std/NumberSerializer_2_Test, depth: 0, post-frontier path condition: com/fasterxml/jackson/databind/ser/std/NumberSerializer:(Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitorWrapper;Lcom/fasterxml/jackson/databind/JavaType;)V:acceptJsonFormatVisitor:true
+12:59:52.710 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Generated test case com/fasterxml/jackson/databind/ser/std/NumberSerializer_1_Test, depth: 0, post-frontier path condition: com/fasterxml/jackson/databind/ser/std/NumberSerializer:(Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/JsonSerializer;:createContextual:true
+13:00:01.049 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Unexpected frozen state exception while trying to generate path condition for additional fresh object
+13:00:01.050 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Message: jbse.mem.exc.CannotAssumeSymbolicObjectException: JBSE does not allow to create symbolic instances of class java/lang/Class.
+13:00:01.052 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Stack trace:
+13:00:01.053 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.mem.State.newInstanceSymbolic(State.java:2523)
+13:00:01.053 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.mem.State.createObjectSymbolic(State.java:2413)
+13:00:01.053 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.mem.State.assumeExpands(State.java:3188)
+13:00:01.053 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algo_XYLOAD_GETX.refineRefExpands(Algo_XYLOAD_GETX.java:85)
+13:00:01.053 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algo_XLOAD_GETX$1.refineRefExpands(Algo_XLOAD_GETX.java:115)
+13:00:01.053 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.StrategyRefine_XLOAD_GETX$1.visitDecisionAlternative_XLOAD_GETX_Expands(StrategyRefine_XLOAD_GETX.java:52)
+13:00:01.053 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.tree.DecisionAlternative_XLOAD_GETX_Expands.accept(DecisionAlternative_XLOAD_GETX_Expands.java:37)
+13:00:01.053 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.StrategyRefine_XLOAD_GETX.refine(StrategyRefine_XLOAD_GETX.java:75)
+13:00:01.053 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.StrategyRefine_XLOAD_GETX.refine(StrategyRefine_XLOAD_GETX.java:28)
+13:00:01.053 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algorithm.doExec(Algorithm.java:280)
+13:00:01.053 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algorithm.exec(Algorithm.java:218)
+13:00:01.053 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Engine.step(Engine.java:306)
+13:00:01.053 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Runner.doRun(Runner.java:660)
+13:00:01.053 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Runner.run(Runner.java:626)
+13:00:01.054 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPreFrontier.run(RunnerPreFrontier.java:126)
+13:00:01.054 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPath.runProgram(RunnerPath.java:237)
+13:00:01.054 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPath.runProgram(RunnerPath.java:187)
+13:00:01.054 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.PerformerJBSE.explore(PerformerJBSE.java:111)
+13:00:01.055 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.PerformerJBSE.executeJob(PerformerJBSE.java:90)
+13:00:01.055 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.framework.Performer.lambda$makeJob$1(Performer.java:181)
+13:00:01.055 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+13:00:01.055 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+13:00:01.055 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.lang.Thread.run(Thread.java:750)
+13:00:05.107 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Unexpected frozen state exception while trying to generate path condition for additional fresh object
+13:00:05.108 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Message: jbse.mem.exc.CannotAssumeSymbolicObjectException: JBSE does not allow to create symbolic instances of class java/lang/Class.
+13:00:05.108 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Stack trace:
+13:00:05.109 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.mem.State.newInstanceSymbolic(State.java:2523)
+13:00:05.109 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.mem.State.createObjectSymbolic(State.java:2413)
+13:00:05.109 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.mem.State.assumeExpands(State.java:3188)
+13:00:05.109 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algo_XYLOAD_GETX.refineRefExpands(Algo_XYLOAD_GETX.java:85)
+13:00:05.110 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algo_XLOAD_GETX$1.refineRefExpands(Algo_XLOAD_GETX.java:115)
+13:00:05.110 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.StrategyRefine_XLOAD_GETX$1.visitDecisionAlternative_XLOAD_GETX_Expands(StrategyRefine_XLOAD_GETX.java:52)
+13:00:05.110 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.tree.DecisionAlternative_XLOAD_GETX_Expands.accept(DecisionAlternative_XLOAD_GETX_Expands.java:37)
+13:00:05.111 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.StrategyRefine_XLOAD_GETX.refine(StrategyRefine_XLOAD_GETX.java:75)
+13:00:05.111 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.StrategyRefine_XLOAD_GETX.refine(StrategyRefine_XLOAD_GETX.java:28)
+13:00:05.112 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algorithm.doExec(Algorithm.java:280)
+13:00:05.112 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algorithm.exec(Algorithm.java:218)
+13:00:05.114 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Engine.step(Engine.java:306)
+13:00:05.114 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Runner.doRun(Runner.java:660)
+13:00:05.114 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Runner.run(Runner.java:626)
+13:00:05.114 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPreFrontier.run(RunnerPreFrontier.java:126)
+13:00:05.114 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPath.runProgram(RunnerPath.java:237)
+13:00:05.115 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPath.runProgram(RunnerPath.java:187)
+13:00:05.115 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.PerformerJBSE.explore(PerformerJBSE.java:111)
+13:00:05.115 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.PerformerJBSE.executeJob(PerformerJBSE.java:90)
+13:00:05.115 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.framework.Performer.lambda$makeJob$1(Performer.java:181)
+13:00:05.115 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+13:00:05.115 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+13:00:05.116 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.lang.Thread.run(Thread.java:750)
+
+
+=== STDERR ===
+Killed

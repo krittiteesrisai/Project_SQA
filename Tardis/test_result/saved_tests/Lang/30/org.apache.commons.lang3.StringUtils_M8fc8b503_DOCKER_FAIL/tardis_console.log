@@ -1,0 +1,27 @@
+=== STDOUT ===
+01:42:15.569 [main] INFO  tardis.Main - This is TARDIS, version 0.3.0-SNAPSHOT, ? 2017-2026 University of Milano-Bicocca
+01:42:15.571 [main] INFO  tardis.Main - Target is method org/apache/commons/lang3/StringUtils:(Ljava/lang/CharSequence;[C)Z:containsOnly
+01:42:16.104 [PerformerEvosuite-pool-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Launched EvoSuite seed process, command line:  java -Xmx4G -jar /usr/share/java/evosuite-shaded-1.2.1-SNAPSHOT.jar -class org.apache.commons.lang3.StringUtils -mem 2048 -Dmock_if_no_generator=false -Dreplace_system_in=false -Dreplace_gui=false -Dp_functional_mocking=0.0 -DCP=/workspace/target/classes:/usr/share/java/jbse-0.12.0-SNAPSHOT-shaded.jar:/usr/share/java/sushi-lib-0.3.0-SNAPSHOT.jar -Dassertions=false -Dreport_dir=./tmp_tardis/2026_10_02_01_42_15 -Dsearch_budget=180 -Dtest_dir=./tmp_tardis/2026_10_02_01_42_15/test -Dvirtual_fs=false -Dselection_function=ROULETTEWHEEL -Dinline=false -Dsushi_modifiers_local_search=true -Duse_minimizer_during_crossover=true -Davoid_replicas_of_individuals=true -Dno_change_iterations_before_reset=30 -Dmax_subclasses_per_class=1 -Dcrossover_function=SUSHI_HYBRID -Dalgorithm=DYNAMOSA -generateMOSuite -Dcriterion=PATHCONDITION -Dsushi_statistics=true -Dpath_condition_target=LAST_ONLY -Dpath_condition_evaluators_dir=./tmp_tardis/2026_10_02_01_42_15/bin -Demit_tests_incrementally=true -Dpath_condition=org.apache.commons.lang3.StringUtils,containsOnly(Ljava/lang/CharSequence;[C)Z,org.apache.commons.lang3.EvoSuiteWrapper_0
+01:42:22.860 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Generated test case org/apache/commons/lang3/StringUtils_0_Test, depth: 0, post-frontier path condition: org/apache/commons/lang3/StringUtils:(Ljava/lang/CharSequence;[C)Z:containsOnly:true
+01:42:34.819 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Unexpected frozen state exception while trying to generate path condition for additional fresh object
+01:42:34.820 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Message: jbse.algo.exc.NotYetImplementedException: Method java/lang/reflect/Array:(Ljava/lang/Object;)I:getLength is native and has no overriding implementation.
+01:42:34.820 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Stack trace:
+01:42:34.820 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algo_INVOKEX_Completion.lambda$bytecodeCooker$0(Algo_INVOKEX_Completion.java:150)
+01:42:34.820 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algorithm.doExec(Algorithm.java:236)
+01:42:34.820 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algorithm.exec(Algorithm.java:218)
+01:42:34.820 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Engine.step(Engine.java:306)
+01:42:34.820 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Runner.doRun(Runner.java:660)
+01:42:34.821 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Runner.run(Runner.java:626)
+01:42:34.821 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPreFrontier.run(RunnerPreFrontier.java:126)
+01:42:34.821 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPath.runProgram(RunnerPath.java:237)
+01:42:34.821 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPath.runProgram(RunnerPath.java:187)
+01:42:34.821 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.PerformerJBSE.explore(PerformerJBSE.java:111)
+01:42:34.821 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.PerformerJBSE.executeJob(PerformerJBSE.java:90)
+01:42:34.821 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.framework.Performer.lambda$makeJob$1(Performer.java:181)
+01:42:34.823 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+01:42:34.823 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+01:42:34.823 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.lang.Thread.run(Thread.java:750)
+
+
+=== STDERR ===
+Killed

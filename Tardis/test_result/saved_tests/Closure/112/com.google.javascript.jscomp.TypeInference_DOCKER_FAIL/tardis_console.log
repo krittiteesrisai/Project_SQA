@@ -1,0 +1,8 @@
+=== STDOUT ===
+09:04:47.261 [main] INFO  tardis.Main - This is TARDIS, version 0.3.0-SNAPSHOT, ? 2017-2026 University of Milano-Bicocca
+09:04:47.263 [main] INFO  tardis.Main - Target is class com/google/javascript/jscomp/TypeInference
+09:04:48.395 [PerformerEvosuite-pool-1] ERROR tardis.implementation.evosuite.PerformerEvosuite - Internal error: EvoSuite wrapper /workspace/./tmp_tardis/2026_10_02_09_04_46/wrap/com/google/javascript/jscomp/EvoSuiteWrapper_4.java compilation failed
+
+
+=== STDERR ===
+Killed

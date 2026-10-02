@@ -1,0 +1,73 @@
+=== STDOUT ===
+03:28:31.174 [main] INFO  tardis.Main - This is TARDIS, version 0.3.0-SNAPSHOT, ? 2017-2026 University of Milano-Bicocca
+03:28:31.176 [main] INFO  tardis.Main - Target is class org/apache/commons/lang/LocaleUtils
+03:28:31.829 [PerformerEvosuite-pool-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Launched EvoSuite seed process, command line:  java -Xmx4G -jar /usr/share/java/evosuite-shaded-1.2.1-SNAPSHOT.jar -class org.apache.commons.lang.LocaleUtils -mem 2048 -Dmock_if_no_generator=false -Dreplace_system_in=false -Dreplace_gui=false -Dp_functional_mocking=0.0 -DCP=/workspace/target/classes:/usr/share/java/jbse-0.12.0-SNAPSHOT-shaded.jar:/usr/share/java/sushi-lib-0.3.0-SNAPSHOT.jar -Dassertions=false -Dreport_dir=./tmp_tardis/2026_10_02_03_28_30 -Dsearch_budget=180 -Dtest_dir=./tmp_tardis/2026_10_02_03_28_30/test -Dvirtual_fs=false -Dselection_function=ROULETTEWHEEL -Dinline=false -Dsushi_modifiers_local_search=true -Duse_minimizer_during_crossover=true -Davoid_replicas_of_individuals=true -Dno_change_iterations_before_reset=30 -Dmax_subclasses_per_class=1 -Dcrossover_function=SUSHI_HYBRID -Dalgorithm=DYNAMOSA -generateMOSuite -Dcriterion=PATHCONDITION -Dsushi_statistics=true -Dpath_condition_target=LAST_ONLY -Dpath_condition_evaluators_dir=./tmp_tardis/2026_10_02_03_28_30/bin -Demit_tests_incrementally=true -Dpath_condition=org.apache.commons.lang.LocaleUtils,toLocale(Ljava/lang/String;)Ljava/util/Locale;,org.apache.commons.lang.EvoSuiteWrapper_0:org.apache.commons.lang.LocaleUtils,availableLocaleList()Ljava/util/List;,org.apache.commons.lang.EvoSuiteWrapper_1:org.apache.commons.lang.LocaleUtils,availableLocaleSet()Ljava/util/Set;,org.apache.commons.lang.EvoSuiteWrapper_2:org.apache.commons.lang.LocaleUtils,isAvailableLocale(Ljava/util/Locale;)Z,org.apache.commons.lang.EvoSuiteWrapper_3:org.apache.commons.lang.LocaleUtils,languagesByCountry(Ljava/lang/String;)Ljava/util/List;,org.apache.commons.lang.EvoSuiteWrapper_4:org.apache.commons.lang.LocaleUtils,countriesByLanguage(Ljava/lang/String;)Ljava/util/List;,org.apache.commons.lang.EvoSuiteWrapper_5:org.apache.commons.lang.LocaleUtils,localeLookupList(Ljava/util/Locale;)Ljava/util/List;,org.apache.commons.lang.EvoSuiteWrapper_6:org.apache.commons.lang.LocaleUtils,localeLookupList(Ljava/util/Locale;Ljava/util/Locale;)Ljava/util/List;,org.apache.commons.lang.EvoSuiteWrapper_7:org.apache.commons.lang.LocaleUtils,<init>()V,org.apache.commons.lang.EvoSuiteWrapper_8
+03:28:34.458 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Generated test case org/apache/commons/lang/LocaleUtils_1_Test, depth: 0, post-frontier path condition: org/apache/commons/lang/LocaleUtils:()Ljava/util/List;:availableLocaleList:true
+03:28:34.535 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Generated test case org/apache/commons/lang/LocaleUtils_7_Test, depth: 0, post-frontier path condition: org/apache/commons/lang/LocaleUtils:(Ljava/util/Locale;Ljava/util/Locale;)Ljava/util/List;:localeLookupList:true
+03:28:34.619 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Generated test case org/apache/commons/lang/LocaleUtils_0_Test, depth: 0, post-frontier path condition: org/apache/commons/lang/LocaleUtils:(Ljava/lang/String;)Ljava/util/Locale;:toLocale:true
+03:28:34.698 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Generated test case org/apache/commons/lang/LocaleUtils_6_Test, depth: 0, post-frontier path condition: org/apache/commons/lang/LocaleUtils:(Ljava/util/Locale;)Ljava/util/List;:localeLookupList:true
+03:28:34.782 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Generated test case org/apache/commons/lang/LocaleUtils_2_Test, depth: 0, post-frontier path condition: org/apache/commons/lang/LocaleUtils:()Ljava/util/Set;:availableLocaleSet:true
+03:28:35.801 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Failed to generate a test case for post-frontier path condition org/apache/commons/lang/LocaleUtils:(Ljava/util/Locale;)Z:isAvailableLocale:true, log file: ./tmp_tardis/2026_10_02_03_28_30/evosuite-log-seed.txt, wrapper: EvoSuiteWrapper_3
+03:28:35.801 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Failed to generate a test case for post-frontier path condition org/apache/commons/lang/LocaleUtils:(Ljava/lang/String;)Ljava/util/List;:languagesByCountry:true, log file: ./tmp_tardis/2026_10_02_03_28_30/evosuite-log-seed.txt, wrapper: EvoSuiteWrapper_4
+03:28:35.802 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Failed to generate a test case for post-frontier path condition org/apache/commons/lang/LocaleUtils:(Ljava/lang/String;)Ljava/util/List;:countriesByLanguage:true, log file: ./tmp_tardis/2026_10_02_03_28_30/evosuite-log-seed.txt, wrapper: EvoSuiteWrapper_5
+03:28:35.802 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Failed to generate a test case for post-frontier path condition org/apache/commons/lang/LocaleUtils:()V:<init>:true, log file: ./tmp_tardis/2026_10_02_03_28_30/evosuite-log-seed.txt, wrapper: EvoSuiteWrapper_8
+03:28:40.980 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Unexpected frozen state exception while trying to generate path condition for additional fresh object
+03:28:40.982 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Message: jbse.algo.exc.NotYetImplementedException: Method java/util/zip/ZipFile:(J[B)J:getEntry is native and has no overriding implementation.
+03:28:40.983 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Stack trace:
+03:28:40.983 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algo_INVOKEX_Completion.lambda$bytecodeCooker$0(Algo_INVOKEX_Completion.java:150)
+03:28:40.983 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algorithm.doExec(Algorithm.java:236)
+03:28:40.983 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algorithm.exec(Algorithm.java:218)
+03:28:40.983 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Engine.step(Engine.java:306)
+03:28:40.983 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Runner.doRun(Runner.java:660)
+03:28:40.983 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Runner.run(Runner.java:626)
+03:28:40.984 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPreFrontier.run(RunnerPreFrontier.java:126)
+03:28:40.984 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPath.runProgram(RunnerPath.java:237)
+03:28:40.984 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPath.runProgram(RunnerPath.java:187)
+03:28:40.984 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.PerformerJBSE.explore(PerformerJBSE.java:111)
+03:28:40.984 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.PerformerJBSE.executeJob(PerformerJBSE.java:90)
+03:28:40.984 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.framework.Performer.lambda$makeJob$1(Performer.java:181)
+03:28:40.984 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+03:28:40.984 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+03:28:40.984 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.lang.Thread.run(Thread.java:750)
+03:28:41.551 [PerformerJBSE-pool-1] WARN  tardis.implementation.jbse.PerformerJBSE - Run test case org/apache/commons/lang/LocaleUtils_6_Test, does not reach the target method org/apache/commons/lang/LocaleUtils:(Ljava/util/Locale;)Ljava/util/List;:localeLookupList
+03:28:44.005 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Unexpected frozen state exception while trying to generate path condition for additional fresh object
+03:28:44.005 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Message: jbse.algo.exc.NotYetImplementedException: Method java/util/zip/ZipFile:(J[B)J:getEntry is native and has no overriding implementation.
+03:28:44.005 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Stack trace:
+03:28:44.006 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algo_INVOKEX_Completion.lambda$bytecodeCooker$0(Algo_INVOKEX_Completion.java:150)
+03:28:44.006 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algorithm.doExec(Algorithm.java:236)
+03:28:44.006 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algorithm.exec(Algorithm.java:218)
+03:28:44.006 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Engine.step(Engine.java:306)
+03:28:44.006 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Runner.doRun(Runner.java:660)
+03:28:44.006 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Runner.run(Runner.java:626)
+03:28:44.006 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPreFrontier.run(RunnerPreFrontier.java:126)
+03:28:44.006 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPath.runProgram(RunnerPath.java:237)
+03:28:44.006 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPath.runProgram(RunnerPath.java:187)
+03:28:44.006 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.PerformerJBSE.explore(PerformerJBSE.java:111)
+03:28:44.006 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.PerformerJBSE.executeJob(PerformerJBSE.java:90)
+03:28:44.007 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.framework.Performer.lambda$makeJob$1(Performer.java:181)
+03:28:44.007 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+03:28:44.007 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+03:28:44.007 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.lang.Thread.run(Thread.java:750)
+03:28:45.307 [PerformerJBSE-pool-1] INFO  tardis.implementation.jbse.PerformerJBSE - Run test case org/apache/commons/lang/LocaleUtils_7_Test, the test case violated an assumption or exhausted a bound before arriving at the final state
+03:28:47.710 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Unexpected frozen state exception while trying to generate path condition for additional fresh object
+03:28:47.710 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Message: jbse.algo.exc.NotYetImplementedException: Method java/util/zip/ZipFile:(J[B)J:getEntry is native and has no overriding implementation.
+03:28:47.710 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Stack trace:
+03:28:47.710 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algo_INVOKEX_Completion.lambda$bytecodeCooker$0(Algo_INVOKEX_Completion.java:150)
+03:28:47.710 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algorithm.doExec(Algorithm.java:236)
+03:28:47.710 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algorithm.exec(Algorithm.java:218)
+03:28:47.710 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Engine.step(Engine.java:306)
+03:28:47.710 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Runner.doRun(Runner.java:660)
+03:28:47.710 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Runner.run(Runner.java:626)
+03:28:47.710 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPreFrontier.run(RunnerPreFrontier.java:126)
+03:28:47.710 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPath.runProgram(RunnerPath.java:237)
+03:28:47.711 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPath.runProgram(RunnerPath.java:187)
+03:28:47.711 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.PerformerJBSE.explore(PerformerJBSE.java:111)
+03:28:47.711 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.PerformerJBSE.executeJob(PerformerJBSE.java:90)
+03:28:47.712 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.framework.Performer.lambda$makeJob$1(Performer.java:181)
+03:28:47.713 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+03:28:47.713 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+03:28:47.713 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.lang.Thread.run(Thread.java:750)
+
+
+=== STDERR ===
+Killed

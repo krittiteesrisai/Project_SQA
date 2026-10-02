@@ -1,0 +1,42 @@
+=== STDOUT ===
+10:21:10.794 [main] INFO  tardis.Main - This is TARDIS, version 0.3.0-SNAPSHOT, ? 2017-2026 University of Milano-Bicocca
+10:21:10.796 [main] INFO  tardis.Main - Target is method org/apache/commons/collections/map/MultiValueMap:()I:totalSize
+10:21:11.409 [PerformerEvosuite-pool-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Launched EvoSuite seed process, command line:  java -Xmx4G -jar /usr/share/java/evosuite-shaded-1.2.1-SNAPSHOT.jar -class org.apache.commons.collections.map.MultiValueMap -mem 2048 -Dmock_if_no_generator=false -Dreplace_system_in=false -Dreplace_gui=false -Dp_functional_mocking=0.0 -DCP=/workspace/build/classes:/usr/share/java/jbse-0.12.0-SNAPSHOT-shaded.jar:/usr/share/java/sushi-lib-0.3.0-SNAPSHOT.jar -Dassertions=false -Dreport_dir=./tmp_tardis/2026_10_02_10_21_09 -Dsearch_budget=180 -Dtest_dir=./tmp_tardis/2026_10_02_10_21_09/test -Dvirtual_fs=false -Dselection_function=ROULETTEWHEEL -Dinline=false -Dsushi_modifiers_local_search=true -Duse_minimizer_during_crossover=true -Davoid_replicas_of_individuals=true -Dno_change_iterations_before_reset=30 -Dmax_subclasses_per_class=1 -Dcrossover_function=SUSHI_HYBRID -Dalgorithm=DYNAMOSA -generateMOSuite -Dcriterion=PATHCONDITION -Dsushi_statistics=true -Dpath_condition_target=LAST_ONLY -Dpath_condition_evaluators_dir=./tmp_tardis/2026_10_02_10_21_09/bin -Demit_tests_incrementally=true -Dpath_condition=org.apache.commons.collections.map.MultiValueMap,totalSize()I,org.apache.commons.collections.map.EvoSuiteWrapper_0
+10:21:16.255 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Generated test case org/apache/commons/collections/map/MultiValueMap_0_Test, depth: 0, post-frontier path condition: org/apache/commons/collections/map/MultiValueMap:()I:totalSize:true
+10:21:27.248 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Unexpected frozen state exception while trying to generate path condition for additional fresh object
+10:21:27.249 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Message: jbse.apps.run.GuidanceException: Failed accessing through a memory access path: {ROOT}:this.org/apache/commons/collections/map/AbstractMapDecorator:map.org/apache/commons/collections/map/AbstractMapDecorator:map.java/util/HashMap:isInitial (missing field isInitial).
+10:21:27.249 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Stack trace:
+10:21:27.249 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.apps.run.DecisionProcedureGuidanceJDI$JVMJDI.getJDIValueField(DecisionProcedureGuidanceJDI.java:772)
+10:21:27.249 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.apps.run.DecisionProcedureGuidanceJDI$JVMJDI.getJDIValue(DecisionProcedureGuidanceJDI.java:582)
+10:21:27.249 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.apps.run.DecisionProcedureGuidanceJDI$JVMJDI.getValue(DecisionProcedureGuidanceJDI.java:535)
+10:21:27.249 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.apps.run.DecisionProcedureGuidance$JVM$Evaluator.visitPrimitiveSymbolicAtomic(DecisionProcedureGuidance.java:686)
+10:21:27.249 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.apps.run.DecisionProcedureGuidance$JVM$Evaluator.visitPrimitiveSymbolicMemberField(DecisionProcedureGuidance.java:720)
+10:21:27.249 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.val.PrimitiveSymbolicMemberField.accept(PrimitiveSymbolicMemberField.java:54)
+10:21:27.249 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.apps.run.DecisionProcedureGuidance$JVM$Evaluator.visitWideningConversion(DecisionProcedureGuidance.java:741)
+10:21:27.249 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.val.WideningConversion.accept(WideningConversion.java:97)
+10:21:27.249 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.apps.run.DecisionProcedureGuidance$JVM$Evaluator.visitExpression(DecisionProcedureGuidance.java:657)
+10:21:27.249 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.val.Expression.accept(Expression.java:253)
+10:21:27.249 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.apps.run.DecisionProcedureGuidance$JVM.eval(DecisionProcedureGuidance.java:620)
+10:21:27.249 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.apps.run.DecisionProcedureGuidance$JVM.eval_IFX(DecisionProcedureGuidance.java:544)
+10:21:27.249 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.apps.run.DecisionProcedureGuidance$JVM.access$000(DecisionProcedureGuidance.java:451)
+10:21:27.249 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.apps.run.DecisionProcedureGuidance.decide_IFX_Nonconcrete(DecisionProcedureGuidance.java:209)
+10:21:27.249 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.dec.DecisionProcedureAlgorithms.decide_IFX(DecisionProcedureAlgorithms.java:302)
+10:21:27.249 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algo_IFX.lambda$decider$2(Algo_IFX.java:98)
+10:21:27.250 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algorithm.doExec(Algorithm.java:256)
+10:21:27.250 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algorithm.exec(Algorithm.java:218)
+10:21:27.250 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Engine.step(Engine.java:306)
+10:21:27.250 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Runner.doRun(Runner.java:660)
+10:21:27.250 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Runner.run(Runner.java:626)
+10:21:27.250 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPreFrontier.run(RunnerPreFrontier.java:126)
+10:21:27.250 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPath.runProgram(RunnerPath.java:237)
+10:21:27.250 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPath.runProgram(RunnerPath.java:187)
+10:21:27.250 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.PerformerJBSE.explore(PerformerJBSE.java:111)
+10:21:27.250 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.PerformerJBSE.executeJob(PerformerJBSE.java:90)
+10:21:27.250 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.framework.Performer.lambda$makeJob$1(Performer.java:181)
+10:21:27.250 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+10:21:27.250 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+10:21:27.250 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.lang.Thread.run(Thread.java:750)
+
+
+=== STDERR ===
+Killed

@@ -1,0 +1,102 @@
+=== STDOUT ===
+12:40:58.039 [main] INFO  tardis.Main - This is TARDIS, version 0.3.0-SNAPSHOT, ? 2017-2026 University of Milano-Bicocca
+12:40:58.044 [main] INFO  tardis.Main - Target is class com/google/gson/internal/bind/TypeAdapters
+12:40:59.254 [PerformerEvosuite-pool-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Launched EvoSuite seed process, command line:  java -Xmx4G -jar /usr/share/java/evosuite-shaded-1.2.1-SNAPSHOT.jar -class com.google.gson.internal.bind.TypeAdapters -mem 2048 -Dmock_if_no_generator=false -Dreplace_system_in=false -Dreplace_gui=false -Dp_functional_mocking=0.0 -DCP=/workspace/target/classes:/workspace/target/classes:/usr/share/java/jbse-0.12.0-SNAPSHOT-shaded.jar:/usr/share/java/sushi-lib-0.3.0-SNAPSHOT.jar -Dassertions=false -Dreport_dir=./tmp_tardis/2026_09_29_12_40_56 -Dsearch_budget=180 -Dtest_dir=./tmp_tardis/2026_09_29_12_40_56/test -Dvirtual_fs=false -Dselection_function=ROULETTEWHEEL -Dinline=false -Dsushi_modifiers_local_search=true -Duse_minimizer_during_crossover=true -Davoid_replicas_of_individuals=true -Dno_change_iterations_before_reset=30 -Dmax_subclasses_per_class=1 -Dcrossover_function=SUSHI_HYBRID -Dalgorithm=DYNAMOSA -generateMOSuite -Dcriterion=PATHCONDITION -Dsushi_statistics=true -Dpath_condition_target=LAST_ONLY -Dpath_condition_evaluators_dir=./tmp_tardis/2026_09_29_12_40_56/bin -Demit_tests_incrementally=true -Dpath_condition=com.google.gson.internal.bind.TypeAdapters,newTypeHierarchyFactory(Ljava/lang/Class;Lcom/google/gson/TypeAdapter;)Lcom/google/gson/TypeAdapterFactory;,com.google.gson.internal.bind.EvoSuiteWrapper_0:com.google.gson.internal.bind.TypeAdapters,newFactory(Ljava/lang/Class;Ljava/lang/Class;Lcom/google/gson/TypeAdapter;)Lcom/google/gson/TypeAdapterFactory;,com.google.gson.internal.bind.EvoSuiteWrapper_1:com.google.gson.internal.bind.TypeAdapters,newFactory(Lcom/google/gson/reflect/TypeToken;Lcom/google/gson/TypeAdapter;)Lcom/google/gson/TypeAdapterFactory;,com.google.gson.internal.bind.EvoSuiteWrapper_2:com.google.gson.internal.bind.TypeAdapters,newFactory(Ljava/lang/Class;Lcom/google/gson/TypeAdapter;)Lcom/google/gson/TypeAdapterFactory;,com.google.gson.internal.bind.EvoSuiteWrapper_3:com.google.gson.internal.bind.TypeAdapters,newFactoryForMultipleTypes(Ljava/lang/Class;Ljava/lang/Class;Lcom/google/gson/TypeAdapter;)Lcom/google/gson/TypeAdapterFactory;,com.google.gson.internal.bind.EvoSuiteWrapper_4
+12:41:03.023 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Generated test case com/google/gson/internal/bind/TypeAdapters_1_Test, depth: 0, post-frontier path condition: com/google/gson/internal/bind/TypeAdapters:(Ljava/lang/Class;Ljava/lang/Class;Lcom/google/gson/TypeAdapter;)Lcom/google/gson/TypeAdapterFactory;:newFactory:true
+12:41:03.141 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Generated test case com/google/gson/internal/bind/TypeAdapters_3_Test, depth: 0, post-frontier path condition: com/google/gson/internal/bind/TypeAdapters:(Ljava/lang/Class;Lcom/google/gson/TypeAdapter;)Lcom/google/gson/TypeAdapterFactory;:newFactory:true
+12:41:03.249 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Generated test case com/google/gson/internal/bind/TypeAdapters_2_Test, depth: 0, post-frontier path condition: com/google/gson/internal/bind/TypeAdapters:(Lcom/google/gson/reflect/TypeToken;Lcom/google/gson/TypeAdapter;)Lcom/google/gson/TypeAdapterFactory;:newFactory:true
+12:41:03.438 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Generated test case com/google/gson/internal/bind/TypeAdapters_0_Test, depth: 0, post-frontier path condition: com/google/gson/internal/bind/TypeAdapters:(Ljava/lang/Class;Lcom/google/gson/TypeAdapter;)Lcom/google/gson/TypeAdapterFactory;:newTypeHierarchyFactory:true
+12:41:08.123 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Unexpected frozen state exception while trying to generate path condition for additional fresh object
+12:41:08.124 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Message: jbse.mem.exc.CannotAssumeSymbolicObjectException: JBSE does not allow to create symbolic instances of class java/lang/Class.
+12:41:08.124 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Stack trace:
+12:41:08.125 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.mem.State.newInstanceSymbolic(State.java:2523)
+12:41:08.125 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.mem.State.createObjectSymbolic(State.java:2413)
+12:41:08.125 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.mem.State.assumeExpands(State.java:3188)
+12:41:08.125 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algo_XYLOAD_GETX.refineRefExpands(Algo_XYLOAD_GETX.java:85)
+12:41:08.125 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algo_XLOAD_GETX$1.refineRefExpands(Algo_XLOAD_GETX.java:115)
+12:41:08.125 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.StrategyRefine_XLOAD_GETX$1.visitDecisionAlternative_XLOAD_GETX_Expands(StrategyRefine_XLOAD_GETX.java:52)
+12:41:08.125 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.tree.DecisionAlternative_XLOAD_GETX_Expands.accept(DecisionAlternative_XLOAD_GETX_Expands.java:37)
+12:41:08.125 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.StrategyRefine_XLOAD_GETX.refine(StrategyRefine_XLOAD_GETX.java:75)
+12:41:08.125 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.StrategyRefine_XLOAD_GETX.refine(StrategyRefine_XLOAD_GETX.java:28)
+12:41:08.125 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algorithm.doExec(Algorithm.java:280)
+12:41:08.125 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algorithm.exec(Algorithm.java:218)
+12:41:08.125 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Engine.step(Engine.java:306)
+12:41:08.125 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Runner.doRun(Runner.java:660)
+12:41:08.126 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Runner.run(Runner.java:626)
+12:41:08.126 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPreFrontier.run(RunnerPreFrontier.java:126)
+12:41:08.126 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPath.runProgram(RunnerPath.java:237)
+12:41:08.126 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPath.runProgram(RunnerPath.java:187)
+12:41:08.126 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.PerformerJBSE.explore(PerformerJBSE.java:111)
+12:41:08.126 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.PerformerJBSE.executeJob(PerformerJBSE.java:90)
+12:41:08.126 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.framework.Performer.lambda$makeJob$1(Performer.java:181)
+12:41:08.126 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+12:41:08.126 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+12:41:08.126 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.lang.Thread.run(Thread.java:750)
+12:41:10.112 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Failed to generate a test case for post-frontier path condition com/google/gson/internal/bind/TypeAdapters:(Ljava/lang/Class;Ljava/lang/Class;Lcom/google/gson/TypeAdapter;)Lcom/google/gson/TypeAdapterFactory;:newFactoryForMultipleTypes:true, log file: ./tmp_tardis/2026_09_29_12_40_56/evosuite-log-seed.txt, wrapper: EvoSuiteWrapper_4
+12:41:10.920 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Unexpected frozen state exception while trying to generate path condition for additional fresh object
+12:41:10.920 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Message: jbse.mem.exc.CannotAssumeSymbolicObjectException: JBSE does not allow to create symbolic instances of class java/lang/Class.
+12:41:10.920 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Stack trace:
+12:41:10.921 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.mem.State.newInstanceSymbolic(State.java:2523)
+12:41:10.921 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.mem.State.createObjectSymbolic(State.java:2413)
+12:41:10.921 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.mem.State.assumeExpands(State.java:3188)
+12:41:10.921 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algo_XYLOAD_GETX.refineRefExpands(Algo_XYLOAD_GETX.java:85)
+12:41:10.921 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algo_XLOAD_GETX$1.refineRefExpands(Algo_XLOAD_GETX.java:115)
+12:41:10.921 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.StrategyRefine_XLOAD_GETX$1.visitDecisionAlternative_XLOAD_GETX_Expands(StrategyRefine_XLOAD_GETX.java:52)
+12:41:10.921 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.tree.DecisionAlternative_XLOAD_GETX_Expands.accept(DecisionAlternative_XLOAD_GETX_Expands.java:37)
+12:41:10.921 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.StrategyRefine_XLOAD_GETX.refine(StrategyRefine_XLOAD_GETX.java:75)
+12:41:10.921 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.StrategyRefine_XLOAD_GETX.refine(StrategyRefine_XLOAD_GETX.java:28)
+12:41:10.921 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algorithm.doExec(Algorithm.java:280)
+12:41:10.921 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algorithm.exec(Algorithm.java:218)
+12:41:10.921 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Engine.step(Engine.java:306)
+12:41:10.921 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Runner.doRun(Runner.java:660)
+12:41:10.921 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Runner.run(Runner.java:626)
+12:41:10.921 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPreFrontier.run(RunnerPreFrontier.java:126)
+12:41:10.921 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPath.runProgram(RunnerPath.java:237)
+12:41:10.921 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPath.runProgram(RunnerPath.java:187)
+12:41:10.921 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.PerformerJBSE.explore(PerformerJBSE.java:111)
+12:41:10.921 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.PerformerJBSE.executeJob(PerformerJBSE.java:90)
+12:41:10.921 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.framework.Performer.lambda$makeJob$1(Performer.java:181)
+12:41:10.921 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+12:41:10.921 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+12:41:10.921 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.lang.Thread.run(Thread.java:750)
+12:41:12.461 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Unexpected frozen state exception while trying to generate path condition for additional fresh object
+12:41:12.461 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Message: jbse.mem.exc.CannotAssumeSymbolicObjectException: JBSE does not allow to create symbolic instances of class java/lang/Class.
+12:41:12.461 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Stack trace:
+12:41:12.462 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.mem.State.newInstanceSymbolic(State.java:2523)
+12:41:12.464 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.mem.State.createObjectSymbolic(State.java:2413)
+12:41:12.464 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.mem.State.assumeExpands(State.java:3188)
+12:41:12.464 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algo_XYLOAD_GETX.refineRefExpands(Algo_XYLOAD_GETX.java:85)
+12:41:12.464 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algo_XLOAD_GETX$1.refineRefExpands(Algo_XLOAD_GETX.java:115)
+12:41:12.464 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.StrategyRefine_XLOAD_GETX$1.visitDecisionAlternative_XLOAD_GETX_Expands(StrategyRefine_XLOAD_GETX.java:52)
+12:41:12.464 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.tree.DecisionAlternative_XLOAD_GETX_Expands.accept(DecisionAlternative_XLOAD_GETX_Expands.java:37)
+12:41:12.464 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.StrategyRefine_XLOAD_GETX.refine(StrategyRefine_XLOAD_GETX.java:75)
+12:41:12.464 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.StrategyRefine_XLOAD_GETX.refine(StrategyRefine_XLOAD_GETX.java:28)
+12:41:12.464 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algorithm.doExec(Algorithm.java:280)
+12:41:12.464 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algorithm.exec(Algorithm.java:218)
+12:41:12.464 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Engine.step(Engine.java:306)
+12:41:12.464 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Runner.doRun(Runner.java:660)
+12:41:12.464 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Runner.run(Runner.java:626)
+12:41:12.464 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPreFrontier.run(RunnerPreFrontier.java:126)
+12:41:12.464 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPath.runProgram(RunnerPath.java:237)
+12:41:12.464 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPath.runProgram(RunnerPath.java:187)
+12:41:12.464 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.PerformerJBSE.explore(PerformerJBSE.java:111)
+12:41:12.464 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.PerformerJBSE.executeJob(PerformerJBSE.java:90)
+12:41:12.464 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.framework.Performer.lambda$makeJob$1(Performer.java:181)
+12:41:12.464 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+12:41:12.465 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+12:41:12.465 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.lang.Thread.run(Thread.java:750)
+12:41:14.588 [PerformerJBSE-pool-1] INFO  tardis.implementation.jbse.PerformerJBSE - Run test case com/google/gson/internal/bind/TypeAdapters_2_Test, path condition com/google/gson/internal/bind/TypeAdapters:(Lcom/google/gson/reflect/TypeToken;Lcom/google/gson/TypeAdapter;)Lcom/google/gson/TypeAdapterFactory;:newFactory:{ROOT}:type fresh com/google/gson/reflect/TypeToken && {ROOT}:typeAdapter fresh com/google/gson/internal/bind/ReflectiveTypeAdapterFactory$Adapter
+12:41:14.597 [PerformerJBSE-pool-1] INFO  tardis.implementation.jbse.PerformerJBSE - Current coverage: 1 path, 3 branches (total), 2 branches (target), 0 failed assertions
+12:41:14.606 [PerformerJBSE-pool-1] INFO  tardis.implementation.jbse.PerformerJBSE - Test case com/google/gson/internal/bind/TypeAdapters_2_Test covered branches com/google/gson/internal/bind/TypeAdapters:(Lcom/google/gson/reflect/TypeToken;Lcom/google/gson/TypeAdapter;)Lcom/google/gson/TypeAdapterFactory;:newFactory:0:0, com/google/gson/internal/bind/TypeAdapters$31:(Lcom/google/gson/reflect/TypeToken;Lcom/google/gson/TypeAdapter;)V:<init>:0:0, java/lang/Object:()V:<init>:0:0
+12:41:15.034 [PerformerJBSE-pool-1] INFO  tardis.implementation.data.JBSEResultInputOutputBuffer - Priority path condition with last clause: {R0} expands to subclass of com/google/gson/reflect/TypeToken excluded com/google/gson/reflect/TypeToken -- priority=1 (wrt min priority=0)
+12:41:15.034 [PerformerJBSE-pool-1] INFO  tardis.implementation.jbse.PerformerJBSE - From test case com/google/gson/internal/bind/TypeAdapters_2_Test generated post-frontier path condition com/google/gson/internal/bind/TypeAdapters:(Lcom/google/gson/reflect/TypeToken;Lcom/google/gson/TypeAdapter;)Lcom/google/gson/TypeAdapterFactory;:newFactory:{ROOT}:type fresh subclass of com/google/gson/reflect/TypeToken excluded com/google/gson/reflect/TypeToken
+12:41:15.043 [PerformerJBSE-pool-1] INFO  tardis.implementation.data.JBSEResultInputOutputBuffer - Priority path condition with last clause: {R0} == null -- priority=1 (wrt min priority=0)
+12:41:15.044 [PerformerJBSE-pool-1] INFO  tardis.implementation.jbse.PerformerJBSE - From test case com/google/gson/internal/bind/TypeAdapters_2_Test generated post-frontier path condition com/google/gson/internal/bind/TypeAdapters:(Lcom/google/gson/reflect/TypeToken;Lcom/google/gson/TypeAdapter;)Lcom/google/gson/TypeAdapterFactory;:newFactory:{ROOT}:type null
+12:41:15.091 [PerformerJBSE-pool-1] INFO  tardis.implementation.data.JBSEResultInputOutputBuffer - Priority path condition with last clause: {R1} expands to subclass of com/google/gson/TypeAdapter excluded com/google/gson/internal/bind/ReflectiveTypeAdapterFactory$Adapter -- priority=1 (wrt min priority=0)
+12:41:15.091 [PerformerJBSE-pool-1] INFO  tardis.implementation.jbse.PerformerJBSE - From test case com/google/gson/internal/bind/TypeAdapters_2_Test generated post-frontier path condition com/google/gson/internal/bind/TypeAdapters:(Lcom/google/gson/reflect/TypeToken;Lcom/google/gson/TypeAdapter;)Lcom/google/gson/TypeAdapterFactory;:newFactory:{ROOT}:type fresh com/google/gson/reflect/TypeToken && {ROOT}:typeAdapter fresh subclass of com/google/gson/TypeAdapter excluded com/google/gson/internal/bind/ReflectiveTypeAdapterFactory$Adapter
+12:41:15.099 [PerformerJBSE-pool-1] INFO  tardis.implementation.data.JBSEResultInputOutputBuffer - Priority path condition with last clause: {R1} == null -- priority=2 (wrt min priority=0)
+12:41:15.100 [PerformerJBSE-pool-1] INFO  tardis.implementation.jbse.PerformerJBSE - From test case com/google/gson/internal/bind/TypeAdapters_2_Test generated post-frontier path condition com/google/gson/internal/bind/TypeAdapters:(Lcom/google/gson/reflect/TypeToken;Lcom/google/gson/TypeAdapter;)Lcom/google/gson/TypeAdapterFactory;:newFactory:{ROOT}:type fresh com/google/gson/reflect/TypeToken && {ROOT}:typeAdapter null
+
+
+=== STDERR ===
+Killed

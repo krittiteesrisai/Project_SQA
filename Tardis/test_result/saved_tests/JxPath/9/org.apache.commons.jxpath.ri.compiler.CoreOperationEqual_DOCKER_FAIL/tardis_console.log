@@ -1,0 +1,41 @@
+=== STDOUT ===
+14:00:39.130 [main] INFO  tardis.Main - This is TARDIS, version 0.3.0-SNAPSHOT, ? 2017-2026 University of Milano-Bicocca
+14:00:39.132 [main] INFO  tardis.Main - Target is class org/apache/commons/jxpath/ri/compiler/CoreOperationEqual
+14:00:39.708 [PerformerEvosuite-pool-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Launched EvoSuite seed process, command line:  java -Xmx4G -jar /usr/share/java/evosuite-shaded-1.2.1-SNAPSHOT.jar -class org.apache.commons.jxpath.ri.compiler.CoreOperationEqual -mem 2048 -Dmock_if_no_generator=false -Dreplace_system_in=false -Dreplace_gui=false -Dp_functional_mocking=0.0 -DCP=/workspace/target/classes:/workspace/src/java:/workspace/target/lib/commons-beanutils-1.4.jar:/workspace/target/lib/commons-collections-2.0.jar:/workspace/target/lib/commons-logging-1.0.4.jar:/workspace/target/lib/jdom-1.0.jar:/workspace/target/lib/junit-3.8.1.jar:/workspace/target/lib/junit-3.8.jar:/workspace/target/lib/mockrunner-0.4.1.jar:/workspace/target/lib/servletapi-2.2.jar:/workspace/target/lib/xerces-2.4.0.jar:/workspace/target/lib/xml-apis-2.0.2.jar:/usr/share/java/jbse-0.12.0-SNAPSHOT-shaded.jar:/usr/share/java/sushi-lib-0.3.0-SNAPSHOT.jar -Dassertions=false -Dreport_dir=./tmp_tardis/2026_10_02_14_00_38 -Dsearch_budget=180 -Dtest_dir=./tmp_tardis/2026_10_02_14_00_38/test -Dvirtual_fs=false -Dselection_function=ROULETTEWHEEL -Dinline=false -Dsushi_modifiers_local_search=true -Duse_minimizer_during_crossover=true -Davoid_replicas_of_individuals=true -Dno_change_iterations_before_reset=30 -Dmax_subclasses_per_class=1 -Dcrossover_function=SUSHI_HYBRID -Dalgorithm=DYNAMOSA -generateMOSuite -Dcriterion=PATHCONDITION -Dsushi_statistics=true -Dpath_condition_target=LAST_ONLY -Dpath_condition_evaluators_dir=./tmp_tardis/2026_10_02_14_00_38/bin -Demit_tests_incrementally=true -Dpath_condition=org.apache.commons.jxpath.ri.compiler.CoreOperationEqual,getSymbol()Ljava/lang/String;,org.apache.commons.jxpath.ri.compiler.EvoSuiteWrapper_0:org.apache.commons.jxpath.ri.compiler.CoreOperationEqual,computeValue(Lorg/apache/commons/jxpath/ri/EvalContext;)Ljava/lang/Object;,org.apache.commons.jxpath.ri.compiler.EvoSuiteWrapper_1:org.apache.commons.jxpath.ri.compiler.CoreOperationEqual,<init>(Lorg/apache/commons/jxpath/ri/compiler/Expression;Lorg/apache/commons/jxpath/ri/compiler/Expression;)V,org.apache.commons.jxpath.ri.compiler.EvoSuiteWrapper_2
+14:00:43.476 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Generated test case org/apache/commons/jxpath/ri/compiler/CoreOperationEqual_0_Test, depth: 0, post-frontier path condition: org/apache/commons/jxpath/ri/compiler/CoreOperationEqual:()Ljava/lang/String;:getSymbol:true
+14:00:43.653 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Generated test case org/apache/commons/jxpath/ri/compiler/CoreOperationEqual_1_Test, depth: 0, post-frontier path condition: org/apache/commons/jxpath/ri/compiler/CoreOperationEqual:(Lorg/apache/commons/jxpath/ri/EvalContext;)Ljava/lang/Object;:computeValue:true
+14:00:52.122 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Unexpected frozen state exception while trying to generate path condition for additional fresh object
+14:00:52.127 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Message: jbse.dec.exc.DecisionException: jbse.dec.exc.ExternalProtocolInterfaceException: Unexpected solver answer. Message: (error "line 10 column 7: push canceled"). Query: (push 1)
+(assert (>= 0 V3))
+, failed at character 8
+14:00:52.127 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Stack trace:
+14:00:52.130 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.dec.DecisionProcedureExternal.isSatLocal(DecisionProcedureExternal.java:239)
+14:00:52.130 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.dec.DecisionProcedureChainOfResponsibility.isSat(DecisionProcedureChainOfResponsibility.java:494)
+14:00:52.130 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.dec.DecisionProcedureChainOfResponsibility.delegateIsSat(DecisionProcedureChainOfResponsibility.java:536)
+14:00:52.130 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.dec.DecisionProcedureChainOfResponsibility.isSat(DecisionProcedureChainOfResponsibility.java:497)
+14:00:52.130 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.dec.DecisionProcedureChainOfResponsibility.delegateIsSat(DecisionProcedureChainOfResponsibility.java:536)
+14:00:52.130 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.dec.DecisionProcedureChainOfResponsibility.isSat(DecisionProcedureChainOfResponsibility.java:497)
+14:00:52.130 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.dec.DecisionProcedureDecorator.isSat(DecisionProcedureDecorator.java:94)
+14:00:52.130 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.dec.DecisionProcedureDecorator.isSat(DecisionProcedureDecorator.java:94)
+14:00:52.130 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.dec.DecisionProcedureAlgorithms.resolve_XALOAD_ResolvedNonconcrete(DecisionProcedureAlgorithms.java:1069)
+14:00:52.131 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.apps.run.DecisionProcedureGuidance.resolve_XALOAD_ResolvedNonconcrete(DecisionProcedureGuidance.java:331)
+14:00:52.131 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.dec.DecisionProcedureAlgorithms.resolve_XALOAD(DecisionProcedureAlgorithms.java:990)
+14:00:52.131 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algo_XALOAD.lambda$decider$2(Algo_XALOAD.java:138)
+14:00:52.131 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algorithm.doExec(Algorithm.java:256)
+14:00:52.131 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.algo.Algorithm.exec(Algorithm.java:218)
+14:00:52.131 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Engine.step(Engine.java:306)
+14:00:52.131 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Runner.doRun(Runner.java:660)
+14:00:52.131 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.jvm.Runner.run(Runner.java:626)
+14:00:52.131 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPreFrontier.run(RunnerPreFrontier.java:126)
+14:00:52.131 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPath.runProgram(RunnerPath.java:237)
+14:00:52.131 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPath.runProgram(RunnerPath.java:187)
+14:00:52.131 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.PerformerJBSE.explore(PerformerJBSE.java:111)
+14:00:52.131 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.PerformerJBSE.executeJob(PerformerJBSE.java:90)
+14:00:52.131 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.framework.Performer.lambda$makeJob$1(Performer.java:181)
+14:00:52.131 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+14:00:52.131 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+14:00:52.132 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.lang.Thread.run(Thread.java:750)
+
+
+=== STDERR ===
+Killed

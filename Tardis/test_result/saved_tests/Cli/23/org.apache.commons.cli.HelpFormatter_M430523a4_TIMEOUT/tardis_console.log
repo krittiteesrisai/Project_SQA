@@ -1,0 +1,28 @@
+=== STDOUT ===
+06:27:39.848 [main] INFO  tardis.Main - This is TARDIS, version 0.3.0-SNAPSHOT, ? 2017-2026 University of Milano-Bicocca
+06:27:39.853 [main] INFO  tardis.Main - Target is method org/apache/commons/cli/HelpFormatter:(Ljava/lang/String;Lorg/apache/commons/cli/Options;)V:printHelp
+06:27:43.592 [PerformerEvosuite-pool-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Launched EvoSuite seed process, command line:  java -Xmx4G -jar /usr/share/java/evosuite-shaded-1.2.1-SNAPSHOT.jar -class org.apache.commons.cli.HelpFormatter -mem 2048 -Dmock_if_no_generator=false -Dreplace_system_in=false -Dreplace_gui=false -Dp_functional_mocking=0.0 -DCP=/workspace/target/classes:/usr/share/java/jbse-0.12.0-SNAPSHOT-shaded.jar:/usr/share/java/sushi-lib-0.3.0-SNAPSHOT.jar -Dassertions=false -Dreport_dir=./tmp_tardis/2026_10_02_06_27_36 -Dsearch_budget=180 -Dtest_dir=./tmp_tardis/2026_10_02_06_27_36/test -Dvirtual_fs=false -Dselection_function=ROULETTEWHEEL -Dinline=false -Dsushi_modifiers_local_search=true -Duse_minimizer_during_crossover=true -Davoid_replicas_of_individuals=true -Dno_change_iterations_before_reset=30 -Dmax_subclasses_per_class=1 -Dcrossover_function=SUSHI_HYBRID -Dalgorithm=DYNAMOSA -generateMOSuite -Dcriterion=PATHCONDITION -Dsushi_statistics=true -Dpath_condition_target=LAST_ONLY -Dpath_condition_evaluators_dir=./tmp_tardis/2026_10_02_06_27_36/bin -Demit_tests_incrementally=true -Dpath_condition=org.apache.commons.cli.HelpFormatter,printHelp(Ljava/lang/String;Lorg/apache/commons/cli/Options;)V,org.apache.commons.cli.EvoSuiteWrapper_0
+06:27:53.945 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Generated test case org/apache/commons/cli/HelpFormatter_0_Test, depth: 0, post-frontier path condition: org/apache/commons/cli/HelpFormatter:(Ljava/lang/String;Lorg/apache/commons/cli/Options;)V:printHelp:true
+06:28:00.415 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Unexpected frozen state exception while trying to generate path condition for additional fresh object
+06:28:00.416 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Message: jbse.dec.exc.DecisionException: jbse.dec.exc.ExternalProtocolInterfaceException: Unexpected solver answer. Message: (error "line 6 column 7: push canceled"). Query: (set-option :print-success true)
+(set-option :interactive-mode true)
+(set-option :produce-models true)
+(set-logic AUFNIRA)
+(define-fun round_to_zero ((x Real)) Int (ite (>= x 0.0) (to_int x) (- (to_int (- x)))))
+(push 1)
+, failed at character 220
+06:28:00.416 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Stack trace:
+06:28:00.416 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.dec.DecisionProcedureSMTLIB2_AUFNIRA.<init>(DecisionProcedureSMTLIB2_AUFNIRA.java:27)
+06:28:00.416 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPath.completeParametersGuided(RunnerPath.java:344)
+06:28:00.416 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPath.makeRunnerPreFrontier(RunnerPath.java:272)
+06:28:00.416 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPath.runProgram(RunnerPath.java:233)
+06:28:00.416 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPath.runProgram(RunnerPath.java:187)
+06:28:00.416 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.PerformerJBSE.explore(PerformerJBSE.java:111)
+06:28:00.416 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.PerformerJBSE.executeJob(PerformerJBSE.java:90)
+06:28:00.416 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.framework.Performer.lambda$makeJob$1(Performer.java:181)
+06:28:00.416 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+06:28:00.416 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+06:28:00.416 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.lang.Thread.run(Thread.java:750)
+
+
+=== STDERR ===

@@ -1,0 +1,40 @@
+=== STDOUT ===
+06:56:27.901 [main] INFO  tardis.Main - This is TARDIS, version 0.3.0-SNAPSHOT, ? 2017-2026 University of Milano-Bicocca
+06:56:27.904 [main] INFO  tardis.Main - Target is class org/apache/commons/cli/OptionGroup
+06:56:28.645 [PerformerEvosuite-pool-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Launched EvoSuite seed process, command line:  java -Xmx4G -jar /usr/share/java/evosuite-shaded-1.2.1-SNAPSHOT.jar -class org.apache.commons.cli.OptionGroup -mem 2048 -Dmock_if_no_generator=false -Dreplace_system_in=false -Dreplace_gui=false -Dp_functional_mocking=0.0 -DCP=/workspace/target/classes:/usr/share/java/jbse-0.12.0-SNAPSHOT-shaded.jar:/usr/share/java/sushi-lib-0.3.0-SNAPSHOT.jar -Dassertions=false -Dreport_dir=./tmp_tardis/2026_10_02_06_56_27 -Dsearch_budget=180 -Dtest_dir=./tmp_tardis/2026_10_02_06_56_27/test -Dvirtual_fs=false -Dselection_function=ROULETTEWHEEL -Dinline=false -Dsushi_modifiers_local_search=true -Duse_minimizer_during_crossover=true -Davoid_replicas_of_individuals=true -Dno_change_iterations_before_reset=30 -Dmax_subclasses_per_class=1 -Dcrossover_function=SUSHI_HYBRID -Dalgorithm=DYNAMOSA -generateMOSuite -Dcriterion=PATHCONDITION -Dsushi_statistics=true -Dpath_condition_target=LAST_ONLY -Dpath_condition_evaluators_dir=./tmp_tardis/2026_10_02_06_56_27/bin -Demit_tests_incrementally=true -Dpath_condition=org.apache.commons.cli.OptionGroup,addOption(Lorg/apache/commons/cli/Option;)Lorg/apache/commons/cli/OptionGroup;,org.apache.commons.cli.EvoSuiteWrapper_0:org.apache.commons.cli.OptionGroup,getOptions()Ljava/util/Collection;,org.apache.commons.cli.EvoSuiteWrapper_1:org.apache.commons.cli.OptionGroup,getNames()Ljava/util/Collection;,org.apache.commons.cli.EvoSuiteWrapper_2:org.apache.commons.cli.OptionGroup,setRequired(Z)V,org.apache.commons.cli.EvoSuiteWrapper_3:org.apache.commons.cli.OptionGroup,setSelected(Lorg/apache/commons/cli/Option;)V,org.apache.commons.cli.EvoSuiteWrapper_4:org.apache.commons.cli.OptionGroup,getSelected()Ljava/lang/String;,org.apache.commons.cli.EvoSuiteWrapper_5:org.apache.commons.cli.OptionGroup,isRequired()Z,org.apache.commons.cli.EvoSuiteWrapper_6:org.apache.commons.cli.OptionGroup,<init>()V,org.apache.commons.cli.EvoSuiteWrapper_7
+06:56:31.160 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Generated test case org/apache/commons/cli/OptionGroup_0_Test, depth: 0, post-frontier path condition: org/apache/commons/cli/OptionGroup:(Lorg/apache/commons/cli/Option;)Lorg/apache/commons/cli/OptionGroup;:addOption:true
+06:56:31.254 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Generated test case org/apache/commons/cli/OptionGroup_1_Test, depth: 0, post-frontier path condition: org/apache/commons/cli/OptionGroup:()Ljava/util/Collection;:getOptions:true
+06:56:31.324 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Generated test case org/apache/commons/cli/OptionGroup_2_Test, depth: 0, post-frontier path condition: org/apache/commons/cli/OptionGroup:()Ljava/util/Collection;:getNames:true
+06:56:31.409 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Generated test case org/apache/commons/cli/OptionGroup_3_Test, depth: 0, post-frontier path condition: org/apache/commons/cli/OptionGroup:(Z)V:setRequired:true
+06:56:32.110 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Failed to generate a test case for post-frontier path condition org/apache/commons/cli/OptionGroup:(Lorg/apache/commons/cli/Option;)V:setSelected:true, log file: ./tmp_tardis/2026_10_02_06_56_27/evosuite-log-seed.txt, wrapper: EvoSuiteWrapper_4
+06:56:32.110 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Failed to generate a test case for post-frontier path condition org/apache/commons/cli/OptionGroup:()Ljava/lang/String;:getSelected:true, log file: ./tmp_tardis/2026_10_02_06_56_27/evosuite-log-seed.txt, wrapper: EvoSuiteWrapper_5
+06:56:32.110 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Failed to generate a test case for post-frontier path condition org/apache/commons/cli/OptionGroup:()Z:isRequired:true, log file: ./tmp_tardis/2026_10_02_06_56_27/evosuite-log-seed.txt, wrapper: EvoSuiteWrapper_6
+06:56:32.110 [Thread-1] INFO  tardis.implementation.evosuite.PerformerEvosuite - Failed to generate a test case for post-frontier path condition org/apache/commons/cli/OptionGroup:()V:<init>:true, log file: ./tmp_tardis/2026_10_02_06_56_27/evosuite-log-seed.txt, wrapper: EvoSuiteWrapper_7
+06:56:37.764 [PerformerJBSE-pool-1] INFO  tardis.implementation.jbse.PerformerJBSE - Run test case org/apache/commons/cli/OptionGroup_3_Test, path condition org/apache/commons/cli/OptionGroup:(Z)V:setRequired:{ROOT}:this fresh org/apache/commons/cli/OptionGroup
+06:56:37.782 [PerformerJBSE-pool-1] INFO  tardis.implementation.jbse.PerformerJBSE - Current coverage: 1 path, 1 branch (total), 1 branch (target), 0 failed assertions
+06:56:37.806 [PerformerJBSE-pool-1] INFO  tardis.implementation.jbse.PerformerJBSE - Test case org/apache/commons/cli/OptionGroup_3_Test covered branch  org/apache/commons/cli/OptionGroup:(Z)V:setRequired:0:0
+06:56:38.268 [PerformerJBSE-pool-1] INFO  tardis.implementation.jbse.PerformerJBSE - From test case org/apache/commons/cli/OptionGroup_3_Test no path condition generated
+06:56:52.158 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Unexpected frozen state exception while trying to generate path condition for additional fresh object
+06:56:52.177 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Message: jbse.dec.exc.DecisionException: jbse.dec.exc.ExternalProtocolInterfaceException: Unexpected solver answer. Message: (error "line 6 column 7: push canceled"). Query: (set-option :print-success true)
+(set-option :interactive-mode true)
+(set-option :produce-models true)
+(set-logic AUFNIRA)
+(define-fun round_to_zero ((x Real)) Int (ite (>= x 0.0) (to_int x) (- (to_int (- x)))))
+(push 1)
+, failed at character 220
+06:56:52.177 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - Stack trace:
+06:56:52.177 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - jbse.dec.DecisionProcedureSMTLIB2_AUFNIRA.<init>(DecisionProcedureSMTLIB2_AUFNIRA.java:27)
+06:56:52.177 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPath.completeParametersGuided(RunnerPath.java:344)
+06:56:52.177 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPath.makeRunnerPreFrontier(RunnerPath.java:272)
+06:56:52.177 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPath.runProgram(RunnerPath.java:233)
+06:56:52.177 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.RunnerPath.runProgram(RunnerPath.java:187)
+06:56:52.177 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.PerformerJBSE.explore(PerformerJBSE.java:111)
+06:56:52.177 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.implementation.jbse.PerformerJBSE.executeJob(PerformerJBSE.java:90)
+06:56:52.177 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - tardis.framework.Performer.lambda$makeJob$1(Performer.java:181)
+06:56:52.177 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+06:56:52.177 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+06:56:52.177 [PerformerJBSE-pool-1] ERROR tardis.implementation.jbse.PerformerJBSE - java.lang.Thread.run(Thread.java:750)
+
+
+=== STDERR ===
+Killed
