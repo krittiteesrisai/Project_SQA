@@ -341,6 +341,76 @@ git apply /path/to/Project_SQA/UTBot/patches/defects4j-windows.patch
 git status
 ```
 
+### Initialize Defects4J
+
+หลังจาก Apply Windows Patch แล้ว ให้ Initialize Defects4J เพื่อดาวน์โหลดและติดตั้ง Dependencies ที่จำเป็น เช่น Major, EvoSuite, Randoop และ Gradle dependencies:
+
+```bash
+./init.sh
+```
+
+หากสำเร็จควรแสดงข้อความ:
+
+```text
+Defects4J successfully initialized.
+```
+
+สามารถตรวจสอบการติดตั้งได้ด้วย:
+
+```bash
+defects4j info -p Lang
+```
+
+### สร้าง Major Ant Wrapper สำหรับ Windows
+
+หลังจากรัน `./init.sh` แล้ว จะมี Major อยู่ใน Directory `major/` แต่ Defects4J ที่ Apply Windows Patch แล้วจะเรียกใช้:
+
+```text
+major/bin/ant.cmd
+```
+
+โดย `init.sh` ไม่ได้สร้างไฟล์ `ant.cmd` ให้อัตโนมัติ ดังนั้นบน Windows ต้องสร้างไฟล์ `major/bin/ant.cmd`
+
+หากใช้ Git Bash สามารถสร้างได้ด้วย:
+
+```bash
+cat > major/bin/ant.cmd <<'EOF'
+@echo off
+set "BASE=%~dp0.."
+java ^
+  -XX:ReservedCodeCacheSize=256M ^
+  -Djava.awt.headless=true ^
+  "-Xbootclasspath/a:%BASE%\lib\major-rt.jar" ^
+  -jar "%BASE%\lib\ant\ant-launcher.jar" %*
+EOF
+```
+
+ตรวจสอบว่าไฟล์ถูกสร้างแล้ว:
+
+```bash
+ls -l major/bin/ant*
+```
+
+ควรพบทั้ง:
+
+```text
+major/bin/ant
+major/bin/ant.cmd
+```
+
+จากนั้นสามารถ Smoke Test Defects4J ได้ เช่น:
+
+```bash
+mkdir -p /d/d4j_reproduce_test
+defects4j checkout -p Lang -v 27b -w /d/d4j_reproduce_test/Lang-27b
+cd /d/d4j_reproduce_test/Lang-27b
+defects4j compile
+defects4j test
+defects4j export -p classes.modified
+```
+
+ขั้นตอนสร้าง `major/bin/ant.cmd` จำเป็นสำหรับ Windows Environment ที่ใช้ในการทดลอง เนื่องจากหากไม่มีไฟล์นี้ `defects4j compile` จะไม่สามารถเรียก Major/Ant ได้
+
 ### หมายเหตุเรื่อง Line Ending
 
 ระหว่างการทดลองบน Windows พบว่าไฟล์ `.diff` และ `.patch` บางไฟล์ของ Defects4J จำเป็นต้องใช้ **LF Line Ending**
@@ -1173,13 +1243,64 @@ git checkout 8c16da8230843cdc918eaf4ddb449637f02b83c6
 git apply /path/to/Project_SQA/UTBot/patches/defects4j-windows.patch
 ```
 
-ติดตั้ง Defects4J ตามปกติ และตรวจสอบว่า:
+หลังจาก Apply Patch แล้ว ให้ Initialize Defects4J:
+
+```bash
+./init.sh
+```
+
+เมื่อสำเร็จควรพบข้อความ:
+
+```text
+Defects4J successfully initialized.
+```
+
+### สร้าง Major Ant Wrapper สำหรับ Windows
+
+หลังจาก `./init.sh` แล้ว Defects4J จะสร้างไฟล์ `major/bin/ant` แต่จะยังไม่มี `major/bin/ant.cmd`
+
+เนื่องจาก Windows Compatibility Patch ของโปรเจกต์เรียกใช้ `major/bin/ant.cmd` จึงต้องสร้างไฟล์นี้เพิ่มเติม:
+
+```bash
+cat > major/bin/ant.cmd <<'EOF'
+@echo off
+set "BASE=%~dp0.."
+java ^
+  -XX:ReservedCodeCacheSize=256M ^
+  -Djava.awt.headless=true ^
+  "-Xbootclasspath/a:%BASE%\lib\major-rt.jar" ^
+  -jar "%BASE%\lib\ant\ant-launcher.jar" %*
+EOF
+```
+
+ตรวจสอบว่าไฟล์ถูกสร้างแล้ว:
+
+```bash
+ls -l major/bin/ant*
+```
+
+ควรพบทั้ง:
+
+```text
+major/bin/ant
+major/bin/ant.cmd
+```
+
+จากนั้นตรวจสอบ Defects4J:
 
 ```bash
 defects4j info -p Lang
 ```
 
-สามารถทำงานได้
+และแนะนำให้ทดสอบ Checkout และ Compile อย่างน้อย 1 Bug ก่อนดำเนินการต่อ:
+
+```bash
+defects4j checkout -p Lang -v 27b -w /d/d4j_smoke_test/Lang-27b
+cd /d/d4j_smoke_test/Lang-27b
+defects4j compile
+```
+
+หาก `defects4j compile` แสดง `OK` แสดงว่า Defects4J พร้อมใช้งาน
 
 ### Step 4 — ตรวจสอบ Line Ending
 
