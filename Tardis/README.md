@@ -17,15 +17,16 @@
   - [6. การประเมินผลลัพธ์ (Evaluating Coverage \& Performance)](#6-การประเมินผลลัพธ์-evaluating-coverage--performance)
     - [รันวัดผลทั้งหมดทุกโปรเจกต์:](#รันวัดผลทั้งหมดทุกโปรเจกต์)
     - [รันวัดผลเฉพาะเจาะจงรายบั๊ก (เช่น Lang-12):](#รันวัดผลเฉพาะเจาะจงรายบั๊ก-เช่น-lang-12)
-  - [7. การแก้ไขปัญหาเชิงเทคนิคที่จำเป็น (Technical Workarounds \& Fixes)](#7-การแก้ไขปัญหาเชิงเทคนิคที่จำเป็น-technical-workarounds--fixes)
-  - [8. คำอธิบายผลลัพธ์ CSV (Result Columns Reference)](#8-คำอธิบายผลลัพธ์-csv-result-columns-reference)
+  - [7. การวิเคราะห์ข้อมูล (Data Analysis)](#7-การวิเคราะห์ข้อมูล-data-analysis)
+  - [8. การแก้ไขปัญหาเชิงเทคนิคที่จำเป็น (Technical Workarounds \& Fixes)](#8-การแก้ไขปัญหาเชิงเทคนิคที่จำเป็น-technical-workarounds--fixes)
+  - [9. คำอธิบายผลลัพธ์ CSV (Result Columns Reference)](#9-คำอธิบายผลลัพธ์-csv-result-columns-reference)
 
 ---
 
 ## 1. ภาพรวมของโครงการ (Project Overview)
 โครงการนี้มีวัตถุประสงค์เพื่อ:
 1. นำเครื่องมือ **TARDIS** (Concolic / Symbolic Execution-based Test Generator) มารันสร้าง Unit Test อัตโนมัติบนบั๊กจริงของ **Defects4J**
-3. วัดผลลัพธ์รอบด้าน: **Line Coverage**, **Branch Coverage**, **Fault Detection (ตรวจจับบั๊ก)**, **ขนาดโค้ดเทสต์ (LOC)**, และ **เวลาที่ใช้รัน (Execution Time)**
+2. วัดผลลัพธ์รอบด้านตาม measure_coverage.py: **Test Suite Size** (จำนวนคลาส/เมธอด, LOC), **Coverage** (Line & Branch), **Fault Detection** (เปรียบเทียบรันบน Buggy vs Fixed), และ **Performance** (Gen Time, Compile Time, Test Exec Time)
 
 ---
 
@@ -73,23 +74,20 @@ defects4j info -p Lang
 ```text
 TARDIS/
 │
+├── data_analysis/
+│    └── TARDIS_Analysis.ipynb       # สมุดงาน Jupyter Notebook สำหรับวิเคราะห์ข้อมูล กราฟ และแนวโน้ม
+│
+├── result_csv/                      # โฟลเดอร์เก็บไฟล์ผลลัพธ์จากการทดลอง
+│    ├── Coverage_Result_All.csv     # ตารางสรุปคะแนนรวมทั้งหมด 18 คอลัมน์
+│    └── TARDIS_Extended_Result.csv  # ฐานข้อมูลผลลัพธ์การรันดิบ (ประวัติ Class/Method)
 │
 ├── source_code/
 │    ├── measure_coverage.py         # สคริปต์อัตโนมัติสำหรับวัด Coverage, LOC, Fault Detection
-│    │
-│    └── run_tardis.py                   # สคริปต์หลักสำหรับรัน TARDIS บน Defects4J (โหมดปกติ)
+│    └── run_tardis.py               # สคริปต์หลักสำหรับรัน TARDIS บน Defects4J (โหมดปกติ)
 │  
-├── test_result/
-│    │
-│    ├── saved_tests/                    # โฟลเดอร์เก็บเทสต์ที่ TARDIS เจนได้ในรอบปัจจุบัน
-│    │
-│    └── saved_tests_history/            # ถังแบ็คอัปเทสต์ของรอบการรันก่อนหน้า (กันเทสต์หาย)
-│
 └── test_result/
-     │
-     ├── Coverage_Result_All.csv     # ตารางสรุปคะแนนรวมทั้งหมด 18 คอลัมน์
-     │
-     └── TARDIS_Extended_Result.csv      # ฐานข้อมูลผลลัพธ์การรันดิบ (ประวัติ Class/Method)
+     ├── saved_tests/                # โฟลเดอร์เก็บเทสต์ที่ TARDIS เจนได้ในรอบปัจจุบัน
+     └── saved_tests_history/        # ถังแบ็คอัปเทสต์ของรอบการรันก่อนหน้า (กันเทสต์หาย)
 
 ```
 
@@ -136,7 +134,17 @@ python3 measure_coverage.py --project Lang --bug 12
 
 ---
 
-## 7. การแก้ไขปัญหาเชิงเทคนิคที่จำเป็น (Technical Workarounds & Fixes)
+## 7. การวิเคราะห์ข้อมูล (Data Analysis)
+
+หลังจากประเมินผลและได้ไฟล์ CSV แล้ว คุณสามารถใช้สมุดงาน **TARDIS_Analysis.ipynb** (ในโฟลเดอร์ data_analysis/) เพื่อวิเคราะห์เชิงลึก:
+- **Fault Detection Analysis:** วิเคราะห์ความสามารถในการเจอบั๊ก โดยเปรียบเทียบผลรันบน Buggy Version กับ Fixed Version
+- **Coverage vs Size:** วิเคราะห์แนวโน้มระหว่าง Line/Branch Coverage กับความยาวของเทสต์ (LOC)
+- **Generation Performance:** วิเคราะห์ความสัมพันธ์ระหว่างขนาดของเทสต์และ Execution Time
+(สมุดงานรองรับระบบ Dynamic Path สามารถสั่งรันไฟล์จากโฟลเดอร์ใดก็ได้ โดยระบบจะค้นหาไฟล์ CSV ให้อัตโนมัติ)
+
+---
+
+## 8. การแก้ไขปัญหาเชิงเทคนิคที่จำเป็น (Technical Workarounds & Fixes)
 
 สคริปต์นี้ถูกออกแบบมาเพื่อแก้ปัญหาเฉพาะทางของ TARDIS & Defects4J ดังนี้:
 
@@ -150,25 +158,29 @@ python3 measure_coverage.py --project Lang --bug 12
 
 ---
 
-## 8. คำอธิบายผลลัพธ์ CSV (Result Columns Reference)
+## 9. คำอธิบายผลลัพธ์ CSV (Result Columns Reference)
 
-ไฟล์ **`Coverage_Result_All.csv`** มีโครงสร้าง 18 คอลัมน์มาตรฐาน:
+ไฟล์ **`Coverage_Result_All.csv`** มีโครงสร้าง 24 คอลัมน์ ครอบคลุมเมทริกซ์ 5 กลุ่มหลัก:
 
-| คอลัมน์ | ความหมาย |
-| :--- | :--- |
-| `Project` | ชื่อโครงการใน Defects4J (เช่น Lang, Math, Chart) |
-| `BugID` | หมายเลขบั๊ก |
-| `Total_Classes_Merged` | จำนวน Class ต้นฉบับที่นำเทสต์มารวมกัน |
-| `Total_Methods_Merged` | จำนวนโฟลเดอร์ย่อย/Method ที่นำมารวมกันได้สำเร็จ |
-| **`Test_Suite_LOC`** | ขนาดความยาวบรรทัดของชุดทดสอบที่เจนขึ้นมาได้ (ไม่นับบรรทัดว่าง) |
-| **`Test_ExecTime_sec`** | เวลาที่ใช้ในการสั่งรันชุดทดสอบด้วย `defects4j test` (วินาที) |
-| `Line_Coverage(%)` | เปอร์เซ็นต์ความครอบคลุมระดับบรรทัดคำสั่ง (Line Coverage) |
-| `Branch_Coverage(%)` | เปอร์เซ็นต์ความครอบคลุมระดับเงื่อนไข (Condition/Branch Coverage) |
-| `Covered_Lines` / `Total_Lines` | จำนวนบรรทัดที่ครอบคลุม / จำนวนบรรทัดโค้ดทั้งหมด |
-| `Covered_Branches` / `Total_Branches`| จำนวนกิ่งเงื่อนไขที่ครอบคลุม / จำนวนกิ่งทั้งหมด |
-| `Failing_Tests` | จำนวน Test Cases ที่รันแล้ว Fail บนโค้ดที่มีบั๊ก |
-| **`Fault_Detected`** | `YES` หากเทสต์ตรวจเจอบั๊กจริง (มี Failing Test > 0), `NO` หากตรวจไม่เจอ |
-| `Runner_Status` | สถานะการรันรวมของ TARDIS จากไฟล์ประวัติ |
-| `Runner_Error` | ข้อความ Error หรือปัญหาที่พบระหว่างรัน |
-| `Total_ExecTime_sec` | เวลารวมที่ TARDIS ใช้ในการคิดและสร้างเทสต์ (วินาที) |
-| `TimeoutLimit` | ขีดจำกัดเวลา Timeout ที่กำหนดไว้ในการทดลอง |
+| กลุ่ม | คอลัมน์ | ความหมาย |
+| :--- | :--- | :--- |
+| **ข้อมูลทั่วไป** | `Project`, `BugID` | ชื่อโครงการ (เช่น Lang) และหมายเลขบั๊ก |
+| **ขนาดชุดทดสอบ**<br/>(Test Suite Size) | `Total_Classes_Merged` | จำนวน Class ต้นฉบับที่นำเทสต์มารวมกัน |
+| | `Total_Methods_Merged` | จำนวนโฟลเดอร์ย่อย/Method ที่นำมารวมกันได้สำเร็จ |
+| | `Num_Test_Methods` | จำนวน Test Method (@Test) ทั้งหมดที่เจนมาได้ |
+| | **`Test_Suite_LOC`** | ความยาวบรรทัดรวมของชุดทดสอบ (ไม่นับบรรทัดว่าง) |
+| **ประสิทธิภาพ**<br/>(Performance) | `Gen_Time_sec` | เวลาที่ TARDIS ใช้สร้างเทสต์ (วินาที) |
+| | `Saved_Tests_Count` | จำนวนเทสต์ที่ TARDIS สร้างสำเร็จระหว่างเจน |
+| | `Tests_per_Minute` | อัตราความเร็วในการสร้างเทสต์ต่อนาที |
+| | `Compile_Time_sec` | เวลาที่ใช้ในการคอมไพล์ชุดทดสอบ (วินาที) |
+| | **`Test_ExecTime_sec`** | เวลาที่ใช้รันชุดทดสอบด้วย `defects4j test` (วินาที) |
+| **ความครอบคลุม**<br/>(Coverage) | `Line_Coverage(%)` | เปอร์เซ็นต์ความครอบคลุมระดับบรรทัดคำสั่ง (Line Coverage) |
+| | `Branch_Coverage(%)` | เปอร์เซ็นต์ความครอบคลุมระดับเงื่อนไข (Branch Coverage) |
+| | `Covered_...` / `Total_...` | ข้อมูลดิบจำนวน Lines/Branches ที่ครอบคลุมเทียบกับทั้งหมด |
+| **การตรวจจับบั๊ก**<br/>(Fault Detection) | `Failing_Buggy` | จำนวนเทสต์ที่ Fail บน Buggy Version |
+| | `Failing_Fixed` | จำนวนเทสต์ที่ Fail บน Fixed Version |
+| | **`Fault_Detected`** | `YES` หาก `Failing_Buggy > 0` และ `Failing_Fixed == 0` |
+| | `Eval_Status` | สถานะการประเมิน (เช่น EVAL_SUCCESS หรือ FAIL) |
+| **ประวัติการรัน**<br/>(Runner Info) | `Runner_Status` | สถานะการรันตอนต้นจาก TARDIS (เช่น COMPLETED, TIMEOUT) |
+| | `Runner_Error` | Error Log กรณีที่ TARDIS เจนเทสต์ล้มเหลว |
+| | `TimeoutLimit` | ขีดจำกัดเวลา Timeout ที่กำหนดให้ TARDIS |

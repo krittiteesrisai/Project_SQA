@@ -6,287 +6,370 @@ import argparse
 import csv
 import re
 import time
+import datetime
+import concurrent.futures
 
 D4J_HOME = os.environ.get("D4J_HOME", os.path.expanduser("~/defects4j"))
 D4J_BIN = os.path.join(D4J_HOME, "framework/bin/defects4j")
 
-  
+NAN = "NaN"
 
 CSV_HEADER = [
     "Project",
     "BugID",
+    # --- Test suite size ---
     "Total_Classes_Merged",
     "Total_Methods_Merged",
+    "Num_Test_Methods",
     "Test_Suite_LOC",
+    # --- Generation performance (TARDIS side) ---
+    "Gen_Time_sec",
+    "Saved_Tests_Count",
+    "Tests_per_Minute",
+    # --- Evaluation timing ---
+    "Compile_Time_sec",
     "Test_ExecTime_sec",
+    # --- Coverage (Buggy version) ---
     "Line_Coverage(%)",
     "Branch_Coverage(%)",
     "Covered_Lines",
     "Total_Lines",
     "Covered_Branches",
     "Total_Branches",
-    "Failing_Tests",
+    # --- Fault detection (Buggy vs Fixed) ---
+    "Failing_Buggy",
+    "Failing_Fixed",
     "Fault_Detected",
+    "Eval_Status",
+    # --- Runner info ---
     "Runner_Status",
     "Runner_Error",
-    "Total_ExecTime_sec",
-    "TimeoutLimit"
+    "TimeoutLimit",
 ]
+
 
 def run_cmd(cmd, cwd=None):
     return subprocess.run(cmd, cwd=cwd, shell=True, capture_output=True, text=True)
 
+
+def timed_cmd(cmd, cwd=None):
+    t0 = time.time()
+    res = run_cmd(cmd, cwd=cwd)
+    return res, round(time.time() - t0, 2)
+
+
 def get_runner_info(project, bug_id, tests_base_dir):
-    import os, csv
+    """อ่านข้อมูลฝั่ง Generation จาก TARDIS_*_Result.csv"""
     parent_dir = os.path.dirname(os.path.abspath(tests_base_dir))
     csv_file = None
-    for f in os.listdir(parent_dir):
-        if f.startswith("TARDIS_") and f.endswith("_Result.csv"):
-            csv_file = os.path.join(parent_dir, f)
+    for name in os.listdir(parent_dir):
+        if name.startswith("TARDIS_") and name.endswith("_Result.csv"):
+            csv_file = os.path.join(parent_dir, name)
             break
+    info = {"status": NAN, "error": NAN, "gen_time": NAN, "saved": NAN, "timeout": NAN}
     if not csv_file:
-        return "NaN", "NaN", "NaN", "NaN"
-    
-    statuses = set()
-    errors = set()
-    total_time = 0.0
-    timeouts = set()
-    
+        return info
+
+    statuses, errors, timeouts = set(), set(), set()
+    total_time, saved = 0.0, 0
+    found = False
     try:
-        with open(csv_file, 'r', encoding='utf-8') as f:
-            reader = csv.DictReader(f)
-            for row in reader:
-                if row.get("Project") == project and row.get("BugID") == str(bug_id):
-                    if row.get("Status"): statuses.add(row["Status"])
-                    
-                    err = row.get("ErrorMessage", "").strip()
-                    if err and err.lower() not in ["none", "ไม่มี error", ""]:
-                        errors.add(err)
-                        
-                    if row.get("ExecTime_sec"):
-                        try: total_time += float(row["ExecTime_sec"])
-                        except: pass
-                    if row.get("TimeoutLimit_sec"): timeouts.add(row["TimeoutLimit_sec"])
+        with open(csv_file, "r", encoding="utf-8") as fh:
+            for row in csv.DictReader(fh):
+                if row.get("Project") != project or row.get("BugID") != str(bug_id):
+                    continue
+                found = True
+                if row.get("Status"):
+                    statuses.add(row["Status"])
+                err = (row.get("ErrorMessage") or "").strip()
+                if err and err.lower() not in ["none", "ไม่มี error"]:
+                    errors.add(err)
+                try:
+                    total_time += float(row.get("ExecTime_sec") or 0)
+                except ValueError:
+                    pass
+                try:
+                    saved += int(float(row.get("SavedTestsCount") or 0))
+                except ValueError:
+                    pass
+                if row.get("TimeoutLimit_sec"):
+                    timeouts.add(row["TimeoutLimit_sec"])
     except Exception as e:
         print(f"Error reading result csv: {e}")
-        
-    status_str = " | ".join(sorted(statuses)) if statuses else "NaN"
-    err_str = " | ".join(sorted(errors)) if errors else "NaN"
-    time_str = str(round(total_time, 2)) if total_time > 0 else "NaN"
-    timeout_str = " | ".join(sorted(timeouts)) if timeouts else "NaN"
-    return status_str, err_str, time_str, timeout_str
 
-def measure_coverage(project, bug_id, tests_base_dir, writer=None, csv_file=None):
-    workspace = os.path.abspath(f"./eval_workspace_{project}_{bug_id}b")
-    tar_path = None
+    if not found:
+        return info
+    info["status"] = " | ".join(sorted(statuses)) or NAN
+    info["error"] = " | ".join(sorted(errors)) or NAN
+    info["gen_time"] = round(total_time, 2) if total_time > 0 else NAN
+    info["saved"] = saved
+    info["timeout"] = " | ".join(sorted(timeouts)) or NAN
+    return info
 
-    print("="*60)
-    print(f" เริ่มวัด Coverage & Fault Detection ของ {project}-{bug_id}")
-    print("="*60)
 
-    if os.path.exists(workspace):
-        shutil.rmtree(workspace)
+def read_failing_tests(workspace):
+    """คืนค่า set ของชื่อเทสต์ที่ fail จากไฟล์ failing_tests (None ถ้าไม่มีไฟล์)"""
+    path = os.path.join(workspace, "failing_tests")
+    if not os.path.exists(path):
+        return None
+    failing = set()
+    with open(path, "r", encoding="utf-8", errors="replace") as fh:
+        for line in fh:
+            if line.startswith("--- "):
+                failing.add(line.strip()[4:])
+    return failing
 
-    print(f" กำลัง Checkout Buggy Version...")
-    res = run_cmd(f"{D4J_BIN} checkout -p {project} -v {bug_id}b -w {workspace}")
+
+def checkout_and_compile(project, bug_id, version):
+    workspace = os.path.abspath(f"./eval_workspace_{project}_{bug_id}{version}")
+    shutil.rmtree(workspace, ignore_errors=True)
+    res = run_cmd(f"{D4J_BIN} checkout -p {project} -v {bug_id}{version} -w {workspace}")
     if res.returncode != 0:
-        print("❌ Checkout failed!")
-        return
+        return workspace, "CHECKOUT_FAIL", NAN
+    # compile โปรเจกต์ล่วงหน้า เพื่อแยกเวลา compile ออกจากเวลารันเทสต์
+    res, t = timed_cmd(f"{D4J_BIN} compile", cwd=workspace)
+    if res.returncode != 0:
+        return workspace, "COMPILE_FAIL", t
+    return workspace, "OK", t
 
-    # สร้างโฟลเดอร์สำหรับยุบรวมไฟล์ (Merge)
-    merged_suite_dir = os.path.abspath(f"./merged_suite_{project}_{bug_id}")
-    if os.path.exists(merged_suite_dir):
-        shutil.rmtree(merged_suite_dir)
-    os.makedirs(merged_suite_dir)
 
-    search_path = os.path.join(tests_base_dir, project, bug_id, "*")
-    folders = sorted(f for f in glob.glob(search_path) if os.path.isdir(f))
-
-    if not folders:
-        print(" ไม่พบโฟลเดอร์ผลลัพธ์ย่อยใน saved_tests และ history")
-        return
-
-    local_csv_file = csv_file or f"Coverage_Result_{project}_{bug_id}.csv"
-
-    # ถ้าไม่มี writer ส่งมา เราจะสร้างไฟล์เอง (สำหรับการรันเดี่ยวๆ)
-    f = None
-    if writer is None:
-        f = open(local_csv_file, 'w', newline='', encoding='utf-8')
-        writer = csv.writer(f)
-        writer.writerow(CSV_HEADER)
-
+def eval_buggy(project, bug_id, tar_path):
+    """Buggy: รัน coverage ครั้งเดียว (d4j coverage รันเทสต์และเขียน failing_tests ให้อยู่แล้ว)"""
+    out = {"status": "OK", "compile_time": NAN, "exec_time": NAN,
+           "line_cov": NAN, "branch_cov": NAN, "cov_lines": NAN, "total_lines": NAN,
+           "cov_branches": NAN, "total_branches": NAN, "failing": None, "log": ""}
+    workspace, st, ct = checkout_and_compile(project, bug_id, "b")
+    out["compile_time"] = ct
     try:
-        runner_status, runner_err, total_time, timeout_lim = get_runner_info(project, bug_id, tests_base_dir)
-        merged_count = 0
-        unique_classes = set()
-        print(f" กำลังยุบรวมไฟล์จาก {len(folders)} โฟลเดอร์...")
-
-        for folder in folders:
-              # เพิ่มโฟลเดอร์จาก history
-            history_dir = os.path.join(os.path.dirname(os.path.abspath(tests_base_dir)), "saved_tests_history")
-            hist_search = os.path.join(history_dir, project, bug_id, "*")
-            folders += [f for f in glob.glob(hist_search) if os.path.isdir(f)]
-            
-            folders = sorted(folders)
-            base_folder_name = os.path.basename(folder)
-            clean_name = re.sub(r'_(TIMEOUT|COMPLETED|SUCCESS_ON_TIMEOUT|PARTIAL_SUCCESS|NO_TESTS_GENERATED|CLASSLEVEL_CRASH|DOCKER_FAIL).*', '', base_folder_name)
-            class_only = clean_name.split('::')[0]
-            if class_only:
-                unique_classes.add(class_only)
-            out_dir = os.path.join(folder, "out")
-            if not os.path.isdir(out_dir):
-                continue
-            test_files = glob.glob(os.path.join(out_dir, "**", "*_Test*.java"), recursive=True)
-            if not test_files:
-                continue
-            tag = f"M{merged_count}"
-            for test_file in test_files:
-                rel = os.path.relpath(test_file, out_dir)
-                new_rel = re.sub(r'_(\d+)_Test', rf'_{tag}_\1_Test', rel)
-                dest = os.path.join(merged_suite_dir, new_rel)
-                os.makedirs(os.path.dirname(dest), exist_ok=True)
-                with open(test_file, encoding="utf-8") as tf:
-                    content = tf.read()
-                content = re.sub(r'_(\d+)_Test', rf'_{tag}_\1_Test', content)
-                content = content.replace("shaded.org.evosuite", "org.evosuite")
-                with open(dest, "w", encoding="utf-8") as df:
-                    df.write(content)
-            merged_count += 1
-            print(f"  - รวมไฟล์ของ {tag} สำเร็จ")
-
-        if merged_count == 0:
-            print(" ไม่มีไฟล์ .java ให้ทดสอบ (บันทึกค่า Coverage เป็น NaN)")
-            writer.writerow([project, bug_id, len(unique_classes), 0, 0, "NaN", "NaN", "NaN", "NaN", "NaN", "NaN", "NaN", "NaN", "NaN", runner_status, runner_err, total_time, timeout_lim])
-            print(f"\n เสร็จสิ้น!")
-            if f: print(f"บันทึกผลลงไฟล์ {local_csv_file}")
-            return
-
-        # Measure Test Suite LOC
-        test_suite_loc = 0
-        for root, _, files in os.walk(merged_suite_dir):
-            for file in files:
-                if file.endswith(".java"):
-                    with open(os.path.join(root, file), 'r', encoding='utf-8', errors='ignore') as f_java:
-                        test_suite_loc += sum(1 for line in f_java if line.strip())
-
-        # 2. Pack to tar.bz2
-        tar_path = os.path.abspath(f"./merged_suite_{project}_{bug_id}.tar.bz2")
-        print(f"\n บีบอัดชุดทดสอบรวมที่ {tar_path}")
-        run_cmd(f"tar -cjf {tar_path} *", cwd=merged_suite_dir)
-
-        # 3. Run defects4j coverage (Line & Branch Coverage)
-        print(f" วัดความครอบคลุม (Line & Branch Coverage)...", end="", flush=True)
-        cov_res = run_cmd(f"{D4J_BIN} coverage -s {tar_path}", cwd=workspace)
-
-        # 4. Run defects4j test to check Fault Detection
-        print(f"  ตรวจสอบ Fault Detection...", end="", flush=True)
-        t_start = time.time()
-        test_res = run_cmd(f"{D4J_BIN} test -s {tar_path}", cwd=workspace)
-        test_exec_time = round(time.time() - t_start, 2)
-
-        # 5. Parse result
-        line_cov, branch_cov = "NaN", "NaN"
-        cov_lines, total_lines = "NaN", "NaN"
-        cov_branches, total_branches = "NaN", "NaN"
-
-        m_line = re.search(r"Line coverage:\s+([\d\.]+)%", cov_res.stdout)
-        m_branch = re.search(r"Condition coverage:\s+([\d\.]+)%", cov_res.stdout)
-        m_cl = re.search(r"Lines covered:\s+(\d+)", cov_res.stdout)
-        m_tl = re.search(r"Lines total:\s+(\d+)", cov_res.stdout)
-        m_cb = re.search(r"Conditions covered:\s+(\d+)", cov_res.stdout)
-        m_tb = re.search(r"Conditions total:\s+(\d+)", cov_res.stdout)
-
-        if m_line: line_cov = m_line.group(1)
-        if m_branch: branch_cov = m_branch.group(1)
-        if m_cl: cov_lines = m_cl.group(1)
-        if m_tl: total_lines = m_tl.group(1)
-        if m_cb: cov_branches = m_cb.group(1)
-        if m_tb: total_branches = m_tb.group(1)
-
-        # Parse Fault Detection (Failing tests count)
-        failing_tests_count = 0
-        m_fail = re.search(r"Failing tests:\s+(\d+)", test_res.stdout)
-        if m_fail:
-            failing_tests_count = int(m_fail.group(1))
-        elif os.path.exists(os.path.join(workspace, "failing_tests")):
-            with open(os.path.join(workspace, "failing_tests"), "r", encoding="utf-8", errors="replace") as ft:
-                failing_tests_count = len([line for line in ft if line.startswith("--- ")])
-
-        fault_detected = "YES" if failing_tests_count > 0 else "NO"
-
-        if m_line:
-            print(f" [Line: {line_cov}%, Branch: {branch_cov}%, FailTests: {failing_tests_count}, FaultDetected: {fault_detected}]")
-            writer.writerow([
-                project, bug_id, len(unique_classes), merged_count,
-                test_suite_loc, test_exec_time,
-                line_cov, branch_cov,
-                cov_lines, total_lines,
-                cov_branches, total_branches,
-                failing_tests_count, fault_detected,
-                runner_status, runner_err, total_time, timeout_lim
-            ])
-        else:
-            print(" [ERROR or No Coverage]")
-            print((cov_res.stderr or cov_res.stdout)[-500:])
-            writer.writerow([
-                project, bug_id, len(unique_classes), merged_count,
-                test_suite_loc, test_exec_time,
-                "NaN", "NaN", "NaN", "NaN", "NaN", "NaN",
-                failing_tests_count if failing_tests_count > 0 else "NaN", 
-                fault_detected if failing_tests_count > 0 else "NaN",
-                runner_status, runner_err, total_time, timeout_lim
-            ])
-
-        print(f"\n เสร็จสิ้น!")
-        if f: print(f"บันทึกผลลงไฟล์ {local_csv_file}")
-
+        if st != "OK":
+            out["status"] = f"BUGGY_{st}"
+            return out
+        cov_res, t = timed_cmd(f"{D4J_BIN} coverage -s {tar_path}", cwd=workspace)
+        out["exec_time"] = t
+        out["log"] = (cov_res.stderr or cov_res.stdout)[-500:]
+        patterns = {
+            "line_cov": r"Line coverage:\s+([\d\.]+)%",
+            "branch_cov": r"Condition coverage:\s+([\d\.]+)%",
+            "cov_lines": r"Lines covered:\s+(\d+)",
+            "total_lines": r"Lines total:\s+(\d+)",
+            "cov_branches": r"Conditions covered:\s+(\d+)",
+            "total_branches": r"Conditions total:\s+(\d+)",
+        }
+        for key, pat in patterns.items():
+            m = re.search(pat, cov_res.stdout)
+            if m:
+                out[key] = m.group(1)
+        if out["line_cov"] == NAN:
+            out["status"] = "BUGGY_TEST_COMPILE_OR_RUN_FAIL"
+            return out
+        out["failing"] = read_failing_tests(workspace) or set()
+        return out
     finally:
         shutil.rmtree(workspace, ignore_errors=True)
+
+
+def eval_fixed(project, bug_id, tar_path):
+    """Fixed: รันเทสต์ชุดเดียวกัน แล้วดูว่าเทสต์ไหน fail"""
+    out = {"status": "OK", "failing": None, "log": ""}
+    workspace, st, _ = checkout_and_compile(project, bug_id, "f")
+    try:
+        if st != "OK":
+            out["status"] = f"FIXED_{st}"
+            return out
+        res = run_cmd(f"{D4J_BIN} test -s {tar_path}", cwd=workspace)
+        out["log"] = (res.stderr or res.stdout)[-500:]
+        failing = read_failing_tests(workspace)
+        # d4j test ล้มและไม่มีไฟล์ failing_tests -> เทสต์ compile ไม่ผ่านบน Fixed
+        if res.returncode != 0 and failing is None:
+            out["status"] = "FIXED_TEST_COMPILE_FAIL"
+            return out
+        if failing is None:
+            m = re.search(r"Failing tests:\s+(\d+)", res.stdout)
+            if m and int(m.group(1)) > 0:
+                out["status"] = "FIXED_FAILING_LIST_MISSING"
+                return out
+            failing = set()
+        out["failing"] = failing
+        return out
+    finally:
+        shutil.rmtree(workspace, ignore_errors=True)
+
+
+def merge_tests(folders, merged_suite_dir):
+    merged_count, unique_classes = 0, set()
+    for folder in folders:
+        base = os.path.basename(folder)
+        clean = re.sub(r'_(TIMEOUT|COMPLETED|SUCCESS_ON_TIMEOUT|PARTIAL_SUCCESS|NO_TESTS_GENERATED|'
+                       r'CLASSLEVEL_CRASH|DOCKER_FAIL|KILLED_WITH_TESTS|FALLBACK_DONE).*', '', base)
+        cls = clean.split('::')[0]
+        if cls:
+            unique_classes.add(cls)
+        out_dir = os.path.join(folder, "out")
+        if not os.path.isdir(out_dir):
+            continue
+        test_files = glob.glob(os.path.join(out_dir, "**", "*_Test*.java"), recursive=True)
+        if not test_files:
+            continue
+        tag = f"M{merged_count}"
+        for test_file in test_files:
+            rel = os.path.relpath(test_file, out_dir)
+            dest = os.path.join(merged_suite_dir, re.sub(r'_(\d+)_Test', rf'_{tag}_\1_Test', rel))
+            os.makedirs(os.path.dirname(dest), exist_ok=True)
+            with open(test_file, encoding="utf-8", errors="replace") as tf:
+                content = tf.read()
+            content = re.sub(r'_(\d+)_Test', rf'_{tag}_\1_Test', content)
+            content = content.replace("shaded.org.evosuite", "org.evosuite")
+            with open(dest, "w", encoding="utf-8") as df:
+                df.write(content)
+        merged_count += 1
+    return merged_count, unique_classes
+
+
+def suite_stats(merged_suite_dir):
+    loc, n_tests = 0, 0
+    for root, _, files in os.walk(merged_suite_dir):
+        for name in files:
+            if name.endswith(".java"):
+                with open(os.path.join(root, name), encoding="utf-8", errors="ignore") as fj:
+                    for line in fj:
+                        s = line.strip()
+                        if s:
+                            loc += 1
+                        if s.startswith("@Test"):
+                            n_tests += 1
+    return loc, n_tests
+
+
+def build_row(project, bug_id, info, n_classes=0, n_methods=0, n_tests=NAN, loc=NAN,
+              b=None, fixed_failing=NAN, fault=NAN, eval_status="NO_TESTS"):
+    b = b or {}
+    gen_time, saved = info["gen_time"], info["saved"]
+    tpm = NAN
+    if gen_time != NAN and saved not in (NAN, 0):
+        tpm = round(saved / (gen_time / 60.0), 3)
+    failing_b = b.get("failing")
+    return [
+        project, bug_id,
+        n_classes, n_methods, n_tests, loc,
+        gen_time, saved, tpm,
+        b.get("compile_time", NAN), b.get("exec_time", NAN),
+        b.get("line_cov", NAN), b.get("branch_cov", NAN),
+        b.get("cov_lines", NAN), b.get("total_lines", NAN),
+        b.get("cov_branches", NAN), b.get("total_branches", NAN),
+        len(failing_b) if failing_b is not None else NAN,
+        fixed_failing, fault, eval_status,
+        info["status"], info["error"], info["timeout"],
+    ]
+
+
+def measure_coverage(project, bug_id, tests_base_dir, writer=None, csv_file=None):
+    tar_path = None
+    fh = None
+    merged_suite_dir = os.path.abspath(f"./merged_suite_{project}_{bug_id}")
+    print("=" * 60)
+    print(f" ประเมิน Coverage / Fault Detection / Generation Perf: {project}-{bug_id}")
+    print("=" * 60)
+
+    try:
+        if writer is None:
+            fh = open(csv_file or f"Coverage_Result_{project}_{bug_id}.csv", "w", newline="", encoding="utf-8")
+            writer = csv.writer(fh)
+            writer.writerow(CSV_HEADER)
+
+        info = get_runner_info(project, bug_id, tests_base_dir)
+
+        folders = [d for d in glob.glob(os.path.join(tests_base_dir, project, bug_id, "*")) if os.path.isdir(d)]
+        history_dir = os.path.join(os.path.dirname(os.path.abspath(tests_base_dir)), "saved_tests_history")
+        folders += [d for d in glob.glob(os.path.join(history_dir, project, bug_id, "*")) if os.path.isdir(d)]
+        folders.sort()
+
+        shutil.rmtree(merged_suite_dir, ignore_errors=True)
+        os.makedirs(merged_suite_dir)
+        merged_count, unique_classes = merge_tests(folders, merged_suite_dir)
+
+        if merged_count == 0:
+            print(" ไม่มีไฟล์เทสต์ (บันทึกเป็น NaN)")
+            writer.writerow(build_row(project, bug_id, info, n_classes=len(unique_classes)))
+            return
+
+        loc, n_tests = suite_stats(merged_suite_dir)
+        tar_path = os.path.abspath(f"./merged_suite_{project}_{bug_id}.tar.bz2")
+        run_cmd(f"tar -cjf {tar_path} *", cwd=merged_suite_dir)
+        print(f" รวม {merged_count} ชุด, {n_tests} test methods, {loc} LOC -> ประเมิน Buggy & Fixed คู่ขนาน")
+
+        with concurrent.futures.ThreadPoolExecutor(max_workers=2) as ex:
+            fb = ex.submit(eval_buggy, project, bug_id, tar_path)
+            ff = ex.submit(eval_fixed, project, bug_id, tar_path)
+            b, fx = fb.result(), ff.result()
+
+        fixed_failing, fault = NAN, NAN
+        if b["status"] != "OK":
+            eval_status = b["status"]
+            print(f" [{eval_status}] {b['log'][-300:]}")
+        elif fx["status"] != "OK":
+            eval_status = fx["status"]
+            print(f" [{eval_status}] {fx['log'][-300:]}")
+        else:
+            eval_status = "OK"
+            fixed_failing = len(fx["failing"])
+            # เทสต์สร้างจาก Buggy: ผ่านบน Buggy แต่ fail บน Fixed = จับพฤติกรรมที่เปลี่ยนไปจากการแก้บั๊กได้
+            fault = "YES" if (fx["failing"] - b["failing"]) else "NO"
+
+        writer.writerow(build_row(project, bug_id, info, len(unique_classes), merged_count,
+                                  n_tests, loc, b, fixed_failing, fault, eval_status))
+        print(f" Line={b['line_cov']}% Branch={b['branch_cov']}% | "
+              f"Compile={b['compile_time']}s Test={b['exec_time']}s | "
+              f"FailB={len(b['failing']) if b['failing'] is not None else NAN} "
+              f"FailF={fixed_failing} Fault={fault} [{eval_status}]\n")
+    finally:
         shutil.rmtree(merged_suite_dir, ignore_errors=True)
         if tar_path and os.path.exists(tar_path):
             os.remove(tar_path)
-        if f:
-            f.close()
+        if fh:
+            fh.close()
 
-def run_all(tests_base_dir):
+
+def run_all(tests_base_dir, out_file=None):
     if not os.path.exists(tests_base_dir):
         print(f" ไม่พบโฟลเดอร์ {tests_base_dir}")
         return
+    projects = sorted(d for d in os.listdir(tests_base_dir) if os.path.isdir(os.path.join(tests_base_dir, d)))
 
-    projects = [d for d in os.listdir(tests_base_dir) if os.path.isdir(os.path.join(tests_base_dir, d))]
-    projects.sort()
+    # ไม่เขียนทับไฟล์ผลเดิม: ถ้ามีอยู่แล้วให้ backup ก่อน
+    csv_file = out_file or "Coverage_Result_All.csv"
+    if os.path.exists(csv_file) and os.path.getsize(csv_file) > 0:
+        stamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        backup = csv_file.replace(".csv", f"_backup_{stamp}.csv")
+        shutil.copy2(csv_file, backup)
+        print(f"สำรองไฟล์เดิมไว้ที่ {backup}")
+    print(f"ผลลัพธ์จะบันทึกที่ {csv_file}")
 
-    csv_file = "Coverage_Result_All.csv"
-    print(f"กำลังจะรันทั้งหมด ผลลัพธ์จะถูกบันทึกที่ {csv_file}")
-
-    with open(csv_file, 'w', newline='', encoding='utf-8') as f:
-        writer = csv.writer(f)
+    with open(csv_file, "w", newline="", encoding="utf-8") as fh:
+        writer = csv.writer(fh)
         writer.writerow(CSV_HEADER)
-
         for project in projects:
             project_dir = os.path.join(tests_base_dir, project)
             bug_ids = [d for d in os.listdir(project_dir) if os.path.isdir(os.path.join(project_dir, d))]
-
-            # เรียงลำดับ bug_id ตามตัวเลข (ถ้าเป็นตัวเลข)
             bug_ids.sort(key=lambda x: int(x) if x.isdigit() else x)
-
             for bug_id in bug_ids:
-                measure_coverage(project, bug_id, tests_base_dir, writer=writer, csv_file=csv_file)
-                f.flush()
+                try:
+                    measure_coverage(project, bug_id, tests_base_dir, writer=writer)
+                except Exception as e:
+                    print(f" [EXCEPTION] {project}-{bug_id}: {e}")
+                fh.flush()
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--project", default=None, help="ระบุ project เช่น Lang (ถ้าไม่ระบุจะรันทั้งหมด)")
-    parser.add_argument("--bug", default=None, help="ระบุ bug ID เช่น 12 (ถ้าไม่ระบุจะรันทั้งหมด)")
-    parser.add_argument("--tests_dir", default="../saved_tests", help="โฟลเดอร์เก็บผลลัพธ์ tests")
-    parser.add_argument("--all", action="store_true", default=True, help="รันทุก project และ bug ใน tests_dir (ค่าเริ่มต้น)")
-
+    parser.add_argument("--project", default=None, help="เช่น Lang")
+    parser.add_argument("--bug", default=None, help="เช่น 12")
+    parser.add_argument("--tests_dir", default="../saved_tests", help="โฟลเดอร์ saved_tests")
+    parser.add_argument("--out", default=None, help="ชื่อไฟล์ CSV ผลลัพธ์ (โหมด --all)")
+    parser.add_argument("--all", action="store_true", default=True, help="รันทุก project/bug (ค่าเริ่มต้น)")
     args = parser.parse_args()
     tests_dir_abs = os.path.abspath(args.tests_dir)
 
-    # ถ้าผู้ใช้ระบุทั้ง --project และ --bug ให้รันเฉพาะตัวนั้น นอกนั้นรันทั้งหมดเป็นค่าเริ่มต้น
     if args.project and args.bug:
         measure_coverage(args.project, args.bug, tests_dir_abs)
     else:
-        run_all(tests_dir_abs)
-
+        run_all(tests_dir_abs, args.out)
