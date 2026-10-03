@@ -37,8 +37,8 @@
 
 | ชุด | โมเดล | ช่องทาง | บั๊ก |
 |---|---|---|---|
-| A | `gemini-3.5-flash-lite` | Google Gemini API | 662 บั๊กแรก (13 โปรเจกต์ครบ + Lang บางส่วน + Math บางส่วน) |
-| B | `gemini-3.7-flash` | ai.kku.ac.th (OpenAI-compatible gateway) | 192 บั๊กที่เหลือ (Lang, Math, Mockito, Time) |
+| A | `gemini-3.5-flash-lite` | Google Gemini API | 854 |
+
 
 > ผลของสองชุดรวมอยู่ใน `Result/results.csv` ไฟล์เดียว ไม่ควรเทียบกันตรง ๆ ว่ารุ่นไหนดีกว่า เพราะชุดบั๊กต่างกัน
 
