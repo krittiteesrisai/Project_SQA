@@ -1,0 +1,8 @@
+project: Jsoup
+bug_id: 40
+class_name: org.jsoup.nodes.DocumentType
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 2
+fixed_failing: 3
+error: 

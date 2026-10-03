@@ -1,0 +1,8 @@
+project: Codec
+bug_id: 14
+class_name: org.apache.commons.codec.language.bm.Rule
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 1
+fixed_failing: 1
+error: 

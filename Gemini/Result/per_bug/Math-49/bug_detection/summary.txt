@@ -1,0 +1,8 @@
+project: Math
+bug_id: 49
+class_name: org.apache.commons.math.linear.OpenMapRealVector
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 1
+fixed_failing: 1
+error: 

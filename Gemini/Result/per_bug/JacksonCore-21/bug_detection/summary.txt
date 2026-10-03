@@ -1,0 +1,8 @@
+project: JacksonCore
+bug_id: 21
+class_name: com.fasterxml.jackson.core.filter.FilteringParserDelegate
+compiled: FALSE
+kills_bug: 
+buggy_failing: 
+fixed_failing: 
+error: compile failed (buggy): Command failed: defects4j compile -w work/JacksonCore_21

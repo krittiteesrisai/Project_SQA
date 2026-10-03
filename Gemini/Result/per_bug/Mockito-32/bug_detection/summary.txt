@@ -1,0 +1,8 @@
+project: Mockito
+bug_id: 32
+class_name: org.mockito.internal.configuration.SpyAnnotationEngine
+compiled: True
+kills_bug: False
+buggy_failing: 1
+fixed_failing: 1
+error: 

@@ -1,0 +1,8 @@
+project: Collections
+bug_id: 6
+class_name: org.apache.commons.collections.map.Flat3Map
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 3
+fixed_failing: 2
+error: 

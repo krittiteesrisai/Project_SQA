@@ -1,0 +1,8 @@
+project: Csv
+bug_id: 16
+class_name: org.apache.commons.csv.CSVParser
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 2
+fixed_failing: 2
+error: 

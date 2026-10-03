@@ -1,0 +1,8 @@
+project: Compress
+bug_id: 2
+class_name: org.apache.commons.compress.archivers.ar.ArArchiveInputStream
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 
+fixed_failing: 
+error: 

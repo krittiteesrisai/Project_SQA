@@ -1,0 +1,8 @@
+project: Lang
+bug_id: 27
+class_name: org.apache.commons.lang3.math.NumberUtils
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 2
+fixed_failing: 2
+error: 

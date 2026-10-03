@@ -1,0 +1,8 @@
+project: Gson
+bug_id: 3
+class_name: com.google.gson.internal.ConstructorConstructor
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 0
+fixed_failing: 
+error: 

@@ -1,0 +1,8 @@
+project: Compress
+bug_id: 39
+class_name: org.apache.commons.compress.utils.ArchiveUtils
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 0
+fixed_failing: 
+error: 

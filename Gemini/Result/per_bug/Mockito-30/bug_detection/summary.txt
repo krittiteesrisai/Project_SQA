@@ -1,0 +1,8 @@
+project: Mockito
+bug_id: 30
+class_name: org.mockito.internal.stubbing.defaultanswers.ReturnsSmartNulls
+compiled: True
+kills_bug: False
+buggy_failing: 1
+fixed_failing: 
+error:  | fixed-version check failed: Command failed: defects4j compile -w work/Mockito_30_fixed

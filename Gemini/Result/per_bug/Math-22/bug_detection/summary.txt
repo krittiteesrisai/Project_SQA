@@ -1,0 +1,8 @@
+project: Math
+bug_id: 22
+class_name: org.apache.commons.math3.distribution.UniformRealDistribution
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 0
+fixed_failing: 
+error: 

@@ -1,0 +1,8 @@
+project: Math
+bug_id: 8
+class_name: org.apache.commons.math3.distribution.DiscreteDistribution
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 3
+fixed_failing: 
+error:  | fixed-version check failed: Command failed: defects4j compile -w work/Math_8_fixed

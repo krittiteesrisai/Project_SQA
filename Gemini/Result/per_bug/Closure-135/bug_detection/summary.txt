@@ -1,0 +1,8 @@
+project: Closure
+bug_id: 135
+class_name: com.google.javascript.rhino.jstype.FunctionType
+compiled: FALSE
+kills_bug: 
+buggy_failing: 
+fixed_failing: 
+error: compile failed (buggy): Command failed: defects4j compile -w work/Closure_135

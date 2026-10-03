@@ -1,0 +1,8 @@
+project: Time
+bug_id: 22
+class_name: org.joda.time.base.BasePeriod
+compiled: False
+kills_bug: 
+buggy_failing: 
+fixed_failing: 
+error: compile failed (buggy): Command failed: defects4j compile -w work/Time_22

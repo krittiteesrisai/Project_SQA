@@ -1,0 +1,8 @@
+project: JacksonDatabind
+bug_id: 61
+class_name: com.fasterxml.jackson.databind.jsontype.impl.StdTypeResolverBuilder
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 2
+fixed_failing: 2
+error: 

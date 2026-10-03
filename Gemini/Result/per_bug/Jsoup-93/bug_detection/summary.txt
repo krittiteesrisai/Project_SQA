@@ -1,0 +1,8 @@
+project: Jsoup
+bug_id: 93
+class_name: org.jsoup.nodes.FormElement
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 1
+fixed_failing: 1
+error: 

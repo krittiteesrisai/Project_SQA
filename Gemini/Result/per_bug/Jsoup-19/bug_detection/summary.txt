@@ -1,0 +1,8 @@
+project: Jsoup
+bug_id: 19
+class_name: org.jsoup.safety.Whitelist
+compiled: FALSE
+kills_bug: 
+buggy_failing: 
+fixed_failing: 
+error: compile failed (buggy): Command failed: defects4j compile -w work/Jsoup_19

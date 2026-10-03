@@ -1,0 +1,8 @@
+project: Jsoup
+bug_id: 51
+class_name: org.jsoup.parser.CharacterReader
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 2
+fixed_failing: 2
+error: 

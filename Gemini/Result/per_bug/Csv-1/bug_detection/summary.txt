@@ -1,0 +1,8 @@
+project: Csv
+bug_id: 1
+class_name: org.apache.commons.csv.ExtendedBufferedReader
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 0
+fixed_failing: 
+error: 

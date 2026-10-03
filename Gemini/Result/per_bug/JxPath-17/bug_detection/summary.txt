@@ -1,0 +1,8 @@
+project: JxPath
+bug_id: 17
+class_name: org.apache.commons.jxpath.ri.model.jdom.JDOMAttributeIterator
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 1
+fixed_failing: 2
+error: 

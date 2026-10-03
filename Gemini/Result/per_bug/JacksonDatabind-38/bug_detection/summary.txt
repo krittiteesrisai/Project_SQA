@@ -1,0 +1,8 @@
+project: JacksonDatabind
+bug_id: 38
+class_name: com.fasterxml.jackson.databind.type.SimpleType
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 0
+fixed_failing: 
+error: 

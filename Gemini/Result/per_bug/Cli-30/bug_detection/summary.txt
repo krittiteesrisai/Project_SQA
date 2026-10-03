@@ -1,0 +1,8 @@
+project: Cli
+bug_id: 30
+class_name: org.apache.commons.cli.Parser
+compiled: FALSE
+kills_bug: 
+buggy_failing: 
+fixed_failing: 
+error: compile failed (buggy): Command failed: defects4j compile -w work/Cli_30

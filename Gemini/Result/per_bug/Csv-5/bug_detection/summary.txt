@@ -1,0 +1,8 @@
+project: Csv
+bug_id: 5
+class_name: org.apache.commons.csv.CSVPrinter
+compiled: FALSE
+kills_bug: 
+buggy_failing: 
+fixed_failing: 
+error: compile failed (buggy): Command failed: defects4j compile -w work/Csv_5

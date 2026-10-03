@@ -1,0 +1,8 @@
+project: JacksonCore
+bug_id: 23
+class_name: com.fasterxml.jackson.core.util.DefaultPrettyPrinter
+compiled: FALSE
+kills_bug: 
+buggy_failing: 
+fixed_failing: 
+error: compile failed (buggy): Command failed: defects4j compile -w work/JacksonCore_23

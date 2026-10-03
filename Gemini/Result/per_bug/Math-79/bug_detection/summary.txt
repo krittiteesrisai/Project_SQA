@@ -1,0 +1,8 @@
+project: Math
+bug_id: 79
+class_name: org.apache.commons.math.util.MathUtils
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 6
+fixed_failing: 6
+error: 

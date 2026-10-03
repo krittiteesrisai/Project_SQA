@@ -1,0 +1,8 @@
+project: Math
+bug_id: 31
+class_name: org.apache.commons.math3.util.ContinuedFraction
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 1
+fixed_failing: 2
+error: 

@@ -1,0 +1,8 @@
+project: Math
+bug_id: 78
+class_name: org.apache.commons.math.ode.events.EventState
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 5
+fixed_failing: 5
+error: 

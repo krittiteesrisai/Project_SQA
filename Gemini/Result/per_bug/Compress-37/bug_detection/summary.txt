@@ -1,0 +1,8 @@
+project: Compress
+bug_id: 37
+class_name: org.apache.commons.compress.archivers.tar.TarArchiveInputStream
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 11
+fixed_failing: 11
+error: 

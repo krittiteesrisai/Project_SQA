@@ -1,0 +1,8 @@
+project: Mockito
+bug_id: 21
+class_name: org.mockito.internal.creation.instance.ConstructorInstantiator
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 0
+fixed_failing: 
+error: 

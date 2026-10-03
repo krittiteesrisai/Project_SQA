@@ -1,0 +1,8 @@
+project: Jsoup
+bug_id: 2
+class_name: org.jsoup.parser.Parser
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 0
+fixed_failing: 
+error: 

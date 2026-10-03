@@ -1,0 +1,8 @@
+project: Jsoup
+bug_id: 13
+class_name: org.jsoup.nodes.Node
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 2
+fixed_failing: 2
+error: 

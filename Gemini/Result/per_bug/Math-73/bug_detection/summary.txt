@@ -1,0 +1,8 @@
+project: Math
+bug_id: 73
+class_name: org.apache.commons.math.analysis.solvers.BrentSolver
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 5
+fixed_failing: 4
+error: 

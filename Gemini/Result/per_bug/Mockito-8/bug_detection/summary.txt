@@ -1,0 +1,8 @@
+project: Mockito
+bug_id: 8
+class_name: org.mockito.internal.util.reflection.GenericMetadataSupport
+compiled: True
+kills_bug: False
+buggy_failing: 0
+fixed_failing: 
+error: 

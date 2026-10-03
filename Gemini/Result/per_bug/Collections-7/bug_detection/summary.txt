@@ -1,0 +1,8 @@
+project: Collections
+bug_id: 7
+class_name: org.apache.commons.collections.ExtendedProperties
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 2
+fixed_failing: 2
+error: 

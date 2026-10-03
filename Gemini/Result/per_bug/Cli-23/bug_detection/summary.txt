@@ -1,0 +1,8 @@
+project: Cli
+bug_id: 23
+class_name: org.apache.commons.cli.HelpFormatter
+compiled: FALSE
+kills_bug: 
+buggy_failing: 
+fixed_failing: 
+error: compile failed (buggy): Command failed: defects4j compile -w work/Cli_23

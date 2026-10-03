@@ -1,0 +1,8 @@
+project: Jsoup
+bug_id: 91
+class_name: org.jsoup.parser.CharacterReader
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 4
+fixed_failing: 
+error:  | fixed-version check failed: Command failed: defects4j compile -w work/Jsoup_91_fixed

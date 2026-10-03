@@ -1,0 +1,8 @@
+project: JacksonDatabind
+bug_id: 16
+class_name: com.fasterxml.jackson.databind.introspect.AnnotationMap
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 9
+fixed_failing: 9
+error: 

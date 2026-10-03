@@ -1,0 +1,8 @@
+project: Chart
+bug_id: 20
+class_name: org.jfree.chart.plot.ValueMarker
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 1
+fixed_failing: 1
+error: 

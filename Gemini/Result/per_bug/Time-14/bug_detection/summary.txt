@@ -1,0 +1,8 @@
+project: Time
+bug_id: 14
+class_name: org.joda.time.chrono.BasicMonthOfYearDateTimeField
+compiled: True
+kills_bug: False
+buggy_failing: 2
+fixed_failing: 2
+error: 

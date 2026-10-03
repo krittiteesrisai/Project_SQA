@@ -1,0 +1,8 @@
+project: Math
+bug_id: 38
+class_name: org.apache.commons.math.optimization.direct.BOBYQAOptimizer
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 7
+fixed_failing: 3
+error: 

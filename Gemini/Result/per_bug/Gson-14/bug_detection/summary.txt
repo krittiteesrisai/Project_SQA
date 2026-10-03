@@ -1,0 +1,8 @@
+project: Gson
+bug_id: 14
+class_name: com.google.gson.internal.$Gson$Types
+compiled: FALSE
+kills_bug: 
+buggy_failing: 
+fixed_failing: 
+error: compile failed (buggy): Command failed: defects4j compile -w work/Gson_14

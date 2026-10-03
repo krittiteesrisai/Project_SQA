@@ -1,0 +1,8 @@
+project: Math
+bug_id: 21
+class_name: org.apache.commons.math3.linear.RectangularCholeskyDecomposition
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 3
+fixed_failing: 3
+error: 

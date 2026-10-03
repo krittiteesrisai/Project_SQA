@@ -1,0 +1,8 @@
+project: Math
+bug_id: 106
+class_name: org.apache.commons.math.fraction.ProperFractionFormat
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 3
+fixed_failing: 3
+error: 

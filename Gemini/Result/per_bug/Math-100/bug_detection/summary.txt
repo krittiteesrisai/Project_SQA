@@ -1,0 +1,8 @@
+project: Math
+bug_id: 100
+class_name: org.apache.commons.math.estimation.AbstractEstimator
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 0
+fixed_failing: 
+error: 

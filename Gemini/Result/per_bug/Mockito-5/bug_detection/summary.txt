@@ -1,0 +1,8 @@
+project: Mockito
+bug_id: 5
+class_name: org.mockito.internal.verification.VerificationOverTimeImpl
+compiled: False
+kills_bug: 
+buggy_failing: 
+fixed_failing: 
+error: compile failed (buggy): Command failed: defects4j compile -w work/Mockito_5

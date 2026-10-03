@@ -1,0 +1,8 @@
+project: Closure
+bug_id: 170
+class_name: com.google.javascript.jscomp.FlowSensitiveInlineVariables
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 9
+fixed_failing: 9
+error: 

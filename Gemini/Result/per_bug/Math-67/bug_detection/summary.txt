@@ -1,0 +1,8 @@
+project: Math
+bug_id: 67
+class_name: org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizer
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 4
+fixed_failing: 3
+error: 

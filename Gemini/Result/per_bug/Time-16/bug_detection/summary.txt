@@ -1,0 +1,8 @@
+project: Time
+bug_id: 16
+class_name: org.joda.time.format.DateTimeFormatter
+compiled: True
+kills_bug: False
+buggy_failing: 2
+fixed_failing: 1
+error: 

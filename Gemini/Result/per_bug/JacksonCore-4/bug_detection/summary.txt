@@ -1,0 +1,8 @@
+project: JacksonCore
+bug_id: 4
+class_name: com.fasterxml.jackson.core.util.TextBuffer
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 3
+fixed_failing: 3
+error: 

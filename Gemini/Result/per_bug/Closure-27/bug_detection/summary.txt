@@ -1,0 +1,8 @@
+project: Closure
+bug_id: 27
+class_name: com.google.javascript.rhino.IR
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 3
+fixed_failing: 3
+error: 

@@ -1,0 +1,8 @@
+project: Lang
+bug_id: 57
+class_name: org.apache.commons.lang.LocaleUtils
+compiled: FALSE
+kills_bug: 
+buggy_failing: 
+fixed_failing: 
+error: compile failed (buggy): Command failed: defects4j compile -w work/Lang_57

@@ -1,0 +1,8 @@
+project: JacksonDatabind
+bug_id: 71
+class_name: com.fasterxml.jackson.databind.deser.std.StdKeyDeserializer
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 1
+fixed_failing: 1
+error: 

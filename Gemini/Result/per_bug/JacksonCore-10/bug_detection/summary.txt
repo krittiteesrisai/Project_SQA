@@ -1,0 +1,8 @@
+project: JacksonCore
+bug_id: 10
+class_name: com.fasterxml.jackson.core.sym.ByteQuadsCanonicalizer
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 7
+fixed_failing: 7
+error: 

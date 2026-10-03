@@ -1,0 +1,8 @@
+project: JacksonCore
+bug_id: 17
+class_name: com.fasterxml.jackson.core.json.UTF8JsonGenerator
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 0
+fixed_failing: 
+error: 

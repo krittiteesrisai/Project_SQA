@@ -1,0 +1,8 @@
+project: Lang
+bug_id: 15
+class_name: org.apache.commons.lang3.reflect.TypeUtils
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 2
+fixed_failing: 2
+error: 

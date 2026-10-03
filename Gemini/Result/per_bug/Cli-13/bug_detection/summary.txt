@@ -1,0 +1,8 @@
+project: Cli
+bug_id: 13
+class_name: org.apache.commons.cli2.option.ArgumentImpl
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 
+fixed_failing: 
+error: 

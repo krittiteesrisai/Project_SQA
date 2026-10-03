@@ -1,0 +1,8 @@
+project: JacksonDatabind
+bug_id: 54
+class_name: com.fasterxml.jackson.databind.ser.PropertyBuilder
+compiled: FALSE
+kills_bug: 
+buggy_failing: 
+fixed_failing: 
+error: compile failed (buggy): Command failed: defects4j compile -w work/JacksonDatabind_54

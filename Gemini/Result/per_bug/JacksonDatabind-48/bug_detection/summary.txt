@@ -1,0 +1,8 @@
+project: JacksonDatabind
+bug_id: 48
+class_name: com.fasterxml.jackson.databind.SerializationConfig
+compiled: FALSE
+kills_bug: 
+buggy_failing: 
+fixed_failing: 
+error: compile failed (buggy): Command failed: defects4j compile -w work/JacksonDatabind_48

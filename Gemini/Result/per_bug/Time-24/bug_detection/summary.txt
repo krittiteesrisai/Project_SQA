@@ -1,0 +1,8 @@
+project: Time
+bug_id: 24
+class_name: org.joda.time.format.DateTimeParserBucket
+compiled: True
+kills_bug: False
+buggy_failing: 0
+fixed_failing: 
+error: 

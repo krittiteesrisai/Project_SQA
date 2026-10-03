@@ -1,0 +1,8 @@
+project: Math
+bug_id: 28
+class_name: org.apache.commons.math3.optimization.linear.SimplexSolver
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 2
+fixed_failing: 2
+error: 

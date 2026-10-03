@@ -1,0 +1,8 @@
+project: JacksonDatabind
+bug_id: 20
+class_name: com.fasterxml.jackson.databind.node.ObjectNode
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 0
+fixed_failing: 
+error: 

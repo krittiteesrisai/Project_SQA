@@ -1,0 +1,8 @@
+project: Mockito
+bug_id: 16
+class_name: org.mockito.internal.MockitoCore
+compiled: FALSE
+kills_bug: 
+buggy_failing: 
+fixed_failing: 
+error: compile failed (buggy): Command failed: defects4j compile -w work/Mockito_16

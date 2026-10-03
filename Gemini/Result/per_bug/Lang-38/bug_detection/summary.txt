@@ -1,0 +1,8 @@
+project: Lang
+bug_id: 38
+class_name: org.apache.commons.lang3.time.FastDateFormat
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 2
+fixed_failing: 1
+error: 

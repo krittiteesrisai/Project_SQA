@@ -1,0 +1,8 @@
+project: Cli
+bug_id: 1
+class_name: org.apache.commons.cli.CommandLine
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 
+fixed_failing: 
+error: 

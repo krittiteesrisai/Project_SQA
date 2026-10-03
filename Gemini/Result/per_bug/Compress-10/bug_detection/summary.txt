@@ -1,0 +1,8 @@
+project: Compress
+bug_id: 10
+class_name: org.apache.commons.compress.archivers.zip.ZipFile
+compiled: FALSE
+kills_bug: 
+buggy_failing: 
+fixed_failing: 
+error: compile failed (buggy): Command failed: defects4j compile -w work/Compress_10

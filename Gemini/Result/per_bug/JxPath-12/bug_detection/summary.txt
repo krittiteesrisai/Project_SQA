@@ -1,0 +1,8 @@
+project: JxPath
+bug_id: 12
+class_name: org.apache.commons.jxpath.ri.model.dom.DOMNodePointer
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 18
+fixed_failing: 18
+error: 

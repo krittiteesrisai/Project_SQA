@@ -1,0 +1,8 @@
+project: JacksonDatabind
+bug_id: 55
+class_name: com.fasterxml.jackson.databind.ser.std.StdKeySerializers
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 0
+fixed_failing: 
+error: 

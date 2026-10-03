@@ -1,0 +1,8 @@
+project: Chart
+bug_id: 19
+class_name: org.jfree.chart.plot.CategoryPlot
+compiled: FALSE
+kills_bug: 
+buggy_failing: 
+fixed_failing: 
+error: compile failed (buggy): Command failed: defects4j compile -w work/Chart_19

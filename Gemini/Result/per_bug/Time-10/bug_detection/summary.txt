@@ -1,0 +1,8 @@
+project: Time
+bug_id: 10
+class_name: org.joda.time.base.BaseSingleFieldPeriod
+compiled: True
+kills_bug: False
+buggy_failing: 
+fixed_failing: 
+error: 

@@ -1,0 +1,8 @@
+project: JacksonXml
+bug_id: 4
+class_name: com.fasterxml.jackson.dataformat.xml.ser.XmlSerializerProvider
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 1
+fixed_failing: 2
+error: 

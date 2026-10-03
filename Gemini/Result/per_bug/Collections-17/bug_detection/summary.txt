@@ -1,0 +1,8 @@
+project: Collections
+bug_id: 17
+class_name: org.apache.commons.collections.functors.EqualPredicate
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 0
+fixed_failing: 
+error: 

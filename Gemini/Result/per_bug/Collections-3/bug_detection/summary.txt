@@ -1,0 +1,8 @@
+project: Collections
+bug_id: 3
+class_name: org.apache.commons.collections.CollectionUtils
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 2
+fixed_failing: 2
+error: 

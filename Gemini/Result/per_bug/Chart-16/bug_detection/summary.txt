@@ -1,0 +1,8 @@
+project: Chart
+bug_id: 16
+class_name: org.jfree.data.category.DefaultIntervalCategoryDataset
+compiled: FALSE
+kills_bug: 
+buggy_failing: 
+fixed_failing: 
+error: compile failed (buggy): Command failed: defects4j compile -w work/Chart_16

@@ -1,0 +1,8 @@
+project: JacksonCore
+bug_id: 26
+class_name: com.fasterxml.jackson.core.json.async.NonBlockingJsonParser
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 4
+fixed_failing: 4
+error: 

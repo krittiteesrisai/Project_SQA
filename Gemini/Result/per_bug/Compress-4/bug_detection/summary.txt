@@ -1,0 +1,8 @@
+project: Compress
+bug_id: 4
+class_name: org.apache.commons.compress.changes.ChangeSetPerformer
+compiled: FALSE
+kills_bug: 
+buggy_failing: 
+fixed_failing: 
+error: compile failed (buggy): Command failed: defects4j compile -w work/Compress_4

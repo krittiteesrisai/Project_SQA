@@ -1,0 +1,8 @@
+project: Codec
+bug_id: 6
+class_name: org.apache.commons.codec.binary.Base64InputStream
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 3
+fixed_failing: 2
+error: 

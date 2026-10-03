@@ -1,0 +1,8 @@
+project: Jsoup
+bug_id: 55
+class_name: org.jsoup.parser.TokeniserState
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 9
+fixed_failing: 9
+error: 

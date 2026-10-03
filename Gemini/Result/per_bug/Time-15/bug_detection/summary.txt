@@ -1,0 +1,8 @@
+project: Time
+bug_id: 15
+class_name: org.joda.time.field.FieldUtils
+compiled: True
+kills_bug: True
+buggy_failing: 1
+fixed_failing: 0
+error: 

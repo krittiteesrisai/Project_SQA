@@ -1,0 +1,8 @@
+project: Gson
+bug_id: 2
+class_name: com.google.gson.internal.bind.TypeAdapters
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 18
+fixed_failing: 18
+error: 

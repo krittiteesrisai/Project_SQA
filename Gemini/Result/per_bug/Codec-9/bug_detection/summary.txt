@@ -1,0 +1,8 @@
+project: Codec
+bug_id: 9
+class_name: org.apache.commons.codec.binary.Base64
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 1
+fixed_failing: 1
+error: 

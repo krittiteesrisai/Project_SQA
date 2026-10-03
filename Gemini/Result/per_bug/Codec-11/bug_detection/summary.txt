@@ -1,0 +1,8 @@
+project: Codec
+bug_id: 11
+class_name: org.apache.commons.codec.net.QuotedPrintableCodec
+compiled: FALSE
+kills_bug: 
+buggy_failing: 
+fixed_failing: 
+error: compile failed (buggy): Command failed: defects4j compile -w work/Codec_11

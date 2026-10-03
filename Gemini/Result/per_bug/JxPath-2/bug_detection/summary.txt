@@ -1,0 +1,8 @@
+project: JxPath
+bug_id: 2
+class_name: org.apache.commons.jxpath.ri.compiler.Expression
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 3
+fixed_failing: 3
+error: 

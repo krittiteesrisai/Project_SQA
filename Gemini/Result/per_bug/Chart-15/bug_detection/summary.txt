@@ -1,0 +1,8 @@
+project: Chart
+bug_id: 15
+class_name: org.jfree.chart.plot.PiePlot
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 2
+fixed_failing: 2
+error: 

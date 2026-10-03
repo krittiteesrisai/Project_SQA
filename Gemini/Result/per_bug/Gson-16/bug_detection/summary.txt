@@ -1,0 +1,8 @@
+project: Gson
+bug_id: 16
+class_name: com.google.gson.internal.$Gson$Types
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 3
+fixed_failing: 3
+error: 

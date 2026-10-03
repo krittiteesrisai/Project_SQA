@@ -1,0 +1,8 @@
+project: Math
+bug_id: 90
+class_name: org.apache.commons.math.stat.Frequency
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 0
+fixed_failing: 
+error: 

@@ -1,0 +1,8 @@
+project: Math
+bug_id: 70
+class_name: org.apache.commons.math.analysis.solvers.BisectionSolver
+compiled: TRUE
+kills_bug: TRUE
+buggy_failing: 1
+fixed_failing: 0
+error: 

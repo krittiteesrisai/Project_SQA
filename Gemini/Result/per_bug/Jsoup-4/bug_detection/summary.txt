@@ -1,0 +1,8 @@
+project: Jsoup
+bug_id: 4
+class_name: org.jsoup.nodes.Entities
+compiled: FALSE
+kills_bug: 
+buggy_failing: 
+fixed_failing: 
+error: compile failed (buggy): Command failed: defects4j compile -w work/Jsoup_4

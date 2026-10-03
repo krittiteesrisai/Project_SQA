@@ -1,0 +1,8 @@
+project: Compress
+bug_id: 46
+class_name: org.apache.commons.compress.archivers.zip.X5455_ExtendedTimestamp
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 0
+fixed_failing: 
+error: 

@@ -1,0 +1,8 @@
+project: Math
+bug_id: 36
+class_name: org.apache.commons.math.fraction.BigFraction
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 3
+fixed_failing: 3
+error: 

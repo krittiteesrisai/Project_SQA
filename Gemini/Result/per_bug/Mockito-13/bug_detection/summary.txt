@@ -1,0 +1,8 @@
+project: Mockito
+bug_id: 13
+class_name: org.mockito.internal.MockHandler
+compiled: FALSE
+kills_bug: 
+buggy_failing: 
+fixed_failing: 
+error: compile failed (buggy): Command failed: defects4j compile -w work/Mockito_13

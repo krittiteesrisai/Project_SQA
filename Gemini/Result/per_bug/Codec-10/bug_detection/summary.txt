@@ -1,0 +1,8 @@
+project: Codec
+bug_id: 10
+class_name: org.apache.commons.codec.language.Caverphone
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 0
+fixed_failing: 
+error: 

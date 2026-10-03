@@ -1,0 +1,8 @@
+project: Collections
+bug_id: 25
+class_name: org.apache.commons.collections4.IteratorUtils
+compiled: FALSE
+kills_bug: 
+buggy_failing: 
+fixed_failing: 
+error: compile failed (buggy): Command failed: defects4j compile -w work/Collections_25

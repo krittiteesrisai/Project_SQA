@@ -1,0 +1,8 @@
+project: JacksonXml
+bug_id: 3
+class_name: com.fasterxml.jackson.dataformat.xml.deser.FromXmlParser
+compiled: FALSE
+kills_bug: 
+buggy_failing: 
+fixed_failing: 
+error: compile failed (buggy): Command failed: defects4j compile -w work/JacksonXml_3

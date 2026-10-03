@@ -1,0 +1,5 @@
+Lines covered: 773
+Conditions total: 589
+Conditions covered: 392
+Line coverage: 74.8%
+Condition coverage: 66.6%

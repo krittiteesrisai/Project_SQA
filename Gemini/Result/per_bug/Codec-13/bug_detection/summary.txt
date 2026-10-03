@@ -1,0 +1,8 @@
+project: Codec
+bug_id: 13
+class_name: org.apache.commons.codec.language.DoubleMetaphone
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 23
+fixed_failing: 23
+error: 

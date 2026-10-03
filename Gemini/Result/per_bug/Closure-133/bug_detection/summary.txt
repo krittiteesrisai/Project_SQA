@@ -1,0 +1,8 @@
+project: Closure
+bug_id: 133
+class_name: com.google.javascript.jscomp.parsing.JsDocInfoParser
+compiled: FALSE
+kills_bug: 
+buggy_failing: 
+fixed_failing: 
+error: compile failed (buggy): Command failed: defects4j compile -w work/Closure_133

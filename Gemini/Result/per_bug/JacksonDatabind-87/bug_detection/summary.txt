@@ -1,0 +1,8 @@
+project: JacksonDatabind
+bug_id: 87
+class_name: com.fasterxml.jackson.databind.util.StdDateFormat
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 3
+fixed_failing: 3
+error: 

@@ -1,0 +1,8 @@
+project: Time
+bug_id: 27
+class_name: org.joda.time.format.PeriodFormatterBuilder
+compiled: True
+kills_bug: False
+buggy_failing: 7
+fixed_failing: 7
+error: 

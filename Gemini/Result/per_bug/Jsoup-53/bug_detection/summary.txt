@@ -1,0 +1,8 @@
+project: Jsoup
+bug_id: 53
+class_name: org.jsoup.parser.TokenQueue
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 1
+fixed_failing: 1
+error: 

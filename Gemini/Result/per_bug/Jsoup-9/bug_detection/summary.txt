@@ -1,0 +1,8 @@
+project: Jsoup
+bug_id: 9
+class_name: org.jsoup.nodes.Entities
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 1
+fixed_failing: 1
+error: coverage failed: Command failed: defects4j coverage -w work/Jsoup_9

@@ -1,0 +1,8 @@
+project: JacksonDatabind
+bug_id: 27
+class_name: com.fasterxml.jackson.databind.deser.BeanDeserializer
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 2
+fixed_failing: 2
+error: 

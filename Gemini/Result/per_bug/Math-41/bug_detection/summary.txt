@@ -1,0 +1,8 @@
+project: Math
+bug_id: 41
+class_name: org.apache.commons.math.stat.descriptive.moment.Variance
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 3
+fixed_failing: 2
+error: 

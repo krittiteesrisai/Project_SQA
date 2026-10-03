@@ -1,0 +1,8 @@
+project: Time
+bug_id: 23
+class_name: org.joda.time.DateTimeZone
+compiled: True
+kills_bug: False
+buggy_failing: 7
+fixed_failing: 8
+error: 

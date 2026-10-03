@@ -1,0 +1,8 @@
+project: JxPath
+bug_id: 8
+class_name: org.apache.commons.jxpath.ri.compiler.CoreOperationRelationalExpression
+compiled: FALSE
+kills_bug: 
+buggy_failing: 
+fixed_failing: 
+error: compile failed (buggy): Command failed: defects4j compile -w work/JxPath_8

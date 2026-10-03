@@ -1,0 +1,8 @@
+project: Lang
+bug_id: 29
+class_name: org.apache.commons.lang3.SystemUtils
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 1
+fixed_failing: 1
+error: 

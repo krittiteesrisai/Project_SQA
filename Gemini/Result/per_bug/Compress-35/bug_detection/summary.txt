@@ -1,0 +1,8 @@
+project: Compress
+bug_id: 35
+class_name: org.apache.commons.compress.archivers.tar.TarUtils
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 2
+fixed_failing: 3
+error: 

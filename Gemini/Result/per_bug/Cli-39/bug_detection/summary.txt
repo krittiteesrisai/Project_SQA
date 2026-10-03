@@ -1,0 +1,8 @@
+project: Cli
+bug_id: 39
+class_name: org.apache.commons.cli.TypeHandler
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 0
+fixed_failing: 
+error: 

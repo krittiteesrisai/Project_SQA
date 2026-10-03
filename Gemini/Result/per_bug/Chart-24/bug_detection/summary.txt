@@ -1,0 +1,8 @@
+project: Chart
+bug_id: 24
+class_name: org.jfree.chart.renderer.GrayPaintScale
+compiled: TRUE
+kills_bug: TRUE
+buggy_failing: 2
+fixed_failing: 0
+error: 

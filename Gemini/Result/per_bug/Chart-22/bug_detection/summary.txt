@@ -1,0 +1,8 @@
+project: Chart
+bug_id: 22
+class_name: org.jfree.data.KeyedObjects2D
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 1
+fixed_failing: 1
+error: 

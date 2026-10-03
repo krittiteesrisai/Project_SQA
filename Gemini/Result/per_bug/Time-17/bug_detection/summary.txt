@@ -1,0 +1,8 @@
+project: Time
+bug_id: 17
+class_name: org.joda.time.DateTimeZone
+compiled: False
+kills_bug: 
+buggy_failing: 
+fixed_failing: 
+error: compile failed (buggy): Command failed: defects4j compile -w work/Time_17

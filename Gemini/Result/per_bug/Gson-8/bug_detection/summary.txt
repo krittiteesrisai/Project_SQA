@@ -1,0 +1,8 @@
+project: Gson
+bug_id: 8
+class_name: com.google.gson.internal.UnsafeAllocator
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 
+fixed_failing: 
+error: coverage failed: Command failed: defects4j coverage -w work/Gson_8

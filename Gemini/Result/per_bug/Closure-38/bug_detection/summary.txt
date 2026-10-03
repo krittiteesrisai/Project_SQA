@@ -1,0 +1,8 @@
+project: Closure
+bug_id: 38
+class_name: com.google.javascript.jscomp.CodeConsumer
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 3
+fixed_failing: 3
+error: 

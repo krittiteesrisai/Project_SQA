@@ -1,0 +1,8 @@
+project: Closure
+bug_id: 127
+class_name: com.google.javascript.jscomp.UnreachableCodeElimination
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 11
+fixed_failing: 11
+error: 

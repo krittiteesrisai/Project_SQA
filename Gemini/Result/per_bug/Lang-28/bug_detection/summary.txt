@@ -1,0 +1,8 @@
+project: Lang
+bug_id: 28
+class_name: org.apache.commons.lang3.text.translate.NumericEntityUnescaper
+compiled: TRUE
+kills_bug: TRUE
+buggy_failing: 2
+fixed_failing: 0
+error: 

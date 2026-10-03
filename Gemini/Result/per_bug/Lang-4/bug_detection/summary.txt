@@ -1,0 +1,8 @@
+project: Lang
+bug_id: 4
+class_name: org.apache.commons.lang3.text.translate.LookupTranslator
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 0
+fixed_failing: 
+error: 

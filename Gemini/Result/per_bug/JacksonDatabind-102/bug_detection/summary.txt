@@ -1,0 +1,8 @@
+project: JacksonDatabind
+bug_id: 102
+class_name: com.fasterxml.jackson.databind.ser.std.DateTimeSerializerBase
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 3
+fixed_failing: 4
+error: 

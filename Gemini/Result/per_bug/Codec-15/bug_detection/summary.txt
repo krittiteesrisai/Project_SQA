@@ -1,0 +1,8 @@
+project: Codec
+bug_id: 15
+class_name: org.apache.commons.codec.language.Soundex
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 4
+fixed_failing: 4
+error: 

@@ -1,0 +1,8 @@
+project: Lang
+bug_id: 13
+class_name: org.apache.commons.lang3.SerializationUtils
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 0
+fixed_failing: 
+error: 

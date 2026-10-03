@@ -1,0 +1,8 @@
+project: Math
+bug_id: 59
+class_name: org.apache.commons.math.util.FastMath
+compiled: TRUE
+kills_bug: FALSE
+buggy_failing: 2
+fixed_failing: 1
+error: 
