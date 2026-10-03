@@ -1,0 +1,10 @@
+Metric,Value,Source
+Bugs in dataset,854.0,Coverage CSV
+Bugs evaluated (OK),545.0,Eval_Status
+TARDIS task success rate (%),23.7,Section 3
+Median generation time / bug (min),2.0,Gen_Time_sec
+Median tests per minute,3.02,Tests_per_Minute
+Mean line coverage (%),15.7,Section 5
+Mean branch coverage (%),6.8,Section 5
+Fault detection rate (%),2.9,Section 7
+Median test exec time (s),7.8,Test_ExecTime_sec
