@@ -180,7 +180,7 @@ python3 extract_results_structured.py results.csv --out-dir per_bug
 ## 6. ข้อจำกัด
 
 - **Compile failure สูง** — ส่วนหนึ่งเป็นความผิดพลาดของ AI (เรียก API ที่ไม่มีอยู่จริง) อีกส่วนเป็นความเข้ากันไม่ได้กับ benchmark เช่น โปรเจกต์ที่ใช้ JUnit 3 หรือ Java source level เก่า ยังไม่ได้แยกสัดส่วนสองกลุ่มนี้
-- **วัด kills_bug ไม่ได้ในบางโปรเจกต์** — คลาสที่ compile ผ่านส่วนหนึ่ง (ส่วนใหญ่เป็น Cli รวมถึง Compress, Gson และ Time) รัน JUnitCore ไม่ได้เพราะ classpath เป็น JUnit รุ่นเก่า แถวเหล่านี้ถูกบันทึกเป็น `kills_bug=False` แต่ความหมายจริงคือ "ไม่ทราบผล"
+- **วัด kills_bug ไม่ได้ในบางโปรเจกต์** — 34 จาก 364 คลาสที่ compile ผ่าน (31 บั๊ก: Cli 27, Compress 4, Time 2, Gson 1) รัน test ไม่ได้ เพราะ test classpath ของโปรเจกต์มีแค่ JUnit 3 (เช่น `junit-3.8.2.jar`) จึงไม่มี `org.junit.runner.JUnitCore` แถวเหล่านี้ถูกบันทึกเป็น `kills_bug=False` แต่ความหมายจริงคือ "ไม่ทราบผล"
 - **Coverage ไม่ใช่ของ AI ล้วน** — ไฟล์ test ตั้งชื่อ `<Class>Test.java` จึงอาจเขียนทับ test ของนักพัฒนาที่ชื่อซ้ำ ค่า coverage ที่รายงานคือ test ของนักพัฒนาที่เหลือรวมกับ test ของ AI (`kills_bug` ไม่ได้รับผลกระทบ เพราะเทียบ buggy/fixed ด้วยไฟล์เดียวกัน)
 - **สร้างครั้งเดียว** — ไม่มีการส่ง error กลับให้ AI แก้ ผลจึงสะท้อนความสามารถ zero-shot
 - **Timeout** — คำสั่งที่ค้างเกิน 20 นาที (เช่น test ที่วนลูปหนัก) ถูกตัดและบันทึกเป็น error
