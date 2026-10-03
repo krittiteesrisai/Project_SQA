@@ -37,14 +37,18 @@
 | Gson | 18 | Time | 26 |
 | JacksonCore | 26 | **รวม** | **854** |
 
-### โมเดลที่ใช้
+### AI Tool และ Configuration (ตามโจทย์ข้อ 1.4 และ 1.7)
 
-ใช้ **`gemini-3.5-flash-lite`** รุ่นเดียวกับทั้ง 854 บั๊ก ด้วย prompt และวิธีวัดผลชุดเดียวกัน แต่เรียกผ่านสองช่องทาง เพราะโควต้ารายวันของช่องทางแรกหมดกลางทาง
+**AI Tool: Gemini** (1 ใน 2 AI tools ของกลุ่ม ตามข้อ 1.4) ใช้ prompt และวิธีวัดผลชุดเดียวกันทั้งหมด
+ข้อ 1.7 อนุญาตให้กำหนด configuration ต่างกันเพื่อดูข้อจำกัดของเครื่องมือ งานนี้ใช้รุ่นของโมเดลเป็น configuration:
 
-| ช่องทาง | บั๊ก |
-|---|---|
-| Google Gemini API (`--provider gemini`) | 662 บั๊กแรก |
-| ai.kku.ac.th (`--provider kku`) | 192 บั๊กที่เหลือ (Lang, Math, Mockito, Time) |
+| Configuration | รุ่นโมเดล | ช่องทาง | บั๊ก | ใช้เป็น |
+|---|---|---|---|---|
+| A | `gemini-3.5-flash-lite` | Google Gemini API (`--provider gemini`) | 662 บั๊กแรก | ผลหลัก |
+| B | `gemini-3.7-flash` | ai.kku.ac.th (`--provider kku`) | 192 บั๊กที่เหลือ (Lang, Math, Mockito, Time) | ผลหลัก |
+| B′ | `gemini-3.5-flash-lite` | ai.kku.ac.th (`--provider kku`) | 192 บั๊กเดียวกับ B | เปรียบเทียบ configuration |
+
+> ผลหลักในหัวข้อ 2 = A + B (`Result/results.csv`) ส่วน B′ อยู่ใน `Result/results_flashlite_192.csv`
 
 ---
 
@@ -55,19 +59,34 @@
 | ตัวชี้วัด (ต่อบั๊ก) | ค่า |
 |---|---|
 | บั๊กที่ทดลอง | 854 / 854 |
-| บั๊กที่มี test compile ผ่านอย่างน้อย 1 คลาส | 342 (40.05%) |
-| **บั๊กที่จับได้ (kills_bug)** | **15 / 854** |
-| **Fault Detection Rate (ทุกบั๊ก)** | **1.76%** (15 / 854) |
-| **Fault Detection Rate (เฉพาะบั๊กที่ compile ผ่าน)** | **4.39%** (15 / 342) |
-| Average Line Coverage (เฉลี่ยต่อคลาส) | 90.46% |
-| Average Condition Coverage (เฉลี่ยต่อคลาส) | 84.02% |
+| บั๊กที่มี test compile ผ่านอย่างน้อย 1 คลาส | 366 (42.86%) |
+| **บั๊กที่จับได้ (kills_bug)** | **20 / 854** |
+| **Fault Detection Rate (ทุกบั๊ก)** | **2.34%** (20 / 854) |
+| **Fault Detection Rate (เฉพาะบั๊กที่ compile ผ่าน)** | **5.46%** (20 / 366) |
+| Average Line Coverage (เฉลี่ยต่อคลาส) | 91.33% |
+| Average Condition Coverage (เฉลี่ยต่อคลาส) | 85.41% |
 
-**ข้อมูลประกอบระดับคลาส** — 127 บั๊กแก้มากกว่า 1 คลาส และสร้าง test แยกทุกคลาส จึงมี test ทั้งหมด 1,067 ไฟล์ (ไม่มีแถวซ้ำ): compile ผ่าน 364 (34.1%), จับบั๊กได้ 15 แถว, FDR ระดับคลาส 1.41% (15 / 1,067) และ 4.12% (15 / 364) ตัวเลขใน `Result/gemini_summary.md` เป็นระดับคลาสนี้
+**ข้อมูลประกอบระดับคลาส** — 127 บั๊กแก้มากกว่า 1 คลาส และสร้าง test แยกทุกคลาส จึงมี test ทั้งหมด 1,067 ไฟล์ (ไม่มีแถวซ้ำ): compile ผ่าน 395 (37.0%), จับบั๊กได้ 20 แถว, FDR ระดับคลาส 1.87% (20 / 1,067) และ 5.06% (20 / 395) ตัวเลขใน `Result/gemini_summary.md` เป็นระดับคลาสนี้
 
 **นิยาม**
 - **compiled** — test ที่ AI เขียน compile ผ่านบน buggy version
 - **kills_bug = True** — test **ล้มบน buggy version และผ่านบน fixed version** (จับบั๊กได้จริง ไม่ใช่ test พังเอง)
 - **Coverage** — วัดต่อคลาส แล้วเฉลี่ยเฉพาะคลาสที่วัดได้
+
+
+### เปรียบเทียบ configuration บน 192 บั๊กชุดเดียวกัน (B กับ B′)
+
+ใช้บั๊ก, prompt และวิธีวัดชุดเดียวกัน ต่างแค่รุ่นโมเดล
+
+| ตัวชี้วัด (ต่อบั๊ก, 192 บั๊ก) | B: `gemini-3.7-flash` | B′: `gemini-3.5-flash-lite` |
+|---|---|---|
+| compile ผ่านอย่างน้อย 1 คลาส | 106 (55.21%) | 82 (42.71%) |
+| บั๊กที่จับได้ | **11** | **6** |
+| Fault Detection Rate | 5.73% | 3.12% |
+| FDR เฉพาะบั๊กที่ compile ผ่าน | 10.38% | 7.32% |
+| Line / Condition Coverage (เฉลี่ยต่อคลาส) | 94.78% / 89.92% | 92.33% / 85.59% |
+
+รุ่นที่ใหญ่กว่า (3.7 flash) เขียน test ที่ compile ผ่านมากกว่าและจับบั๊กได้เกือบสองเท่าของ flash-lite บนบั๊กชุดเดียวกัน
 
 ---
 
@@ -85,7 +104,8 @@ Gemini/
 │   └── extract_results_structured.py  ← แยกผลรายบั๊ก
 ├── Result/
 │   ├── targets_full.csv           ← รายการบั๊กทั้ง 854 ตัว (project,bug)
-│   ├── results.csv                ← ผลดิบทุกคลาส
+│   ├── results.csv                ← ผลดิบทุกคลาส (ผลหลัก A + B)
+│   ├── results_flashlite_192.csv  ← ผลของ configuration B′
 │   ├── gemini_summary.csv / .md   ← สรุปรายโปรเจกต์ + ภาพรวม
 │   └── per_bug/<Project>-<BugID>/
 │       ├── generated_tests/       ← ไฟล์ test ที่ AI สร้าง
@@ -170,7 +190,7 @@ python3 run_gemini_defects4j.py --batch targets.csv --workroot ./work --provider
 CMD_TIMEOUT_SEC=600 python3 run_gemini_defects4j.py --batch targets.csv --provider kku
 ```
 
-`--provider gemini` ใช้ Google API (โมเดลตั้งที่ `MODEL_NAME`), `--provider kku` ใช้ ai.kku.ac.th (โมเดลตั้งที่ `KKU_MODEL_NAME`) ในการทดลองนี้ตั้งทั้งสองค่าเป็น `gemini-3.5-flash-lite`
+`--provider gemini` ใช้ Google API (โมเดลตั้งที่ `MODEL_NAME`), `--provider kku` ใช้ ai.kku.ac.th (โมเดลตั้งที่ `KKU_MODEL_NAME`) ชุด A ใช้ `MODEL_NAME = gemini-3.5-flash-lite`, ชุด B ใช้ `KKU_MODEL_NAME = gemini-3.7-flash`
 
 ### 5.4 สรุปผล
 
@@ -184,7 +204,7 @@ python3 extract_results_structured.py results.csv --out-dir per_bug
 ## 6. ข้อจำกัด
 
 - **Compile failure สูง** — ส่วนหนึ่งเป็นความผิดพลาดของ AI (เรียก API ที่ไม่มีอยู่จริง) อีกส่วนเป็นความเข้ากันไม่ได้กับ benchmark เช่น โปรเจกต์ที่ใช้ JUnit 3 หรือ Java source level เก่า ยังไม่ได้แยกสัดส่วนสองกลุ่มนี้
-- **วัด kills_bug ไม่ได้ในบางโปรเจกต์** — 34 จาก 364 คลาสที่ compile ผ่าน (31 บั๊ก: Cli 27, Compress 4, Time 2, Gson 1) รัน test ไม่ได้ เพราะ test classpath ของโปรเจกต์มีแค่ JUnit 3 (เช่น `junit-3.8.2.jar`) จึงไม่มี `org.junit.runner.JUnitCore` แถวเหล่านี้ถูกบันทึกเป็น `kills_bug=False` แต่ความหมายจริงคือ "ไม่ทราบผล"
+- **วัด kills_bug ไม่ได้ในบางโปรเจกต์** — 38 จาก 395 คลาสที่ compile ผ่าน (35 บั๊ก: Cli 27, Time 6, Compress 4, Gson 1) รัน test ไม่ได้ เพราะ test classpath ของโปรเจกต์มีแค่ JUnit 3 (เช่น `junit-3.8.2.jar`) จึงไม่มี `org.junit.runner.JUnitCore` แถวเหล่านี้ถูกบันทึกเป็น `kills_bug=False` แต่ความหมายจริงคือ "ไม่ทราบผล"
 - **Coverage ไม่ใช่ของ AI ล้วน** — ไฟล์ test ตั้งชื่อ `<Class>Test.java` จึงอาจเขียนทับ test ของนักพัฒนาที่ชื่อซ้ำ ค่า coverage ที่รายงานคือ test ของนักพัฒนาที่เหลือรวมกับ test ของ AI (`kills_bug` ไม่ได้รับผลกระทบ เพราะเทียบ buggy/fixed ด้วยไฟล์เดียวกัน)
 - **สร้างครั้งเดียว** — ไม่มีการส่ง error กลับให้ AI แก้ ผลจึงสะท้อนความสามารถ zero-shot
 - **Timeout** — คำสั่งที่ค้างเกิน 20 นาที (เช่น test ที่วนลูปหนัก) ถูกตัดและบันทึกเป็น error
