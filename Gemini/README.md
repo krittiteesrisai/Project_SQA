@@ -3,6 +3,12 @@
 ส่วนหนึ่งของโปรเจกต์กลุ่มวิชา **CP353201 Software Quality Assurance (Phase 2)**
 โฟลเดอร์นี้คือผลการใช้ **Google Gemini** สร้าง unit test (JUnit) ให้คลาสที่มีบั๊กใน Defects4J แล้ววัดว่า test ที่ได้ compile ผ่านไหม ครอบคลุมโค้ดแค่ไหน และจับบั๊กได้หรือไม่
 
+## ผู้จัดทำ
+
+| ชื่อ-นามสกุล | รหัสนักศึกษา | ส่วนที่รับผิดชอบ |
+|---|---|---|
+| กฤติธี ศรีใสย์ | 673380572-9 | AI Tool: Gemini — ออกแบบ prompt, เขียน pipeline, รันกับ Defects4J ครบ 854 บั๊ก, วิเคราะห์ผล |
+
 ---
 
 ## 1. สรุปการทดลอง
@@ -31,16 +37,14 @@
 | Gson | 18 | Time | 26 |
 | JacksonCore | 26 | **รวม** | **854** |
 
-### โมเดลที่ใช้ (2 รุ่น)
+### โมเดลที่ใช้
 
-ใช้ prompt และวิธีวัดผลชุดเดียวกันทั้งหมด แต่รันด้วย Gemini สองรุ่น เพราะโควต้ารายวันของรอบแรกหมดกลางทาง
+ใช้ **`gemini-3.5-flash-lite`** รุ่นเดียวกับทั้ง 854 บั๊ก ด้วย prompt และวิธีวัดผลชุดเดียวกัน แต่เรียกผ่านสองช่องทาง เพราะโควต้ารายวันของช่องทางแรกหมดกลางทาง
 
-| ชุด | โมเดล | ช่องทาง | บั๊ก |
-|---|---|---|---|
-| A | `gemini-3.5-flash-lite` | Google Gemini API | 854 |
-
-
-> ผลของสองชุดรวมอยู่ใน `Result/results.csv` ไฟล์เดียว ไม่ควรเทียบกันตรง ๆ ว่ารุ่นไหนดีกว่า เพราะชุดบั๊กต่างกัน
+| ช่องทาง | บั๊ก |
+|---|---|
+| Google Gemini API (`--provider gemini`) | 662 บั๊กแรก |
+| ai.kku.ac.th (`--provider kku`) | 192 บั๊กที่เหลือ (Lang, Math, Mockito, Time) |
 
 ---
 
@@ -51,14 +55,14 @@
 | ตัวชี้วัด (ต่อบั๊ก) | ค่า |
 |---|---|
 | บั๊กที่ทดลอง | 854 / 854 |
-| บั๊กที่มี test compile ผ่านอย่างน้อย 1 คลาส | 366 (42.86%) |
-| **บั๊กที่จับได้ (kills_bug)** | **20 / 854** |
-| **Fault Detection Rate (ทุกบั๊ก)** | **2.34%** (20 / 854) |
-| **Fault Detection Rate (เฉพาะบั๊กที่ compile ผ่าน)** | **5.46%** (20 / 366) |
-| Average Line Coverage (เฉลี่ยต่อคลาส) | 91.33% |
-| Average Condition Coverage (เฉลี่ยต่อคลาส) | 85.41% |
+| บั๊กที่มี test compile ผ่านอย่างน้อย 1 คลาส | 342 (40.05%) |
+| **บั๊กที่จับได้ (kills_bug)** | **15 / 854** |
+| **Fault Detection Rate (ทุกบั๊ก)** | **1.76%** (15 / 854) |
+| **Fault Detection Rate (เฉพาะบั๊กที่ compile ผ่าน)** | **4.39%** (15 / 342) |
+| Average Line Coverage (เฉลี่ยต่อคลาส) | 90.46% |
+| Average Condition Coverage (เฉลี่ยต่อคลาส) | 84.02% |
 
-**ข้อมูลประกอบระดับคลาส** — 127 บั๊กแก้มากกว่า 1 คลาส และสร้าง test แยกทุกคลาส จึงมี test ทั้งหมด 1,067 ไฟล์ (ไม่มีแถวซ้ำ): compile ผ่าน 395 (37.0%), จับบั๊กได้ 20 แถว, FDR ระดับคลาส 1.87% (20 / 1,067) และ 5.06% (20 / 395) ตัวเลขใน `Result/gemini_summary.md` เป็นระดับคลาสนี้
+**ข้อมูลประกอบระดับคลาส** — 127 บั๊กแก้มากกว่า 1 คลาส และสร้าง test แยกทุกคลาส จึงมี test ทั้งหมด 1,067 ไฟล์ (ไม่มีแถวซ้ำ): compile ผ่าน 364 (34.1%), จับบั๊กได้ 15 แถว, FDR ระดับคลาส 1.41% (15 / 1,067) และ 4.12% (15 / 364) ตัวเลขใน `Result/gemini_summary.md` เป็นระดับคลาสนี้
 
 **นิยาม**
 - **compiled** — test ที่ AI เขียน compile ผ่านบน buggy version
@@ -166,7 +170,7 @@ python3 run_gemini_defects4j.py --batch targets.csv --workroot ./work --provider
 CMD_TIMEOUT_SEC=600 python3 run_gemini_defects4j.py --batch targets.csv --provider kku
 ```
 
-`--provider gemini` ใช้ Google API (โมเดลตั้งที่ `MODEL_NAME`), `--provider kku` ใช้ ai.kku.ac.th (โมเดลตั้งที่ `KKU_MODEL_NAME`)
+`--provider gemini` ใช้ Google API (โมเดลตั้งที่ `MODEL_NAME`), `--provider kku` ใช้ ai.kku.ac.th (โมเดลตั้งที่ `KKU_MODEL_NAME`) ในการทดลองนี้ตั้งทั้งสองค่าเป็น `gemini-3.5-flash-lite`
 
 ### 5.4 สรุปผล
 
