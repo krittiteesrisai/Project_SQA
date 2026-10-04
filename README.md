@@ -19,7 +19,7 @@ Repository สำหรับ Project รายวิชา **Software Quality A
 Project_SQA/
 ├── Claude-sonnet_5_5/
 ├── Gemini/
-├── report/
+├── Report/
 ├── TARDIS/
 ├── UTBot/
 ├── .gitattributes
