@@ -1,21 +1,23 @@
-# สรุปผลการทดสอบ — Gemini 3.7 flash (ai.kku.ac.th)
+# สรุปผลการทดสอบระดับคลาส — Gemini (Config A: gemini-3.5-flash-lite + Config B: gemini-3.7-flash)
+
+> ไฟล์นี้นับ **ต่อคลาส** (1,067 ไฟล์ test จาก 854 บั๊ก เพราะบางบั๊กแก้หลายคลาส) ผลหลักแบบ **ต่อบั๊ก** ดูที่ `README.md`
 
 ## ภาพรวมทั้งหมด (ทุกโปรเจกต์รวมกัน)
 
 | Metric | Result |
 |---|---:|
-| Total bugs tested | 1067 |
+| Total classes tested (test files) | 1067 |
 | Compiled successfully | 395 (37.02%) |
-| Bugs detected (kills_bug) | 20 |
-| Fault Detection Rate — All bugs | 1.87% |
-| Fault Detection Rate — Compiled only | 5.06% |
-| Errored targets | 679 |
+| Classes with kills_bug = True | 20 |
+| Fault Detection Rate — ทุกคลาส | 1.87% |
+| Fault Detection Rate — เฉพาะคลาสที่ compile ผ่าน | 5.06% |
+| Classes with error (compile ไม่ผ่าน, timeout ฯลฯ) | 679 |
 | Average Line Coverage | 91.33% |
 | Average Condition Coverage | 85.41% |
 
 ## แยกรายโปรเจกต์
 
-| Project | Bugs | Compiled % | FDR (all) | FDR (compiled) | Avg Line Cov | Avg Cond Cov |
+| Project | Classes | Compiled % | FDR (all) | FDR (compiled) | Avg Line Cov | Avg Cond Cov |
 |---|---:|---:|---:|---:|---:|---:|
 | Chart | 28 | 57.14% | 7.14% | 12.50% | 79.23% | 67.26% |
 | Cli | 51 | 66.67% | 0.00% | 0.00% | 95.82% | 91.85% |
@@ -37,6 +39,7 @@
 
 ## หมายเหตุ
 
-- **Fault Detection Rate (all)** = จำนวนบั๊กที่ตรวจพบ / จำนวนบั๊กทั้งหมดที่ทดสอบ
-- **Fault Detection Rate (compiled)** = จำนวนบั๊กที่ตรวจพบ / จำนวนบั๊กที่ test compile ผ่านเท่านั้น (แยกผลของโมเดล AI ออกจากปัญหาความเข้ากันไม่ได้ของ syntax/library)
-- Coverage เป็นค่าเฉลี่ย (macro-average) จากบั๊กที่วัด coverage ได้สำเร็จเท่านั้น
+- **Fault Detection Rate (all)** = จำนวนคลาสที่ test จับบั๊กได้ / จำนวนคลาสทั้งหมด
+- **Fault Detection Rate (compiled)** = จำนวนคลาสที่ test จับบั๊กได้ / จำนวนคลาสที่ test compile ผ่าน (แยกผลของโมเดล AI ออกจากปัญหาความเข้ากันไม่ได้ของ syntax/library)
+- Coverage เป็นค่าเฉลี่ยจากคลาสที่วัด coverage ได้สำเร็จเท่านั้น
+- ใน `gemini_summary.csv` คอลัมน์ `total_bugs` หมายถึงจำนวนคลาส (ชื่อคอลัมน์มาจากสคริปต์สรุปผล)
