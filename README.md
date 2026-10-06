@@ -13,6 +13,15 @@ Repository สำหรับ Project รายวิชา **Software Quality A
 - Claude Sonnet
 - Gemini
 
+## Member Group
+
+| Student ID | Name |
+|---|---|---|
+| 673380572-9 | นายกฤติธี ศรีใสย์ | Sec.2 |
+| 673380585-0 | นายธนดล ไชยศิลา | Sec.2 |
+| 673380049-4 | นายปิยชญานินท์ โทนะพันธ์ | Sec.1 |
+| 673380417-1 | นายพุฒิเมธ ชมศรีสวัสดิ์ | Sec.2 |
+
 ## Project Structure
 
 ```text
