@@ -15,7 +15,7 @@ Repository สำหรับ Project รายวิชา **Software Quality A
 
 ## Member Group
 
-| Student ID | Name |
+| Student ID | Name | Section |
 |---|---|---|
 | 673380572-9 | นายกฤติธี ศรีใสย์ | Sec.2 |
 | 673380585-0 | นายธนดล ไชยศิลา | Sec.2 |
